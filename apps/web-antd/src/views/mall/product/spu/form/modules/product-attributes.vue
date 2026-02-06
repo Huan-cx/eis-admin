@@ -214,6 +214,7 @@ async function getAttributeOptions(propertyId: number) {
       </Select>
       <Tag
         v-show="!inputVisible(index)"
+        v-if="!isDetail"
         @click="showInput(index)"
         class="mx-1 border-dashed bg-gray-100"
       >

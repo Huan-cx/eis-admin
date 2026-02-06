@@ -335,6 +335,11 @@ defineExpose({
           </template>
         </VxeColumn>
       </template>
+      <VxeColumn align="center" title="商品名称" width="168">
+        <template #default="{ row }">
+          <Input v-model:value="row.name" class="w-full" />
+        </template>
+      </VxeColumn>
       <VxeColumn align="center" title="商品条码" width="168">
         <template #default="{ row }">
           <Input v-model:value="row.barCode" class="w-full" />

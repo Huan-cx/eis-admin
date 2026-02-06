@@ -280,6 +280,10 @@ function handleChangeSubCommissionType() {
 
 /** 选择规格 */
 function handleChangeSpec() {
+  // 详情模式下不重置属性和sku列表
+  if (isDetail.value || formData.value.id) {
+    return;
+  }
   // 重置商品属性列表
   propertyList.value = [];
   // 重置 sku 列表
