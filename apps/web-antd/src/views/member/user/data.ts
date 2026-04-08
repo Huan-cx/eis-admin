@@ -28,11 +28,20 @@ export function useFormSchema(): VbenFormSchema[] {
       },
     },
     {
-      fieldName: 'mobile',
+      fieldName: 'phone',
       label: '手机号',
       component: 'Input',
       componentProps: {
         placeholder: '请输入手机号',
+      },
+      rules: 'required',
+    },
+    {
+      fieldName: 'email',
+      label: '邮箱',
+      component: 'Input',
+      componentProps: {
+        placeholder: '请输入邮箱',
       },
       rules: 'required',
     },
@@ -145,11 +154,20 @@ export function useGridFormSchema(): VbenFormSchema[] {
       },
     },
     {
-      fieldName: 'mobile',
+      fieldName: 'phone',
       label: '手机号',
       component: 'Input',
       componentProps: {
         placeholder: '请输入手机号',
+        allowClear: true,
+      },
+    },
+    {
+      fieldName: 'email',
+      label: '邮箱',
+      component: 'Input',
+      componentProps: {
+        placeholder: '请输入邮箱',
         allowClear: true,
       },
     },
@@ -232,9 +250,14 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
       },
     },
     {
-      field: 'mobile',
+      field: 'phone',
       title: '手机号',
       minWidth: 120,
+    },
+    {
+      field: 'email',
+      title: '邮箱',
+      minWidth: 150,
     },
     {
       field: 'nickname',

@@ -114,6 +114,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
               type: 'link',
               icon: ACTION_ICON.EDIT,
               auth: ['promotion:article-category:update'],
+              disabled: [4,5,6].includes(row.id),
               onClick: handleEdit.bind(null, row),
             },
             {
@@ -122,6 +123,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
               danger: true,
               icon: ACTION_ICON.DELETE,
               auth: ['promotion:article-category:delete'],
+              disabled: [4,5,6].includes(row.id),
               popConfirm: {
                 title: $t('ui.actionMessage.deleteConfirm', [row.name]),
                 confirm: handleDelete.bind(null, row),

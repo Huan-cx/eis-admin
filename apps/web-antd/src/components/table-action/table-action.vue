@@ -155,7 +155,7 @@ watch(
         :key="getActionKey(action, index)"
       >
         <Popconfirm
-          v-if="action.popConfirm"
+          v-if="action.popConfirm && !action.disabled"
           v-bind="getPopConfirmProps(action.popConfirm)"
         >
           <template v-if="action.popConfirm.icon" #icon>

@@ -89,7 +89,7 @@ const [Modal, modalApi] = useVbenModal({
   <Modal :title="getTitle" class="w-2/5">
     <Form class="mx-4">
       <!-- 自定义插槽：商品选择 -->
-      <template #spuId>
+      <template v-if="!!formData?.spuId" #spuId>
         <SpuShowcase v-model="formData!.spuId" :limit="1" />
       </template>
     </Form>

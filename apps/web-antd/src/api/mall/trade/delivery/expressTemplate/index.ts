@@ -15,7 +15,7 @@ export namespace MallDeliveryExpressTemplateApi {
 
   /** 运费模板计费 */
   export interface DeliveryExpressTemplateCharge {
-    areaIds: number[]; // 区域编号列表
+    countries: string[]; // 国家代码列表
     startCount: number; // 首件数量
     startPrice: number; // 首件价格，单位：分
     extraCount: number; // 续件数量
@@ -24,7 +24,7 @@ export namespace MallDeliveryExpressTemplateApi {
 
   /** 运费模板包邮 */
   export interface DeliveryExpressTemplateFree {
-    areaIds: number[]; // 区域编号列表
+    countries: string[]; // 国家代码列表
     freeCount: number; // 包邮件数
     freePrice: number; // 包邮金额，单位：分
   }

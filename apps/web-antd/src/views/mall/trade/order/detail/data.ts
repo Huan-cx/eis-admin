@@ -111,30 +111,30 @@ export function useOrderPriceSchema(): DescriptionItemSchema[] {
       label: '订单调价',
       render: (val) => `${fenToYuan(val ?? 0)} 元`,
     },
-    {
-      field: 'couponPrice',
-      label: '优惠劵优惠',
-      render: (val) =>
-        h('span', { class: 'text-red-500' }, `${fenToYuan(val ?? 0)} 元`),
-    },
-    {
-      field: 'vipPrice',
-      label: 'VIP 优惠',
-      render: (val) =>
-        h('span', { class: 'text-red-500' }, `${fenToYuan(val ?? 0)} 元`),
-    },
-    {
-      field: 'discountPrice',
-      label: '活动优惠',
-      render: (val) =>
-        h('span', { class: 'text-red-500' }, `${fenToYuan(val ?? 0)} 元`),
-    },
-    {
-      field: 'pointPrice',
-      label: '积分抵扣',
-      render: (val) =>
-        h('span', { class: 'text-red-500' }, `${fenToYuan(val ?? 0)} 元`),
-    },
+    // {
+    //   field: 'couponPrice',
+    //   label: '优惠劵优惠',
+    //   render: (val) =>
+    //     h('span', { class: 'text-red-500' }, `${fenToYuan(val ?? 0)} 元`),
+    // },
+    // {
+    //   field: 'vipPrice',
+    //   label: 'VIP 优惠',
+    //   render: (val) =>
+    //     h('span', { class: 'text-red-500' }, `${fenToYuan(val ?? 0)} 元`),
+    // },
+    // {
+    //   field: 'discountPrice',
+    //   label: '活动优惠',
+    //   render: (val) =>
+    //     h('span', { class: 'text-red-500' }, `${fenToYuan(val ?? 0)} 元`),
+    // },
+    // {
+    //   field: 'pointPrice',
+    //   label: '积分抵扣',
+    //   render: (val) =>
+    //     h('span', { class: 'text-red-500' }, `${fenToYuan(val ?? 0)} 元`),
+    // },
     {
       field: 'payPrice',
       label: '应付金额',
@@ -149,6 +149,7 @@ export function useDeliveryInfoSchema(): DescriptionItemSchema[] {
     {
       field: 'deliveryType',
       label: '配送方式',
+      span: 3,
       render: (val) =>
         h(DictTag, {
           type: DICT_TYPE.TRADE_DELIVERY_TYPE,
@@ -156,17 +157,61 @@ export function useDeliveryInfoSchema(): DescriptionItemSchema[] {
         }),
     },
     {
-      field: 'receiverName',
-      label: '收货人',
-    },
-    {
-      field: 'receiverMobile',
-      label: '联系电话',
-    },
-    {
       field: 'receiverAddress',
       label: '收货地址',
-      render: (val, data) => `${data?.receiverAreaName} ${val}`.trim(),
+      render: (val) => {
+        if (!val) return '';
+        return h('div', [
+          h('div', `收件人: ${val.firstName} ${val.lastName}`),
+          val.companyName ? h('div', `公司: ${val.companyName}`) : null,
+          h('div', `街道: ${val.street}`),
+          h('div', `${val.postcode} ${val.city}`),
+          val.state ? h('div', `州/省: ${val.state}`) : null,
+          h('div', `国家: ${val.country}`),
+          h('div', `电话: ${val.phone}`),
+          val.email ? h('div', `邮箱: ${val.email}`) : null,
+          val.vat ? h('div', `增值税号: ${val.vat}`) : null,
+          val.eori ? h('div', `EORI号: ${val.eori}`) : null,
+        ]);
+      },
+    },
+    {
+      field: 'billingAddress',
+      label: '账单地址',
+      render: (val) => {
+        if (!val) return '';
+        return h('div', [
+          val.companyName ? h('div', `公司: ${val.companyName}`) : null,
+          h('div', `姓名: ${val.firstName} ${val.lastName}`),
+          h('div', `街道: ${val.street}`),
+          h('div', `${val.postcode} ${val.city}`),
+          val.state ? h('div', `州/省: ${val.state}`) : null,
+          h('div', `国家: ${val.country}`),
+          h('div', `电话: ${val.phone}`),
+          val.email ? h('div', `邮箱: ${val.email}`) : null,
+          val.vat ? h('div', `增值税号: ${val.vat}`) : null,
+          val.eori ? h('div', `EORI号: ${val.eori}`) : null,
+        ]);
+      },
+    },
+    {
+      field: 'businessAddress',
+      label: '商业地址',
+      render: (val) => {
+        if (!val) return '';
+        return h('div', [
+          val.companyName ? h('div', `公司: ${val.companyName}`) : null,
+          h('div', `姓名: ${val.firstName} ${val.lastName}`),
+          h('div', `街道: ${val.street}`),
+          h('div', `${val.postcode} ${val.city}`),
+          val.state ? h('div', `州/省: ${val.state}`) : null,
+          h('div', `国家: ${val.country}`),
+          h('div', `电话: ${val.phone}`),
+          val.email ? h('div', `邮箱: ${val.email}`) : null,
+          val.vat ? h('div', `增值税号: ${val.vat}`) : null,
+          val.eori ? h('div', `EORI号: ${val.eori}`) : null,
+        ]);
+      },
     },
     {
       field: 'deliveryTime',

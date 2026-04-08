@@ -3,8 +3,25 @@ import type { PageParam, PageResult } from '@vben/request';
 import { requestClient } from '#/api/request';
 
 export namespace MallOrderApi {
+  /** 地址信息 */
+  export interface Address {
+    firstName?: string; // 名字
+    lastName?: string; // 姓氏
+    companyName?: string; // 公司名称
+    street?: string; // 街道地址
+    city?: string; // 城市
+    state?: string; // 州/省
+    country?: string; // 国家
+    postcode?: string; // 邮政编码
+    phone?: string; // 电话
+    email?: string; // 邮箱
+    vat?: string; // 增值税号
+    eori?: string; // 经济经营者注册和识别号
+  }
+
   /** 订单信息 */
   export interface Order {
+
     id?: number; // 订单编号
     no?: string; // 订单流水号
     createTime?: Date; // 下单时间
@@ -36,12 +53,11 @@ export namespace MallOrderApi {
     logisticsNo?: string; // 发货物流单号
     deliveryTime?: Date; // 发货时间
     receiveTime?: Date; // 收货时间
-    receiverName?: string; // 收件人名称
-    receiverMobile?: string; // 收件人手机
-    receiverPostCode?: number; // 收件人邮编
-    receiverAreaId?: number; // 收件人地区编号
-    receiverAreaName?: string; // 收件人地区名字
-    receiverDetailAddress?: string; // 收件人详细地址
+    // 地址信息
+    receiverAddress?: Address; // 收货地址
+    billingAddress?: Address; // 账单地址
+    businessAddress?: Address; // 商业地址
+    useDifferentBillingAddress?: boolean; // 是否使用不同的账单地址
     afterSaleStatus?: number; // 售后状态
     refundPrice?: number; // 退款金额
     couponId?: number; // 优惠劵编号
@@ -129,10 +145,11 @@ export namespace MallOrderApi {
   /** 订单地址请求 */
   export interface OrderUpdateAddressReqVO {
     id: number; // 订单编号
-    receiverName: string; // 收件人名称
-    receiverMobile: string; // 收件人手机
-    receiverAreaId: number; // 收件人地区编号
-    receiverDetailAddress: string; // 收件人详细地址
+    receiveUseBilling: boolean; // 收货地址是否与账单地址相同
+    businessUseBilling: boolean; // 商业地址是否与账单地址相同
+    receiverAddress?: Address; // 收货地址
+    billingAddress?: Address; // 账单地址
+    businessAddress?: Address; // 商业地址
   }
 }
 

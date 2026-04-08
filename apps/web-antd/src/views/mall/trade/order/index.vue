@@ -22,6 +22,7 @@ import { $t } from '#/locales';
 import { useGridColumns, useGridFormSchema } from './data';
 import DeliveryForm from './modules/delivery-form.vue';
 import RemarkForm from './modules/remark-form.vue';
+import AddressForm from './modules/address-form.vue';
 
 const { push } = useRouter();
 
@@ -32,6 +33,11 @@ const [DeliveryFormModal, deliveryFormModalApi] = useVbenModal({
 
 const [RemarkFormModal, remarkFormModalApi] = useVbenModal({
   connectedComponent: RemarkForm,
+  destroyOnClose: true,
+});
+
+const [AddressFormModal, addressFormModalApi] = useVbenModal({
+  connectedComponent: AddressForm,
   destroyOnClose: true,
 });
 
@@ -53,6 +59,11 @@ function handleDelivery(row: MallOrderApi.Order) {
 /** 备注 */
 function handleRemark(row: MallOrderApi.Order) {
   remarkFormModalApi.setData(row).open();
+}
+
+/** 修改地址 */
+function handleUpdateAddress(row: MallOrderApi.Order) {
+  addressFormModalApi.setData(row).open();
 }
 
 const [Grid, gridApi] = useVbenVxeGrid({
@@ -106,6 +117,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
 
     <DeliveryFormModal @success="handleRefresh" />
     <RemarkFormModal @success="handleRefresh" />
+    <AddressFormModal @success="handleRefresh" />
     <Grid table-title="订单列表">
       <template #expand_content="{ row }">
         <List item-layout="vertical" :data-source="row.items">
@@ -164,6 +176,13 @@ const [Grid, gridApi] = useVbenVxeGrid({
               label: '备注',
               type: 'link',
               onClick: handleRemark.bind(null, row),
+            },
+            {
+              label: '修改地址',
+              type: 'link',
+              ifShow: () =>
+                row.status === TradeOrderStatusEnum.UNDELIVERED.status,
+              onClick: handleUpdateAddress.bind(null, row),
             },
           ]"
         />

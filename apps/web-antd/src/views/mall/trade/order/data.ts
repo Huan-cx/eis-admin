@@ -1,15 +1,14 @@
-import type { VbenFormSchema } from '#/adapter/form';
-import type { VxeGridPropTypes } from '#/adapter/vxe-table';
-import type { MallDeliveryPickUpStoreApi } from '#/api/mall/trade/delivery/pickUpStore';
+import type { VbenFormSchema } from "#/adapter/form";
+import type { VxeGridPropTypes } from "#/adapter/vxe-table";
+import type { MallDeliveryPickUpStoreApi } from "#/api/mall/trade/delivery/pickUpStore";
+import { getSimpleDeliveryPickUpStoreList } from "#/api/mall/trade/delivery/pickUpStore";
 
-import { DeliveryTypeEnum, DICT_TYPE } from '@vben/constants';
-import { getDictOptions } from '@vben/hooks';
-import { convertToInteger, formatToFraction } from '@vben/utils';
+import { DeliveryTypeEnum, DICT_TYPE } from "@vben/constants";
+import { getDictOptions } from "@vben/hooks";
+import { convertToInteger, formatToFraction } from "@vben/utils";
 
-import { getSimpleDeliveryExpressList } from '#/api/mall/trade/delivery/express';
-import { getSimpleDeliveryPickUpStoreList } from '#/api/mall/trade/delivery/pickUpStore';
-import { getAreaTree } from '#/api/system/area';
-import { getRangePickerDefaultProps } from '#/utils';
+import { getSimpleDeliveryExpressList } from "#/api/mall/trade/delivery/express";
+import { getRangePickerDefaultProps } from "#/utils";
 
 /** 关联数据 */
 let pickUpStoreList: MallDeliveryPickUpStoreApi.DeliveryPickUpStore[] = [];
@@ -218,7 +217,12 @@ export function useGridColumns(): VxeGridPropTypes.Columns {
       title: '买家/收货人',
       formatter: ({ row }) => {
         if (row.deliveryType === DeliveryTypeEnum.EXPRESS.type) {
-          return `买家：${row.user?.nickname} / 收货人： ${row.receiverName} ${row.receiverMobile}${row.receiverAreaName}${row.receiverDetailAddress}`;
+          let addressStr = `买家：${row.user?.nickname} / 收货人： ${row.receiverAddress?.firstName} ${row.receiverAddress?.lastName} ${row.receiverAddress?.phone} ${row.receiverAddress?.country} ${row.receiverAddress?.state} ${row.receiverAddress?.city} ${row.receiverAddress?.street}`;
+          // 添加账单地址信息（如果有）
+          if (row.useDifferentBillingAddress && row.billingAddress?.country) {
+            addressStr += ` / 账单地址：${row.billingAddress?.firstName} ${row.billingAddress?.lastName} ${row.billingAddress?.country} ${row.billingAddress?.state} ${row.billingAddress?.city} ${row.billingAddress?.street}`;
+          }
+          return addressStr;
         }
         if (row.deliveryType === DeliveryTypeEnum.PICK_UP.type) {
           return `门店名称：${pickUpStoreList.find((item) => item.id === row.pickUpStoreId)?.name} /
@@ -347,47 +351,314 @@ export function useAddressFormSchema(): VbenFormSchema[] {
       },
     },
     {
-      fieldName: 'receiverName',
-      label: '收件人',
-      component: 'Input',
+      fieldName: 'receiveUseBilling',
+      label: '收货地址与账单地址相同',
+      component: 'Switch',
       componentProps: {
-        placeholder: '请输入收件人名称',
+        checkedChildren: '是',
+        unCheckedChildren: '否',
       },
+      defaultValue: false,
+    },
+    {
+      fieldName: 'businessUseBilling',
+      label: '商业地址与账单地址相同',
+      component: 'Switch',
+      componentProps: {
+        checkedChildren: '是',
+        unCheckedChildren: '否',
+      },
+      defaultValue: false,
+    },
+    {
+      fieldName: 'receiverAddress.firstName',
+      label: '收件人名字',
+      component: 'Input',
+      rules: 'required',
+      dependencies: {
+        triggerFields: ['receiveUseBilling'],
+        show: (values) => !values.receiveUseBilling,
+      },
+    },
+    {
+      fieldName: 'receiverAddress.lastName',
+      label: '收件人姓氏',
+      component: 'Input',
+      rules: 'required',
+      dependencies: {
+        triggerFields: ['receiveUseBilling'],
+        show: (values) => !values.receiveUseBilling,
+      },
+    },
+    {
+      fieldName: 'receiverAddress.companyName',
+      label: '公司名称',
+      component: 'Input',
+      dependencies: {
+        triggerFields: ['receiveUseBilling'],
+        show: (values) => !values.receiveUseBilling,
+      },
+    },
+    {
+      fieldName: 'receiverAddress.street',
+      label: '街道地址',
+      component: 'Input',
+      rules: 'required',
+      dependencies: {
+        triggerFields: ['receiveUseBilling'],
+        show: (values) => !values.receiveUseBilling,
+      },
+    },
+    {
+      fieldName: 'receiverAddress.city',
+      label: '城市',
+      component: 'Input',
+      rules: 'required',
+      dependencies: {
+        triggerFields: ['receiveUseBilling'],
+        show: (values) => !values.receiveUseBilling,
+      },
+    },
+    {
+      fieldName: 'receiverAddress.state',
+      label: '州/省',
+      component: 'Input',
+      rules: 'required',
+      dependencies: {
+        triggerFields: ['receiveUseBilling'],
+        show: (values) => !values.receiveUseBilling,
+      },
+    },
+    {
+      fieldName: 'receiverAddress.country',
+      label: '国家',
+      component: 'Input',
+      rules: 'required',
+      dependencies: {
+        triggerFields: ['receiveUseBilling'],
+        show: (values) => !values.receiveUseBilling,
+      },
+    },
+    {
+      fieldName: 'receiverAddress.postcode',
+      label: '邮政编码',
+      component: 'Input',
+      dependencies: {
+        triggerFields: ['receiveUseBilling'],
+        show: (values) => !values.receiveUseBilling,
+      },
+    },
+    {
+      fieldName: 'receiverAddress.phone',
+      label: '电话',
+      component: 'Input',
+      rules: 'required',
+      dependencies: {
+        triggerFields: ['receiveUseBilling'],
+        show: (values) => !values.receiveUseBilling,
+      },
+    },
+    {
+      fieldName: 'receiverAddress.email',
+      label: '邮箱',
+      component: 'Input',
+      dependencies: {
+        triggerFields: ['receiveUseBilling'],
+        show: (values) => !values.receiveUseBilling,
+      },
+    },
+    {
+      fieldName: 'receiverAddress.vat',
+      label: '增值税号',
+      component: 'Input',
+      dependencies: {
+        triggerFields: ['receiveUseBilling'],
+        show: (values) => !values.receiveUseBilling,
+      },
+    },
+    {
+      fieldName: 'receiverAddress.eori',
+      label: 'EORI号',
+      component: 'Input',
+      dependencies: {
+        triggerFields: ['receiveUseBilling'],
+        show: (values) => !values.receiveUseBilling,
+      },
+    },
+    {
+      fieldName: 'billingAddress.companyName',
+      label: '账单公司名称',
+      component: 'Input',
+    },
+    {
+      fieldName: 'billingAddress.firstName',
+      label: '账单名',
+      component: 'Input',
       rules: 'required',
     },
     {
-      fieldName: 'receiverMobile',
-      label: '手机号',
+      fieldName: 'billingAddress.lastName',
+      label: '账单姓',
       component: 'Input',
-      componentProps: {
-        placeholder: '请输入收件人手机号',
-      },
       rules: 'required',
     },
     {
-      fieldName: 'receiverAreaId',
-      label: '所在地',
-      component: 'ApiTreeSelect',
-      componentProps: {
-        api: getAreaTree,
-        labelField: 'name',
-        valueField: 'id',
-        childrenField: 'children',
-        placeholder: '请选择收件人所在地',
-        treeDefaultExpandAll: true,
-      },
+      fieldName: 'billingAddress.street',
+      label: '账单街道地址',
+      component: 'Input',
       rules: 'required',
     },
     {
-      fieldName: 'receiverDetailAddress',
-      label: '详细地址',
+      fieldName: 'billingAddress.city',
+      label: '账单城市',
       component: 'Input',
-      componentProps: {
-        placeholder: '请输入收件人详细地址',
-        type: 'textarea',
-        rows: 3,
-      },
       rules: 'required',
+    },
+    {
+      fieldName: 'billingAddress.state',
+      label: '账单州/省',
+      component: 'Input',
+      rules: 'required',
+    },
+    {
+      fieldName: 'billingAddress.country',
+      label: '账单国家',
+      component: 'Input',
+      rules: 'required',
+    },
+    {
+      fieldName: 'billingAddress.postcode',
+      label: '账单邮政编码',
+      component: 'Input',
+    },
+    {
+      fieldName: 'billingAddress.phone',
+      label: '账单电话',
+      component: 'Input',
+      rules: 'required',
+    },
+    {
+      fieldName: 'billingAddress.email',
+      label: '账单邮箱',
+      component: 'Input',
+    },
+    {
+      fieldName: 'billingAddress.vat',
+      label: '账单增值税号',
+      component: 'Input',
+    },
+    {
+      fieldName: 'billingAddress.eori',
+      label: '账单EORI号',
+      component: 'Input',
+    },
+    {
+      fieldName: 'businessAddress.companyName',
+      label: '商业公司名称',
+      component: 'Input',
+      dependencies: {
+        triggerFields: ['businessUseBilling'],
+        show: (values) => !values.businessUseBilling,
+      },
+    },
+    {
+      fieldName: 'businessAddress.firstName',
+      label: '商业名',
+      component: 'Input',
+      dependencies: {
+        triggerFields: ['businessUseBilling'],
+        show: (values) => !values.businessUseBilling,
+      },
+    },
+    {
+      fieldName: 'businessAddress.lastName',
+      label: '商业姓',
+      component: 'Input',
+      dependencies: {
+        triggerFields: ['businessUseBilling'],
+        show: (values) => !values.businessUseBilling,
+      },
+    },
+    {
+      fieldName: 'businessAddress.street',
+      label: '商业街道地址',
+      component: 'Input',
+      dependencies: {
+        triggerFields: ['businessUseBilling'],
+        show: (values) => !values.businessUseBilling,
+      },
+    },
+    {
+      fieldName: 'businessAddress.city',
+      label: '商业城市',
+      component: 'Input',
+      dependencies: {
+        triggerFields: ['businessUseBilling'],
+        show: (values) => !values.businessUseBilling,
+      },
+    },
+    {
+      fieldName: 'businessAddress.state',
+      label: '商业州/省',
+      component: 'Input',
+      dependencies: {
+        triggerFields: ['businessUseBilling'],
+        show: (values) => !values.businessUseBilling,
+      },
+    },
+    {
+      fieldName: 'businessAddress.country',
+      label: '商业国家',
+      component: 'Input',
+      dependencies: {
+        triggerFields: ['businessUseBilling'],
+        show: (values) => !values.businessUseBilling,
+      },
+    },
+    {
+      fieldName: 'businessAddress.postcode',
+      label: '商业邮政编码',
+      component: 'Input',
+      dependencies: {
+        triggerFields: ['businessUseBilling'],
+        show: (values) => !values.businessUseBilling,
+      },
+    },
+    {
+      fieldName: 'businessAddress.phone',
+      label: '商业电话',
+      component: 'Input',
+      dependencies: {
+        triggerFields: ['businessUseBilling'],
+        show: (values) => !values.businessUseBilling,
+      },
+    },
+    {
+      fieldName: 'businessAddress.email',
+      label: '商业邮箱',
+      component: 'Input',
+      dependencies: {
+        triggerFields: ['businessUseBilling'],
+        show: (values) => !values.businessUseBilling,
+      },
+    },
+    {
+      fieldName: 'businessAddress.vat',
+      label: '商业增值税号',
+      component: 'Input',
+      dependencies: {
+        triggerFields: ['businessUseBilling'],
+        show: (values) => !values.businessUseBilling,
+      },
+    },
+    {
+      fieldName: 'businessAddress.eori',
+      label: '商业EORI号',
+      component: 'Input',
+      dependencies: {
+        triggerFields: ['businessUseBilling'],
+        show: (values) => !values.businessUseBilling,
+      },
     },
   ];
 }

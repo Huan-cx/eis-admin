@@ -78,7 +78,7 @@ watch(
 /** 处理新增 */
 function handleAdd() {
   const newRow = {
-    areaIds: [],
+    countries: [],
     freeCount: undefined,
     freePrice: undefined,
   };
@@ -110,9 +110,9 @@ function handleRowChange(row: any) {
 function validate() {
   for (let i = 0; i < tableData.value.length; i++) {
     const item = tableData.value[i];
-    if (!item.areaIds || item.areaIds.length === 0) {
+    if (!item.countries || item.countries.length === 0) {
       throw new Error(`包邮设置第 ${i + 1} 行：区域不能为空`);
-    }
+    };
     if (!item.freeCount || item.freeCount <= 0) {
       throw new Error(
         `包邮设置第 ${i + 1} 行：${columnTitle.value?.freeCountTitle}必须大于 0`,
@@ -131,14 +131,14 @@ defineExpose({
 
 <template>
   <Grid class="w-full">
-    <template #areaIds="{ row }">
+    <template #countries="{ row }">
       <!-- TODO 芋艿：可优化，使用 Cascade。不过貌似 antd 在 multiple 貌似有 bug！ -->
       <TreeSelect
-        v-model:value="row.areaIds"
+        v-model:value="row.countries"
         :tree-data="areaTree"
         :field-names="{
           label: 'name',
-          value: 'id',
+          value: 'code',
           children: 'children',
         }"
         placeholder="请选择地区"

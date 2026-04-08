@@ -12,7 +12,8 @@ export namespace MemberUserApi {
     loginDate?: number;
     loginIp: string;
     mark: string;
-    mobile: string;
+    phone: string; // 手机号
+    email: string; // 邮箱
     name?: string;
     nickname?: string;
     registerIp: string;

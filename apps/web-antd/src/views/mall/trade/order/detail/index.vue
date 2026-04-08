@@ -40,8 +40,8 @@ import {
   useOrderInfoSchema,
   useOrderPriceSchema,
   useOrderStatusSchema,
-  useProductColumns,
-} from './data';
+  useProductColumns
+} from "./data";
 
 defineOptions({ name: 'TradeOrderDetail' });
 

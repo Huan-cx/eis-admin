@@ -33,10 +33,10 @@ export function useChargesColumns(
   const chargeTitleMap = CHARGE_MODE_TITLE_MAP[chargeMode];
   return [
     {
-      field: 'areaIds',
+      field: 'countries',
       title: '区域',
       minWidth: 300,
-      slots: { default: 'areaIds' },
+      slots: { default: 'countries' },
     },
     {
       field: 'startCount',
@@ -78,10 +78,10 @@ export function useFreesColumns(
   const freeTitleMap = FREE_MODE_TITLE_MAP[chargeMode];
   return [
     {
-      field: 'areaIds',
+      field: 'countries',
       title: '区域',
       minWidth: 300,
-      slots: { default: 'areaIds' },
+      slots: { default: 'countries' },
     },
     {
       field: 'freeCount',

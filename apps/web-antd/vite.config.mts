@@ -1,5 +1,6 @@
 import { defineConfig } from '@vben/vite-config';
 
+// @ts-ignore
 export default defineConfig(async () => {
   return {
     application: {},

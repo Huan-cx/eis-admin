@@ -31,8 +31,12 @@ const [Descriptions] = useDescription({
       label: '昵称',
     },
     {
-      field: 'mobile',
+      field: 'phone',
       label: '手机号',
+    },
+    {
+      field: 'email',
+      label: '邮箱',
     },
     {
       field: 'sex',

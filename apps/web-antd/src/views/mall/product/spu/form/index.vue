@@ -217,7 +217,11 @@ async function handleSubmit() {
   values.sliderPicUrls = newSliderPicUrls;
 
   // 提交数据
-  await (spuId.value ? updateSpu(values) : createSpu(values));
+  await (spuId.value ? updateSpu(values) : createSpu(values)).then(() => {
+    message.success('操作成功');
+  }).catch(() => {
+    message.error('操作失败');
+  });
 }
 
 /** 获得详情 */
