@@ -50,6 +50,28 @@ export function useFormSchema(): VbenFormSchema[] {
       rules: 'required',
     },
     {
+      fieldName: 'fixed',
+      label: '是否固定',
+      component: 'Select',
+      componentProps: {
+        placeholder: '是否固定模板',
+        options: getDictOptions(DICT_TYPE.SYSTEM_MAIL_TEMPLATE_FIXED, "boolean"),
+        allowClear: false,
+      },
+      rules: 'required',
+    },
+    {
+      fieldName: 'type',
+      label: '模板类型',
+      component: 'Select',
+      componentProps: {
+        placeholder: '请选择模板类型',
+        options: getDictOptions(DICT_TYPE.SYSTEM_MAIL_TEMPLATE_TYPE, 'number'),
+        allowClear: false,
+      },
+      rules: 'required',
+    },
+    {
       fieldName: 'nickname',
       label: '发送人名称',
       component: 'Input',
@@ -173,6 +195,16 @@ export function useGridFormSchema(): VbenFormSchema[] {
       },
     },
     {
+      fieldName: 'type',
+      label: '模板类型',
+      component: 'Select',
+      componentProps: {
+        options: getDictOptions(DICT_TYPE.SYSTEM_MAIL_TEMPLATE_TYPE, 'number'),
+        allowClear: true,
+        placeholder: '请选择模板类型',
+      },
+    },
+    {
       fieldName: 'accountId',
       label: '邮箱账号',
       component: 'ApiSelect',
@@ -216,6 +248,15 @@ export function useGridColumns(
       field: 'name',
       title: '模板名称',
       minWidth: 120,
+    },
+    {
+      field: 'type',
+      title: '模板类型',
+      minWidth: 120,
+      cellRender: {
+        name: 'CellDict',
+        props: { type: DICT_TYPE.SYSTEM_MAIL_TEMPLATE_TYPE },
+      },
     },
     {
       field: 'title',

@@ -23,6 +23,8 @@ const SYSTEM_DICT = {
   SYSTEM_MAIL_SEND_STATUS: 'system_mail_send_status',
   SYSTEM_NOTIFY_TEMPLATE_TYPE: 'system_notify_template_type',
   SYSTEM_SOCIAL_TYPE: 'system_social_type',
+  SYSTEM_MAIL_TEMPLATE_TYPE: 'system_mail_template_type',
+  SYSTEM_MAIL_TEMPLATE_FIXED: 'system_mail_template_fixed',
 } as const;
 
 /** ========== INFRA - 基础设施模块 ========== */

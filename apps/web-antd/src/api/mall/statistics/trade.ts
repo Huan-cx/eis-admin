@@ -7,7 +7,7 @@ import { requestClient } from '#/api/request';
 export namespace MallTradeStatisticsApi {
   /** 交易状况 Request */
   export interface TradeTrendReqVO {
-    times: [Date, Date];
+    times: [Date, Date] | string[] | undefined;
   }
 
   /** 交易统计 Response */

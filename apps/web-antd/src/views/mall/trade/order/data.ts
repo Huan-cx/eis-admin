@@ -209,7 +209,7 @@ export function useGridColumns(): VxeGridPropTypes.Columns {
     {
       field: 'payPrice',
       title: '实际支付',
-      formatter: 'formatAmount2',
+      formatter: 'formatFenToYuanAmount',
       minWidth: 180,
     },
     {
@@ -217,9 +217,14 @@ export function useGridColumns(): VxeGridPropTypes.Columns {
       title: '买家/收货人',
       formatter: ({ row }) => {
         if (row.deliveryType === DeliveryTypeEnum.EXPRESS.type) {
-          let addressStr = `买家：${row.user?.nickname} / 收货人： ${row.receiverAddress?.firstName} ${row.receiverAddress?.lastName} ${row.receiverAddress?.phone} ${row.receiverAddress?.country} ${row.receiverAddress?.state} ${row.receiverAddress?.city} ${row.receiverAddress?.street}`;
-          // 添加账单地址信息（如果有）
-          if (row.useDifferentBillingAddress && row.billingAddress?.country) {
+          let addressStr = `买家：${row.user?.nickname}`;
+          if (!row.receiveUseBilling) {
+            addressStr += ` / 收货人： ${row.receiverAddress?.firstName} ${row.receiverAddress?.lastName} ${row.receiverAddress?.phone} ${row.receiverAddress?.country} ${row.receiverAddress?.state} ${row.receiverAddress?.city} ${row.receiverAddress?.street}`;
+          }
+          if (!row.businessUseBilling) {
+            addressStr += ` / 商业地址：${row.businessAddress?.companyName} ${row.businessAddress?.firstName} ${row.businessAddress?.lastName} ${row.businessAddress?.country} ${row.businessAddress?.state} ${row.businessAddress?.city} ${row.businessAddress?.street}`;
+          }
+          if (!row.receiveUseBilling && !row.businessUseBilling) {
             addressStr += ` / 账单地址：${row.billingAddress?.firstName} ${row.billingAddress?.lastName} ${row.billingAddress?.country} ${row.billingAddress?.state} ${row.billingAddress?.city} ${row.billingAddress?.street}`;
           }
           return addressStr;

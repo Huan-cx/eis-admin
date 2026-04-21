@@ -57,7 +57,8 @@ export namespace MallOrderApi {
     receiverAddress?: Address; // 收货地址
     billingAddress?: Address; // 账单地址
     businessAddress?: Address; // 商业地址
-    useDifferentBillingAddress?: boolean; // 是否使用不同的账单地址
+    businessUseBilling?: boolean; // 是否使用商业地址
+    receiveUseBilling?: boolean; // 是否使用收货地址
     afterSaleStatus?: number; // 售后状态
     refundPrice?: number; // 退款金额
     couponId?: number; // 优惠劵编号
