@@ -15,6 +15,7 @@ import { fenToYuan, formatDate, handleTree } from '@vben/utils';
 import { useVbenVxeGrid } from '#/adapter/vxe-table';
 import { getCategoryList } from '#/api/mall/product/category';
 import { getCombinationActivityPage } from '#/api/mall/promotion/combination/combinationActivity';
+import { $t } from "@vben/locales";
 
 interface CombinationTableSelectProps {
   multiple?: boolean; // 是否多选：true - checkbox；false - radio
@@ -63,19 +64,19 @@ const formatCombinationPrice = (
 const formSchema = computed<VbenFormSchema[]>(() => [
   {
     fieldName: 'name',
-    label: '活动名称',
+    label: $t('promotion.combination.activity.form.name'),
     component: 'Input',
     componentProps: {
-      placeholder: '请输入活动名称',
+      placeholder: $t('promotion.combination.activity.placeholder.name'),
       clearable: true,
     },
   },
   {
     fieldName: 'status',
-    label: '活动状态',
+    label: $t('promotion.combination.activity.form.status'),
     component: 'Select',
     componentProps: {
-      placeholder: '请选择活动状态',
+      placeholder: $t('promotion.combination.activity.placeholder.status'),
       clearable: true,
       options: getDictOptions(DICT_TYPE.COMMON_STATUS, 'number'),
     },

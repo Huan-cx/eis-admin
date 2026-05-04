@@ -416,6 +416,6 @@ function showTime(item: MallKefuMessageApi.Message, index: number) {
     </div>
   </div>
   <div v-else class="relative bg-background">
-    <Empty description="请选择左侧的一个会话后开始" class="mt-[20%]" />
+    <Empty :description="$t('promotion.kefu.member.empty')" class="mt-[20%]" />
   </div>
 </template>

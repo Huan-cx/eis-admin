@@ -5,6 +5,7 @@ import type { MallSpuApi } from '#/api/mall/product/spu';
 import { fenToYuan, handleTree, treeToString } from '@vben/utils';
 
 import { getCategoryList } from '#/api/mall/product/category';
+import { $t } from '#/locales';
 import { getRangePickerDefaultProps } from '#/utils';
 
 /** 关联数据 */
@@ -18,19 +19,19 @@ export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
       fieldName: 'name',
-      label: '商品名称',
+      label: $t('mall-product.spu.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入商品名称',
+        placeholder: $t('mall-product.spu.placeholder.name'),
         allowClear: true,
       },
     },
     {
       fieldName: 'categoryId',
-      label: '商品分类',
+      label: $t('mall-product.spu.category'),
       component: 'ApiTreeSelect',
       componentProps: {
-        placeholder: '请选择商品分类',
+        placeholder: $t('mall-product.spu.placeholder.category'),
         allowClear: true,
         options: categoryList,
         fieldNames: { label: 'name', value: 'id', children: 'children' },
@@ -38,7 +39,7 @@ export function useGridFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'createTime',
-      label: '创建时间',
+      label: $t('common.createTime'),
       component: 'RangePicker',
       componentProps: {
         ...getRangePickerDefaultProps(),
@@ -58,19 +59,19 @@ export function useGridColumns(
   return [
     {
       field: 'id',
-      title: '商品编号',
+      title: $t('mall-product.spu.id'),
       fixed: 'left',
       minWidth: 100,
     },
     {
       field: 'name',
-      title: '商品名称',
+      title: $t('mall-product.spu.name'),
       fixed: 'left',
       minWidth: 200,
     },
     {
       field: 'picUrl',
-      title: '商品图片',
+      title: $t('mall-product.spu.picUrl'),
       minWidth: 100,
       cellRender: {
         name: 'CellImage',
@@ -78,7 +79,7 @@ export function useGridColumns(
     },
     {
       field: 'categoryId',
-      title: '商品分类',
+      title: $t('mall-product.spu.category'),
       minWidth: 150,
       formatter: ({ row }) => {
         return treeToString(categoryList, row.categoryId);
@@ -86,28 +87,28 @@ export function useGridColumns(
     },
     {
       field: 'status',
-      title: '销售状态',
+      title: $t('mall-product.spu.status'),
       minWidth: 100,
       cellRender: {
         attrs: { beforeChange: onStatusChange },
         name: 'CellSwitch',
         props: {
           checkedValue: 1,
-          checkedChildren: '上架',
+          checkedChildren: $t('mall-product.spu.statusOptions.onSale'),
           unCheckedValue: 0,
-          unCheckedChildren: '下架',
+          unCheckedChildren: $t('mall-product.spu.statusOptions.offSale'),
         },
       },
     },
     {
       field: 'price',
-      title: '价格',
+      title: $t('mall-product.spu.price'),
       minWidth: 100,
       formatter: 'formatAmount2',
     },
     {
       field: 'marketPrice',
-      title: '市场价',
+      title: $t('mall-product.spu.marketPrice'),
       minWidth: 100,
       formatter: ({ row }) => {
         return `${fenToYuan(row.marketPrice)} 元`;
@@ -115,7 +116,7 @@ export function useGridColumns(
     },
     {
       field: 'costPrice',
-      title: '成本价',
+      title: $t('mall-product.spu.costPrice'),
       minWidth: 100,
       formatter: ({ row }) => {
         return `${fenToYuan(row.costPrice)} 元`;
@@ -123,37 +124,37 @@ export function useGridColumns(
     },
     {
       field: 'salesCount',
-      title: '销量',
+      title: $t('mall-product.spu.salesCount'),
       minWidth: 80,
     },
     {
       field: 'virtualSalesCount',
-      title: '虚拟销量',
+      title: $t('mall-product.spu.virtualSalesCount'),
       minWidth: 100,
     },
     {
       field: 'stock',
-      title: '库存',
+      title: $t('mall-product.spu.stock'),
       minWidth: 80,
     },
     {
       field: 'browseCount',
-      title: '浏览量',
+      title: $t('mall-product.spu.browseCount'),
       minWidth: 100,
     },
     {
       field: 'sort',
-      title: '排序',
+      title: $t('mall-product.spu.sort'),
       minWidth: 80,
     },
     {
       field: 'createTime',
-      title: '创建时间',
+      title: $t('mall-product.spu.createTime'),
       minWidth: 160,
       formatter: 'formatDateTime',
     },
     {
-      title: '操作',
+      title: $t('common.actions'),
       width: 300,
       fixed: 'right',
       slots: { default: 'actions' },

@@ -1,5 +1,7 @@
 import type { ComponentStyle, DiyComponent } from '../../../util';
 
+import { $t } from '#/locales';
+
 /** 优惠劵卡片属性 */
 export interface CouponCardProperty {
   columns: number; // 列数
@@ -17,7 +19,7 @@ export interface CouponCardProperty {
 /** 定义组件 */
 export const component = {
   id: 'CouponCard',
-  name: '优惠券',
+  name: $t('promotion.couponCard.title'),
   icon: 'ep:ticket',
   property: {
     columns: 1,

@@ -8,6 +8,7 @@ import { DICT_TYPE } from '@vben/constants';
 import { useUserStore } from '@vben/stores';
 
 import { getSimpleDeliveryPickUpStoreList } from '#/api/mall/trade/delivery/pickUpStore';
+import { $t } from '#/locales';
 import { getRangePickerDefaultProps } from '#/utils';
 
 /** 关联数据 */
@@ -29,7 +30,7 @@ export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
       fieldName: 'createTime',
-      label: '创建时间',
+      label: $t('trade.delivery.pickUpOrder.form.createTime'),
       component: 'RangePicker',
       componentProps: {
         ...getRangePickerDefaultProps(),
@@ -38,49 +39,55 @@ export function useGridFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'pickUpStoreIds',
-      label: '自提门店',
+      label: $t('trade.delivery.pickUpOrder.form.pickUpStoreIds'),
       component: 'Select',
       componentProps: {
         options: pickUpStoreList,
         labelField: 'name',
         valueField: 'id',
-        placeholder: '请选择自提门店',
+        placeholder: $t(
+          'trade.delivery.pickUpOrder.form.pickUpStoreIdsPlaceholder',
+        ),
       },
       defaultValue: pickUpStoreList.value[0]?.id,
     },
     {
       fieldName: 'no',
-      label: '订单号',
+      label: $t('trade.delivery.pickUpOrder.form.no'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入订单号',
+        placeholder: $t('trade.delivery.pickUpOrder.form.noPlaceholder'),
         allowClear: true,
       },
     },
     {
       fieldName: 'userId',
-      label: '用户 UID',
+      label: $t('trade.delivery.pickUpOrder.form.userId'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入用户 UID',
+        placeholder: $t('trade.delivery.pickUpOrder.form.userIdPlaceholder'),
         allowClear: true,
       },
     },
     {
       fieldName: 'userNickname',
-      label: '用户昵称',
+      label: $t('trade.delivery.pickUpOrder.form.userNickname'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入用户昵称',
+        placeholder: $t(
+          'trade.delivery.pickUpOrder.form.userNicknamePlaceholder',
+        ),
         allowClear: true,
       },
     },
     {
       fieldName: 'userMobile',
-      label: '用户电话',
+      label: $t('trade.delivery.pickUpOrder.form.userMobile'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入用户电话',
+        placeholder: $t(
+          'trade.delivery.pickUpOrder.form.userMobilePlaceholder',
+        ),
         allowClear: true,
       },
     },
@@ -92,40 +99,40 @@ export function useGridColumns(): VxeGridPropTypes.Columns {
   return [
     {
       field: 'no',
-      title: '订单号',
+      title: $t('trade.delivery.pickUpOrder.grid.no'),
       fixed: 'left',
       minWidth: 180,
     },
     {
       field: 'user.nickname',
-      title: '用户信息',
+      title: $t('trade.delivery.pickUpOrder.grid.user'),
       minWidth: 100,
     },
     {
       field: 'brokerageUser.nickname',
-      title: '推荐人信息',
+      title: $t('trade.delivery.pickUpOrder.grid.brokerageUser'),
       minWidth: 100,
     },
     {
       field: 'spuName',
-      title: '商品信息',
+      title: $t('trade.delivery.pickUpOrder.grid.spuName'),
       minWidth: 300,
       slots: { default: 'spuName' },
     },
     {
       field: 'payPrice',
-      title: '实付金额(元)',
+      title: $t('trade.delivery.pickUpOrder.grid.payPrice'),
       formatter: 'formatAmount2',
       minWidth: 180,
     },
     {
       field: 'storeStaffName',
-      title: '核销员',
+      title: $t('trade.delivery.pickUpOrder.grid.storeStaffName'),
       minWidth: 160,
     },
     {
       field: 'pickUpStoreId',
-      title: '核销门店',
+      title: $t('trade.delivery.pickUpOrder.grid.pickUpStoreId'),
       minWidth: 160,
       formatter: ({ row }) => {
         return (
@@ -136,7 +143,7 @@ export function useGridColumns(): VxeGridPropTypes.Columns {
     },
     {
       field: 'payStatus',
-      title: '支付状态',
+      title: $t('trade.delivery.pickUpOrder.grid.payStatus'),
       cellRender: {
         name: 'CellDict',
         props: { type: DICT_TYPE.INFRA_BOOLEAN_STRING },
@@ -145,7 +152,7 @@ export function useGridColumns(): VxeGridPropTypes.Columns {
     },
     {
       field: 'status',
-      title: '订单状态',
+      title: $t('trade.delivery.pickUpOrder.grid.status'),
       cellRender: {
         name: 'CellDict',
         props: { type: DICT_TYPE.TRADE_ORDER_STATUS },
@@ -154,7 +161,7 @@ export function useGridColumns(): VxeGridPropTypes.Columns {
     },
     {
       field: 'createTime',
-      title: '下单时间',
+      title: $t('trade.delivery.pickUpOrder.grid.createTime'),
       formatter: 'formatDateTime',
       minWidth: 160,
     },

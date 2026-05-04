@@ -22,8 +22,8 @@ const emit = defineEmits(['success']);
 const formData = ref<MallSeckillConfigApi.SeckillConfig>();
 const getTitle = computed(() => {
   return formData.value?.id
-    ? $t('ui.actionTitle.edit', ['秒杀时段'])
-    : $t('ui.actionTitle.create', ['秒杀时段']);
+    ? $t('ui.actionTitle.edit', [$t('promotion.seckill.config.title')])
+    : $t('ui.actionTitle.create', [$t('promotion.seckill.config.title')]);
 });
 
 const [Form, formApi] = useVbenForm({

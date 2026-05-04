@@ -12,6 +12,7 @@ import { Card, Radio, RadioGroup, Spin } from 'ant-design-vue';
 import dayjs from 'dayjs';
 
 import { getOrderCountTrendComparison } from '#/api/mall/statistics/trade';
+import { $t } from '#/locales';
 
 import {
   getTradeTrendChartOptions,
@@ -27,19 +28,19 @@ const { renderEcharts } = useEcharts(chartRef);
 
 const timeRangeConfig = {
   [TimeRangeTypeEnum.DAY30]: {
-    name: '30 天',
+    name: $t('mall-product.home.timeRange.day30'),
     seriesCount: 2,
   },
   [TimeRangeTypeEnum.WEEK]: {
-    name: '周',
+    name: $t('mall-product.home.timeRange.week'),
     seriesCount: 4,
   },
   [TimeRangeTypeEnum.MONTH]: {
-    name: '月',
+    name: $t('mall-product.home.timeRange.month'),
     seriesCount: 4,
   },
   [TimeRangeTypeEnum.YEAR]: {
-    name: '年',
+    name: $t('mall-product.home.timeRange.year'),
     seriesCount: 4,
   },
 }; // 时间范围 Map
@@ -104,13 +105,13 @@ async function loadOrderCountTrendComparison(beginTime: Dayjs, endTime: Dayjs) {
       }
       series.push(
         {
-          name: '订单金额',
+          name: $t('mall-product.home.orderAmount'),
           type: 'bar',
           smooth: true,
           data: orderPayPriceData,
         },
         {
-          name: '订单数量',
+          name: $t('mall-product.home.orderQuantity'),
           type: 'line',
           smooth: true,
           data: orderPayCountData,
@@ -132,33 +133,42 @@ async function loadOrderCountTrendComparison(beginTime: Dayjs, endTime: Dayjs) {
       // 根据时间范围类型确定对照数据的标签文本
       let timeLabel: string[];
       if (timeRangeType.value === TimeRangeTypeEnum.WEEK) {
-        timeLabel = ['上周', '本周'];
+        timeLabel = [
+          $t('mall-product.home.lastWeek'),
+          $t('mall-product.home.thisWeek'),
+        ];
       } else if (timeRangeType.value === TimeRangeTypeEnum.MONTH) {
-        timeLabel = ['上月', '本月'];
+        timeLabel = [
+          $t('mall-product.home.lastMonth'),
+          $t('mall-product.home.thisMonth'),
+        ];
       } else {
-        timeLabel = ['去年', '今年'];
+        timeLabel = [
+          $t('mall-product.home.lastYear'),
+          $t('mall-product.home.thisYear'),
+        ];
       }
       series.push(
         {
-          name: `${timeLabel[0]}金额`,
+          name: `${timeLabel[0]}${$t('mall-product.home.orderAmount')}`,
           type: 'bar',
           smooth: true,
           data: refPriceData,
         },
         {
-          name: `${timeLabel[1]}金额`,
+          name: `${timeLabel[1]}${$t('mall-product.home.orderAmount')}`,
           type: 'bar',
           smooth: true,
           data: curPriceData,
         },
         {
-          name: `${timeLabel[0]}数量`,
+          name: `${timeLabel[0]}${$t('mall-product.home.orderQuantity')}`,
           type: 'line',
           smooth: true,
           data: refCountData,
         },
         {
-          name: `${timeLabel[1]}数量`,
+          name: `${timeLabel[1]}${$t('mall-product.home.orderQuantity')}`,
           type: 'line',
           smooth: true,
           data: curCountData,
@@ -185,7 +195,7 @@ onMounted(() => {
   <Card :bordered="false">
     <template #title>
       <div class="flex items-center justify-between">
-        <span>交易量趋势</span>
+        <span>{{ $t('mall-product.home.tradeTrend') }}</span>
         <RadioGroup
           v-model:value="timeRangeType"
           @change="handleTimeRangeTypeChange"

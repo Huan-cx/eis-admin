@@ -3,6 +3,8 @@ import type { ProductListProperty } from './config';
 
 import { IconifyIcon } from '@vben/icons';
 
+import { $t } from '#/locales';
+
 import { useVModel } from '@vueuse/core';
 import {
   Card,
@@ -39,13 +41,13 @@ const formData = useVModel(props, 'modelValue', emit);
       :wrapper-col="{ span: 18 }"
       :model="formData"
     >
-      <Card title="商品列表" class="property-group" :bordered="false">
+      <Card :title="$t('promotion.productList.title')" class="property-group" :bordered="false">
         <SpuShowcase v-model="formData.spuIds" />
       </Card>
-      <Card title="商品样式" class="property-group" :bordered="false">
-        <FormItem label="布局" name="type">
+      <Card :title="$t('promotion.diy.editor.style.productStyle')" class="property-group" :bordered="false">
+        <FormItem :label="$t('promotion.diy.editor.style.layout')" name="type">
           <RadioGroup v-model:value="formData.layoutType">
-            <Tooltip title="双列" placement="bottom">
+            <Tooltip :title="$t('promotion.diy.editor.style.layout.twoCol')" placement="bottom">
               <RadioButton value="twoCol">
                 <IconifyIcon
                   icon="fluent:text-column-two-24-filled"
@@ -53,7 +55,7 @@ const formData = useVModel(props, 'modelValue', emit);
                 />
               </RadioButton>
             </Tooltip>
-            <Tooltip title="三列" placement="bottom">
+            <Tooltip :title="$t('promotion.diy.editor.style.layout.threeCol')" placement="bottom">
               <RadioButton value="threeCol">
                 <IconifyIcon
                   icon="fluent:text-column-three-24-filled"
@@ -61,31 +63,31 @@ const formData = useVModel(props, 'modelValue', emit);
                 />
               </RadioButton>
             </Tooltip>
-            <Tooltip title="水平滑动" placement="bottom">
+            <Tooltip :title="$t('promotion.diy.editor.style.layout.horizontal')" placement="bottom">
               <RadioButton value="horizSwiper">
                 <IconifyIcon icon="system-uicons:carousel" class="size-6" />
               </RadioButton>
             </Tooltip>
           </RadioGroup>
         </FormItem>
-        <FormItem label="商品名称" name="fields.name.show">
+        <FormItem :label="$t('promotion.diy.editor.style.productName')" name="fields.name.show">
           <div class="flex gap-2">
             <ColorInput v-model="formData.fields.name.color" />
             <Checkbox v-model:checked="formData.fields.name.show" />
           </div>
         </FormItem>
-        <FormItem label="商品价格" name="fields.price.show">
+        <FormItem :label="$t('promotion.diy.editor.style.productPrice')" name="fields.price.show">
           <div class="flex gap-2">
             <ColorInput v-model="formData.fields.price.color" />
             <Checkbox v-model:checked="formData.fields.price.show" />
           </div>
         </FormItem>
       </Card>
-      <Card title="角标" class="property-group" :bordered="false">
-        <FormItem label="角标" name="badge.show">
+      <Card :title="$t('promotion.diy.editor.style.badge')" class="property-group" :bordered="false">
+        <FormItem :label="$t('promotion.diy.editor.style.badge')" name="badge.show">
           <Switch v-model:checked="formData.badge.show" />
         </FormItem>
-        <FormItem label="角标" name="badge.imgUrl" v-if="formData.badge.show">
+        <FormItem :label="$t('promotion.diy.editor.style.badge')" name="badge.imgUrl" v-if="formData.badge.show">
           <UploadImg
             v-model="formData.badge.imgUrl"
             height="44px"
@@ -97,22 +99,22 @@ const formData = useVModel(props, 'modelValue', emit);
           </UploadImg>
         </FormItem>
       </Card>
-      <Card title="商品样式" class="property-group" :bordered="false">
-        <FormItem label="上圆角" name="borderRadiusTop">
+      <Card :title="$t('promotion.diy.editor.style.productStyle')" class="property-group" :bordered="false">
+        <FormItem :label="$t('promotion.diy.editor.style.borderRadiusTop')" name="borderRadiusTop">
           <Slider
             v-model:value="formData.borderRadiusTop"
             :max="100"
             :min="0"
           />
         </FormItem>
-        <FormItem label="下圆角" name="borderRadiusBottom">
+        <FormItem :label="$t('promotion.diy.editor.style.borderRadiusBottom')" name="borderRadiusBottom">
           <Slider
             v-model:value="formData.borderRadiusBottom"
             :max="100"
             :min="0"
           />
         </FormItem>
-        <FormItem label="间隔" name="space">
+        <FormItem :label="$t('promotion.diy.editor.style.space')" name="space">
           <Slider v-model:value="formData.space" :max="100" :min="0" />
         </FormItem>
       </Card>

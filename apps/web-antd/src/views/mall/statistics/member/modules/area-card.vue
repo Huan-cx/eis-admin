@@ -5,6 +5,8 @@ import type { MallMemberStatisticsApi } from '#/api/mall/statistics/member';
 
 import { onMounted, ref, shallowRef } from 'vue';
 
+import { $t } from '#/locales';
+
 import { EchartsUI, useEcharts } from '@vben/plugins/echarts';
 
 import { Card, Spin } from 'ant-design-vue';
@@ -85,7 +87,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Card :bordered="false" title="会员地域分布" class="h-full">
+  <Card :bordered="false" :title="$t('statistics.member.area.title')" class="h-full">
     <Spin :spinning="loading">
       <div class="flex gap-4">
         <div class="w-2/5">

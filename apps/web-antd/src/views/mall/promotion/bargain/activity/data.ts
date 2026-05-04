@@ -5,6 +5,8 @@ import { DICT_TYPE } from '@vben/constants';
 import { getDictOptions } from '@vben/hooks';
 import { formatDate } from '@vben/utils';
 
+import { $t } from '#/locales';
+
 /** 新增/修改的表单 */
 export function useFormSchema(): VbenFormSchema[] {
   return [
@@ -18,93 +20,99 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'name',
-      label: '活动名称',
+      label: $t('promotion.bargain.activity.form.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入活动名称',
+        placeholder: $t('promotion.bargain.activity.placeholder.name'),
       },
       rules: 'required',
       formItemClass: 'col-span-2',
     },
     {
       fieldName: 'startTime',
-      label: '开始时间',
+      label: $t('promotion.bargain.activity.form.startTime'),
       component: 'DatePicker',
       componentProps: {
         format: 'YYYY-MM-DD HH:mm:ss',
         valueFormat: 'YYYY-MM-DD HH:mm:ss',
         showTime: true,
-        placeholder: '请选择开始时间',
+        placeholder: $t('promotion.bargain.activity.placeholder.startTime'),
       },
       rules: 'required',
     },
     {
       fieldName: 'endTime',
-      label: '结束时间',
+      label: $t('promotion.bargain.activity.form.endTime'),
       component: 'DatePicker',
       componentProps: {
         format: 'YYYY-MM-DD HH:mm:ss',
         valueFormat: 'YYYY-MM-DD HH:mm:ss',
         showTime: true,
-        placeholder: '请选择结束时间',
+        placeholder: $t('promotion.bargain.activity.placeholder.endTime'),
       },
       rules: 'required',
     },
     {
       fieldName: 'helpMaxCount',
-      label: '助力人数',
+      label: $t('promotion.bargain.activity.form.helpMaxCount'),
       component: 'InputNumber',
       componentProps: {
         min: 1,
-        placeholder: '达到该人数才能砍到低价',
+        placeholder: $t('promotion.bargain.activity.placeholder.helpMaxCount'),
       },
       rules: 'required',
     },
     {
       fieldName: 'bargainCount',
-      label: '砍价次数',
+      label: $t('promotion.bargain.activity.form.bargainCount'),
       component: 'InputNumber',
       componentProps: {
         min: 1,
-        placeholder: '最大帮砍次数',
+        placeholder: $t('promotion.bargain.activity.placeholder.bargainCount'),
       },
       rules: 'required',
     },
     {
       fieldName: 'totalLimitCount',
-      label: '购买限制',
+      label: $t('promotion.bargain.activity.form.totalLimitCount'),
       component: 'InputNumber',
       componentProps: {
         min: 1,
-        placeholder: '最大购买次数',
+        placeholder: $t(
+          'promotion.bargain.activity.placeholder.totalLimitCount',
+        ),
       },
       rules: 'required',
     },
     {
       fieldName: 'randomMinPrice',
-      label: '最小砍价金额(元)',
+      label: $t('promotion.bargain.activity.form.randomMinPrice'),
       component: 'InputNumber',
       componentProps: {
         min: 0,
         precision: 2,
         step: 0.01,
-        placeholder: '用户每次砍价的最小金额',
+        placeholder: $t(
+          'promotion.bargain.activity.placeholder.randomMinPrice',
+        ),
       },
     },
     {
       fieldName: 'randomMaxPrice',
-      label: '最大砍价金额(元)',
+      label: $t('promotion.bargain.activity.form.randomMaxPrice'),
       component: 'InputNumber',
       componentProps: {
         min: 0,
         precision: 2,
         step: 0.01,
-        placeholder: '用户每次砍价的最大金额',
+        placeholder: $t(
+          'promotion.bargain.activity.placeholder.randomMaxPrice',
+        ),
       },
     },
     {
       fieldName: 'spuId',
-      label: '砍价商品',
+      label: $t('promotion.bargain.activity.form.spuId'),
       component: 'Input',
       rules: 'required',
       formItemClass: 'col-span-2',
@@ -117,19 +125,19 @@ export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
       fieldName: 'name',
-      label: '活动名称',
+      label: $t('promotion.bargain.activity.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入活动名称',
+        placeholder: $t('promotion.bargain.activity.placeholder.name'),
         allowClear: true,
       },
     },
     {
       fieldName: 'status',
-      label: '活动状态',
+      label: $t('promotion.bargain.activity.status'),
       component: 'Select',
       componentProps: {
-        placeholder: '请选择活动状态',
+        placeholder: $t('promotion.bargain.activity.placeholder.status'),
         allowClear: true,
         options: getDictOptions(DICT_TYPE.COMMON_STATUS, 'number'),
       },
@@ -142,17 +150,17 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
   return [
     {
       field: 'id',
-      title: '活动编号',
+      title: $t('promotion.bargain.activity.grid.id'),
       minWidth: 80,
     },
     {
       field: 'name',
-      title: '活动名称',
+      title: $t('promotion.bargain.activity.grid.name'),
       minWidth: 140,
     },
     {
       field: 'activityTime',
-      title: '活动时间',
+      title: $t('promotion.bargain.activity.grid.activityTime'),
       minWidth: 210,
       formatter: ({ row }) => {
         if (!row.startTime || !row.endTime) return '';
@@ -161,7 +169,7 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'picUrl',
-      title: '商品图片',
+      title: $t('promotion.bargain.activity.grid.picUrl'),
       minWidth: 80,
       cellRender: {
         name: 'CellImage',
@@ -173,39 +181,39 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'spuName',
-      title: '商品标题',
+      title: $t('promotion.bargain.activity.grid.spuName'),
       minWidth: 300,
     },
     {
       field: 'bargainFirstPrice',
-      title: '起始价格',
+      title: $t('promotion.bargain.activity.grid.bargainFirstPrice'),
       minWidth: 100,
       formatter: 'formatAmount2',
     },
     {
       field: 'bargainMinPrice',
-      title: '砍价底价',
+      title: $t('promotion.bargain.activity.grid.bargainMinPrice'),
       minWidth: 100,
       formatter: 'formatAmount2',
     },
     {
       field: 'recordUserCount',
-      title: '总砍价人数',
+      title: $t('promotion.bargain.activity.grid.recordUserCount'),
       minWidth: 100,
     },
     {
       field: 'recordSuccessUserCount',
-      title: '成功砍价人数',
+      title: $t('promotion.bargain.activity.grid.recordSuccessUserCount'),
       minWidth: 110,
     },
     {
       field: 'helpUserCount',
-      title: '助力人数',
+      title: $t('promotion.bargain.activity.grid.helpUserCount'),
       minWidth: 100,
     },
     {
       field: 'status',
-      title: '活动状态',
+      title: $t('promotion.bargain.activity.grid.status'),
       minWidth: 100,
       cellRender: {
         name: 'CellDict',
@@ -214,22 +222,22 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'stock',
-      title: '库存',
+      title: $t('promotion.bargain.activity.grid.stock'),
       minWidth: 80,
     },
     {
       field: 'totalStock',
-      title: '总库存',
+      title: $t('promotion.bargain.activity.grid.totalStock'),
       minWidth: 80,
     },
     {
       field: 'createTime',
-      title: '创建时间',
+      title: $t('promotion.bargain.activity.grid.createTime'),
       width: 180,
       formatter: 'formatDateTime',
     },
     {
-      title: '操作',
+      title: $t('promotion.bargain.activity.grid.action'),
       width: 150,
       fixed: 'right',
       slots: { default: 'actions' },

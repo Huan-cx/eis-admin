@@ -84,7 +84,7 @@ defineExpose({
 <template>
   <Modal
     v-model:open="visible"
-    title="选择优惠券"
+    :title="$t('promotion.coupon.selectForm.title')"
     width="65%"
     :destroy-on-close="true"
     @ok="handleConfirm"

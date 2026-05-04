@@ -9,6 +9,9 @@ export namespace MallCategoryApi {
     picUrl: string; // 移动端分类图
     sort: number; // 分类排序
     status: number; // 开启状态
+    metaTitle?: string; // SEO标题
+    metaDescription?: string; // SEO描述
+    slug?: string; // 语义化URL
   }
 }
 

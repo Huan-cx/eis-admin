@@ -1,5 +1,7 @@
 import type { DiyComponent } from '../../../util';
 
+import { $t } from '#/locales';
+
 /** 页面设置属性 */
 export interface PageConfigProperty {
   description: string; // 页面描述
@@ -10,7 +12,7 @@ export interface PageConfigProperty {
 /** 定义页面组件 */
 export const component = {
   id: 'PageConfig',
-  name: '页面设置',
+  name: $t('promotion.pageConfig.title'),
   icon: 'lucide:file-text',
   property: {
     description: '',

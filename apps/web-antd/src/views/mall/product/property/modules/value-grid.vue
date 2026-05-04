@@ -109,12 +109,14 @@ watch(
   <div class="flex h-full flex-col">
     <ValueFormModal @success="handleRefresh" />
 
-    <Grid table-title="属性值列表">
+    <Grid :table-title="$t('mall-product.property.list.value')">
       <template #toolbar-tools>
         <TableAction
           :actions="[
             {
-              label: $t('ui.actionTitle.create', ['属性值']),
+              label: $t('ui.actionTitle.create', [
+                $t('mall-product.property.propertyValue'),
+              ]),
               type: 'primary',
               icon: ACTION_ICON.ADD,
               auth: ['product:property:create'],

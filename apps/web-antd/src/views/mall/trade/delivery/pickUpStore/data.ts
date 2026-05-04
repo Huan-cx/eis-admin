@@ -7,6 +7,7 @@ import { getDictOptions } from '@vben/hooks';
 import { z } from '#/adapter/form';
 import { getAreaTree } from '#/api/system/area';
 import { getSimpleUserList } from '#/api/system/user';
+import { $t } from '#/locales';
 import { getRangePickerDefaultProps } from '#/utils';
 
 /** 新增/修改的表单 */
@@ -23,66 +24,70 @@ export function useFormSchema(): VbenFormSchema[] {
     {
       component: 'Input',
       fieldName: 'name',
-      label: '门店名称',
+      label: $t('trade.delivery.pickUpStore.form.name'),
       rules: 'required',
       componentProps: {
-        placeholder: '请输入门店名称',
+        placeholder: $t('trade.delivery.pickUpStore.form.namePlaceholder'),
       },
     },
     {
       component: 'Input',
       fieldName: 'phone',
-      label: '门店手机',
+      label: $t('trade.delivery.pickUpStore.form.phone'),
       rules: 'mobileRequired',
       componentProps: {
-        placeholder: '请输入门店手机',
+        placeholder: $t('trade.delivery.pickUpStore.form.phonePlaceholder'),
       },
     },
     {
       component: 'ImageUpload',
       fieldName: 'logo',
-      label: '门店 logo',
+      label: $t('trade.delivery.pickUpStore.form.logo'),
       rules: 'required',
       formItemClass: 'col-span-2',
       componentProps: {
-        placeholder: '请上传门店 logo',
+        placeholder: $t('trade.delivery.pickUpStore.form.logoPlaceholder'),
       },
-      help: '推荐 180x180 图片分辨率',
+      help: $t('trade.delivery.pickUpStore.form.logoHelp'),
     },
     {
       component: 'Textarea',
       fieldName: 'introduction',
-      label: '门店简介',
+      label: $t('trade.delivery.pickUpStore.form.introduction'),
       formItemClass: 'col-span-2',
       componentProps: {
-        placeholder: '请输入门店简介',
+        placeholder: $t(
+          'trade.delivery.pickUpStore.form.introductionPlaceholder',
+        ),
         rows: 4,
       },
     },
     {
       fieldName: 'areaId',
-      label: '门店所在地区',
+      label: $t('trade.delivery.pickUpStore.form.areaId'),
       component: 'ApiTreeSelect',
       rules: 'required',
       componentProps: {
         api: getAreaTree,
         fieldNames: { label: 'name', value: 'id', children: 'children' },
-        placeholder: '请选择省市区',
+        placeholder: $t('trade.delivery.pickUpStore.form.areaIdPlaceholder'),
       },
     },
     {
       component: 'Input',
       fieldName: 'detailAddress',
-      label: '门店详细地址',
+      label: $t('trade.delivery.pickUpStore.form.detailAddress'),
       rules: 'required',
       componentProps: {
-        placeholder: '请输入门店详细地址',
+        placeholder: $t(
+          'trade.delivery.pickUpStore.form.detailAddressPlaceholder',
+        ),
       },
     },
     {
       component: 'TimeRangePicker',
       fieldName: 'rangeTime',
-      label: '营业时间',
+      label: $t('trade.delivery.pickUpStore.form.rangeTime'),
       rules: 'required',
       componentProps: {
         format: 'HH:mm',
@@ -90,7 +95,7 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'status',
-      label: '门店状态',
+      label: $t('trade.delivery.pickUpStore.form.status'),
       component: 'RadioGroup',
       componentProps: {
         options: getDictOptions(DICT_TYPE.COMMON_STATUS, 'number'),
@@ -102,19 +107,19 @@ export function useFormSchema(): VbenFormSchema[] {
     {
       component: 'Input',
       fieldName: 'longitude',
-      label: '经度',
+      label: $t('trade.delivery.pickUpStore.form.longitude'),
       rules: 'required',
       componentProps: {
-        placeholder: '请输入门店经度',
+        placeholder: $t('trade.delivery.pickUpStore.form.longitudePlaceholder'),
       },
     },
     {
       component: 'Input',
       fieldName: 'latitude',
-      label: '纬度',
+      label: $t('trade.delivery.pickUpStore.form.latitude'),
       rules: 'required',
       componentProps: {
-        placeholder: '请输入门店纬度',
+        placeholder: $t('trade.delivery.pickUpStore.form.latitudePlaceholder'),
       },
     },
   ];
@@ -134,7 +139,7 @@ export function useBindFormSchema(): VbenFormSchema[] {
     {
       component: 'Input',
       fieldName: 'name',
-      label: '门店名称',
+      label: $t('trade.delivery.pickUpStore.form.name'),
       dependencies: {
         triggerFields: ['id'],
         disabled: true,
@@ -143,7 +148,7 @@ export function useBindFormSchema(): VbenFormSchema[] {
     {
       component: 'ApiSelect',
       fieldName: 'verifyUserIds',
-      label: '门店店员',
+      label: $t('trade.delivery.pickUpStore.form.verifyUserIds'),
       rules: 'required',
       componentProps: {
         api: getSimpleUserList,
@@ -151,7 +156,9 @@ export function useBindFormSchema(): VbenFormSchema[] {
         valueField: 'id',
         mode: 'tags',
         allowClear: true,
-        placeholder: '请选择门店店员',
+        placeholder: $t(
+          'trade.delivery.pickUpStore.form.verifyUserIdsPlaceholder',
+        ),
       },
     },
   ];
@@ -162,35 +169,35 @@ export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
       fieldName: 'phone',
-      label: '门店手机',
+      label: $t('trade.delivery.pickUpStore.form.phone'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入门店手机',
+        placeholder: $t('trade.delivery.pickUpStore.form.phonePlaceholder'),
         allowClear: true,
       },
     },
     {
       fieldName: 'name',
-      label: '门店名称',
+      label: $t('trade.delivery.pickUpStore.form.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入门店名称',
+        placeholder: $t('trade.delivery.pickUpStore.form.namePlaceholder'),
         allowClear: true,
       },
     },
     {
       fieldName: 'status',
-      label: '门店状态',
+      label: $t('trade.delivery.pickUpStore.form.status'),
       component: 'Select',
       componentProps: {
         allowClear: true,
         options: getDictOptions(DICT_TYPE.COMMON_STATUS, 'number'),
-        placeholder: '请选择门店状态',
+        placeholder: $t('trade.delivery.pickUpStore.form.statusPlaceholder'),
       },
     },
     {
       fieldName: 'createTime',
-      label: '创建时间',
+      label: $t('common.createTime'),
       component: 'RangePicker',
       componentProps: {
         ...getRangePickerDefaultProps(),
@@ -205,12 +212,12 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
   return [
     {
       field: 'id',
-      title: '编号',
+      title: $t('common.id'),
       minWidth: 80,
     },
     {
       field: 'logo',
-      title: '门店 logo',
+      title: $t('trade.delivery.pickUpStore.grid.logo'),
       minWidth: 100,
       cellRender: {
         name: 'CellImage',
@@ -218,22 +225,22 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'name',
-      title: '门店名称',
+      title: $t('trade.delivery.pickUpStore.grid.name'),
       minWidth: 150,
     },
     {
       field: 'phone',
-      title: '门店手机',
+      title: $t('trade.delivery.pickUpStore.grid.phone'),
       minWidth: 120,
     },
     {
       field: 'detailAddress',
-      title: '地址',
+      title: $t('trade.delivery.pickUpStore.grid.detailAddress'),
       minWidth: 200,
     },
     {
       field: 'openingTime',
-      title: '营业时间',
+      title: $t('trade.delivery.pickUpStore.grid.openingTime'),
       minWidth: 160,
       formatter: ({ row }) => {
         return `${row.openingTime} ~ ${row.closingTime}`;
@@ -241,7 +248,7 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'status',
-      title: '开启状态',
+      title: $t('trade.delivery.pickUpStore.grid.status'),
       minWidth: 100,
       cellRender: {
         name: 'CellDict',
@@ -250,12 +257,12 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'createTime',
-      title: '创建时间',
+      title: $t('common.createTime'),
       minWidth: 160,
       formatter: 'formatDateTime',
     },
     {
-      title: '操作',
+      title: $t('common.action'),
       width: 220,
       fixed: 'right',
       slots: { default: 'actions' },

@@ -13,6 +13,7 @@ import { Card } from 'ant-design-vue';
 import { useVbenVxeGrid } from '#/adapter/vxe-table';
 import { getProductStatisticsRankPage } from '#/api/mall/statistics/product';
 import ShortcutDateRangePicker from '#/components/shortcut-date-range-picker/shortcut-date-range-picker.vue';
+import { $t } from '#/locales';
 
 /** 商品排行 */
 defineOptions({ name: 'ProductRankCard' });
@@ -32,64 +33,64 @@ const handleDateRangeChange = (times?: [Dayjs, Dayjs]) => {
 };
 
 const columns: VxeTableGridOptions['columns'] = [
-  { field: 'spuId', title: '商品 ID', minWidth: 100 },
+  { field: 'spuId', title: $t('statistics.product.rank.spuId'), minWidth: 100 },
   {
     field: 'picUrl',
-    title: '商品图片',
+    title: $t('statistics.product.rank.picUrl'),
     minWidth: 100,
     cellRender: { name: 'CellImage' },
   },
   {
     field: 'name',
-    title: '商品名称',
+    title: $t('statistics.product.rank.name'),
     minWidth: 200,
   },
   {
     field: 'browseCount',
-    title: '浏览量',
+    title: $t('statistics.product.rank.browseCount'),
     minWidth: 100,
     sortable: true,
   },
   {
     field: 'browseUserCount',
-    title: '访客数',
+    title: $t('statistics.product.rank.browseUserCount'),
     minWidth: 100,
     sortable: true,
   },
   {
     field: 'cartCount',
-    title: '加购件数',
+    title: $t('statistics.product.rank.cartCount'),
     minWidth: 110,
     sortable: true,
   },
   {
     field: 'orderCount',
-    title: '下单件数',
+    title: $t('statistics.product.rank.orderCount'),
     minWidth: 110,
     sortable: true,
   },
   {
     field: 'orderPayCount',
-    title: '支付件数',
+    title: $t('statistics.product.rank.orderPayCount'),
     minWidth: 110,
     sortable: true,
   },
   {
     field: 'orderPayPrice',
-    title: '支付金额（元）',
+    title: $t('statistics.product.rank.orderPayPrice'),
     minWidth: 120,
     formatter: 'formatFenToYuanAmount',
     sortable: true,
   },
   {
     field: 'favoriteCount',
-    title: '收藏数',
+    title: $t('statistics.product.rank.favoriteCount'),
     minWidth: 100,
     sortable: true,
   },
   {
     field: 'browseConvertPercent',
-    title: '访客-支付转化率(%)',
+    title: $t('statistics.product.rank.browseConvertPercent'),
     minWidth: 160,
     sortable: true,
     formatter: ({ cellValue }) => `${cellValue || 0}%`,
@@ -126,7 +127,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
 </script>
 
 <template>
-  <Card :bordered="false" title="商品排行">
+  <Card :bordered="false" :title="$t('statistics.product.rank.title')">
     <template #extra>
       <ShortcutDateRangePicker @change="handleDateRangeChange" />
     </template>

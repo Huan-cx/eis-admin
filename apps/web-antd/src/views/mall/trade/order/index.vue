@@ -20,9 +20,9 @@ import { DictTag } from '#/components/dict-tag';
 import { $t } from '#/locales';
 
 import { useGridColumns, useGridFormSchema } from './data';
+import AddressForm from './modules/address-form.vue';
 import DeliveryForm from './modules/delivery-form.vue';
 import RemarkForm from './modules/remark-form.vue';
-import AddressForm from './modules/address-form.vue';
 
 const { push } = useRouter();
 
@@ -106,11 +106,11 @@ const [Grid, gridApi] = useVbenVxeGrid({
   <Page auto-content-height>
     <template #doc>
       <DocAlert
-        title="【交易】交易订单"
+        :title="$t('trade.order.index.doc1')"
         url="https://doc.iocoder.cn/mall/trade-order/"
       />
       <DocAlert
-        title="【交易】购物车"
+        :title="$t('trade.order.index.doc2')"
         url="https://doc.iocoder.cn/mall/trade-cart/"
       />
     </template>
@@ -118,7 +118,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
     <DeliveryFormModal @success="handleRefresh" />
     <RemarkFormModal @success="handleRefresh" />
     <AddressFormModal @success="handleRefresh" />
-    <Grid table-title="订单列表">
+    <Grid :table-title="$t('trade.order.index.title')">
       <template #expand_content="{ row }">
         <List item-layout="vertical" :data-source="row.items">
           <template #renderItem="{ item }">
@@ -139,7 +139,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
                 </template>
                 <template #description>
                   {{
-                    `原价：${fenToYuan(item.price)} 元 / 数量：${item.count} 个`
+                    `${$t('trade.order.index.originalPrice')}：${fenToYuan(item.price)} ${$t('common.yuan')} / ${$t('trade.order.index.quantity')}：${item.count} ${$t('trade.order.index.piece')}`
                   }}
                   |
                   <DictTag
@@ -165,7 +165,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
           ]"
           :drop-down-actions="[
             {
-              label: '发货',
+              label: $t('trade.order.index.delivery'),
               type: 'link',
               ifShow: () =>
                 row.deliveryType === DeliveryTypeEnum.EXPRESS.type &&
@@ -173,12 +173,12 @@ const [Grid, gridApi] = useVbenVxeGrid({
               onClick: handleDelivery.bind(null, row),
             },
             {
-              label: '备注',
+              label: $t('trade.order.index.remark'),
               type: 'link',
               onClick: handleRemark.bind(null, row),
             },
             {
-              label: '修改地址',
+              label: $t('trade.order.index.updateAddress'),
               type: 'link',
               ifShow: () =>
                 row.status === TradeOrderStatusEnum.UNDELIVERED.status,

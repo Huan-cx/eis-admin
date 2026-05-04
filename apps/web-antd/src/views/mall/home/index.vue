@@ -12,6 +12,7 @@ import { Col, Row } from 'ant-design-vue';
 
 import { getUserCountComparison } from '#/api/mall/statistics/member';
 import { getOrderComparison } from '#/api/mall/statistics/trade';
+import { $t } from '#/locales';
 
 import MemberFunnelCard from '../statistics/member/modules/funnel-card.vue';
 import MemberTerminalCard from '../statistics/member/modules/terminal-card.vue';
@@ -52,7 +53,7 @@ onMounted(async () => {
   <Page auto-content-height>
     <template #doc>
       <DocAlert
-        title="商城手册（功能开启）"
+        :title="$t('mall-product.home.title')"
         url="https://doc.iocoder.cn/mall/build/"
       />
     </template>
@@ -62,8 +63,8 @@ onMounted(async () => {
       <Row :gutter="16">
         <Col :md="6" :sm="12" :xs="24">
           <ComparisonCard
-            tag="今日"
-            title="销售额"
+            :tag="$t('mall-product.home.today')"
+            :title="$t('mall-product.home.sales')"
             prefix="￥"
             :decimals="2"
             :value="fenToYuan(orderComparison?.value?.orderPayPrice || 0)"
@@ -74,24 +75,24 @@ onMounted(async () => {
         </Col>
         <Col :md="6" :sm="12" :xs="24">
           <ComparisonCard
-            tag="今日"
-            title="用户访问量"
+            :tag="$t('mall-product.home.today')"
+            :title="$t('mall-product.home.visitCount')"
             :value="userComparison?.value?.visitUserCount || 0"
             :reference="userComparison?.reference?.visitUserCount || 0"
           />
         </Col>
         <Col :md="6" :sm="12" :xs="24">
           <ComparisonCard
-            tag="今日"
-            title="订单量"
+            :tag="$t('mall-product.home.today')"
+            :title="$t('mall-product.home.orderCount')"
             :value="orderComparison?.value?.orderPayCount || 0"
             :reference="orderComparison?.reference?.orderPayCount || 0"
           />
         </Col>
         <Col :md="6" :sm="12" :xs="24">
           <ComparisonCard
-            tag="今日"
-            title="新增用户"
+            :tag="$t('mall-product.home.today')"
+            :title="$t('mall-product.home.newUser')"
             :value="userComparison?.value?.registerUserCount || 0"
             :reference="userComparison?.reference?.registerUserCount || 0"
           />

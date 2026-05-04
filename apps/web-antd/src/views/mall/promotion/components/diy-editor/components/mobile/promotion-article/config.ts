@@ -1,5 +1,7 @@
 import type { ComponentStyle, DiyComponent } from '../../../util';
 
+import { $t } from '#/locales';
+
 /** 营销文章属性 */
 export interface PromotionArticleProperty {
   id: number; // 文章编号
@@ -9,7 +11,7 @@ export interface PromotionArticleProperty {
 /** 定义组件 */
 export const component = {
   id: 'PromotionArticle',
-  name: '营销文章',
+  name: $t('promotion.promotionArticle.title'),
   icon: 'ph:article-medium',
   property: {
     style: {

@@ -7,6 +7,7 @@ import type { MallPointActivityApi } from '#/api/mall/promotion/point';
 import { computed } from 'vue';
 
 import { useVbenModal } from '@vben/common-ui';
+import { $t } from '#/locales';
 import { DICT_TYPE } from '@vben/constants';
 import { getDictOptions } from '@vben/hooks';
 
@@ -47,11 +48,11 @@ const getRedeemedQuantity = (row: MallPointActivityApi.PointActivity) =>
 const formSchema = computed<VbenFormSchema[]>(() => [
   {
     fieldName: 'status',
-    label: '活动状态',
+    label: $t('promotion.point.activity.form.status'),
     component: 'Select',
     componentProps: {
       options: getDictOptions(DICT_TYPE.COMMON_STATUS, 'number'),
-      placeholder: '请选择活动状态',
+      placeholder: $t('promotion.point.activity.placeholder.status'),
       clearable: true,
     },
   },
@@ -68,13 +69,13 @@ const gridColumns = computed<VxeGridProps['columns']>(() => {
   columns.push(
     {
       field: 'id',
-      title: '活动编号',
+      title: $t('promotion.point.activity.grid.id'),
       minWidth: 100,
       align: 'center',
     },
     {
       field: 'picUrl',
-      title: '商品图片',
+      title: $t('promotion.point.activity.grid.picUrl'),
       width: 100,
       align: 'center',
       cellRender: {
@@ -83,21 +84,21 @@ const gridColumns = computed<VxeGridProps['columns']>(() => {
     },
     {
       field: 'spuName',
-      title: '商品标题',
+      title: $t('promotion.point.activity.grid.spuName'),
       minWidth: 200,
     },
     {
       field: 'marketPrice',
-      title: '原价',
+      title: $t('promotion.point.activity.grid.marketPrice'),
       minWidth: 100,
       align: 'center',
       formatter: ({ cellValue }) => {
-        return `¥${(cellValue / 100).toFixed(2)}`;
+        return `${$t('promotion.point.activity.grid.currency')}${(cellValue / 100).toFixed(2)}`;
       },
     },
     {
       field: 'status',
-      title: '活动状态',
+      title: $t('promotion.point.activity.form.status'),
       minWidth: 100,
       align: 'center',
       cellRender: {
@@ -107,26 +108,26 @@ const gridColumns = computed<VxeGridProps['columns']>(() => {
     },
     {
       field: 'stock',
-      title: '库存',
+      title: $t('promotion.point.activity.grid.stock'),
       minWidth: 80,
       align: 'center',
     },
     {
       field: 'totalStock',
-      title: '总库存',
+      title: $t('promotion.point.activity.grid.totalStock'),
       minWidth: 80,
       align: 'center',
     },
     {
       field: 'redeemedQuantity',
-      title: '已兑换数量',
+      title: $t('promotion.point.activity.grid.redeemedQuantity'),
       minWidth: 100,
       align: 'center',
       formatter: ({ row }) => getRedeemedQuantity(row),
     },
     {
       field: 'createTime',
-      title: '创建时间',
+      title: $t('promotion.point.activity.grid.createTime'),
       width: 180,
       align: 'center',
       formatter: 'formatDateTime',
@@ -234,7 +235,7 @@ defineExpose({
 </script>
 
 <template>
-  <Modal title="选择活动" class="w-[950px]">
+  <Modal :title="$t('promotion.point.activity.selectForm.title')" class="w-[950px]">
     <Grid />
   </Modal>
 </template>

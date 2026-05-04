@@ -4,6 +4,7 @@ import type { MallSeckillConfigApi } from '#/api/mall/promotion/seckill/seckillC
 
 import { DICT_TYPE } from '@vben/constants';
 import { getDictOptions } from '@vben/hooks';
+import { $t } from '#/locales';
 
 /** 新增/修改的表单 */
 export function useFormSchema(): VbenFormSchema[] {
@@ -18,38 +19,38 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'name',
-      label: '秒杀时段名称',
+      label: $t('promotion.seckill.config.form.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入秒杀时段名称',
+        placeholder: $t('promotion.seckill.config.placeholder.name'),
       },
       rules: 'required',
     },
     {
       fieldName: 'startTime',
-      label: '开始时间点',
+      label: $t('promotion.seckill.config.form.startTime'),
       component: 'TimePicker',
       componentProps: {
         format: 'HH:mm',
         valueFormat: 'HH:mm',
-        placeholder: '请选择开始时间点',
+        placeholder: $t('promotion.seckill.config.placeholder.startTime'),
       },
       rules: 'required',
     },
     {
       fieldName: 'endTime',
-      label: '结束时间点',
+      label: $t('promotion.seckill.config.form.endTime'),
       component: 'TimePicker',
       componentProps: {
         format: 'HH:mm',
         valueFormat: 'HH:mm',
-        placeholder: '请选择结束时间点',
+        placeholder: $t('promotion.seckill.config.placeholder.endTime'),
       },
       rules: 'required',
     },
     {
       fieldName: 'sliderPicUrls',
-      label: '秒杀轮播图',
+      label: $t('promotion.seckill.config.form.sliderPicUrls'),
       component: 'ImageUpload',
       componentProps: {
         multiple: true,
@@ -58,7 +59,7 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'status',
-      label: '状态',
+      label: $t('promotion.seckill.config.form.status'),
       component: 'RadioGroup',
       componentProps: {
         options: getDictOptions(DICT_TYPE.COMMON_STATUS, 'number'),
@@ -75,18 +76,18 @@ export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
       fieldName: 'name',
-      label: '秒杀时段名称',
+      label: $t('promotion.seckill.config.form.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入秒杀时段名称',
+        placeholder: $t('promotion.seckill.config.placeholder.name'),
       },
     },
     {
       fieldName: 'status',
-      label: '状态',
+      label: $t('promotion.seckill.config.form.status'),
       component: 'Select',
       componentProps: {
-        placeholder: '请选择状态',
+        placeholder: $t('promotion.seckill.config.placeholder.status'),
         options: getDictOptions(DICT_TYPE.COMMON_STATUS, 'number'),
       },
     },
@@ -102,22 +103,22 @@ export function useGridColumns(
 ): VxeTableGridOptions['columns'] {
   return [
     {
-      title: '秒杀时段名称',
+      title: $t('promotion.seckill.config.form.name'),
       field: 'name',
       minWidth: 200,
     },
     {
-      title: '开始时间点',
+      title: $t('promotion.seckill.config.form.startTime'),
       field: 'startTime',
       minWidth: 120,
     },
     {
-      title: '结束时间点',
+      title: $t('promotion.seckill.config.form.endTime'),
       field: 'endTime',
       minWidth: 120,
     },
     {
-      title: '秒杀轮播图',
+      title: $t('promotion.seckill.config.form.sliderPicUrls'),
       field: 'sliderPicUrls',
       minWidth: 100,
       cellRender: {
@@ -125,7 +126,7 @@ export function useGridColumns(
       },
     },
     {
-      title: '活动状态',
+      title: $t('promotion.seckill.config.form.status'),
       field: 'status',
       minWidth: 100,
       cellRender: {
@@ -133,20 +134,20 @@ export function useGridColumns(
         name: 'CellSwitch',
         props: {
           checkedValue: 1,
-          checkedChildren: '启用',
+          checkedChildren: $t('promotion.seckill.config.grid.checkedChildren'),
           unCheckedValue: 0,
-          unCheckedChildren: '禁用',
+          unCheckedChildren: $t('promotion.seckill.config.grid.unCheckedChildren'),
         },
       },
     },
     {
-      title: '创建时间',
+      title: $t('promotion.seckill.config.form.createTime'),
       field: 'createTime',
       minWidth: 180,
       formatter: 'formatDateTime',
     },
     {
-      title: '操作',
+      title: $t('promotion.seckill.config.grid.actions'),
       width: 180,
       fixed: 'right',
       slots: { default: 'actions' },

@@ -4,6 +4,8 @@ import type { MallTradeStatisticsApi } from '#/api/mall/statistics/trade';
 
 import { onMounted, ref } from 'vue';
 
+import { $t } from '#/locales';
+
 import { DocAlert, Page, StatisticCard } from '@vben/common-ui';
 import { fenToYuan } from '@vben/utils';
 
@@ -57,8 +59,8 @@ onMounted(async () => {
       <Row :gutter="16">
         <Col :sm="6" :xs="12">
           <StatisticCard
-            tooltip="昨日订单数量"
-            title="昨日订单数量"
+            :tooltip="$t('statistics.trade.yesterdayOrderCount')"
+            :title="$t('statistics.trade.yesterdayOrderCount')"
             :value="summary?.value?.yesterdayOrderCount || 0"
             :percent="
               calculateRelativeRate(
@@ -70,8 +72,8 @@ onMounted(async () => {
         </Col>
         <Col :sm="6" :xs="12">
           <StatisticCard
-            tooltip="本月订单数量"
-            title="本月订单数量"
+            :tooltip="$t('statistics.trade.monthOrderCount')"
+            :title="$t('statistics.trade.monthOrderCount')"
             :value="summary?.value?.monthOrderCount || 0"
             :percent="
               calculateRelativeRate(
@@ -83,8 +85,8 @@ onMounted(async () => {
         </Col>
         <Col :sm="6" :xs="12">
           <StatisticCard
-            tooltip="昨日支付金额"
-            title="昨日支付金额"
+            :tooltip="$t('statistics.trade.yesterdayPayPrice')"
+            :title="$t('statistics.trade.yesterdayPayPrice')"
             prefix="￥"
             :decimals="2"
             :value="Number(fenToYuan(summary?.value?.yesterdayPayPrice || 0))"
@@ -98,8 +100,8 @@ onMounted(async () => {
         </Col>
         <Col :sm="6" :xs="12">
           <StatisticCard
-            tooltip="本月支付金额"
-            title="本月支付金额"
+            :tooltip="$t('statistics.trade.monthPayPrice')"
+            :title="$t('statistics.trade.monthPayPrice')"
             prefix="￥"
             :decimals="2"
             :value="Number(fenToYuan(summary?.value?.monthPayPrice || 0))"

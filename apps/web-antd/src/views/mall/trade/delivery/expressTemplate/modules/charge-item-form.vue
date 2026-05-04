@@ -7,6 +7,7 @@ import { computed, nextTick, ref, watch } from 'vue';
 import { InputNumber, TreeSelect } from 'ant-design-vue';
 
 import { TableAction, useVbenVxeGrid } from '#/adapter/vxe-table';
+import { $t } from '#/locales';
 
 import { CHARGE_MODE_TITLE_MAP, useChargesColumns } from '../data';
 
@@ -113,15 +114,23 @@ function validate() {
   for (let i = 0; i < tableData.value.length; i++) {
     const item = tableData.value[i];
     if (!item.countries || item.countries.length === 0) {
-      throw new Error(`运费设置第 ${i + 1} 行：区域不能为空`);
-    };
+      throw new Error(
+        $t('trade.delivery.expressTemplate.chargeItem.validate.countries', [
+          i + 1,
+        ]),
+      );
+    }
     if (!item.startCount || item.startCount <= 0) {
       throw new Error(
         `运费设置第 ${i + 1} 行：${columnTitle.value?.startCountTitle}必须大于 0`,
       );
     }
     if (!item.startPrice || item.startPrice <= 0) {
-      throw new Error(`运费设置第 ${i + 1} 行：运费必须大于0`);
+      throw new Error(
+        $t('trade.delivery.expressTemplate.chargeItem.validate.startPrice', [
+          i + 1,
+        ]),
+      );
     }
     if (!item.extraCount || item.extraCount <= 0) {
       throw new Error(
@@ -129,7 +138,11 @@ function validate() {
       );
     }
     if (!item.extraPrice || item.extraPrice <= 0) {
-      throw new Error(`运费设置第 ${i + 1} 行：续费必须大于 0`);
+      throw new Error(
+        $t('trade.delivery.expressTemplate.chargeItem.validate.extraPrice', [
+          i + 1,
+        ]),
+      );
     }
   }
 }
@@ -151,7 +164,9 @@ defineExpose({
           value: 'code',
           // children: 'children',
         }"
-        placeholder="请选择地区"
+        :placeholder="
+          $t('trade.delivery.expressTemplate.form.countryPlaceholder')
+        "
         class="w-full"
         multiple
         tree-checkable
@@ -193,11 +208,13 @@ defineExpose({
       <TableAction
         :actions="[
           {
-            label: '删除',
+            label: $t('common.delete'),
             type: 'link',
             danger: true,
             popConfirm: {
-              title: '确认删除该区域吗？',
+              title: $t(
+                'trade.delivery.expressTemplate.chargeItem.deleteConfirm',
+              ),
               confirm: handleDelete.bind(null, row),
             },
           },
@@ -209,7 +226,7 @@ defineExpose({
         class="mt-2 flex justify-center"
         :actions="[
           {
-            label: '添加计费区域',
+            label: $t('trade.delivery.expressTemplate.chargeItem.add'),
             type: 'default',
             onClick: handleAdd,
           },

@@ -8,6 +8,7 @@ import { handleTree } from '@vben/utils';
 
 import { z } from '#/adapter/form';
 import { getCategoryList } from '#/api/mall/product/category';
+import { $t } from '#/locales';
 
 /** 新增/修改的表单 */
 export function useFormSchema(): VbenFormSchema[] {
@@ -22,7 +23,7 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'parentId',
-      label: '上级分类',
+      label: $t('mall-product.category.parent'),
       component: 'ApiTreeSelect',
       componentProps: {
         allowClear: true,
@@ -30,49 +31,49 @@ export function useFormSchema(): VbenFormSchema[] {
           const data = await getCategoryList({ parentId: 0 });
           data.unshift({
             id: 0,
-            name: '顶级分类',
+            name: $t('mall-product.category.top'),
           } as MallCategoryApi.Category);
           return handleTree(data);
         },
         labelField: 'name',
         valueField: 'id',
         childrenField: 'children',
-        placeholder: '请选择上级分类',
+        placeholder: $t('mall-product.category.placeholder.parent'),
         treeDefaultExpandAll: true,
       },
       rules: 'selectRequired',
     },
     {
       fieldName: 'name',
-      label: '分类名称',
+      label: $t('mall-product.category.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入分类名称',
+        placeholder: $t('mall-product.category.placeholder.name'),
       },
       rules: 'required',
     },
     {
       fieldName: 'picUrl',
-      label: '移动端分类图',
+      label: $t('mall-product.category.picUrl'),
       component: 'ImageUpload',
       componentProps: {
-        placeholder: '请上传移动端分类图',
+        placeholder: $t('mall-product.category.placeholder.picUrl'),
       },
       rules: 'required',
     },
     {
       fieldName: 'sort',
-      label: '分类排序',
+      label: $t('mall-product.category.sort'),
       component: 'InputNumber',
       componentProps: {
         min: 0,
-        placeholder: '请输入分类排序',
+        placeholder: $t('mall-product.category.placeholder.sort'),
       },
       rules: 'required',
     },
     {
       fieldName: 'status',
-      label: '开启状态',
+      label: $t('mall-product.category.status'),
       component: 'RadioGroup',
       componentProps: {
         options: getDictOptions(DICT_TYPE.COMMON_STATUS, 'number'),
@@ -80,6 +81,36 @@ export function useFormSchema(): VbenFormSchema[] {
         optionType: 'button',
       },
       rules: z.number().default(CommonStatusEnum.ENABLE),
+    },
+    // ========== SEO 相关字段 =========
+    {
+      fieldName: 'metaTitle',
+      label: $t('mall-product.category.metaTitle.label'),
+      component: 'Input',
+      componentProps: {
+        placeholder: $t('mall-product.category.metaTitle.placeholder'),
+        maxlength: 200,
+      },
+    },
+    {
+      fieldName: 'metaDescription',
+      label: $t('mall-product.category.metaDescription.label'),
+      component: 'Textarea',
+      componentProps: {
+        placeholder: $t('mall-product.category.metaDescription.placeholder'),
+        autoSize: { minRows: 2, maxRows: 3 },
+        showCount: true,
+        maxlength: 500,
+      },
+    },
+    {
+      fieldName: 'slug',
+      label: $t('mall-product.category.slug.label'),
+      component: 'Input',
+      componentProps: {
+        placeholder: $t('mall-product.category.slug.placeholder'),
+        maxlength: 100,
+      },
     },
   ];
 }
@@ -89,10 +120,10 @@ export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
       fieldName: 'name',
-      label: '分类名称',
+      label: $t('mall-product.category.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入分类名称',
+        placeholder: $t('mall-product.category.placeholder.name'),
         allowClear: true,
       },
     },
@@ -104,7 +135,7 @@ export function useGridColumns(): VxeTableGridOptions<MallCategoryApi.Category>[
   return [
     {
       field: 'name',
-      title: '分类名称',
+      title: $t('mall-product.category.name'),
       minWidth: 200,
       align: 'left',
       fixed: 'left',
@@ -112,7 +143,7 @@ export function useGridColumns(): VxeTableGridOptions<MallCategoryApi.Category>[
     },
     {
       field: 'picUrl',
-      title: '移动端分类图',
+      title: $t('mall-product.category.picUrl'),
       minWidth: 120,
       cellRender: {
         name: 'CellImage',
@@ -120,12 +151,12 @@ export function useGridColumns(): VxeTableGridOptions<MallCategoryApi.Category>[
     },
     {
       field: 'sort',
-      title: '分类排序',
+      title: $t('mall-product.category.sort'),
       minWidth: 100,
     },
     {
       field: 'status',
-      title: '分类状态',
+      title: $t('mall-product.category.status'),
       minWidth: 100,
       cellRender: {
         name: 'CellDict',
@@ -134,12 +165,12 @@ export function useGridColumns(): VxeTableGridOptions<MallCategoryApi.Category>[
     },
     {
       field: 'createTime',
-      title: '创建时间',
+      title: $t('common.createTime'),
       minWidth: 180,
       formatter: 'formatDateTime',
     },
     {
-      title: '操作',
+      title: $t('common.actions'),
       width: 240,
       fixed: 'right',
       slots: { default: 'actions' },

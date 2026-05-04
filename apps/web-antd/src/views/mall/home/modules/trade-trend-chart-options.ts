@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { $t } from '#/locales';
 
 /** 时间范围类型枚举 */
 export enum TimeRangeTypeEnum {
@@ -36,7 +37,7 @@ export function getTradeTrendChartOptions(
         brush: {
           type: ['lineX', 'clear'], // 区域缩放按钮、还原按钮
         },
-        saveAsImage: { show: true, name: '订单量趋势' }, // 保存为图片
+        saveAsImage: { show: true, name: $t('mall-product.home.tradeTrend') }, // 保存为图片
       },
     },
     tooltip: {
@@ -65,10 +66,19 @@ export function getTradeTrendChartOptions(
             }
             case TimeRangeTypeEnum.WEEK: {
               const weekDay = dayjs(date).day();
-              return weekDay === 0 ? '周日' : `周${weekDay}`;
+              const weekDays = [
+                $t('mall-product.home.weekDays.sunday'),
+                $t('mall-product.home.weekDays.monday'),
+                $t('mall-product.home.weekDays.tuesday'),
+                $t('mall-product.home.weekDays.wednesday'),
+                $t('mall-product.home.weekDays.thursday'),
+                $t('mall-product.home.weekDays.friday'),
+                $t('mall-product.home.weekDays.saturday'),
+              ];
+              return weekDays[weekDay];
             }
             case TimeRangeTypeEnum.YEAR: {
-              return `${dayjs(date).format('M')}月`;
+              return `${dayjs(date).format('M')}${$t('mall-product.home.month')}`;
             }
             default: {
               return date;

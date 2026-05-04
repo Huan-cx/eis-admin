@@ -3,6 +3,8 @@ import type { Dayjs } from 'dayjs';
 
 import { ref } from 'vue';
 
+import { $t } from '#/locales';
+
 import { fenToYuan } from '@vben/utils';
 
 import { Card } from 'ant-design-vue';
@@ -49,7 +51,7 @@ const calculateRelativeRate = (value?: number, reference?: number) => {
   <Card :bordered="false" :loading="loading">
     <template #title>
       <div class="flex items-center justify-between">
-        <span>会员概览</span>
+        <span>{{ $t('statistics.member.funnel.title') }}</span>
         <ShortcutDateRangePicker @change="handleTimeRangeChange" />
       </div>
     </template>
@@ -58,11 +60,11 @@ const calculateRelativeRate = (value?: number, reference?: number) => {
         <div class="flex w-[75%] bg-blue-50">
           <div class="ml-[50px] flex flex-col justify-center">
             <div class="font-bold">
-              注册用户数量：
+              {{ $t('statistics.member.funnel.registerUserCount') }}：
               {{ analyseData?.comparison?.value?.registerUserCount || 0 }}
             </div>
             <div class="mt-2 text-sm">
-              环比增长率：
+              {{ $t('statistics.member.funnel.relativeRate') }}：
               {{
                 calculateRelativeRate(
                   analyseData?.comparison?.value?.registerUserCount,
@@ -78,18 +80,18 @@ const calculateRelativeRate = (value?: number, reference?: number) => {
           <span class="text-2xl font-bold">
             {{ analyseData?.visitUserCount || 0 }}
           </span>
-          <span>访客</span>
+          <span>{{ $t('statistics.member.funnel.visitor') }}</span>
         </div>
       </div>
       <div class="flex h-24">
         <div class="flex w-[75%] bg-cyan-50">
           <div class="ml-[50px] flex flex-col justify-center">
             <div class="font-bold">
-              活跃用户数量：
+              {{ $t('statistics.member.funnel.activeUserCount') }}：
               {{ analyseData?.comparison?.value?.visitUserCount || 0 }}
             </div>
             <div class="mt-2 text-sm">
-              环比增长率：
+              {{ $t('statistics.member.funnel.relativeRate') }}：
               {{
                 calculateRelativeRate(
                   analyseData?.comparison?.value?.visitUserCount,
@@ -105,7 +107,7 @@ const calculateRelativeRate = (value?: number, reference?: number) => {
           <span class="text-2xl font-bold">
             {{ analyseData?.orderUserCount || 0 }}
           </span>
-          <span>下单</span>
+          <span>{{ $t('statistics.member.funnel.order') }}</span>
         </div>
       </div>
       <div class="flex h-24">
@@ -113,11 +115,11 @@ const calculateRelativeRate = (value?: number, reference?: number) => {
           <div class="ml-[50px] flex flex-row gap-x-16">
             <div class="flex flex-col justify-center">
               <div class="font-bold">
-                充值用户数量：
+                {{ $t('statistics.member.funnel.rechargeUserCount') }}：
                 {{ analyseData?.comparison?.value?.rechargeUserCount || 0 }}
               </div>
               <div class="mt-2 text-sm">
-                环比增长率：
+                {{ $t('statistics.member.funnel.relativeRate') }}：
                 {{
                   calculateRelativeRate(
                     analyseData?.comparison?.value?.rechargeUserCount,
@@ -128,7 +130,7 @@ const calculateRelativeRate = (value?: number, reference?: number) => {
             </div>
             <div class="flex flex-col justify-center">
               <div class="font-bold">
-                客单价：{{ fenToYuan(analyseData?.atv || 0) }}
+                {{ $t('statistics.member.funnel.atv') }}：{{ fenToYuan(analyseData?.atv || 0) }}
               </div>
             </div>
           </div>
@@ -139,7 +141,7 @@ const calculateRelativeRate = (value?: number, reference?: number) => {
           <span class="text-2xl font-bold">
             {{ analyseData?.payUserCount || 0 }}
           </span>
-          <span>成交用户</span>
+          <span>{{ $t('statistics.member.funnel.payUser') }}</span>
         </div>
       </div>
     </div>

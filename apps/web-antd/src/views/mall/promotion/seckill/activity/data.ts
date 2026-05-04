@@ -6,25 +6,26 @@ import { getDictOptions } from '@vben/hooks';
 
 import { z } from '#/adapter/form';
 import { getSimpleSeckillConfigList } from '#/api/mall/promotion/seckill/seckillConfig';
+import { $t } from '#/locales';
 
 /** 列表的搜索表单 */
 export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
       fieldName: 'name',
-      label: '活动名称',
+      label: $t('promotion.seckill.activity.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入活动名称',
+        placeholder: $t('promotion.seckill.activity.placeholder.name'),
         allowClear: true,
       },
     },
     {
       fieldName: 'status',
-      label: '活动状态',
+      label: $t('promotion.seckill.activity.status'),
       component: 'Select',
       componentProps: {
-        placeholder: '请选择活动状态',
+        placeholder: $t('promotion.seckill.activity.placeholder.status'),
         allowClear: true,
         options: getDictOptions(DICT_TYPE.COMMON_STATUS, 'number'),
       },
@@ -45,20 +46,20 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'name',
-      label: '秒杀活动名称',
+      label: $t('promotion.seckill.activity.form.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入活动名称',
+        placeholder: $t('promotion.seckill.activity.placeholder.name'),
       },
       rules: 'required',
       formItemClass: 'col-span-2',
     },
     {
       fieldName: 'startTime',
-      label: '活动开始时间',
+      label: $t('promotion.seckill.activity.form.startTime'),
       component: 'DatePicker',
       componentProps: {
-        placeholder: '请选择活动开始时间',
+        placeholder: $t('promotion.seckill.activity.placeholder.startTime'),
         showTime: true,
         format: 'YYYY-MM-DD HH:mm:ss',
         valueFormat: 'x',
@@ -68,10 +69,10 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'endTime',
-      label: '活动结束时间',
+      label: $t('promotion.seckill.activity.form.endTime'),
       component: 'DatePicker',
       componentProps: {
-        placeholder: '请选择活动结束时间',
+        placeholder: $t('promotion.seckill.activity.placeholder.endTime'),
         showTime: true,
         format: 'YYYY-MM-DD HH:mm:ss',
         valueFormat: 'x',
@@ -81,10 +82,10 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'configIds',
-      label: '秒杀时段',
+      label: $t('promotion.seckill.activity.form.configIds'),
       component: 'ApiSelect',
       componentProps: {
-        placeholder: '请选择秒杀时段',
+        placeholder: $t('promotion.seckill.activity.placeholder.configIds'),
         mode: 'multiple',
         api: getSimpleSeckillConfigList,
         labelField: 'name',
@@ -96,10 +97,10 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'totalLimitCount',
-      label: '总限购数量',
+      label: $t('promotion.seckill.activity.form.totalLimitCount'),
       component: 'InputNumber',
       componentProps: {
-        placeholder: '请输入总限购数量',
+        placeholder: $t('promotion.seckill.activity.placeholder.totalLimitCount'),
         min: 0,
         class: 'w-full',
       },
@@ -107,10 +108,10 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'singleLimitCount',
-      label: '单次限购数量',
+      label: $t('promotion.seckill.activity.form.singleLimitCount'),
       component: 'InputNumber',
       componentProps: {
-        placeholder: '请输入单次限购数量',
+        placeholder: $t('promotion.seckill.activity.placeholder.singleLimitCount'),
         min: 0,
         class: 'w-full',
       },
@@ -118,10 +119,10 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'sort',
-      label: '排序',
+      label: $t('promotion.seckill.activity.form.sort'),
       component: 'InputNumber',
       componentProps: {
-        placeholder: '请输入排序',
+        placeholder: $t('promotion.seckill.activity.placeholder.sort'),
         min: 0,
         class: 'w-full',
       },
@@ -129,17 +130,17 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'remark',
-      label: '备注',
+      label: $t('promotion.seckill.activity.form.remark'),
       component: 'Textarea',
       componentProps: {
-        placeholder: '请输入备注',
+        placeholder: $t('promotion.seckill.activity.placeholder.remark'),
         rows: 4,
       },
       formItemClass: 'col-span-2',
     },
     {
       fieldName: 'spuId',
-      label: '秒杀商品',
+      label: $t('promotion.seckill.activity.form.spuId'),
       component: 'Input',
       formItemClass: 'col-span-2',
     },
@@ -151,29 +152,29 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
   return [
     {
       field: 'id',
-      title: '活动编号',
+      title: $t('promotion.seckill.activity.grid.id'),
       minWidth: 80,
     },
     {
       field: 'name',
-      title: '活动名称',
+      title: $t('promotion.seckill.activity.form.name'),
       minWidth: 140,
     },
     {
       field: 'configIds',
-      title: '秒杀时段',
+      title: $t('promotion.seckill.activity.grid.configIds'),
       minWidth: 220,
       slots: { default: 'configIds' },
     },
     {
       field: 'startTime',
-      title: '活动时间',
+      title: $t('promotion.seckill.activity.grid.activityTime'),
       minWidth: 210,
       slots: { default: 'timeRange' },
     },
     {
       field: 'picUrl',
-      title: '商品图片',
+      title: $t('promotion.seckill.activity.grid.picUrl'),
       minWidth: 80,
       cellRender: {
         name: 'CellImage',
@@ -181,32 +182,32 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'spuName',
-      title: '商品标题',
+      title: $t('promotion.seckill.activity.grid.spuName'),
       minWidth: 300,
     },
     {
       field: 'marketPrice',
-      title: '原价',
+      title: $t('promotion.seckill.activity.grid.marketPrice'),
       minWidth: 100,
-      formatter: ({ row }) => `￥${(row.marketPrice / 100).toFixed(2)}`,
+      formatter: ({ row }) => `${$t('promotion.seckill.activity.grid.currency')}${(row.marketPrice / 100).toFixed(2)}`,
     },
     {
       field: 'seckillPrice',
-      title: '秒杀价',
+      title: $t('promotion.seckill.activity.grid.seckillPrice'),
       minWidth: 100,
       formatter: ({ row }) => {
         if (!(row.products || row.products.length === 0)) {
-          return '￥0.00';
+          return `${$t('promotion.seckill.activity.grid.currency')}0.00`;
         }
         const seckillPrice = Math.min(
           ...row.products.map((item: any) => item.seckillPrice),
         );
-        return `￥${(seckillPrice / 100).toFixed(2)}`;
+        return `${$t('promotion.seckill.activity.grid.currency')}${(seckillPrice / 100).toFixed(2)}`;
       },
     },
     {
       field: 'status',
-      title: '活动状态',
+      title: $t('promotion.seckill.activity.form.status'),
       align: 'center',
       minWidth: 100,
       cellRender: {
@@ -216,25 +217,25 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'stock',
-      title: '库存',
+      title: $t('promotion.seckill.activity.grid.stock'),
       align: 'center',
       minWidth: 80,
     },
     {
       field: 'totalStock',
-      title: '总库存',
+      title: $t('promotion.seckill.activity.grid.totalStock'),
       align: 'center',
       minWidth: 80,
     },
     {
       field: 'createTime',
-      title: '创建时间',
+      title: $t('promotion.seckill.activity.grid.createTime'),
       align: 'center',
       minWidth: 180,
       formatter: 'formatDateTime',
     },
     {
-      title: '操作',
+      title: $t('promotion.seckill.activity.grid.actions'),
       align: 'center',
       width: 150,
       fixed: 'right',

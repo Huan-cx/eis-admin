@@ -2,6 +2,7 @@ import type { VbenFormSchema } from '#/adapter/form';
 import type { VxeTableGridOptions } from '#/adapter/vxe-table';
 
 import { getRangePickerDefaultProps } from '#/utils';
+import { $t } from '#/locales';
 
 /** 表单配置 */
 export function useFormSchema(): VbenFormSchema[] {
@@ -16,26 +17,26 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'name',
-      label: '页面名称',
+      label: $t('promotion.diy.page.form.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入页面名称',
+        placeholder: $t('promotion.diy.page.placeholder.name'),
       },
       rules: 'required',
     },
     {
       fieldName: 'remark',
-      label: '备注',
+      label: $t('promotion.diy.page.form.remark'),
       component: 'Textarea',
       componentProps: {
-        placeholder: '请输入备注',
+        placeholder: $t('promotion.diy.page.placeholder.remark'),
         rows: 4,
       },
     },
     {
       fieldName: 'previewPicUrls',
       component: 'ImageUpload',
-      label: '预览图',
+      label: $t('promotion.diy.page.form.previewPicUrls'),
       componentProps: {
         maxNumber: 10,
         multiple: true,
@@ -49,16 +50,16 @@ export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
       fieldName: 'name',
-      label: '页面名称',
+      label: $t('promotion.diy.page.form.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入页面名称',
+        placeholder: $t('promotion.diy.page.placeholder.name'),
         clearable: true,
       },
     },
     {
       fieldName: 'createTime',
-      label: '创建时间',
+      label: $t('promotion.diy.page.form.createTime'),
       component: 'RangePicker',
       componentProps: {
         ...getRangePickerDefaultProps(),
@@ -73,12 +74,12 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
   return [
     {
       field: 'id',
-      title: '编号',
+      title: $t('promotion.diy.page.grid.id'),
       minWidth: 80,
     },
     {
       field: 'previewPicUrls',
-      title: '预览图',
+      title: $t('promotion.diy.page.form.previewPicUrls'),
       minWidth: 120,
       cellRender: {
         name: 'CellImages',
@@ -86,22 +87,22 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'name',
-      title: '页面名称',
+      title: $t('promotion.diy.page.form.name'),
       minWidth: 150,
     },
     {
       field: 'remark',
-      title: '备注',
+      title: $t('promotion.diy.page.form.remark'),
       minWidth: 200,
     },
     {
       field: 'createTime',
-      title: '创建时间',
+      title: $t('promotion.diy.page.form.createTime'),
       minWidth: 180,
       formatter: 'formatDateTime',
     },
     {
-      title: '操作',
+      title: $t('promotion.diy.page.grid.actions'),
       width: 200,
       fixed: 'right',
       slots: { default: 'actions' },

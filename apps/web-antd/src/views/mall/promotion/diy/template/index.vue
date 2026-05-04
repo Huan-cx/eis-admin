@@ -57,7 +57,7 @@ async function handleUse(row: MallDiyTemplateApi.DiyTemplate) {
   });
   try {
     await useDiyTemplate(row.id as number);
-    message.success('使用成功');
+    message.success($t('promotion.diy.template.useSuccess'));
     handleRefresh();
   } finally {
     hideLoading();
@@ -121,12 +121,14 @@ const [Grid, gridApi] = useVbenVxeGrid({
 
     <FormModal @success="handleRefresh" />
 
-    <Grid table-title="装修模板列表">
+    <Grid :table-title="$t('promotion.diy.template.list')">
       <template #toolbar-tools>
         <TableAction
           :actions="[
             {
-              label: $t('ui.actionTitle.create', ['装修模板']),
+              label: $t('ui.actionTitle.create', [
+                $t('promotion.diy.template.title'),
+              ]),
               type: 'primary',
               icon: ACTION_ICON.ADD,
               auth: ['promotion:diy-template:create'],
@@ -139,7 +141,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
         <TableAction
           :actions="[
             {
-              label: '装修',
+              label: $t('promotion.diy.template.action.decorate'),
               type: 'link',
               icon: ACTION_ICON.EDIT,
               auth: ['promotion:diy-template:update'],
@@ -153,7 +155,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
               onClick: handleEdit.bind(null, row),
             },
             {
-              label: '使用',
+              label: $t('promotion.diy.template.action.use'),
               type: 'link',
               auth: ['promotion:diy-template:use'],
               ifShow: !row.used,

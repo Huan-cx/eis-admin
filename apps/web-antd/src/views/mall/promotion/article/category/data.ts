@@ -5,6 +5,7 @@ import { CommonStatusEnum, DICT_TYPE } from '@vben/constants';
 import { getDictOptions } from '@vben/hooks';
 
 import { z } from '#/adapter/form';
+import { $t } from '#/locales';
 import { getRangePickerDefaultProps } from '#/utils';
 
 /** 新增/修改的表单 */
@@ -20,34 +21,34 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'name',
-      label: '分类名称',
+      label: $t('promotion.article.category.form.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入分类名称',
+        placeholder: $t('promotion.article.category.placeholder.name'),
       },
       rules: 'required',
     },
     {
       fieldName: 'picUrl',
-      label: '分类图片',
+      label: $t('promotion.article.category.form.picUrl'),
       component: 'ImageUpload',
       componentProps: {
-        placeholder: '请上传分类图片',
+        placeholder: $t('promotion.article.category.placeholder.picUrl'),
       },
     },
     {
       fieldName: 'sort',
-      label: '显示顺序',
+      label: $t('promotion.article.category.form.sort'),
       component: 'InputNumber',
       componentProps: {
         min: 0,
-        placeholder: '请输入显示顺序',
+        placeholder: $t('promotion.article.category.placeholder.sort'),
       },
       rules: 'required',
     },
     {
       fieldName: 'status',
-      label: '状态',
+      label: $t('promotion.article.category.form.status'),
       component: 'RadioGroup',
       componentProps: {
         options: getDictOptions(DICT_TYPE.COMMON_STATUS, 'number'),
@@ -64,26 +65,26 @@ export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
       fieldName: 'name',
-      label: '分类名称',
+      label: $t('promotion.article.category.form.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入分类名称',
+        placeholder: $t('promotion.article.category.placeholder.name'),
         allowClear: true,
       },
     },
     {
       fieldName: 'status',
-      label: '状态',
+      label: $t('promotion.article.category.form.status'),
       component: 'Select',
       componentProps: {
-        placeholder: '请选择状态',
+        placeholder: $t('promotion.article.category.placeholder.status'),
         allowClear: true,
         options: getDictOptions(DICT_TYPE.COMMON_STATUS, 'number'),
       },
     },
     {
       fieldName: 'createTime',
-      label: '创建时间',
+      label: $t('promotion.article.category.form.createTime'),
       component: 'RangePicker',
       componentProps: {
         ...getRangePickerDefaultProps(),
@@ -98,19 +99,19 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
   return [
     {
       field: 'id',
-      title: '编号',
+      title: $t('promotion.article.category.grid.id'),
       minWidth: 100,
     },
     {
       field: 'name',
-      title: '分类名称',
+      title: $t('promotion.article.category.form.name'),
       minWidth: 240,
       align: 'left',
       fixed: 'left',
     },
     {
       field: 'picUrl',
-      title: '分类图片',
+      title: $t('promotion.article.category.form.picUrl'),
       minWidth: 80,
       cellRender: {
         name: 'CellImage',
@@ -118,7 +119,7 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'status',
-      title: '状态',
+      title: $t('promotion.article.category.form.status'),
       minWidth: 150,
       cellRender: {
         name: 'CellDict',
@@ -127,17 +128,17 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'sort',
-      title: '显示顺序',
+      title: $t('promotion.article.category.form.sort'),
       minWidth: 150,
     },
     {
       field: 'createTime',
-      title: '创建时间',
+      title: $t('promotion.article.category.form.createTime'),
       minWidth: 180,
       formatter: 'formatDateTime',
     },
     {
-      title: '操作',
+      title: $t('promotion.article.category.grid.actions'),
       minWidth: 220,
       fixed: 'right',
       slots: { default: 'actions' },

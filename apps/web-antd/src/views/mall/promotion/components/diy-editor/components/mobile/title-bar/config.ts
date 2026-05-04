@@ -1,5 +1,7 @@
 import type { ComponentStyle, DiyComponent } from '../../../util';
 
+import { $t } from '#/locales';
+
 /** 标题栏属性 */
 export interface TitleBarProperty {
   bgImgUrl: string; // 背景图
@@ -26,11 +28,11 @@ export interface TitleBarProperty {
 /** 定义组件 */
 export const component = {
   id: 'TitleBar',
-  name: '标题栏',
+  name: $t('promotion.titleBar.title'),
   icon: 'material-symbols:line-start',
   property: {
-    title: '主标题',
-    description: '副标题',
+    title: $t('promotion.titleBar.property.mainTitle'),
+    description: $t('promotion.titleBar.property.subTitle'),
     titleSize: 16,
     descriptionSize: 12,
     titleWeight: 400,
@@ -44,7 +46,7 @@ export const component = {
       // 查看更多
       show: false,
       type: 'icon',
-      text: '查看更多',
+      text: $t('promotion.titleBar.property.moreText'),
       url: '',
     },
     style: {

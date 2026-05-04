@@ -4,6 +4,7 @@ import type { VxeTableGridOptions } from '#/adapter/vxe-table';
 import { DICT_TYPE } from '@vben/constants';
 import { getDictOptions } from '@vben/hooks';
 import { formatDate } from '@vben/utils';
+import { $t } from '#/locales';
 
 /** 表单配置 */
 export function useFormSchema(): VbenFormSchema[] {
@@ -18,20 +19,20 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'name',
-      label: '活动名称',
+      label: $t('promotion.combination.activity.form.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入活动名称',
+        placeholder: $t('promotion.combination.activity.placeholder.name'),
       },
       rules: 'required',
       formItemClass: 'col-span-2',
     },
     {
       fieldName: 'startTime',
-      label: '开始时间',
+      label: $t('promotion.combination.activity.form.startTime'),
       component: 'DatePicker',
       componentProps: {
-        placeholder: '请选择开始时间',
+        placeholder: $t('promotion.combination.activity.placeholder.startTime'),
         showTime: true,
         valueFormat: 'x',
         format: 'YYYY-MM-DD HH:mm:ss',
@@ -40,10 +41,10 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'endTime',
-      label: '结束时间',
+      label: $t('promotion.combination.activity.form.endTime'),
       component: 'DatePicker',
       componentProps: {
-        placeholder: '请选择结束时间',
+        placeholder: $t('promotion.combination.activity.placeholder.endTime'),
         showTime: true,
         valueFormat: 'x',
         format: 'YYYY-MM-DD HH:mm:ss',
@@ -52,45 +53,45 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'userSize',
-      label: '拼团人数',
+      label: $t('promotion.combination.activity.form.userSize'),
       component: 'InputNumber',
       componentProps: {
-        placeholder: '达到该人数即成团',
+        placeholder: $t('promotion.combination.activity.placeholder.userSize'),
         min: 2,
       },
       rules: 'required',
     },
     {
       fieldName: 'limitDuration',
-      label: '限制时长',
+      label: $t('promotion.combination.activity.form.limitDuration'),
       component: 'InputNumber',
       componentProps: {
-        placeholder: '限制时长(小时)',
+        placeholder: $t('promotion.combination.activity.placeholder.limitDuration'),
         min: 0,
       },
       rules: 'required',
     },
     {
       fieldName: 'totalLimitCount',
-      label: '总限购数量',
+      label: $t('promotion.combination.activity.form.totalLimitCount'),
       component: 'InputNumber',
       componentProps: {
-        placeholder: '请输入总限购数量',
+        placeholder: $t('promotion.combination.activity.placeholder.totalLimitCount'),
         min: 0,
       },
     },
     {
       fieldName: 'singleLimitCount',
-      label: '单次限购数量',
+      label: $t('promotion.combination.activity.form.singleLimitCount'),
       component: 'InputNumber',
       componentProps: {
-        placeholder: '请输入单次限购数量',
+        placeholder: $t('promotion.combination.activity.placeholder.singleLimitCount'),
         min: 0,
       },
     },
     {
       fieldName: 'virtualGroup',
-      label: '虚拟成团',
+      label: $t('promotion.combination.activity.form.virtualGroup'),
       component: 'RadioGroup',
       componentProps: {
         options: getDictOptions(DICT_TYPE.INFRA_BOOLEAN_STRING, 'boolean'),
@@ -98,7 +99,7 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'spuId',
-      label: '拼团商品',
+      label: $t('promotion.combination.activity.form.spuId'),
       component: 'Input',
       rules: 'required',
       formItemClass: 'col-span-2',
@@ -111,19 +112,19 @@ export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
       fieldName: 'name',
-      label: '活动名称',
+      label: $t('promotion.combination.activity.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入活动名称',
+        placeholder: $t('promotion.combination.activity.placeholder.name'),
         allowClear: true,
       },
     },
     {
       fieldName: 'status',
-      label: '活动状态',
+      label: $t('promotion.combination.activity.status'),
       component: 'Select',
       componentProps: {
-        placeholder: '请选择活动状态',
+        placeholder: $t('promotion.combination.activity.placeholder.status'),
         allowClear: true,
         options: getDictOptions(DICT_TYPE.COMMON_STATUS, 'number'),
       },
@@ -136,17 +137,17 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
   return [
     {
       field: 'id',
-      title: '活动编号',
+      title: $t('promotion.combination.activity.grid.id'),
       minWidth: 80,
     },
     {
       field: 'name',
-      title: '活动名称',
+      title: $t('promotion.combination.activity.name'),
       minWidth: 140,
     },
     {
       field: 'activityTime',
-      title: '活动时间',
+      title: $t('promotion.combination.activity.grid.activityTime'),
       minWidth: 210,
       formatter: ({ row }) => {
         if (!row.startTime || !row.endTime) return '';
@@ -155,7 +156,7 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'picUrl',
-      title: '商品图片',
+      title: $t('promotion.combination.activity.grid.picUrl'),
       minWidth: 80,
       cellRender: {
         name: 'CellImage',
@@ -167,12 +168,12 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'spuName',
-      title: '商品标题',
+      title: $t('promotion.combination.activity.grid.spuName'),
       minWidth: 300,
     },
     {
       field: 'marketPrice',
-      title: '原价',
+      title: $t('promotion.combination.activity.grid.marketPrice'),
       minWidth: 100,
       formatter: ({ cellValue }) => {
         return `¥${(cellValue / 100).toFixed(2)}`;
@@ -180,7 +181,7 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'combinationPrice',
-      title: '拼团价',
+      title: $t('promotion.combination.activity.grid.combinationPrice'),
       minWidth: 100,
       formatter: ({ row }) => {
         if (!row.products || row.products.length === 0) return '';
@@ -192,22 +193,22 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'groupCount',
-      title: '开团组数',
+      title: $t('promotion.combination.activity.grid.groupCount'),
       minWidth: 100,
     },
     {
       field: 'groupSuccessCount',
-      title: '成团组数',
+      title: $t('promotion.combination.activity.grid.groupSuccessCount'),
       minWidth: 100,
     },
     {
       field: 'recordCount',
-      title: '购买次数',
+      title: $t('promotion.combination.activity.grid.recordCount'),
       minWidth: 100,
     },
     {
       field: 'status',
-      title: '活动状态',
+      title: $t('promotion.combination.activity.status'),
       minWidth: 100,
       cellRender: {
         name: 'CellDict',
@@ -216,12 +217,12 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'createTime',
-      title: '创建时间',
+      title: $t('promotion.combination.activity.grid.createTime'),
       minWidth: 180,
       formatter: 'formatDateTime',
     },
     {
-      title: '操作',
+      title: $t('promotion.combination.activity.grid.actions'),
       width: 200,
       fixed: 'right',
       slots: { default: 'actions' },

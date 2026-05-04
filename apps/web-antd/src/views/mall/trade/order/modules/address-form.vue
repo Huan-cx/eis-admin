@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import type { MallOrderApi } from "#/api/mall/trade/order";
-import { updateOrderAddress } from "#/api/mall/trade/order";
+import type { MallOrderApi } from '#/api/mall/trade/order';
 
-import { useVbenModal } from "@vben/common-ui";
+import { useVbenModal } from '@vben/common-ui';
 
-import { message } from "ant-design-vue";
+import { message } from 'ant-design-vue';
 
-import { useVbenForm } from "#/adapter/form";
-import { $t } from "#/locales";
+import { useVbenForm } from '#/adapter/form';
+import { updateOrderAddress } from '#/api/mall/trade/order';
+import { $t } from '#/locales';
 
-import { useAddressFormSchema } from "../data";
+import { useAddressFormSchema } from '../data';
 
 const emit = defineEmits(['success']);
 

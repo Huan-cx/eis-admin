@@ -83,13 +83,13 @@ const [Grid, gridApi] = useVbenVxeGrid({
   <Page auto-content-height>
     <template #doc>
       <DocAlert
-        title="【营销】内容管理"
+        :title="$t('promotion.banner.title')"
         url="https://doc.iocoder.cn/mall/promotion-content/"
       />
     </template>
 
     <FormModal @success="handleRefresh" />
-    <Grid table-title="Banner列表">
+    <Grid :table-title="$t('promotion.banner.list')">
       <template #toolbar-tools>
         <TableAction
           :actions="[

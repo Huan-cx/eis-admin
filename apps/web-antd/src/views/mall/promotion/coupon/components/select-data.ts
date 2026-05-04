@@ -4,6 +4,8 @@ import type { VxeTableGridOptions } from '#/adapter/vxe-table';
 import { DICT_TYPE } from '@vben/constants';
 import { getDictOptions } from '@vben/hooks';
 
+import { $t } from '#/locales';
+
 import {
   discountFormat,
   remainedCountFormat,
@@ -16,20 +18,20 @@ export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
       fieldName: 'name',
-      label: '优惠券名称',
+      label: $t('promotion.coupon.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入优惠券名称',
+        placeholder: $t('promotion.coupon.placeholder.name'),
         allowClear: true,
       },
     },
     {
       fieldName: 'discountType',
-      label: '优惠类型',
+      label: $t('promotion.coupon.selectForm.discountType'),
       component: 'Select',
       componentProps: {
         options: getDictOptions(DICT_TYPE.PROMOTION_DISCOUNT_TYPE, 'number'),
-        placeholder: '请选择优惠类型',
+        placeholder: $t('promotion.coupon.selectForm.placeholder.discountType'),
         allowClear: true,
       },
     },
@@ -42,12 +44,12 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     { type: 'checkbox', width: 55 },
     {
       field: 'name',
-      title: '优惠券名称',
+      title: $t('promotion.coupon.name'),
       minWidth: 140,
     },
     {
       field: 'productScope',
-      title: '类型',
+      title: $t('promotion.coupon.selectForm.grid.productScope'),
       minWidth: 80,
       cellRender: {
         name: 'CellDict',
@@ -56,7 +58,7 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'discountType',
-      title: '优惠类型',
+      title: $t('promotion.coupon.selectForm.discountType'),
       minWidth: 100,
       cellRender: {
         name: 'CellDict',
@@ -65,13 +67,13 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'discountPrice',
-      title: '优惠力度',
+      title: $t('promotion.coupon.grid.discountLevel'),
       minWidth: 100,
       formatter: ({ row }) => discountFormat(row),
     },
     {
       field: 'takeType',
-      title: '领取方式',
+      title: $t('promotion.coupon.takeType'),
       minWidth: 100,
       cellRender: {
         name: 'CellDict',
@@ -80,34 +82,34 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'validityType',
-      title: '使用时间',
+      title: $t('promotion.coupon.selectForm.grid.useTime'),
       minWidth: 185,
       align: 'center',
       formatter: ({ row }) => validityTypeFormat(row),
     },
     {
       field: 'totalCount',
-      title: '发放数量',
+      title: $t('promotion.coupon.selectForm.grid.totalCount'),
       minWidth: 100,
       align: 'center',
     },
     {
       field: 'remainedCount',
-      title: '剩余数量',
+      title: $t('promotion.coupon.sendForm.grid.remainedCount'),
       minWidth: 100,
       align: 'center',
       formatter: ({ row }) => remainedCountFormat(row),
     },
     {
       field: 'takeLimitCount',
-      title: '领取上限',
+      title: $t('promotion.coupon.selectForm.grid.takeLimit'),
       minWidth: 100,
       align: 'center',
       formatter: ({ row }) => takeLimitCountFormat(row),
     },
     {
       field: 'status',
-      title: '状态',
+      title: $t('promotion.coupon.status'),
       minWidth: 80,
       align: 'center',
       cellRender: {

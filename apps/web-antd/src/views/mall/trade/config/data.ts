@@ -3,6 +3,8 @@ import type { VbenFormSchema } from '#/adapter/form';
 import { DICT_TYPE } from '@vben/constants';
 import { getDictOptions } from '@vben/hooks';
 
+import { $t } from '#/locales';
+
 export const schema: VbenFormSchema[] = [
   {
     component: 'Input',
@@ -22,11 +24,11 @@ export const schema: VbenFormSchema[] = [
   },
   {
     fieldName: 'afterSaleRefundReasons',
-    label: '退款理由',
+    label: $t('trade.config.form.afterSaleRefundReasons'),
     component: 'Select',
     componentProps: {
       mode: 'tags',
-      placeholder: '请直接输入退款理由',
+      placeholder: $t('trade.config.form.afterSaleRefundReasonsPlaceholder'),
       class: 'w-full',
     },
     dependencies: {
@@ -36,11 +38,11 @@ export const schema: VbenFormSchema[] = [
   },
   {
     fieldName: 'afterSaleReturnReasons',
-    label: '退货理由',
+    label: $t('trade.config.form.afterSaleReturnReasons'),
     component: 'Select',
     componentProps: {
       mode: 'tags',
-      placeholder: '请直接输入退货理由',
+      placeholder: $t('trade.config.form.afterSaleReturnReasonsPlaceholder'),
     },
     dependencies: {
       triggerFields: ['type'],
@@ -49,23 +51,23 @@ export const schema: VbenFormSchema[] = [
   },
   {
     fieldName: 'deliveryExpressFreeEnabled',
-    label: '启用包邮',
+    label: $t('trade.config.form.deliveryExpressFreeEnabled'),
     component: 'Switch',
     rules: 'required',
     dependencies: {
       triggerFields: ['type'],
       show: (values) => values.type === 'delivery',
     },
-    help: '商城是否启用全场包邮',
+    help: $t('trade.config.form.deliveryExpressFreeEnabledHelp'),
   },
   {
     fieldName: 'deliveryExpressFreePrice',
-    label: '满额包邮',
+    label: $t('trade.config.form.deliveryExpressFreePrice'),
     component: 'InputNumber',
     componentProps: {
       min: 0,
       precision: 2,
-      placeholder: '请输入满额包邮金额',
+      placeholder: $t('trade.config.form.deliveryExpressFreePricePlaceholder'),
       class: 'w-full',
     },
     rules: 'required',
@@ -73,11 +75,11 @@ export const schema: VbenFormSchema[] = [
       triggerFields: ['type'],
       show: (values) => values.type === 'delivery',
     },
-    help: '商城商品满多少金额即可包邮，单位：元',
+    help: $t('trade.config.form.deliveryExpressFreePriceHelp'),
   },
   {
     fieldName: 'deliveryPickUpEnabled',
-    label: '启用门店自提',
+    label: $t('trade.config.form.deliveryPickUpEnabled'),
     component: 'Switch',
     rules: 'required',
     dependencies: {
@@ -87,9 +89,9 @@ export const schema: VbenFormSchema[] = [
   },
   {
     fieldName: 'brokerageEnabled',
-    label: '启用分佣',
+    label: $t('trade.config.form.brokerageEnabled'),
     component: 'Switch',
-    help: '商城是否开启分销模式',
+    help: $t('trade.config.form.brokerageEnabledHelp'),
     dependencies: {
       triggerFields: ['type'],
       show: (values) => values.type === 'brokerage',
@@ -97,7 +99,7 @@ export const schema: VbenFormSchema[] = [
   },
   {
     fieldName: 'brokerageEnabledCondition',
-    label: '分佣模式',
+    label: $t('trade.config.form.brokerageEnabledCondition'),
     component: 'RadioGroup',
     componentProps: {
       options: getDictOptions(DICT_TYPE.BROKERAGE_ENABLED_CONDITION, 'number'),
@@ -109,11 +111,11 @@ export const schema: VbenFormSchema[] = [
       triggerFields: ['type'],
       show: (values) => values.type === 'brokerage',
     },
-    help: '人人分销：每个用户都可以成为推广员 \n 指定分销：仅可在后台手动设置推广员',
+    help: $t('trade.config.form.brokerageEnabledConditionHelp'),
   },
   {
     fieldName: 'brokerageBindMode',
-    label: '分销关系绑定',
+    label: $t('trade.config.form.brokerageBindMode'),
     component: 'RadioGroup',
     componentProps: {
       options: getDictOptions(DICT_TYPE.BROKERAGE_BIND_MODE, 'number'),
@@ -125,11 +127,11 @@ export const schema: VbenFormSchema[] = [
       triggerFields: ['type'],
       show: (values) => values.type === 'brokerage',
     },
-    help: '首次绑定：只要用户没有推广人，随时都可以绑定推广关系 \n 注册绑定：只有新用户注册时或首次进入系统时才可以绑定推广关系',
+    help: $t('trade.config.form.brokerageBindModeHelp'),
   },
   {
     fieldName: 'brokeragePosterUrls',
-    label: '分销海报图',
+    label: $t('trade.config.form.brokeragePosterUrls'),
     component: 'ImageUpload',
     componentProps: {
       maxNumber: 9,
@@ -138,16 +140,16 @@ export const schema: VbenFormSchema[] = [
       triggerFields: ['type'],
       show: (values) => values.type === 'brokerage',
     },
-    help: '个人中心分销海报图片，建议尺寸 600x1000',
+    help: $t('trade.config.form.brokeragePosterUrlsHelp'),
   },
   {
     fieldName: 'brokerageFirstPercent',
-    label: '一级返佣比例（%）',
+    label: $t('trade.config.form.brokerageFirstPercent'),
     component: 'InputNumber',
     componentProps: {
       min: 0,
       max: 100,
-      placeholder: '请输入一级返佣比例',
+      placeholder: $t('trade.config.form.brokerageFirstPercentPlaceholder'),
       class: 'w-full',
     },
     rules: 'required',
@@ -155,16 +157,16 @@ export const schema: VbenFormSchema[] = [
       triggerFields: ['type'],
       show: (values) => values.type === 'brokerage',
     },
-    help: '订单交易成功后给推广人返佣的百分比',
+    help: $t('trade.config.form.brokerageFirstPercentHelp'),
   },
   {
     fieldName: 'brokerageSecondPercent',
-    label: '二级返佣比例（%）',
+    label: $t('trade.config.form.brokerageSecondPercent'),
     component: 'InputNumber',
     componentProps: {
       min: 0,
       max: 100,
-      placeholder: '请输入二级返佣比例',
+      placeholder: $t('trade.config.form.brokerageSecondPercentPlaceholder'),
       class: 'w-full',
     },
     rules: 'required',
@@ -172,15 +174,15 @@ export const schema: VbenFormSchema[] = [
       triggerFields: ['type'],
       show: (values) => values.type === 'brokerage',
     },
-    help: '订单交易成功后给推广人的推荐人返佣的百分比',
+    help: $t('trade.config.form.brokerageSecondPercentHelp'),
   },
   {
     fieldName: 'brokerageFrozenDays',
-    label: '佣金冻结天数',
+    label: $t('trade.config.form.brokerageFrozenDays'),
     component: 'InputNumber',
     componentProps: {
       min: 0,
-      placeholder: '请输入佣金冻结天数',
+      placeholder: $t('trade.config.form.brokerageFrozenDaysPlaceholder'),
       class: 'w-full',
     },
     rules: 'required',
@@ -188,16 +190,16 @@ export const schema: VbenFormSchema[] = [
       triggerFields: ['type'],
       show: (values) => values.type === 'brokerage',
     },
-    help: '防止用户退款，佣金被提现了，所以需要设置佣金冻结时间，单位：天',
+    help: $t('trade.config.form.brokerageFrozenDaysHelp'),
   },
   {
     fieldName: 'brokerageWithdrawMinPrice',
-    label: '提现最低金额（元）',
+    label: $t('trade.config.form.brokerageWithdrawMinPrice'),
     component: 'InputNumber',
     componentProps: {
       min: 0,
       precision: 2,
-      placeholder: '请输入提现最低金额',
+      placeholder: $t('trade.config.form.brokerageWithdrawMinPricePlaceholder'),
       class: 'w-full',
     },
     rules: 'required',
@@ -205,17 +207,19 @@ export const schema: VbenFormSchema[] = [
       triggerFields: ['type'],
       show: (values) => values.type === 'brokerage',
     },
-    help: '用户提现最低金额限制，单位：元',
+    help: $t('trade.config.form.brokerageWithdrawMinPriceHelp'),
   },
   {
     fieldName: 'brokerageWithdrawFeePercent',
-    label: '提现手续费（%）',
+    label: $t('trade.config.form.brokerageWithdrawFeePercent'),
     component: 'InputNumber',
     componentProps: {
       min: 0,
       max: 100,
       precision: 2,
-      placeholder: '请输入提现手续费百分比',
+      placeholder: $t(
+        'trade.config.form.brokerageWithdrawFeePercentPlaceholder',
+      ),
       class: 'w-full',
     },
     rules: 'required',
@@ -223,11 +227,11 @@ export const schema: VbenFormSchema[] = [
       triggerFields: ['type'],
       show: (values) => values.type === 'brokerage',
     },
-    help: '提现手续费百分比，范围 0-100，0 为无提现手续费。例：设置 10，即收取 10% 手续费，提现10 元，到账 9 元，1 元手续费',
+    help: $t('trade.config.form.brokerageWithdrawFeePercentHelp'),
   },
   {
     fieldName: 'brokerageWithdrawTypes',
-    label: '提现方式',
+    label: $t('trade.config.form.brokerageWithdrawTypes'),
     component: 'CheckboxGroup',
     componentProps: {
       options: getDictOptions(DICT_TYPE.BROKERAGE_WITHDRAW_TYPE, 'number'),
@@ -237,6 +241,6 @@ export const schema: VbenFormSchema[] = [
       triggerFields: ['type'],
       show: (values) => values.type === 'brokerage',
     },
-    help: '商城开通提现的付款方式',
+    help: $t('trade.config.form.brokerageWithdrawTypesHelp'),
   },
 ];

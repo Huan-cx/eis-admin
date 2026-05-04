@@ -6,7 +6,6 @@ import { h, ref } from 'vue';
 
 import { Page, prompt, SummaryCard } from '@vben/common-ui';
 import { DeliveryTypeEnum } from '@vben/constants';
-import { $t } from '@vben/locales';
 import { fenToYuan } from '@vben/utils';
 
 import { Card, Image, Input, message, Tag } from 'ant-design-vue';
@@ -17,6 +16,7 @@ import {
   getOrderSummary,
   pickUpOrderByVerifyCode,
 } from '#/api/mall/trade/order';
+import { $t } from '#/locales';
 
 import { useGridColumns, useGridFormSchema } from './data';
 
@@ -42,8 +42,8 @@ async function handlePickup(pickUpVerifyCode?: string) {
       component: () => {
         return h(Input, {});
       },
-      content: '请输入核销码',
-      title: '核销订单',
+      content: $t('trade.delivery.pickUpOrder.inputVerifyCode'),
+      title: $t('trade.delivery.pickUpOrder.title'),
       modelPropName: 'value',
     }).then(async (val) => {
       if (val) {
@@ -57,7 +57,7 @@ async function handlePickup(pickUpVerifyCode?: string) {
 
   // 执行核销
   const hideLoading = message.loading({
-    content: '订单核销中 ...',
+    content: $t('trade.delivery.pickUpOrder.processing'),
     duration: 0,
   });
   try {
@@ -87,7 +87,7 @@ async function connectToSerialPort() {
       // 提示用户选择一个串口
       port.value = await (navigator.serial as any).requestPort();
     } else {
-      message.error('浏览器不支持扫码枪连接，请更换浏览器重试');
+      message.error($t('trade.delivery.pickUpOrder.browserNotSupported'));
       return;
     }
 
@@ -101,7 +101,7 @@ async function connectToSerialPort() {
       stopBits: 2,
     });
 
-    message.success('成功连接扫码枪');
+    message.success($t('trade.delivery.pickUpOrder.connectSuccess'));
     serialPort.value = true;
     await readData();
   } catch (error) {
@@ -139,13 +139,13 @@ async function readData() {
 /** 断开扫码枪连接 */
 async function cutPort() {
   if (port.value === '') {
-    message.warning('请先连接或打开扫码枪');
+    message.warning($t('trade.delivery.pickUpOrder.connectFirst'));
   } else {
     await (reader.value as any).cancel();
     await (port.value as any).close();
     port.value = '';
     console.warn('断开扫码枪连接');
-    message.success('已成功断开扫码枪连接');
+    message.success($t('trade.delivery.pickUpOrder.disconnectSuccess'));
     serialPort.value = false;
   }
 }
@@ -192,7 +192,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
       <div class="flex flex-row gap-4">
         <SummaryCard
           class="flex flex-1"
-          title="订单数量"
+          :title="$t('trade.delivery.pickUpOrder.summary.orderCount')"
           icon="icon-park-outline:transaction-order"
           icon-color="bg-blue-100"
           icon-bg-color="text-blue-500"
@@ -200,7 +200,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
         />
         <SummaryCard
           class="flex flex-1"
-          title="订单金额"
+          :title="$t('trade.delivery.pickUpOrder.summary.orderAmount')"
           icon="streamline:money-cash-file-dollar-common-money-currency-cash-file"
           icon-color="bg-purple-100"
           icon-bg-color="text-purple-500"
@@ -210,7 +210,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
         />
         <SummaryCard
           class="flex flex-1"
-          title="退款单数"
+          :title="$t('trade.delivery.pickUpOrder.summary.refundCount')"
           icon="heroicons:receipt-refundAfterSale"
           icon-color="bg-yellow-100"
           icon-bg-color="text-yellow-500"
@@ -218,7 +218,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
         />
         <SummaryCard
           class="flex flex-1"
-          title="退款金额"
+          :title="$t('trade.delivery.pickUpOrder.summary.refundAmount')"
           icon="ri:refundAfterSale-2-line"
           icon-color="bg-green-100"
           icon-bg-color="text-green-500"
@@ -229,7 +229,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
       </div>
     </Card>
 
-    <Grid class="h-4/5" table-title="核销订单">
+    <Grid class="h-4/5" :table-title="$t('trade.delivery.pickUpOrder.title')">
       <template #spuName="{ row }">
         <div class="flex flex-col gap-2">
           <div
@@ -268,14 +268,16 @@ const [Grid, gridApi] = useVbenVxeGrid({
         <TableAction
           :actions="[
             {
-              label: '核销',
+              label: $t('trade.delivery.pickUpOrder.action.pickup'),
               type: 'primary',
               icon: 'lucide:circle-check-big',
               auth: ['trade:order:pick-up'],
               onClick: handlePickup.bind(null, undefined),
             },
             {
-              label: serialPort ? '断开扫描枪' : '连接扫描枪',
+              label: serialPort
+                ? $t('trade.delivery.pickUpOrder.action.disconnect')
+                : $t('trade.delivery.pickUpOrder.action.connect'),
               type: 'primary',
               icon: serialPort ? 'lucide:circle-x' : 'lucide:circle-play',
               danger: serialPort,

@@ -7,6 +7,7 @@ import { ref } from 'vue';
 import { DocAlert, Page } from '@vben/common-ui';
 import { DICT_TYPE } from '@vben/constants';
 import { getDictOptions } from '@vben/hooks';
+import { $t } from '@vben/locales';
 
 import { message, TabPane, Tabs } from 'ant-design-vue';
 
@@ -31,12 +32,12 @@ function handleRefresh() {
 /** 删除优惠券 */
 async function handleDelete(row: MallCouponApi.Coupon) {
   const hideLoading = message.loading({
-    content: '回收中...',
+    content: $t('promotion.coupon.recycling'),
     duration: 0,
   });
   try {
     await deleteCoupon(row.id!);
-    message.success('回收成功');
+    message.success($t('promotion.coupon.recycleSuccess'));
     handleRefresh();
   } finally {
     hideLoading();
@@ -47,7 +48,7 @@ async function handleDelete(row: MallCouponApi.Coupon) {
 function getStatusTabs() {
   const tabs = [
     {
-      label: '全部',
+      label: $t('promotion.coupon.all'),
       value: 'all',
     },
   ];
@@ -91,6 +92,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
       },
     },
     rowConfig: {
+      /** 行键字段 */
       keyField: 'id',
       isHover: true,
     },
@@ -106,7 +108,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
   <Page auto-content-height>
     <template #doc>
       <DocAlert
-        title="【营销】优惠劵"
+        :title="$t('promotion.coupon.title')"
         url="https://doc.iocoder.cn/mall/promotion-coupon/"
       />
     </template>
@@ -125,14 +127,13 @@ const [Grid, gridApi] = useVbenVxeGrid({
         <TableAction
           :actions="[
             {
-              label: '回收',
+              label: $t('promotion.coupon.recycle'),
               type: 'link',
               danger: true,
               icon: ACTION_ICON.DELETE,
               auth: ['promotion:coupon:delete'],
               popConfirm: {
-                title:
-                  '回收将会收回会员领取的待使用的优惠券，已使用的将无法回收，确定要回收所选优惠券吗？',
+                title: $t('promotion.coupon.confirmRecycle'),
                 confirm: handleDelete.bind(null, row),
               },
             },

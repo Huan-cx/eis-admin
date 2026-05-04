@@ -39,13 +39,13 @@ function handleReply(row: MallCommentApi.Comment) {
   prompt({
     component: () => {
       return h(Textarea, {
-        placeholder: '请输入回复内容',
+        placeholder: $t('common.pleaseEnterReply'),
       });
     },
     content: row.content
-      ? `用户评论：${row.content}\n请输入回复内容：`
-      : '请输入回复内容：',
-    title: '回复评论',
+      ? `${$t('common.userComment')}：${row.content}\n${$t('common.pleaseEnterReply')}：`
+      : `${$t('common.pleaseEnterReply')}：`,
+    title: $t('mall-product.comment.actions.reply'),
     modelPropName: 'value',
   }).then(async (val) => {
     if (val) {
@@ -64,9 +64,14 @@ async function handleStatusChange(
   row: MallCommentApi.Comment,
 ): Promise<boolean | undefined> {
   return new Promise((resolve, reject) => {
-    const text = newStatus ? '展示' : '隐藏';
+    const text = newStatus
+      ? $t('mall-product.comment.actions.show')
+      : $t('mall-product.comment.actions.hide');
     confirm({
-      content: `确认要${text}该评论吗？`,
+      content: $t('common.confirmOperation', [
+        text,
+        $t('mall-product.comment.title'),
+      ]),
     })
       .then(async () => {
         // 更新状态
@@ -75,7 +80,7 @@ async function handleStatusChange(
           visible: newStatus,
         });
         // 提示并返回成功
-        message.success(`${text}成功`);
+        message.success($t('common.operationSuccess', [text]));
         resolve(true);
       })
       .catch(() => {
@@ -124,7 +129,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
       />
     </template>
     <FormModal @success="handleRefresh" />
-    <Grid table-title="评论列表">
+    <Grid :table-title="$t('mall-product.comment.list')">
       <template #descriptionScores="{ row }">
         <Rate v-model:value="row.descriptionScores" :disabled="true" />
       </template>
@@ -135,7 +140,9 @@ const [Grid, gridApi] = useVbenVxeGrid({
         <TableAction
           :actions="[
             {
-              label: $t('ui.actionTitle.create', ['虚拟评论']),
+              label: $t('ui.actionTitle.create', [
+                $t('mall-product.comment.actions.create'),
+              ]),
               type: 'primary',
               icon: ACTION_ICON.ADD,
               auth: ['product:comment:create'],
@@ -148,7 +155,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
         <TableAction
           :actions="[
             {
-              label: '回复',
+              label: $t('mall-product.comment.actions.reply'),
               type: 'link',
               auth: ['product:comment:update'],
               onClick: handleReply.bind(null, row),

@@ -4,6 +4,7 @@ import type { VbenFormSchema } from '#/adapter/form';
 
 import { CommonStatusEnum, DICT_TYPE } from '@vben/constants';
 import { getDictOptions } from '@vben/hooks';
+import { $t } from '@vben/locales';
 
 import { z } from '#/adapter/form';
 import { getRangePickerDefaultProps } from '#/utils';
@@ -21,25 +22,25 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'title',
-      label: 'Banner 标题',
+      label: $t('promotion.banner.form.title'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入 Banner 标题',
+        placeholder: $t('promotion.banner.placeholder.title'),
       },
       rules: 'required',
     },
     {
       fieldName: 'picUrl',
-      label: '图片地址',
+      label: $t('promotion.banner.form.picUrl'),
       component: 'ImageUpload',
       componentProps: {
-        placeholder: '请上传图片',
+        placeholder: $t('promotion.banner.placeholder.picUrl'),
       },
       rules: 'required',
     },
     {
       fieldName: 'position',
-      label: '定位',
+      label: $t('promotion.banner.form.position'),
       component: 'RadioGroup',
       componentProps: {
         options: getDictOptions(DICT_TYPE.PROMOTION_BANNER_POSITION, 'number'),
@@ -50,26 +51,26 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'url',
-      label: '跳转地址',
+      label: $t('promotion.banner.form.url'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入跳转地址',
+        placeholder: $t('promotion.banner.placeholder.url'),
       },
       rules: 'required',
     },
     {
       fieldName: 'sort',
-      label: '排序',
+      label: $t('promotion.banner.form.sort'),
       component: 'InputNumber',
       componentProps: {
         min: 0,
-        placeholder: '请输入排序',
+        placeholder: $t('promotion.banner.placeholder.sort'),
       },
       rules: 'required',
     },
     {
       fieldName: 'status',
-      label: '状态',
+      label: $t('promotion.banner.form.status'),
       component: 'RadioGroup',
       componentProps: {
         options: getDictOptions(DICT_TYPE.COMMON_STATUS, 'number'),
@@ -80,11 +81,11 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'memo',
-      label: '描述',
+      label: $t('promotion.banner.form.memo'),
       component: 'Textarea',
       componentProps: {
         rows: 4,
-        placeholder: '请输入描述',
+        placeholder: $t('promotion.banner.placeholder.memo'),
       },
     },
   ];
@@ -95,24 +96,24 @@ export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
       fieldName: 'title',
-      label: 'Banner 标题',
+      label: $t('promotion.banner.form.title'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入 Banner 标题',
+        placeholder: $t('promotion.banner.placeholder.title'),
       },
     },
     {
       fieldName: 'status',
-      label: '活动状态',
+      label: $t('promotion.banner.form.status'),
       component: 'Select',
       componentProps: {
-        placeholder: '请选择活动状态',
+        placeholder: $t('promotion.banner.placeholder.status'),
         options: getDictOptions(DICT_TYPE.COMMON_STATUS, 'number'),
       },
     },
     {
       fieldName: 'createTime',
-      label: '创建时间',
+      label: $t('promotion.banner.form.createTime'),
       component: 'RangePicker',
       componentProps: {
         ...getRangePickerDefaultProps(),
@@ -126,12 +127,12 @@ export function useGridFormSchema(): VbenFormSchema[] {
 export function useGridColumns(): VxeTableGridOptions['columns'] {
   return [
     {
-      title: 'Banner标题',
+      title: $t('promotion.banner.grid.title'),
       field: 'title',
       minWidth: 100,
     },
     {
-      title: '图片',
+      title: $t('promotion.banner.grid.picUrl'),
       field: 'picUrl',
       minWidth: 80,
       cellRender: {
@@ -139,7 +140,7 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
       },
     },
     {
-      title: '状态',
+      title: $t('promotion.banner.form.status'),
       field: 'status',
       minWidth: 150,
       cellRender: {
@@ -150,7 +151,7 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
       },
     },
     {
-      title: '定位',
+      title: $t('promotion.banner.form.position'),
       field: 'position',
       minWidth: 150,
       cellRender: {
@@ -161,28 +162,28 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
       },
     },
     {
-      title: '跳转地址',
+      title: $t('promotion.banner.form.url'),
       field: 'url',
       minWidth: 200,
     },
     {
-      title: '创建时间',
+      title: $t('promotion.banner.form.createTime'),
       field: 'createTime',
       minWidth: 180,
       formatter: 'formatDateTime',
     },
     {
-      title: '排序',
+      title: $t('promotion.banner.form.sort'),
       field: 'sort',
       minWidth: 100,
     },
     {
-      title: '描述',
+      title: $t('promotion.banner.form.memo'),
       field: 'memo',
       minWidth: 150,
     },
     {
-      title: '操作',
+      title: $t('promotion.banner.grid.actions'),
       width: 180,
       fixed: 'right',
       slots: { default: 'actions' },

@@ -1,3 +1,5 @@
+import { $t } from '@vben/locales';
+
 /** 商品统计折线图配置 */
 export function getProductSummaryChartOptions(data: any[]): any {
   // 处理数据：将金额从分转换为元
@@ -30,26 +32,26 @@ export function getProductSummaryChartOptions(data: any[]): any {
     },
     series: [
       {
-        name: '商品浏览量',
+        name: $t('statistics.product.summary.browseCount'),
         type: 'line',
         smooth: true,
         itemStyle: { color: '#B37FEB' },
       },
       {
-        name: '商品访客数',
+        name: $t('statistics.product.summary.browseUserCount'),
         type: 'line',
         smooth: true,
         itemStyle: { color: '#FFAB2B' },
       },
       {
-        name: '支付金额',
+        name: $t('statistics.product.summary.orderPayPrice'),
         type: 'bar',
         smooth: true,
         yAxisIndex: 1,
         itemStyle: { color: '#1890FF' },
       },
       {
-        name: '退款金额',
+        name: $t('statistics.product.summary.afterSaleRefundPrice'),
         type: 'bar',
         smooth: true,
         yAxisIndex: 1,
@@ -67,7 +69,7 @@ export function getProductSummaryChartOptions(data: any[]): any {
         },
         saveAsImage: {
           show: true,
-          name: '商品状况',
+          name: $t('statistics.product.summary.title'),
         }, // 保存为图片
       },
     },
@@ -88,7 +90,7 @@ export function getProductSummaryChartOptions(data: any[]): any {
     yAxis: [
       {
         type: 'value',
-        name: '金额',
+        name: $t('statistics.product.summary.amount'),
         axisLine: {
           show: false,
         },
@@ -107,7 +109,7 @@ export function getProductSummaryChartOptions(data: any[]): any {
       },
       {
         type: 'value',
-        name: '数量',
+        name: $t('statistics.product.summary.count'),
         axisLine: {
           show: false,
         },

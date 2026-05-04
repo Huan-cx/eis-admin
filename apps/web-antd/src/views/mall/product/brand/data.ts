@@ -1,3 +1,4 @@
+// D:\Workspace\Ruoyi\yudao-ui-admin-vben\apps\web-antd\src\views\mall\product\brand\data.ts
 import type { VbenFormSchema } from '#/adapter/form';
 import type { VxeTableGridOptions } from '#/adapter/vxe-table';
 
@@ -5,6 +6,7 @@ import { CommonStatusEnum, DICT_TYPE } from '@vben/constants';
 import { getDictOptions } from '@vben/hooks';
 
 import { z } from '#/adapter/form';
+import { $t } from '#/locales';
 import { getRangePickerDefaultProps } from '#/utils';
 
 /** 新增/修改的表单 */
@@ -20,35 +22,35 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'name',
-      label: '品牌名称',
+      label: $t('mall-product.brand.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入品牌名称',
+        placeholder: $t('mall-product.brand.placeholder.name'),
       },
       rules: 'required',
     },
     {
       fieldName: 'picUrl',
-      label: '品牌图片',
+      label: $t('mall-product.brand.picUrl'),
       component: 'ImageUpload',
       componentProps: {
-        placeholder: '请上传品牌图片',
+        placeholder: $t('mall-product.brand.placeholder.picUrl'),
       },
       rules: 'required',
     },
     {
       fieldName: 'sort',
-      label: '品牌排序',
+      label: $t('mall-product.brand.sort'),
       component: 'InputNumber',
       componentProps: {
         min: 0,
-        placeholder: '请输入品牌排序',
+        placeholder: $t('mall-product.brand.placeholder.sort'),
       },
       rules: 'required',
     },
     {
       fieldName: 'status',
-      label: '品牌状态',
+      label: $t('mall-product.brand.status'),
       component: 'RadioGroup',
       componentProps: {
         options: getDictOptions(DICT_TYPE.COMMON_STATUS, 'number'),
@@ -59,10 +61,40 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'description',
-      label: '品牌描述',
+      label: $t('mall-product.brand.description'),
       component: 'Textarea',
       componentProps: {
-        placeholder: '请输入品牌描述',
+        placeholder: $t('mall-product.brand.placeholder.description'),
+      },
+    },
+    // ========== SEO 相关字段 =========
+    {
+      fieldName: 'metaTitle',
+      label: $t('mall-product.brand.metaTitle'),
+      component: 'Input',
+      componentProps: {
+        placeholder: $t('mall-product.brand.placeholder.metaTitle'),
+        maxlength: 200,
+      },
+    },
+    {
+      fieldName: 'metaDescription',
+      label: $t('mall-product.brand.metaDescription'),
+      component: 'Textarea',
+      componentProps: {
+        placeholder: $t('mall-product.brand.placeholder.metaDescription'),
+        autoSize: { minRows: 2, maxRows: 3 },
+        showCount: true,
+        maxlength: 500,
+      },
+    },
+    {
+      fieldName: 'slug',
+      label: $t('mall-product.brand.slug'),
+      component: 'Input',
+      componentProps: {
+        placeholder: $t('mall-product.brand.placeholder.slug'),
+        maxlength: 100,
       },
     },
   ];
@@ -73,26 +105,26 @@ export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
       fieldName: 'name',
-      label: '品牌名称',
+      label: $t('mall-product.brand.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入品牌名称',
+        placeholder: $t('mall-product.brand.placeholder.name'),
         allowClear: true,
       },
     },
     {
       fieldName: 'status',
-      label: '品牌状态',
+      label: $t('mall-product.brand.status'),
       component: 'Select',
       componentProps: {
         options: getDictOptions(DICT_TYPE.COMMON_STATUS, 'number'),
-        placeholder: '请选择品牌状态',
+        placeholder: $t('mall-product.brand.placeholder.status'),
         allowClear: true,
       },
     },
     {
       fieldName: 'createTime',
-      label: '创建时间',
+      label: $t('common.createTime'),
       component: 'RangePicker',
       componentProps: {
         ...getRangePickerDefaultProps(),
@@ -107,12 +139,12 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
   return [
     {
       field: 'name',
-      title: '品牌名称',
+      title: $t('mall-product.brand.name'),
       minWidth: 180,
     },
     {
       field: 'picUrl',
-      title: '品牌图片',
+      title: $t('mall-product.brand.picUrl'),
       minWidth: 120,
       cellRender: {
         name: 'CellImage',
@@ -120,12 +152,12 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'sort',
-      title: '品牌排序',
+      title: $t('mall-product.brand.sort'),
       minWidth: 100,
     },
     {
       field: 'status',
-      title: '品牌状态',
+      title: $t('mall-product.brand.status'),
       minWidth: 100,
       cellRender: {
         name: 'CellDict',
@@ -134,12 +166,12 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'createTime',
-      title: '创建时间',
+      title: $t('common.createTime'),
       minWidth: 180,
       formatter: 'formatDateTime',
     },
     {
-      title: '操作',
+      title: $t('common.actions'),
       width: 180,
       fixed: 'right',
       slots: { default: 'actions' },

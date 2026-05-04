@@ -15,6 +15,7 @@ import {
 } from 'ant-design-vue';
 
 import UploadImg from '#/components/upload/image-upload.vue';
+import { $t } from '#/locales';
 import {
   AppLinkInput,
   ColorInput,
@@ -50,7 +51,7 @@ const handleThemeChange = () => {
       :label-col="{ span: 6 }"
       :wrapper-col="{ span: 18 }"
     >
-      <FormItem label="主题" name="theme">
+      <FormItem :label="$t('promotion.tabBar.property.theme')" name="theme">
         <Select v-model:value="formData!.theme" @change="handleThemeChange">
           <SelectOption
             v-for="(theme, index) in THEME_LIST"
@@ -65,22 +66,32 @@ const handleThemeChange = () => {
           </SelectOption>
         </Select>
       </FormItem>
-      <FormItem label="默认颜色">
+      <FormItem :label="$t('promotion.tabBar.property.defaultColor')">
         <ColorInput v-model="formData!.style.color" />
       </FormItem>
-      <FormItem label="选中颜色">
+      <FormItem :label="$t('promotion.tabBar.property.activeColor')">
         <ColorInput v-model="formData!.style.activeColor" />
       </FormItem>
-      <FormItem label="导航背景">
+      <FormItem :label="$t('promotion.tabBar.property.navBg')">
         <RadioGroup v-model:value="formData!.style.bgType">
-          <RadioButton value="color">纯色</RadioButton>
-          <RadioButton value="img">图片</RadioButton>
+          <RadioButton value="color">
+            {{ $t('promotion.tabBar.property.solidColor') }}
+          </RadioButton>
+          <RadioButton value="img">
+            {{ $t('promotion.tabBar.property.image') }}
+          </RadioButton>
         </RadioGroup>
       </FormItem>
-      <FormItem label="选择颜色" v-if="formData!.style.bgType === 'color'">
+      <FormItem
+        :label="$t('promotion.tabBar.property.selectColor')"
+        v-if="formData!.style.bgType === 'color'"
+      >
         <ColorInput v-model="formData!.style.bgColor" />
       </FormItem>
-      <FormItem label="选择图片" v-if="formData!.style.bgType === 'img'">
+      <FormItem
+        :label="$t('promotion.tabBar.property.selectImage')"
+        v-if="formData!.style.bgType === 'img'"
+      >
         <UploadImg
           v-model="formData!.style.bgImg"
           width="100%"
@@ -89,13 +100,17 @@ const handleThemeChange = () => {
           :show-description="false"
         >
           <!-- TODO @芋艿：这里不提示；是不是组件得封装下；-->
-          <template #tip> 建议尺寸 375 * 50 </template>
+          <template #tip>
+            {{ $t('promotion.tabBar.property.bgImgTip') }}
+          </template>
         </UploadImg>
       </FormItem>
 
-      <div class="mb-2 text-base">图标设置</div>
+      <div class="mb-2 text-base">
+        {{ $t('promotion.tabBar.property.iconSettings') }}
+      </div>
       <div class="mb-2 text-xs text-gray-500">
-        拖动左上角的小圆点可对其排序, 图标建议尺寸 44*44
+        {{ $t('promotion.tabBar.property.iconTips') }}
       </div>
       <Draggable v-model="formData.items" :limit="5">
         <template #default="{ element }">
@@ -108,7 +123,9 @@ const handleThemeChange = () => {
                 :show-delete="false"
                 :show-description="false"
               />
-              <div class="text-xs">未选中</div>
+              <div class="text-xs">
+                {{ $t('promotion.tabBar.property.notSelected') }}
+              </div>
             </div>
             <div>
               <UploadImg
@@ -118,21 +135,26 @@ const handleThemeChange = () => {
                 :show-delete="false"
                 :show-description="false"
               />
-              <div class="text-xs">已选中</div>
+              <div class="text-xs">
+                {{ $t('promotion.tabBar.property.selected') }}
+              </div>
             </div>
           </div>
           <FormItem
             name="text"
-            label="文字"
+            :label="$t('promotion.tabBar.property.text')"
             :label-col="{ span: 4 }"
             :wrapper-col="{ span: 20 }"
             class="mb-2"
           >
-            <Input v-model:value="element.text" placeholder="请输入文字" />
+            <Input
+              v-model:value="element.text"
+              :placeholder="$t('promotion.tabBar.property.textPlaceholder')"
+            />
           </FormItem>
           <FormItem
             name="url"
-            label="链接"
+            :label="$t('promotion.tabBar.property.url')"
             :label-col="{ span: 4 }"
             :wrapper-col="{ span: 20 }"
             class="mb-0"

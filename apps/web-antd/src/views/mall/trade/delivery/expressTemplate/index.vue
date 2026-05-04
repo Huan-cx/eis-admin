@@ -89,7 +89,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
 <template>
   <Page auto-content-height>
     <FormModal @success="handleRefresh" />
-    <Grid table-title="快递模板列表">
+    <Grid :table-title="$t('trade.delivery.expressTemplate.title')">
       <template #toolbar-tools>
         <TableAction
           :actions="[

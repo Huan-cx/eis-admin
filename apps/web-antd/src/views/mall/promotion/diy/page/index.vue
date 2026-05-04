@@ -94,19 +94,21 @@ const [Grid, gridApi] = useVbenVxeGrid({
   <Page auto-content-height>
     <template #doc>
       <DocAlert
-        title="【营销】商城装修"
+        :title="$t('promotion.diy.page.title')"
         url="https://doc.iocoder.cn/mall/diy/"
       />
     </template>
 
     <FormModal @success="handleRefresh" />
 
-    <Grid table-title="装修页面列表">
+    <Grid :table-title="$t('promotion.diy.page.list')">
       <template #toolbar-tools>
         <TableAction
           :actions="[
             {
-              label: $t('ui.actionTitle.create', ['装修页面']),
+              label: $t('ui.actionTitle.create', [
+                $t('promotion.diy.page.name'),
+              ]),
               type: 'primary',
               icon: ACTION_ICON.ADD,
               auth: ['promotion:diy-page:create'],
@@ -119,7 +121,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
         <TableAction
           :actions="[
             {
-              label: '装修',
+              label: $t('promotion.diy.page.decorate'),
               type: 'link',
               icon: ACTION_ICON.EDIT,
               auth: ['promotion:diy-page:update'],

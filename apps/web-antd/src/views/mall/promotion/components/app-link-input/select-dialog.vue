@@ -5,6 +5,7 @@ import { nextTick, ref } from 'vue';
 
 import { useVbenModal } from '@vben/common-ui';
 import { getUrlNumberValue } from '@vben/utils';
+import { $t } from '#/locales';
 
 import { Button, Form, FormItem, Tooltip } from 'ant-design-vue';
 
@@ -158,7 +159,7 @@ function handleProductCategorySelected(id: number) {
 }
 </script>
 <template>
-  <Modal title="选择链接" class="w-[65%]">
+  <Modal :title="$t('promotion.appLink.selectDialog.title')" class="w-[65%]">
     <div class="flex h-[500px] gap-2">
       <!-- 左侧分组列表 -->
       <div
@@ -217,10 +218,10 @@ function handleProductCategorySelected(id: number) {
     </div>
   </Modal>
 
-  <DetailSelectModal title="选择分类" class="w-[65%]">
+  <DetailSelectModal :title="$t('promotion.appLink.selectDialog.selectCategory')" class="w-[65%]">
     <Form class="min-h-[200px]">
       <FormItem
-        label="选择分类"
+        :label="$t('promotion.appLink.selectDialog.selectCategory')"
         v-if="
           detailSelectDialog.type === APP_LINK_TYPE_ENUM.PRODUCT_CATEGORY_LIST
         "

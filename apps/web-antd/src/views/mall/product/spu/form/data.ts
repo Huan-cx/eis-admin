@@ -7,6 +7,7 @@ import { handleTree } from '@vben/utils';
 import { getSimpleBrandList } from '#/api/mall/product/brand';
 import { getCategoryList } from '#/api/mall/product/category';
 import { getSimpleTemplateList } from '#/api/mall/trade/delivery/expressTemplate';
+import { $t } from '#/locales';
 
 /** 基础设置的表单 */
 export function useInfoFormSchema(): VbenFormSchema[] {
@@ -21,17 +22,17 @@ export function useInfoFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'name',
-      label: '商品名称',
+      label: $t('mall-product.spu.form.name'),
       component: 'Input',
       componentProps: {
         allowClear: true,
-        placeholder: '请输入商品名称',
+        placeholder: $t('mall-product.spu.placeholder.name'),
       },
       rules: 'required',
     },
     {
       fieldName: 'categoryId',
-      label: '分类名称',
+      label: $t('mall-product.spu.form.categoryName'),
       component: 'ApiTreeSelect',
       componentProps: {
         api: async () => {
@@ -39,38 +40,38 @@ export function useInfoFormSchema(): VbenFormSchema[] {
           return handleTree(data);
         },
         fieldNames: { label: 'name', value: 'id', children: 'children' },
-        placeholder: '请选择商品分类',
+        placeholder: $t('mall-product.spu.placeholder.category'),
       },
       rules: 'required',
     },
     {
       fieldName: 'brandId',
-      label: '商品品牌',
+      label: $t('mall-product.spu.form.brand'),
       component: 'ApiSelect',
       componentProps: {
         api: getSimpleBrandList,
         labelField: 'name',
         valueField: 'id',
         allowClear: true,
-        placeholder: '请选择商品品牌',
+        placeholder: $t('mall-product.spu.placeholder.brand'),
       },
       rules: 'required',
     },
     {
       fieldName: 'keyword',
-      label: '商品关键字',
+      label: $t('mall-product.spu.form.keyword'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入商品关键字',
+        placeholder: $t('mall-product.spu.placeholder.keyword'),
       },
       rules: 'required',
     },
     {
       fieldName: 'introduction',
-      label: '商品简介',
+      label: $t('mall-product.spu.form.introduction'),
       component: 'Textarea',
       componentProps: {
-        placeholder: '请输入商品简介',
+        placeholder: $t('mall-product.spu.placeholder.introduction'),
         autoSize: { minRows: 2, maxRows: 2 },
         showCount: true,
         maxlength: 128,
@@ -80,7 +81,7 @@ export function useInfoFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'picUrl',
-      label: '商品封面图',
+      label: $t('mall-product.spu.form.picUrl'),
       component: 'ImageUpload',
       componentProps: {
         maxSize: 30,
@@ -89,7 +90,7 @@ export function useInfoFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'sliderPicUrls',
-      label: '商品轮播图',
+      label: $t('mall-product.spu.form.sliderPicUrls'),
       component: 'ImageUpload',
       componentProps: {
         maxNumber: 10,
@@ -117,17 +118,17 @@ export function useSkuFormSchema(
     },
     {
       fieldName: 'subCommissionType',
-      label: '分销类型',
+      label: $t('mall-product.spu.form.subCommissionType'),
       component: 'RadioGroup',
       componentProps: {
         allowClear: true,
         options: [
           {
-            label: '默认设置',
+            label: $t('mall-product.spu.form.subCommissionDefault'),
             value: false,
           },
           {
-            label: '单独设置',
+            label: $t('mall-product.spu.form.subCommissionCustom'),
             value: true,
           },
         ],
@@ -136,17 +137,17 @@ export function useSkuFormSchema(
     },
     {
       fieldName: 'specType',
-      label: '商品规格',
+      label: $t('mall-product.spu.form.specType'),
       component: 'RadioGroup',
       componentProps: {
         allowClear: true,
         options: [
           {
-            label: '单规格',
+            label: $t('mall-product.spu.form.specSingle'),
             value: false,
           },
           {
-            label: '多规格',
+            label: $t('mall-product.spu.form.specMultiple'),
             value: true,
           },
         ],
@@ -167,7 +168,7 @@ export function useSkuFormSchema(
     // 多规格时显示的商品属性（占位，实际通过插槽渲染）
     {
       fieldName: 'productAttributes',
-      label: '商品属性',
+      label: $t('mall-product.spu.form.productAttributes'),
       component: 'Input',
       dependencies: {
         triggerFields: ['specType'],
@@ -178,7 +179,7 @@ export function useSkuFormSchema(
     // 多规格 - 批量设置
     {
       fieldName: 'batchSkuList',
-      label: '批量设置',
+      label: $t('mall-product.spu.form.batchSetting'),
       component: 'Input',
       dependencies: {
         triggerFields: ['specType'],
@@ -190,7 +191,7 @@ export function useSkuFormSchema(
     // 多规格 - 规格列表
     {
       fieldName: 'multiSkuList',
-      label: '规格列表',
+      label: $t('mall-product.spu.form.specList'),
       component: 'Input',
       dependencies: {
         triggerFields: ['specType'],
@@ -214,7 +215,7 @@ export function useDeliveryFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'deliveryTypes',
-      label: '配送方式',
+      label: $t('mall-product.spu.form.deliveryTypes'),
       component: 'CheckboxGroup',
       componentProps: {
         options: getDictOptions(DICT_TYPE.TRADE_DELIVERY_TYPE, 'number'),
@@ -223,7 +224,7 @@ export function useDeliveryFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'deliveryTemplateId',
-      label: '运费模板',
+      label: $t('mall-product.spu.form.deliveryTemplate'),
       component: 'ApiSelect',
       componentProps: {
         api: getSimpleTemplateList,
@@ -254,10 +255,10 @@ export function useDescriptionFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'description',
-      label: '商品详情',
+      label: $t('mall-product.spu.form.descriptionContent'),
       component: 'RichTextarea',
       componentProps: {
-        placeholder: '请输入商品详情',
+        placeholder: $t('mall-product.spu.placeholder.description'),
         height: 1000,
       },
       rules: 'required',
@@ -278,7 +279,7 @@ export function useOtherFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'sort',
-      label: '商品排序',
+      label: $t('mall-product.spu.form.sort'),
       component: 'InputNumber',
       componentProps: {
         min: 0,
@@ -287,7 +288,7 @@ export function useOtherFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'giveIntegral',
-      label: '赠送积分',
+      label: $t('mall-product.spu.form.giveIntegral'),
       component: 'InputNumber',
       componentProps: {
         min: 0,
@@ -296,12 +297,42 @@ export function useOtherFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'virtualSalesCount',
-      label: '虚拟销量',
+      label: $t('mall-product.spu.form.virtualSalesCount'),
       component: 'InputNumber',
       componentProps: {
         min: 0,
       },
       rules: 'required',
+    },
+    // ========== SEO 相关字段 =========
+    {
+      fieldName: 'metaTitle',
+      label: $t('mall-product.spu.form.metaTitle'),
+      component: 'Input',
+      componentProps: {
+        placeholder: $t('mall-product.spu.placeholder.metaTitle'),
+        maxlength: 200,
+      },
+    },
+    {
+      fieldName: 'metaDescription',
+      label: $t('mall-product.spu.form.metaDescription'),
+      component: 'Textarea',
+      componentProps: {
+        placeholder: $t('mall-product.spu.placeholder.metaDescription'),
+        autoSize: { minRows: 2, maxRows: 3 },
+        showCount: true,
+        maxlength: 500,
+      },
+    },
+    {
+      fieldName: 'slug',
+      label: $t('mall-product.spu.form.slug'),
+      component: 'Input',
+      componentProps: {
+        placeholder: $t('mall-product.spu.placeholder.slug'),
+        maxlength: 100,
+      },
     },
   ];
 }

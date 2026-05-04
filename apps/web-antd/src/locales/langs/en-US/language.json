@@ -1,0 +1,18 @@
+{
+  "name": "Language",
+  "title": "Language",
+  "code": "Language Code",
+  "nativeName": "Native Name",
+  "flag": "Flag",
+  "isDefault": "Is Default",
+  "list": "Language List",
+  "setDefault": "Set as Default",
+  "setDefaultSuccess": "Successfully set {0} as default language",
+  "cancelDefaultSuccess": "Successfully cancelled {0} as default language",
+  "cannotDisableDefault": "Default language cannot be disabled",
+  "mustEnableToSetDefault": "Must enable the language before setting it as default",
+  "confirmStatusChange": "Confirm to change {0} status to【{1}】?",
+  "confirmSetDefault": "Confirm to set {0} as default language?",
+  "confirmCancelDefault": "Confirm to cancel {0} as default language?",
+  "translate": "Translate"
+}

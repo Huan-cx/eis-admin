@@ -82,12 +82,14 @@ const [Grid, gridApi] = useVbenVxeGrid({
 <template>
   <Page auto-content-height>
     <FormModal @success="handleRefresh" />
-    <Grid table-title="品牌列表">
+    <Grid :table-title="$t('mall-product.brand.list')">
       <template #toolbar-tools>
         <TableAction
           :actions="[
             {
-              label: $t('ui.actionTitle.create', ['品牌']),
+              label: $t('ui.actionTitle.create', [
+                $t('mall-product.brand.name'),
+              ]),
               type: 'primary',
               icon: ACTION_ICON.ADD,
               auth: ['product:brand:create'],

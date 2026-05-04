@@ -1,5 +1,7 @@
 import type { ComponentStyle, DiyComponent } from '../../../util';
 
+import { $t } from '#/locales';
+
 /** 用户卡片属性 */
 export interface UserCardProperty {
   style: ComponentStyle; // 组件样式
@@ -8,7 +10,7 @@ export interface UserCardProperty {
 /** 定义组件 */
 export const component = {
   id: 'UserCard',
-  name: '用户卡片',
+  name: $t('promotion.userCard.title'),
   icon: 'mdi:user-card-details',
   property: {
     style: {

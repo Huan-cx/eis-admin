@@ -104,12 +104,14 @@ const [Grid, gridApi] = useVbenVxeGrid({
 <template>
   <Page auto-content-height>
     <FormModal @success="handleRefresh" />
-    <Grid table-title="满减送活动">
+    <Grid :table-title="$t('promotion.rewardActivity.list')">
       <template #toolbar-tools>
         <TableAction
           :actions="[
             {
-              label: $t('ui.actionTitle.create', ['活动']),
+              label: $t('ui.actionTitle.create', [
+                $t('promotion.rewardActivity.name'),
+              ]),
               type: 'primary',
               icon: ACTION_ICON.ADD,
               auth: ['promotion:reward-activity:create'],
@@ -129,14 +131,14 @@ const [Grid, gridApi] = useVbenVxeGrid({
               onClick: handleEdit.bind(null, row),
             },
             {
-              label: '关闭',
+              label: $t('promotion.rewardActivity.close'),
               type: 'link',
               danger: true,
               icon: ACTION_ICON.CLOSE,
               auth: ['promotion:reward-activity:close'],
               ifShow: row.status === CommonStatusEnum.ENABLE,
               popConfirm: {
-                title: '确认关闭该满减送活动吗？',
+                title: $t('promotion.rewardActivity.confirmClose'),
                 confirm: handleClose.bind(null, row),
               },
             },

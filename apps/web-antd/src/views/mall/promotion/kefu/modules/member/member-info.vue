@@ -10,6 +10,7 @@ import { isEmpty } from '@vben/utils';
 
 import { useScroll } from '@vueuse/core';
 import { Empty, message } from 'ant-design-vue';
+import { $t } from '#/locales';
 
 import { getUser } from '#/api/member/user';
 import { getWallet } from '#/api/pay/wallet/balance';
@@ -19,7 +20,7 @@ import BasicInfo from '#/views/member/user/detail/modules/basic-info.vue';
 import OrderBrowsingHistory from './order-browsing-history.vue';
 import ProductBrowsingHistory from './product-browsing-history.vue';
 
-const activeTab = ref<string>('会员信息');
+const activeTab = ref<string>('member');
 
 const tabActivation = computed(() => (tab: string) => activeTab.value === tab);
 
@@ -37,16 +38,16 @@ async function handleClick(tab: string) {
 /** 获得历史数据 */
 async function getHistoryList() {
   switch (activeTab.value) {
-    case '交易订单': {
+    case 'order': {
       await orderBrowsingHistoryRef.value?.getHistoryList(conversation.value);
       break;
     }
-    case '会员信息': {
+    case 'member': {
       await getUserData();
       await getUserWallet();
       break;
     }
-    case '最近浏览': {
+    case 'browse': {
       await productBrowsingHistoryRef.value?.getHistoryList(conversation.value);
       break;
     }
@@ -59,14 +60,14 @@ async function getHistoryList() {
 /** 加载下一页数据 */
 async function loadMore() {
   switch (activeTab.value) {
-    case '交易订单': {
+    case 'order': {
       await orderBrowsingHistoryRef.value?.loadMore();
       break;
     }
-    case '会员信息': {
+    case 'member': {
       break;
     }
-    case '最近浏览': {
+    case 'browse': {
       await productBrowsingHistoryRef.value?.loadMore();
       break;
     }
@@ -81,7 +82,7 @@ const conversation = ref<MallKefuConversationApi.Conversation>(
   {} as MallKefuConversationApi.Conversation,
 ); // 用户会话
 async function initHistory(val: MallKefuConversationApi.Conversation) {
-  activeTab.value = '会员信息';
+  activeTab.value = 'member';
   conversation.value = val;
   await nextTick();
   await getHistoryList();
@@ -130,7 +131,7 @@ async function getUserData() {
       user.value = res;
     } else {
       user.value = {} as MemberUserApi.User;
-      message.error('会员不存在！');
+      message.error($t('promotion.kefu.member.notExist'));
     }
   } finally {
     loading.value = false;
@@ -145,43 +146,43 @@ async function getUserData() {
     >
       <div
         :class="{
-          'before:border-b-2 before:border-primary': tabActivation('会员信息'),
+          'before:border-b-2 before:border-primary': tabActivation('member'),
         }"
         class="relative flex w-full cursor-pointer items-center justify-center before:pointer-events-none before:absolute before:inset-0 before:content-[''] hover:before:border-b-2 hover:before:border-gray-500/50"
-        @click="handleClick('会员信息')"
+        @click="handleClick('member')"
       >
-        会员信息
+        {{ $t('promotion.kefu.member.tab.member') }}
       </div>
       <div
         :class="{
-          'before:border-b-2 before:border-primary': tabActivation('最近浏览'),
+          'before:border-b-2 before:border-primary': tabActivation('browse'),
         }"
         class="relative flex w-full cursor-pointer items-center justify-center before:pointer-events-none before:absolute before:inset-0 before:content-[''] hover:before:border-b-2 hover:before:border-gray-500/50"
-        @click="handleClick('最近浏览')"
+        @click="handleClick('browse')"
       >
-        最近浏览
+        {{ $t('promotion.kefu.member.tab.browse') }}
       </div>
       <div
         :class="{
-          'before:border-b-2 before:border-primary': tabActivation('交易订单'),
+          'before:border-b-2 before:border-primary': tabActivation('order'),
         }"
         class="relative flex w-full cursor-pointer items-center justify-center before:pointer-events-none before:absolute before:inset-0 before:content-[''] hover:before:border-b-2 hover:before:border-gray-500/50"
-        @click="handleClick('交易订单')"
+        @click="handleClick('order')"
       >
-        交易订单
+        {{ $t('promotion.kefu.member.tab.order') }}
       </div>
     </div>
     <div class="relative m-0 h-full w-full overflow-x-auto p-2">
       <template v-if="!isEmpty(conversation)">
         <div
           v-loading="loading"
-          v-if="activeTab === '会员信息'"
+          v-if="activeTab === 'member'"
           class="relative overflow-y-auto overflow-x-hidden"
         >
           <!-- 基本信息 -->
           <BasicInfo :user="user" mode="kefu">
             <template #title>
-              <span class="text-sm font-bold">基本信息</span>
+              <span class="text-sm font-bold">{{ $t('promotion.kefu.member.basicInfo') }}</span>
             </template>
           </BasicInfo>
           <!-- 账户信息 -->
@@ -193,28 +194,28 @@ async function getUserData() {
             class="mt-2"
           >
             <template #title>
-              <span class="text-sm font-bold">账户信息</span>
+              <span class="text-sm font-bold">{{ $t('promotion.kefu.member.accountInfo') }}</span>
             </template>
           </AccountInfo>
         </div>
         <div
-          v-show="activeTab !== '会员信息'"
+          v-show="activeTab !== 'member'"
           ref="scrollbarRef"
           class="relative h-full overflow-y-auto overflow-x-hidden"
         >
           <!-- 最近浏览 -->
           <ProductBrowsingHistory
-            v-if="activeTab === '最近浏览'"
+            v-if="activeTab === 'browse'"
             ref="productBrowsingHistoryRef"
           />
           <!-- 交易订单 -->
           <OrderBrowsingHistory
-            v-if="activeTab === '交易订单'"
+            v-if="activeTab === 'order'"
             ref="orderBrowsingHistoryRef"
           />
         </div>
       </template>
-      <Empty v-else description="请选择左侧的一个会话后开始" class="mt-[20%]" />
+      <Empty :description="$t('promotion.kefu.member.empty')" class="mt-[20%]" />
     </div>
   </div>
 </template>

@@ -28,27 +28,27 @@ const route = useRoute();
 const tabType = ref(0);
 const tabsData = ref([
   {
-    name: '出售中',
+    name: $t('mall-product.spu.tabs.selling'),
     type: 0,
     count: 0,
   },
   {
-    name: '仓库中',
+    name: $t('mall-product.spu.tabs.warehouse'),
     type: 1,
     count: 0,
   },
   {
-    name: '已售罄',
+    name: $t('mall-product.spu.tabs.soldOut'),
     type: 2,
     count: 0,
   },
   {
-    name: '警戒库存',
+    name: $t('mall-product.spu.tabs.warning'),
     type: 3,
     count: 0,
   },
   {
-    name: '回收站',
+    name: $t('mall-product.spu.tabs.recycle'),
     type: 4,
     count: 0,
   },
@@ -63,7 +63,10 @@ async function handleRefresh() {
 /** 导出表格 */
 async function handleExport() {
   const data = await exportSpu(await gridApi.formApi.getValues());
-  downloadFileFromBlobPart({ fileName: '商品.xls', source: data });
+  downloadFileFromBlobPart({
+    fileName: `${$t('mall-product.spu.name')}.xls`,
+    source: data,
+  });
 }
 
 /** 获得每个 Tab 的数量 */
@@ -109,9 +112,11 @@ async function handleStatusChange(
 ): Promise<boolean | undefined> {
   return new Promise((resolve, reject) => {
     // 二次确认
-    const text = newStatus ? '上架' : '下架';
+    const text = newStatus
+      ? $t('mall-product.spu.statusOptions.onSale')
+      : $t('mall-product.spu.statusOptions.offSale');
     confirm({
-      content: `确认要${text + row.name}吗?`,
+      content: $t('common.confirmOperation', [text, row.name]),
     })
       .then(async () => {
         // 更新状态
@@ -120,7 +125,7 @@ async function handleStatusChange(
           status: newStatus,
         });
         // 提示并返回成功
-        message.success(`${text}成功`);
+        message.success($t('common.operationSuccess', [text]));
         resolve(true);
       })
       .catch(() => {
@@ -133,18 +138,18 @@ async function handleStatusChange(
 async function handleStatus02Change(row: MallSpuApi.Spu, newStatus: number) {
   const text =
     newStatus === ProductSpuStatusEnum.RECYCLE.status
-      ? '加入到回收站'
-      : '恢复到仓库';
+      ? $t('mall-product.spu.actions.recycle')
+      : $t('mall-product.spu.actions.restore');
   await confirm({
-    content: `确认要"${row.name}"${text}吗？`,
+    content: $t('common.confirmOperation', [text, row.name]),
   });
   const hideLoading = message.loading({
-    content: `正在${text}中...`,
+    content: `${$t('common.processing')}${text}${$t('common.processingEnd')}`,
     duration: 0,
   });
   try {
     await updateStatus({ id: row.id!, status: newStatus });
-    message.success(`${text}成功`);
+    message.success($t('common.operationSuccess', [text]));
     await handleRefresh();
   } finally {
     hideLoading();
@@ -227,7 +232,7 @@ onMounted(async () => {
         <TableAction
           :actions="[
             {
-              label: $t('ui.actionTitle.create', ['商品']),
+              label: $t('ui.actionTitle.create', [$t('mall-product.spu.name')]),
               type: 'primary',
               icon: ACTION_ICON.ADD,
               auth: ['product:spu:create'],
@@ -272,7 +277,7 @@ onMounted(async () => {
               },
             },
             {
-              label: '恢复',
+              label: $t('mall-product.spu.actions.restore'),
               type: 'link',
               icon: ACTION_ICON.EDIT,
               auth: ['product:spu:update'],
@@ -283,7 +288,7 @@ onMounted(async () => {
               ),
             },
             {
-              label: '回收',
+              label: $t('mall-product.spu.actions.recycle'),
               type: 'link',
               icon: ACTION_ICON.EDIT,
               auth: ['product:spu:update'],

@@ -1,5 +1,7 @@
 import type { ComponentStyle, DiyComponent } from '../../../util';
 
+import { $t } from '@vben/locales';
+
 /** 拼团属性 */
 export interface PromotionCombinationProperty {
   layoutType: 'oneColBigImg' | 'oneColSmallImg' | 'twoCol'; // 布局类型：单列 | 三列
@@ -38,7 +40,7 @@ export interface PromotionCombinationFieldProperty {
 /** 定义组件 */
 export const component = {
   id: 'PromotionCombination',
-  name: '拼团',
+  name: $t('promotion.combination.activity.title'),
   icon: 'mdi:account-group',
   property: {
     layoutType: 'oneColBigImg',
@@ -53,7 +55,7 @@ export const component = {
     badge: { show: false, imgUrl: '' },
     btnBuy: {
       type: 'text',
-      text: '去拼团',
+      text: $t('promotion.combination.activity.button.combine'),
       bgBeginColor: '#FF6000',
       bgEndColor: '#FE832A',
       imgUrl: '',

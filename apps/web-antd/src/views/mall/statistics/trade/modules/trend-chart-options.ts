@@ -2,6 +2,8 @@ import type { MallTradeStatisticsApi } from '#/api/mall/statistics/trade';
 
 import { fenToYuan } from '@vben/utils';
 
+import { $t } from '#/locales';
+
 /** 交易趋势折线图配置 */
 export function getTradeTrendChartOptions(
   data: MallTradeStatisticsApi.TradeTrendSummaryRespVO[],
@@ -38,25 +40,25 @@ export function getTradeTrendChartOptions(
     },
     series: [
       {
-        name: '营业额',
+        name: $t('statistics.trend.turnover'),
         type: 'line',
         smooth: true,
         itemStyle: { color: '#1890FF' },
       },
       {
-        name: '商品支付金额',
+        name: $t('statistics.trend.orderPayPrice'),
         type: 'line',
         smooth: true,
         itemStyle: { color: '#722ED1' },
       },
       {
-        name: '充值金额',
+        name: $t('statistics.trend.rechargePrice'),
         type: 'line',
         smooth: true,
         itemStyle: { color: '#FAAD14' },
       },
       {
-        name: '支出金额',
+        name: $t('statistics.trend.expensePrice'),
         type: 'line',
         smooth: true,
         itemStyle: { color: '#52C41A' },
@@ -73,7 +75,7 @@ export function getTradeTrendChartOptions(
         },
         saveAsImage: {
           show: true,
-          name: '交易状况',
+          name: $t('statistics.trend.title'),
         }, // 保存为图片
       },
     },

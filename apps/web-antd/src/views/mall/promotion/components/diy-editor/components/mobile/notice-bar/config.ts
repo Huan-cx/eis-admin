@@ -1,5 +1,7 @@
 import type { ComponentStyle, DiyComponent } from '../../../util';
 
+import { $t } from '#/locales';
+
 /** 公告栏属性 */
 export interface NoticeBarProperty {
   iconUrl: string; // 图标地址
@@ -18,7 +20,7 @@ export interface NoticeContentProperty {
 /** 定义组件 */
 export const component = {
   id: 'NoticeBar',
-  name: '公告栏',
+  name: $t('promotion.noticeBar.title'),
   icon: 'lucide:bell',
   property: {
     iconUrl: 'http://mall.yudao.iocoder.cn/static/images/xinjian.png',

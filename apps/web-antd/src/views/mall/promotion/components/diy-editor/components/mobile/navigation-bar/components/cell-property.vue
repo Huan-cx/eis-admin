@@ -19,6 +19,7 @@ import {
 
 import appNavBarMp from '#/assets/imgs/diy/app-nav-bar-mp.png';
 import UploadImg from '#/components/upload/image-upload.vue';
+import { $t } from '#/locales';
 import {
   AppLinkInput,
   ColorInput,
@@ -91,31 +92,52 @@ function handleHotAreaSelected(
   </div>
   <template v-for="(cell, cellIndex) in cellList" :key="cellIndex">
     <template v-if="selectedHotAreaIndex === Number(cellIndex)">
-      <FormItem :name="`cell[${cellIndex}].type`" label="类型">
+      <FormItem
+        :name="`cell[${cellIndex}].type`"
+        :label="$t('promotion.navigationBar.cell.type')"
+      >
         <RadioGroup
           v-model:value="cell.type"
           @change="handleHotAreaSelected(cell, cellIndex)"
         >
-          <Radio value="text">文字</Radio>
-          <Radio value="image">图片</Radio>
-          <Radio value="search">搜索框</Radio>
+          <Radio value="text">
+            {{ $t('promotion.navigationBar.cell.text') }}
+          </Radio>
+          <Radio value="image">
+            {{ $t('promotion.navigationBar.cell.image') }}
+          </Radio>
+          <Radio value="search">
+            {{ $t('promotion.navigationBar.cell.search') }}
+          </Radio>
         </RadioGroup>
       </FormItem>
       <!-- 1. 文字 -->
       <template v-if="cell.type === 'text'">
-        <FormItem :name="`cell[${cellIndex}].text`" label="内容">
+        <FormItem
+          :name="`cell[${cellIndex}].text`"
+          :label="$t('promotion.navigationBar.cell.content')"
+        >
           <Input v-model:value="cell!.text" :maxlength="10" show-count />
         </FormItem>
-        <FormItem :name="`cell[${cellIndex}].text`" label="颜色">
+        <FormItem
+          :name="`cell[${cellIndex}].text`"
+          :label="$t('promotion.navigationBar.cell.color')"
+        >
           <ColorInput v-model="cell!.textColor" />
         </FormItem>
-        <FormItem :name="`cell[${cellIndex}].url`" label="链接">
+        <FormItem
+          :name="`cell[${cellIndex}].url`"
+          :label="$t('promotion.navigationBar.cell.url')"
+        >
           <AppLinkInput v-model="cell.url" />
         </FormItem>
       </template>
       <!-- 2. 图片 -->
       <template v-else-if="cell.type === 'image'">
-        <FormItem :name="`cell[${cellIndex}].imgUrl`" label="图片">
+        <FormItem
+          :name="`cell[${cellIndex}].imgUrl`"
+          :label="$t('promotion.navigationBar.cell.image')"
+        >
           <UploadImg
             v-model="cell.imgUrl"
             :limit="1"
@@ -123,9 +145,14 @@ function handleHotAreaSelected(
             width="56px"
             :show-description="false"
           />
-          <span class="text-xs text-gray-500">建议尺寸 56*56</span>
+          <span class="text-xs text-gray-500">{{
+            $t('promotion.navigationBar.cell.imageTip')
+          }}</span>
         </FormItem>
-        <FormItem :name="`cell[${cellIndex}].url`" label="链接">
+        <FormItem
+          :name="`cell[${cellIndex}].url`"
+          :label="$t('promotion.navigationBar.cell.url')"
+        >
           <AppLinkInput v-model="cell.url" />
         </FormItem>
       </template>
@@ -134,30 +161,52 @@ function handleHotAreaSelected(
         <FormItem label="框体颜色" name="backgroundColor">
           <ColorInput v-model="cell.backgroundColor" />
         </FormItem>
-        <FormItem class="lef" label="文本颜色" name="textColor">
+        <FormItem
+          class="lef"
+          :label="$t('promotion.navigationBar.cell.textColor')"
+          name="textColor"
+        >
           <ColorInput v-model="cell.textColor" />
         </FormItem>
-        <FormItem :name="`cell[${cellIndex}].placeholder`" label="提示文字">
+        <FormItem
+          :name="`cell[${cellIndex}].placeholder`"
+          :label="$t('promotion.navigationBar.cell.placeholder')"
+        >
           <Input v-model:value="cell.placeholder" :maxlength="10" show-count />
         </FormItem>
-        <FormItem label="文本位置" name="placeholderPosition">
+        <FormItem
+          :label="$t('promotion.navigationBar.cell.placeholderPosition')"
+          name="placeholderPosition"
+        >
           <RadioGroup v-model:value="cell!.placeholderPosition">
-            <Tooltip title="居左" placement="top">
+            <Tooltip
+              :title="$t('promotion.navigationBar.cell.left')"
+              placement="top"
+            >
               <RadioButton value="left">
                 <IconifyIcon icon="ant-design:align-left-outlined" />
               </RadioButton>
             </Tooltip>
-            <Tooltip title="居中" placement="top">
+            <Tooltip
+              :title="$t('promotion.navigationBar.cell.center')"
+              placement="top"
+            >
               <RadioButton value="center">
                 <IconifyIcon icon="ant-design:align-center-outlined" />
               </RadioButton>
             </Tooltip>
           </RadioGroup>
         </FormItem>
-        <FormItem label="扫一扫" name="showScan">
+        <FormItem
+          :label="$t('promotion.navigationBar.cell.showScan')"
+          name="showScan"
+        >
           <Switch v-model:checked="cell!.showScan" />
         </FormItem>
-        <FormItem :name="`cell[${cellIndex}].borderRadius`" label="圆角">
+        <FormItem
+          :name="`cell[${cellIndex}].borderRadius`"
+          :label="$t('promotion.navigationBar.cell.borderRadius')"
+        >
           <Slider v-model:value="cell.borderRadius" :max="100" :min="0" />
         </FormItem>
       </template>

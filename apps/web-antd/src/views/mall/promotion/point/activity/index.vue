@@ -41,12 +41,12 @@ function handleEdit(row: any) {
 /** 关闭积分商城活动 */
 async function handleClose(row: any) {
   const hideLoading = message.loading({
-    content: '正在关闭中...',
+    content: $t('promotion.point.closing'),
     duration: 0,
   });
   try {
     await closePointActivity(row.id);
-    message.success('关闭成功');
+    message.success($t('promotion.point.closeSuccess'));
     handleRefresh();
   } finally {
     hideLoading();
@@ -102,12 +102,12 @@ const [Grid, gridApi] = useVbenVxeGrid({
 <template>
   <Page auto-content-height>
     <FormModal @success="handleRefresh" />
-    <Grid table-title="积分商城活动列表">
+    <Grid :table-title="$t('promotion.point.list')">
       <template #toolbar-tools>
         <TableAction
           :actions="[
             {
-              label: $t('ui.actionTitle.create', ['积分活动']),
+              label: $t('ui.actionTitle.create', [$t('promotion.point.name')]),
               type: 'primary',
               icon: ACTION_ICON.ADD,
               auth: ['promotion:point-activity:create'],
@@ -127,14 +127,14 @@ const [Grid, gridApi] = useVbenVxeGrid({
               onClick: handleEdit.bind(null, row),
             },
             {
-              label: '关闭',
+              label: $t('promotion.point.close'),
               type: 'link',
               danger: true,
               icon: ACTION_ICON.CLOSE,
               ifShow: row.status === 0,
               auth: ['promotion:point-activity:close'],
               popConfirm: {
-                title: '确认关闭该积分商城活动吗？',
+                title: $t('promotion.point.confirmClose'),
                 confirm: handleClose.bind(null, row),
               },
             },

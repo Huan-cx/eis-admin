@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { $t } from '#/locales';
 
 /** 时间范围类型枚举 */
 export enum TimeRangeTypeEnum {
@@ -25,7 +26,7 @@ export function getMemberStatisticsChartOptions(list: any[]): any {
     legend: {
       top: 50,
     },
-    series: [{ name: '注册量', type: 'line', smooth: true, areaStyle: {} }],
+    series: [{ name: $t('mall-product.home.registerCount'), type: 'line', smooth: true, areaStyle: {} }],
     toolbox: {
       feature: {
         // 数据区域缩放
@@ -35,7 +36,7 @@ export function getMemberStatisticsChartOptions(list: any[]): any {
         brush: {
           type: ['lineX', 'clear'], // 区域缩放按钮、还原按钮
         },
-        saveAsImage: { show: true, name: '会员统计' }, // 保存为图片
+        saveAsImage: { show: true, name: $t('mall-product.home.memberStatistics') }, // 保存为图片
       },
     },
     tooltip: {

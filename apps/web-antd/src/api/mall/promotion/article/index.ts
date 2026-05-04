@@ -18,6 +18,9 @@ export namespace MallArticleApi {
     recommendHot: boolean; // 是否热门
     recommendBanner: boolean; // 是否轮播图
     content: string; // 文章内容
+    metaTitle?: string; // SEO标题
+    metaDescription?: string; // SEO描述
+    slug?: string; // 语义化URL
   }
 }
 

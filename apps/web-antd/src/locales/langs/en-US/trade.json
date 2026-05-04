@@ -1,0 +1,416 @@
+{
+  "order": {
+    "form": {
+      "status": "Order Status",
+      "statusPlaceholder": "Please select order status",
+      "payChannelCode": "Payment Method",
+      "payChannelCodePlaceholder": "Please select payment method",
+      "createTime": "Create Time",
+      "terminal": "Order Source",
+      "terminalPlaceholder": "Please select order source",
+      "deliveryType": "Delivery Type",
+      "deliveryTypePlaceholder": "Please select delivery type",
+      "logisticsId": "Express Company",
+      "logisticsIdPlaceholder": "Please select express company",
+      "pickUpStoreId": "Pick-up Store",
+      "pickUpStoreIdPlaceholder": "Please select pick-up store",
+      "pickUpVerifyCode": "Verification Code",
+      "pickUpVerifyCodePlaceholder": "Please enter verification code",
+      "no": "Order No.",
+      "noPlaceholder": "Please enter order no.",
+      "userId": "User UID",
+      "userIdPlaceholder": "Please enter user UID",
+      "userNickname": "User Nickname",
+      "userNicknamePlaceholder": "Please enter user nickname",
+      "userMobile": "User Phone",
+      "userMobilePlaceholder": "Please enter user phone",
+      "remark": "Remark"
+    },
+    "grid": {
+      "no": "Order No.",
+      "createTime": "Order Time",
+      "terminal": "Order Source",
+      "payChannelCode": "Payment Method",
+      "payTime": "Payment Time",
+      "type": "Order Type",
+      "payPrice": "Actual Payment",
+      "user": "Buyer/Receiver",
+      "buyer": "Buyer",
+      "receiver": "Receiver",
+      "businessAddress": "Business Address",
+      "billingAddress": "Billing Address",
+      "storeName": "Store Name",
+      "storePhone": "Store Phone",
+      "pickUpStore": "Pick-up Store",
+      "deliveryType": "Delivery Type",
+      "status": "Order Status"
+    },
+    "priceForm": {
+      "payPrice": "Payable Amount (Total)",
+      "payPricePlaceholder": "Please enter payable amount",
+      "adjustPrice": "Order Price Adjustment",
+      "adjustPricePlaceholder": "Please enter price adjustment",
+      "adjustPriceHelp": "Order price adjustment. Positive: increase; Negative: decrease",
+      "newPayPrice": "After Adjustment"
+    },
+    "addressForm": {
+      "receiveUseBilling": "Shipping address same as billing",
+      "businessUseBilling": "Business address same as billing",
+      "receiverFirstName": "First Name",
+      "receiverLastName": "Last Name",
+      "companyName": "Company Name",
+      "street": "Street Address",
+      "city": "City",
+      "state": "State/Province",
+      "country": "Country",
+      "postcode": "Postcode",
+      "phone": "Phone",
+      "email": "Email",
+      "vat": "VAT Number",
+      "eori": "EORI Number",
+      "billingCompanyName": "Billing Company Name",
+      "billingFirstName": "Billing First Name",
+      "billingLastName": "Billing Last Name",
+      "billingStreet": "Billing Street Address",
+      "billingCity": "Billing City",
+      "billingState": "Billing State/Province",
+      "billingCountry": "Billing Country",
+      "billingPostcode": "Billing Postcode",
+      "billingPhone": "Billing Phone",
+      "billingEmail": "Billing Email",
+      "billingVat": "Billing VAT Number",
+      "billingEori": "Billing EORI Number",
+      "businessCompanyName": "Business Company Name",
+      "businessFirstName": "Business First Name",
+      "businessLastName": "Business Last Name",
+      "businessStreet": "Business Street Address",
+      "businessCity": "Business City",
+      "businessState": "Business State/Province",
+      "businessCountry": "Business Country",
+      "businessPostcode": "Business Postcode",
+      "businessPhone": "Business Phone",
+      "businessEmail": "Business Email",
+      "businessVat": "Business VAT Number",
+      "businessEori": "Business EORI Number"
+    },
+    "deliveryForm": {
+      "expressType": "Delivery Method",
+      "express": "Express",
+      "none": "No Delivery Needed",
+      "logisticsId": "Logistics Company",
+      "logisticsIdPlaceholder": "Please select logistics company",
+      "logisticsNo": "Tracking Number",
+      "logisticsNoPlaceholder": "Please enter tracking number"
+    },
+    "index": {
+      "doc1": "[Trade] Trade Orders",
+      "doc2": "[Trade] Shopping Cart",
+      "title": "Order List",
+      "originalPrice": "Original Price",
+      "quantity": "Quantity",
+      "piece": "pieces",
+      "delivery": "Deliver",
+      "remark": "Remark",
+      "updateAddress": "Update Address"
+    },
+    "detail": {
+      "orderInfo": "Order Information",
+      "orderStatus": "Order Status",
+      "priceInfo": "Price Information",
+      "deliveryInfo": "Delivery Information",
+      "productInfo": "Product Information",
+      "expressInfo": "Express Tracking",
+      "operateLog": "Operation Log",
+      "orderNotFound": "Trade order does not exist",
+      "confirmPickUp": "Confirm order pick-up?",
+      "processing": "Processing...",
+      "pickUpSuccess": "Pick-up successful",
+      "back": "Back",
+      "updatePrice": "Adjust Price",
+      "remark": "Remark",
+      "delivery": "Deliver",
+      "updateAddress": "Update Address",
+      "pickUp": "Pick-up",
+      "system": "System",
+      "orderInfoSchema": {
+        "no": "Order No.",
+        "buyer": "Buyer",
+        "type": "Order Type",
+        "terminal": "Order Source",
+        "userRemark": "Buyer Remark",
+        "remark": "Merchant Remark",
+        "payOrderId": "Payment No.",
+        "payChannelCode": "Payment Method",
+        "brokerageUser": "Affiliate User"
+      },
+      "orderStatusSchema": {
+        "status": "Order Status",
+        "reminder": "Reminder",
+        "reminder1": "After the buyer pays successfully, the payment will go directly to your merchant account (WeChat, Alipay)",
+        "reminder2": "Please track the status of your shipped packages to ensure they can be delivered to the buyer",
+        "reminder3": "If the buyer claims not to have received the goods or there is a problem, please contact the buyer promptly and negotiate amicably"
+      },
+      "priceSchema": {
+        "totalPrice": "Total Amount",
+        "deliveryPrice": "Shipping Fee",
+        "adjustPrice": "Price Adjustment",
+        "payPrice": "Payable Amount"
+      },
+      "deliveryInfoSchema": {
+        "deliveryType": "Delivery Type",
+        "receiverAddress": "Shipping Address",
+        "billingAddress": "Billing Address",
+        "businessAddress": "Business Address",
+        "deliveryTime": "Delivery Time",
+        "receiver": "Receiver",
+        "company": "Company",
+        "street": "Street",
+        "state": "State/Province",
+        "country": "Country",
+        "phone": "Phone",
+        "email": "Email",
+        "vat": "VAT Number",
+        "eori": "EORI Number",
+        "name": "Name"
+      },
+      "productColumns": {
+        "spuName": "Product",
+        "price": "Original Price",
+        "count": "Quantity",
+        "payPrice": "Total",
+        "afterSaleStatus": "After-sales Status"
+      },
+      "expressTrackColumns": {
+        "time": "Time",
+        "content": "Express Status"
+      },
+      "operateLogColumns": {
+        "createTime": "Operation Time",
+        "userType": "Operator",
+        "content": "Operation Content"
+      }
+    },
+    "modules": {
+      "deliveryForm": {
+        "title": "Deliver"
+      },
+      "remarkForm": {
+        "title": "Order Remark"
+      }
+    }
+  },
+  "config": {
+    "doc1": "[Trade] Trade Orders",
+    "doc2": "[Trade] Shopping Cart",
+    "afterSale": "After Sale",
+    "delivery": "Delivery",
+    "brokerage": "Brokerage",
+    "form": {
+      "afterSaleRefundReasons": "Refund Reasons",
+      "afterSaleRefundReasonsPlaceholder": "Please enter refund reason",
+      "afterSaleReturnReasons": "Return Reasons",
+      "afterSaleReturnReasonsPlaceholder": "Please enter return reason",
+      "deliveryExpressFreeEnabled": "Enable Free Shipping",
+      "deliveryExpressFreeEnabledHelp": "Whether to enable free shipping for the entire store",
+      "deliveryExpressFreePrice": "Free Shipping Threshold",
+      "deliveryExpressFreePricePlaceholder": "Please enter free shipping amount",
+      "deliveryExpressFreePriceHelp": "Minimum amount for free shipping, unit: yuan",
+      "deliveryPickUpEnabled": "Enable Store Pickup",
+      "brokerageEnabled": "Enable Brokerage",
+      "brokerageEnabledHelp": "Whether to enable distribution mode",
+      "brokerageEnabledCondition": "Brokerage Mode",
+      "brokerageEnabledConditionHelp": "Everyone Distribution: Every user can be a promoter \n Designated Distribution: Only set promoters manually in the background",
+      "brokerageBindMode": "Distribution Relationship Binding",
+      "brokerageBindModeHelp": "First Bind: As long as the user has no promoter, can bind promotion relationship at any time \n Register Bind: Only new users can bind promotion relationship when registering or first entering the system",
+      "brokeragePosterUrls": "Distribution Poster",
+      "brokeragePosterUrlsHelp": "Personal center distribution poster image, recommended size 600x1000",
+      "brokerageFirstPercent": "First Level Commission Rate (%)",
+      "brokerageFirstPercentPlaceholder": "Please enter first level commission rate",
+      "brokerageFirstPercentHelp": "Percentage of commission to the promoter after order success",
+      "brokerageSecondPercent": "Second Level Commission Rate (%)",
+      "brokerageSecondPercentPlaceholder": "Please enter second level commission rate",
+      "brokerageSecondPercentHelp": "Percentage of commission to the promoter's referrer after order success",
+      "brokerageFrozenDays": "Commission Frozen Days",
+      "brokerageFrozenDaysPlaceholder": "Please enter commission frozen days",
+      "brokerageFrozenDaysHelp": "Prevent user refunds after commission withdrawal, need to set frozen days, unit: days",
+      "brokerageWithdrawMinPrice": "Minimum Withdrawal Amount (yuan)",
+      "brokerageWithdrawMinPricePlaceholder": "Please enter minimum withdrawal amount",
+      "brokerageWithdrawMinPriceHelp": "Minimum withdrawal limit for users, unit: yuan",
+      "brokerageWithdrawFeePercent": "Withdrawal Fee (%)",
+      "brokerageWithdrawFeePercentPlaceholder": "Please enter withdrawal fee percentage",
+      "brokerageWithdrawFeePercentHelp": "Withdrawal fee percentage, range 0-100, 0 means no fee. Example: set 10, charge 10% fee, withdraw 10 yuan, receive 9 yuan, 1 yuan fee",
+      "brokerageWithdrawTypes": "Withdrawal Methods",
+      "brokerageWithdrawTypesHelp": "Payment methods enabled for withdrawal in the store"
+    }
+  },
+  "delivery": {
+    "pickUpOrder": {
+      "title": "Pickup Orders",
+      "inputVerifyCode": "Please enter verification code",
+      "processing": "Processing order verification ...",
+      "browserNotSupported": "Browser does not support barcode scanner connection, please try another browser",
+      "connectSuccess": "Successfully connected to scanner",
+      "connectFirst": "Please connect or open the scanner first",
+      "disconnectSuccess": "Successfully disconnected from scanner",
+      "summary": {
+        "orderCount": "Order Count",
+        "orderAmount": "Order Amount",
+        "refundCount": "Refund Count",
+        "refundAmount": "Refund Amount"
+      },
+      "action": {
+        "pickup": "Verify",
+        "connect": "Connect Scanner",
+        "disconnect": "Disconnect Scanner"
+      },
+      "form": {
+        "createTime": "Create Time",
+        "pickUpStoreIds": "Pickup Store",
+        "pickUpStoreIdsPlaceholder": "Please select pickup store",
+        "no": "Order No.",
+        "noPlaceholder": "Please enter order number",
+        "userId": "User UID",
+        "userIdPlaceholder": "Please enter user UID",
+        "userNickname": "User Nickname",
+        "userNicknamePlaceholder": "Please enter user nickname",
+        "userMobile": "User Phone",
+        "userMobilePlaceholder": "Please enter user phone"
+      },
+      "grid": {
+        "no": "Order No.",
+        "user": "User Info",
+        "brokerageUser": "Referrer Info",
+        "spuName": "Product Info",
+        "payPrice": "Paid Amount (yuan)",
+        "storeStaffName": "Verifier",
+        "pickUpStoreId": "Verification Store",
+        "payStatus": "Payment Status",
+        "status": "Order Status",
+        "createTime": "Order Time"
+      }
+    },
+    "expressTemplate": {
+      "title": "Express Template List",
+      "chargeMode": {
+        "piece": {
+          "start": "First Piece",
+          "extra": "Additional Piece"
+        },
+        "weight": {
+          "start": "First Weight(kg)",
+          "extra": "Additional Weight(kg)"
+        },
+        "volume": {
+          "start": "First Volume(m³)",
+          "extra": "Additional Volume(m³)"
+        }
+      },
+      "freeMode": {
+        "piece": "Free Shipping Pieces",
+        "weight": "Free Shipping Weight(kg)",
+        "volume": "Free Shipping Volume(m³)"
+      },
+      "grid": {
+        "countries": "Region",
+        "startPrice": "Shipping Fee(yuan)",
+        "extraPrice": "Additional Fee(yuan)",
+        "freePrice": "Free Shipping Amount(yuan)",
+        "name": "Template Name",
+        "chargeMode": "Charge Mode",
+        "sort": "Sort Order"
+      },
+      "form": {
+        "name": "Template Name",
+        "namePlaceholder": "Please enter template name",
+        "chargeMode": "Charge Mode",
+        "chargeModePlaceholder": "Please select charge mode",
+        "sort": "Sort Order",
+        "sortPlaceholder": "Please enter sort order",
+        "charges": "Shipping Settings",
+        "frees": "Free Shipping Settings",
+        "countryPlaceholder": "Please select region"
+      },
+      "chargeItem": {
+        "validate": {
+          "countries": "Shipping Settings Row {0}: Region cannot be empty",
+          "startPrice": "Shipping Settings Row {0}: Shipping fee must be greater than 0",
+          "extraPrice": "Shipping Settings Row {0}: Additional fee must be greater than 0"
+        },
+        "deleteConfirm": "Confirm delete this region?",
+        "add": "Add Charge Region"
+      },
+      "freeItem": {
+        "validate": {
+          "countries": "Free Shipping Settings Row {0}: Region cannot be empty",
+          "freePrice": "Free Shipping Settings Row {0}: Free shipping amount must be greater than 0"
+        },
+        "deleteConfirm": "Confirm delete this region?",
+        "add": "Add Free Shipping Region"
+      }
+    },
+    "pickUpStore": {
+      "title": "Store List",
+      "action": {
+        "bind": "Bind Staff"
+      },
+      "form": {
+        "name": "Store Name",
+        "namePlaceholder": "Please enter store name",
+        "phone": "Store Phone",
+        "phonePlaceholder": "Please enter store phone",
+        "logo": "Store Logo",
+        "logoPlaceholder": "Please upload store logo",
+        "logoHelp": "Recommended 180x180 image resolution",
+        "introduction": "Store Introduction",
+        "introductionPlaceholder": "Please enter store introduction",
+        "areaId": "Store Region",
+        "areaIdPlaceholder": "Please select province/city/district",
+        "detailAddress": "Store Address",
+        "detailAddressPlaceholder": "Please enter store address",
+        "rangeTime": "Business Hours",
+        "status": "Store Status",
+        "statusPlaceholder": "Please select store status",
+        "longitude": "Longitude",
+        "longitudePlaceholder": "Please enter longitude",
+        "latitude": "Latitude",
+        "latitudePlaceholder": "Please enter latitude",
+        "verifyUserIds": "Store Staff",
+        "verifyUserIdsPlaceholder": "Please select store staff",
+        "mapKeyWarning": "Please configure Tencent Location Service key first",
+        "getLatLng": "Get LatLng",
+        "bindTitle": "Bind Staff"
+      },
+      "grid": {
+        "logo": "Store Logo",
+        "name": "Store Name",
+        "phone": "Store Phone",
+        "detailAddress": "Address",
+        "openingTime": "Business Hours",
+        "status": "Status"
+      }
+    },
+    "express": {
+      "title": "Express Company List",
+      "exportFileName": "Express Companies.xls",
+      "form": {
+        "code": "Company Code",
+        "codePlaceholder": "Please enter express code",
+        "name": "Company Name",
+        "namePlaceholder": "Please enter express name",
+        "logo": "Company Logo",
+        "logoHelp": "Recommended 180x180 image resolution",
+        "sort": "Sort Order",
+        "sortPlaceholder": "Please enter sort order",
+        "status": "Status",
+        "statusPlaceholder": "Please select status"
+      },
+      "grid": {
+        "code": "Company Code",
+        "name": "Company Name",
+        "logo": "Company Logo",
+        "sort": "Sort Order",
+        "status": "Status"
+      }
+    }
+  }
+}

@@ -11,6 +11,7 @@ import { Card, Radio, RadioGroup, Spin } from 'ant-design-vue';
 import dayjs from 'dayjs';
 
 import { getMemberRegisterCountList } from '#/api/mall/statistics/member';
+import { $t } from '#/locales';
 
 import {
   getMemberStatisticsChartOptions,
@@ -26,16 +27,16 @@ const { renderEcharts } = useEcharts(chartRef);
 
 const timeRangeConfig = {
   [TimeRangeTypeEnum.DAY30]: {
-    name: '30 天',
+    name: $t('mall-product.home.timeRange.day30'),
   },
   [TimeRangeTypeEnum.WEEK]: {
-    name: '周',
+    name: $t('mall-product.home.timeRange.week'),
   },
   [TimeRangeTypeEnum.MONTH]: {
-    name: '月',
+    name: $t('mall-product.home.timeRange.month'),
   },
   [TimeRangeTypeEnum.YEAR]: {
-    name: '年',
+    name: $t('mall-product.home.timeRange.year'),
   },
 }; // 时间范围 Map
 const timeRangeType = ref(TimeRangeTypeEnum.DAY30); // 日期快捷选择按钮, 默认 30 天
@@ -98,7 +99,7 @@ onMounted(() => {
   <Card :bordered="false">
     <template #title>
       <div class="flex items-center justify-between">
-        <span>用户统计</span>
+        <span>{{ $t('mall-product.home.memberStatistics') }}</span>
         <RadioGroup
           v-model:value="timeRangeType"
           @change="handleTimeRangeTypeChange"

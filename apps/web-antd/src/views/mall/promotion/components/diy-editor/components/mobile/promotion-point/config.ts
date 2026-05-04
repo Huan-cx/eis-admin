@@ -1,4 +1,5 @@
 import type { ComponentStyle, DiyComponent } from '../../../util';
+import { $t } from "@vben/locales";
 
 /** 积分商城属性 */
 export interface PromotionPointProperty {
@@ -39,7 +40,7 @@ export interface PromotionPointFieldProperty {
 /** 定义组件 */
 export const component = {
   id: 'PromotionPoint',
-  name: '积分商城',
+  name: $t('promotion.point.activity.title'),
   icon: 'ep:present',
   property: {
     layoutType: 'oneColBigImg',
@@ -54,7 +55,7 @@ export const component = {
     badge: { show: false, imgUrl: '' },
     btnBuy: {
       type: 'text',
-      text: '立即兑换',
+      text: $t('promotion.point.activity.button.exchange'),
       bgBeginColor: '#FF6000',
       bgEndColor: '#FE832A',
       imgUrl: '',

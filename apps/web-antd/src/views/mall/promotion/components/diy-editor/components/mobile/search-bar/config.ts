@@ -1,5 +1,7 @@
 import type { ComponentStyle, DiyComponent } from '../../../util';
 
+import { $t } from '#/locales';
+
 /** 搜索框属性 */
 export interface SearchProperty {
   height: number; // 搜索栏高度
@@ -19,13 +21,13 @@ export type PlaceholderPosition = 'center' | 'left';
 /** 定义组件 */
 export const component = {
   id: 'SearchBar',
-  name: '搜索框',
+  name: $t('promotion.searchBar.title'),
   icon: 'lucide:search',
   property: {
     height: 28,
     showScan: false,
     borderRadius: 0,
-    placeholder: '搜索商品',
+    placeholder: $t('promotion.searchBar.property.placeholder'),
     placeholderPosition: 'left',
     backgroundColor: 'rgb(238, 238, 238)',
     textColor: 'rgb(150, 151, 153)',

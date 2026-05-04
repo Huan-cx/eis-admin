@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { PageConfigProperty } from './config';
 
+import { $t } from '#/locales';
+
 import { useVModel } from '@vueuse/core';
 import { Form, FormItem, Textarea } from 'ant-design-vue';
 
@@ -19,24 +21,24 @@ const formData = useVModel(props, 'modelValue', emit);
 
 <template>
   <Form :model="formData" :label-col="{ span: 6 }" :wrapper-col="{ span: 18 }">
-    <FormItem label="页面描述" name="description">
+    <FormItem :label="$t('promotion.pageConfig.property.description')" name="description">
       <Textarea
         v-model:value="formData!.description"
-        placeholder="用户通过微信分享给朋友时，会自动显示页面描述"
+        :placeholder="$t('promotion.pageConfig.property.descriptionPlaceholder')"
         :rows="3"
       />
     </FormItem>
-    <FormItem label="背景颜色" name="backgroundColor">
+    <FormItem :label="$t('promotion.pageConfig.property.bgColor')" name="backgroundColor">
       <ColorInput v-model="formData!.backgroundColor" />
     </FormItem>
-    <FormItem label="背景图片" name="backgroundImage">
+    <FormItem :label="$t('promotion.pageConfig.property.bgImage')" name="backgroundImage">
       <UploadImg
         v-model="formData!.backgroundImage"
         :limit="1"
         :show-description="false"
       >
         <!-- TODO @芋艿：这里不提示；是不是组件得封装下；-->
-        <template #tip>建议宽度 750px</template>
+        <template #tip>{{ $t('promotion.pageConfig.property.bgImageTip') }}</template>
       </UploadImg>
     </FormItem>
   </Form>

@@ -1,3 +1,5 @@
+import { $t } from '#/locales';
+
 /** 会员终端统计图配置 */
 export function getTerminalChartOptions(data: any[]): any {
   return {
@@ -12,7 +14,7 @@ export function getTerminalChartOptions(data: any[]): any {
     },
     series: [
       {
-        name: '会员终端',
+        name: $t('statistics.member.terminal.title'),
         type: 'pie',
         label: {
           show: false,

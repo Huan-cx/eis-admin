@@ -4,6 +4,8 @@ import type { VideoPlayerProperty } from './config';
 import { useVModel } from '@vueuse/core';
 import { Form, FormItem, Slider, Switch } from 'ant-design-vue';
 
+import { $t } from '#/locales';
+
 import UploadFile from '#/components/upload/file-upload.vue';
 import UploadImg from '#/components/upload/image-upload.vue';
 
@@ -22,7 +24,7 @@ const formData = useVModel(props, 'modelValue', emit);
 <template>
   <ComponentContainerProperty v-model="formData.style">
     <template #style>
-      <FormItem label="高度" name="height">
+      <FormItem :label="$t('promotion.videoPlayer.property.height')" name="height">
         <Slider v-model:value="formData.style.height" :max="500" :min="100" />
       </FormItem>
     </template>
@@ -31,7 +33,7 @@ const formData = useVModel(props, 'modelValue', emit);
       :label-col="{ span: 6 }"
       :wrapper-col="{ span: 18 }"
     >
-      <FormItem label="上传视频" name="videoUrl">
+      <FormItem :label="$t('promotion.videoPlayer.property.uploadVideo')" name="videoUrl">
         <UploadFile
           v-model="formData.videoUrl"
           :file-type="['mp4']"
@@ -40,7 +42,7 @@ const formData = useVModel(props, 'modelValue', emit);
           class="min-w-[80px]"
         />
       </FormItem>
-      <FormItem label="上传封面" name="posterUrl">
+      <FormItem :label="$t('promotion.videoPlayer.property.uploadCover')" name="posterUrl">
         <UploadImg
           v-model="formData.posterUrl"
           draggable="false"
@@ -50,10 +52,10 @@ const formData = useVModel(props, 'modelValue', emit);
           :show-description="false"
         >
           <!-- TODO @芋艿：这里不提示；是不是组件得封装下；-->
-          <template #tip> 建议宽度750 </template>
+          <template #tip>{{ $t('promotion.videoPlayer.property.coverTip') }}</template>
         </UploadImg>
       </FormItem>
-      <FormItem label="自动播放" name="autoplay">
+      <FormItem :label="$t('promotion.videoPlayer.property.autoPlay')" name="autoplay">
         <Switch v-model:checked="formData.autoplay" />
       </FormItem>
     </Form>

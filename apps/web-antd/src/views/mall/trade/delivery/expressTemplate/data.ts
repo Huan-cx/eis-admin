@@ -5,6 +5,7 @@ import { DICT_TYPE } from '@vben/constants';
 import { getDictOptions } from '@vben/hooks';
 
 import { z } from '#/adapter/form';
+import { $t } from '#/locales';
 
 /** 计费方式列标题映射 */
 export const CHARGE_MODE_TITLE_MAP: Record<
@@ -14,16 +15,37 @@ export const CHARGE_MODE_TITLE_MAP: Record<
     startCountTitle: string;
   }
 > = {
-  1: { startCountTitle: '首件', extraCountTitle: '续件' },
-  2: { startCountTitle: '首件重量(kg)', extraCountTitle: '续件重量(kg)' },
-  3: { startCountTitle: '首件体积(m³)', extraCountTitle: '续件体积(m³)' },
+  1: {
+    startCountTitle: $t(
+      'trade.delivery.expressTemplate.chargeMode.piece.start',
+    ),
+    extraCountTitle: $t(
+      'trade.delivery.expressTemplate.chargeMode.piece.extra',
+    ),
+  },
+  2: {
+    startCountTitle: $t(
+      'trade.delivery.expressTemplate.chargeMode.weight.start',
+    ),
+    extraCountTitle: $t(
+      'trade.delivery.expressTemplate.chargeMode.weight.extra',
+    ),
+  },
+  3: {
+    startCountTitle: $t(
+      'trade.delivery.expressTemplate.chargeMode.volume.start',
+    ),
+    extraCountTitle: $t(
+      'trade.delivery.expressTemplate.chargeMode.volume.extra',
+    ),
+  },
 };
 
 /** 包邮方式列标题映射 */
 export const FREE_MODE_TITLE_MAP: Record<number, { freeCountTitle: string }> = {
-  1: { freeCountTitle: '包邮件数' },
-  2: { freeCountTitle: '包邮重量(kg)' },
-  3: { freeCountTitle: '包邮体积(m³)' },
+  1: { freeCountTitle: $t('trade.delivery.expressTemplate.freeMode.piece') },
+  2: { freeCountTitle: $t('trade.delivery.expressTemplate.freeMode.weight') },
+  3: { freeCountTitle: $t('trade.delivery.expressTemplate.freeMode.volume') },
 };
 
 /** 运费设置表格列 */
@@ -34,7 +56,7 @@ export function useChargesColumns(
   return [
     {
       field: 'countries',
-      title: '区域',
+      title: $t('trade.delivery.expressTemplate.grid.countries'),
       minWidth: 300,
       slots: { default: 'countries' },
     },
@@ -46,7 +68,7 @@ export function useChargesColumns(
     },
     {
       field: 'startPrice',
-      title: '运费(元)',
+      title: $t('trade.delivery.expressTemplate.grid.startPrice'),
       width: 120,
       slots: { default: 'startPrice' },
     },
@@ -58,12 +80,12 @@ export function useChargesColumns(
     },
     {
       field: 'extraPrice',
-      title: '续费(元)',
+      title: $t('trade.delivery.expressTemplate.grid.extraPrice'),
       width: 120,
       slots: { default: 'extraPrice' },
     },
     {
-      title: '操作',
+      title: $t('common.action'),
       width: 80,
       fixed: 'right',
       slots: { default: 'actions' },
@@ -91,7 +113,7 @@ export function useFreesColumns(
     },
     {
       field: 'freePrice',
-      title: '包邮金额(元)',
+      title: $t('trade.delivery.expressTemplate.grid.freePrice'),
       width: 120,
       slots: { default: 'freePrice' },
     },
@@ -118,15 +140,15 @@ export function useFormSchema(): VbenFormSchema[] {
     {
       component: 'Input',
       fieldName: 'name',
-      label: '模板名称',
+      label: $t('trade.delivery.expressTemplate.form.name'),
       componentProps: {
-        placeholder: '请输入模板名称',
+        placeholder: $t('trade.delivery.expressTemplate.form.namePlaceholder'),
       },
       rules: 'required',
     },
     {
       fieldName: 'chargeMode',
-      label: '计费方式',
+      label: $t('trade.delivery.expressTemplate.form.chargeMode'),
       component: 'RadioGroup',
       componentProps: {
         options: getDictOptions(DICT_TYPE.EXPRESS_CHARGE_MODE, 'number'),
@@ -137,23 +159,23 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'sort',
-      label: '显示顺序',
+      label: $t('trade.delivery.expressTemplate.form.sort'),
       component: 'InputNumber',
       componentProps: {
-        placeholder: '请输入显示顺序',
+        placeholder: $t('trade.delivery.expressTemplate.form.sortPlaceholder'),
         min: 0,
       },
       rules: 'required',
     },
     {
       fieldName: 'charges',
-      label: '运费设置',
+      label: $t('trade.delivery.expressTemplate.form.charges'),
       component: 'Input',
       formItemClass: 'col-span-3',
     },
     {
       fieldName: 'frees',
-      label: '包邮设置',
+      label: $t('trade.delivery.expressTemplate.form.frees'),
       component: 'Input',
       formItemClass: 'col-span-3',
     },
@@ -165,19 +187,21 @@ export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
       fieldName: 'name',
-      label: '模板名称',
+      label: $t('trade.delivery.expressTemplate.form.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入模板名称',
+        placeholder: $t('trade.delivery.expressTemplate.form.namePlaceholder'),
         allowClear: true,
       },
     },
     {
       fieldName: 'chargeMode',
-      label: '计费方式',
+      label: $t('trade.delivery.expressTemplate.form.chargeMode'),
       component: 'Select',
       componentProps: {
-        placeholder: '请选择计费方式',
+        placeholder: $t(
+          'trade.delivery.expressTemplate.form.chargeModePlaceholder',
+        ),
         allowClear: true,
         options: getDictOptions(DICT_TYPE.EXPRESS_CHARGE_MODE, 'number'),
       },
@@ -190,17 +214,17 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
   return [
     {
       field: 'id',
-      title: '编号',
+      title: $t('common.id'),
       minWidth: 100,
     },
     {
       field: 'name',
-      title: '模板名称',
+      title: $t('trade.delivery.expressTemplate.grid.name'),
       minWidth: 200,
     },
     {
       field: 'chargeMode',
-      title: '计费方式',
+      title: $t('trade.delivery.expressTemplate.grid.chargeMode'),
       minWidth: 100,
       cellRender: {
         name: 'CellDict',
@@ -209,12 +233,12 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'sort',
-      title: '显示顺序',
+      title: $t('trade.delivery.expressTemplate.grid.sort'),
       minWidth: 100,
     },
     {
       field: 'createTime',
-      title: '创建时间',
+      title: $t('common.createTime'),
       minWidth: 180,
       formatter: 'formatDateTime',
     },

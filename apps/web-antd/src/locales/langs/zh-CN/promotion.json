@@ -1,0 +1,779 @@
+{
+  "article": {
+    "title": "【营销】文章管理",
+    "list": "文章列表",
+    "name": "文章名称",
+    "category": "文章分类",
+    "cover": "封面图片",
+    "viewCount": "浏览量",
+    "sort": "排序",
+    "status": "状态",
+    "createTime": "创建时间",
+    "content": "文章内容",
+    "description": "文章摘要",
+    "introduction": "文章简介",
+    "i18n": "国际化",
+    "metaTitle": {
+      "label": "SEO标题",
+      "placeholder": "请输入SEO标题"
+    },
+    "metaDescription": {
+      "label": "SEO描述",
+      "placeholder": "请输入SEO描述"
+    },
+    "slug": {
+      "label": "路径别名",
+      "placeholder": "请输入路径别名"
+    },
+    "form": {
+      "title": "文章标题",
+      "categoryId": "文章分类",
+      "author": "文章作者",
+      "introduction": "文章简介",
+      "picUrl": "文章封面",
+      "recommendHot": "是否热门",
+      "recommendBanner": "是否轮播图",
+      "spuId": "商品关联",
+      "sort": "排序",
+      "status": "状态",
+      "content": "文章内容",
+      "createTime": "创建时间"
+    },
+    "placeholder": {
+      "title": "请输入文章标题",
+      "description": "请输入文章摘要",
+      "category": "请选择文章分类",
+      "categoryId": "请选择文章分类",
+      "author": "请输入文章作者",
+      "introduction": "请输入文章简介",
+      "picUrl": "请上传文章封面",
+      "sort": "请输入排序",
+      "status": "请选择状态"
+    },
+    "grid": {
+      "id": "编号",
+      "title": "标题",
+      "picUrl": "封面",
+      "categoryId": "分类",
+      "browseCount": "浏览量",
+      "author": "作者",
+      "introduction": "文章简介",
+      "sort": "排序",
+      "status": "状态",
+      "createTime": "创建时间",
+      "actions": "操作"
+    },
+    "category": {
+      "title": "文章分类",
+      "list": "文章分类列表",
+      "form": {
+        "name": "分类名称",
+        "picUrl": "分类图片",
+        "sort": "显示顺序",
+        "status": "状态",
+        "createTime": "创建时间"
+      },
+      "placeholder": {
+        "name": "请输入分类名称",
+        "picUrl": "请上传分类图片",
+        "sort": "请输入显示顺序",
+        "status": "请选择状态"
+      },
+      "grid": {
+        "id": "编号",
+        "name": "分类名称",
+        "picUrl": "分类图片",
+        "status": "状态",
+        "sort": "排序",
+        "createTime": "创建时间",
+        "actions": "操作"
+      }
+    }
+  },
+  "banner": {
+    "title": "【营销】Banner 管理",
+    "list": "Banner 列表",
+    "form": {
+      "title": "Banner 标题",
+      "picUrl": "图片地址",
+      "position": "定位",
+      "url": "跳转地址",
+      "sort": "排序",
+      "status": "状态",
+      "memo": "描述",
+      "createTime": "创建时间"
+    },
+    "placeholder": {
+      "title": "请输入 Banner 标题",
+      "picUrl": "请上传图片",
+      "url": "请输入跳转地址",
+      "sort": "请输入排序",
+      "status": "请选择活动状态",
+      "memo": "请输入描述"
+    },
+    "grid": {
+      "title": "Banner标题",
+      "picUrl": "图片",
+      "createTime": "创建时间",
+      "actions": "操作"
+    }
+  },
+  "bargain": {
+    "title": "【营销】砍价活动",
+    "list": "砍价活动列表",
+    "name": "活动名称",
+    "startTime": "开始时间",
+    "endTime": "结束时间",
+    "status": "活动状态",
+    "minPrice": "最低砍价",
+    "helpCount": "帮砍次数",
+    "stock": "活动库存",
+    "salesCount": "销量",
+    "close": "关闭",
+    "closing": "关闭中...",
+    "closeSuccess": "关闭成功",
+    "confirmClose": "确认关闭该砍价活动吗？",
+    "record": {
+      "title": "砍价记录列表",
+      "form": {
+        "status": "砍价状态",
+        "createTime": "创建时间"
+      },
+      "placeholder": {
+        "status": "请选择砍价状态"
+      },
+      "grid": {
+        "id": "编号",
+        "avatar": "用户头像",
+        "nickname": "用户昵称",
+        "createTime": "发起时间",
+        "activityName": "砍价活动",
+        "bargainMinPrice": "最低价",
+        "bargainPrice": "当前价",
+        "helpMaxCount": "总砍价次数",
+        "helpCount": "剩余砍价次数",
+        "endTime": "结束时间",
+        "orderId": "订单编号",
+        "actions": "操作"
+      },
+      "helpGrid": {
+        "userId": "用户编号",
+        "avatar": "用户头像",
+        "nickname": "用户昵称",
+        "reducePrice": "砍价金额",
+        "createTime": "助力时间"
+      },
+      "action": {
+        "help": "助力"
+      }
+    },
+    "placeholder": {
+      "name": "请输入活动名称"
+    },
+    "activity": {
+      "name": "活动名称",
+      "status": "活动状态",
+      "title": "砍价活动",
+      "form": {
+        "name": "活动名称",
+        "startTime": "开始时间",
+        "endTime": "结束时间",
+        "helpMaxCount": "助力人数",
+        "bargainCount": "砍价次数",
+        "totalLimitCount": "购买限制",
+        "randomMinPrice": "最小砍价金额(元)",
+        "randomMaxPrice": "最大砍价金额(元)",
+        "spuId": "砍价商品",
+        "selectProduct": "请选择砍价商品",
+        "activityStock": "活动库存",
+        "rules": {
+          "bargainFirstPrice": "商品砍价起始价格必须大于 0 ！！！",
+          "bargainMinPrice": "商品砍价底价不能小于 0 ！！！",
+          "stock": "商品活动库存必须大于等于 1 ！！！"
+        }
+      },
+      "grid": {
+        "id": "活动编号",
+        "name": "活动名称",
+        "activityTime": "活动时间",
+        "picUrl": "商品图片",
+        "spuName": "商品标题",
+        "bargainFirstPrice": "起始价格",
+        "bargainMinPrice": "砍价底价",
+        "recordUserCount": "总砍价人数",
+        "recordSuccessUserCount": "成功砍价人数",
+        "helpUserCount": "助力人数",
+        "status": "活动状态",
+        "stock": "库存",
+        "totalStock": "总库存",
+        "createTime": "创建时间",
+        "action": "操作"
+      },
+      "placeholder": {
+        "name": "请输入活动名称",
+        "status": "请选择活动状态",
+        "startTime": "请选择开始时间",
+        "endTime": "请选择结束时间",
+        "helpMaxCount": "达到该人数才能砍到低价",
+        "bargainCount": "最大帮砍次数",
+        "totalLimitCount": "最大购买次数",
+        "randomMinPrice": "用户每次砍价的最小金额",
+        "randomMaxPrice": "用户每次砍价的最大金额"
+      }
+    }
+  },
+  "combination": {
+    "title": "【营销】拼团活动",
+    "list": "拼团活动列表",
+    "name": "活动名称",
+    "startTime": "开始时间",
+    "endTime": "结束时间",
+    "status": "活动状态",
+    "groupSize": "成团人数",
+    "stock": "活动库存",
+    "salesCount": "销量",
+    "close": "关闭",
+    "closing": "关闭中...",
+    "closeSuccess": "关闭成功",
+    "confirmClose": "确认关闭该拼团活动吗？",
+    "record": {
+      "title": "拼团记录列表",
+      "form": {
+        "status": "拼团状态",
+        "createTime": "创建时间"
+      },
+      "placeholder": {
+        "status": "请选择拼团状态",
+        "startTime": "开始时间",
+        "endTime": "结束时间"
+      },
+      "grid": {
+        "id": "拼团编号",
+        "avatar": "头像",
+        "nickname": "昵称",
+        "headId": "开团团长",
+        "picUrl": "拼团商品图",
+        "spuName": "拼团商品",
+        "activityName": "拼团活动",
+        "userSize": "几人团",
+        "userCount": "参与人数",
+        "createTime": "参团时间",
+        "endTime": "结束时间",
+        "actions": "操作"
+      },
+      "userGrid": {
+        "id": "编号",
+        "avatar": "用户头像",
+        "nickname": "用户昵称",
+        "headId": "开团团长",
+        "head": "团长",
+        "member": "团员",
+        "createTime": "参团时间",
+        "endTime": "结束时间"
+      },
+      "action": {
+        "viewUsers": "查看成员"
+      }
+    },
+    "placeholder": {
+      "name": "请输入活动名称"
+    },
+    "activity": {
+      "name": "活动名称",
+      "status": "活动状态",
+      "title": "拼团活动",
+      "form": {
+        "name": "活动名称",
+        "startTime": "开始时间",
+        "endTime": "结束时间",
+        "userSize": "拼团人数",
+        "limitDuration": "限制时长",
+        "totalLimitCount": "总限购数量",
+        "singleLimitCount": "单次限购数量",
+        "virtualGroup": "虚拟成团",
+        "spuId": "拼团商品",
+        "selectProduct": "请选择拼团商品"
+      },
+      "placeholder": {
+        "name": "请输入活动名称",
+        "status": "请选择活动状态",
+        "startTime": "请选择开始时间",
+        "endTime": "请选择结束时间",
+        "userSize": "达到该人数即成团",
+        "limitDuration": "限制时长(小时)",
+        "totalLimitCount": "请输入总限购数量",
+        "singleLimitCount": "请输入单次限购数量"
+      },
+      "grid": {
+        "id": "活动编号",
+        "activityTime": "活动时间",
+        "picUrl": "商品图片",
+        "spuName": "商品标题",
+        "marketPrice": "原价",
+        "combinationPrice": "拼团价",
+        "groupCount": "开团组数",
+        "groupSuccessCount": "成团组数",
+        "recordCount": "购买次数",
+        "createTime": "创建时间",
+        "actions": "操作"
+      }
+    }
+  },
+  "coupon": {
+    "title": "【营销】优惠券",
+    "list": "优惠券列表",
+    "name": "优惠券名称",
+    "type": "优惠券类型",
+    "denominations": "面额",
+    "minPrice": "最低消费",
+    "status": "状态",
+    "receiveCount": "领取数量",
+    "takeType": "领取方式",
+    "form": {
+      "nickname": "会员昵称",
+      "createTime": "领取时间"
+    },
+    "grid": {
+      "productScope": "类型",
+      "discount": "优惠",
+      "discountLevel": "优惠力度",
+      "useTime": "使用时间",
+      "actions": "操作"
+    },
+    "usedCount": "使用数量",
+    "all": "全部",
+    "recycle": "回收",
+    "recycling": "回收中...",
+    "recycleSuccess": "回收成功",
+    "confirmRecycle": "回收将会收回会员领取的待使用的优惠券，已使用的将无法回收，确定要回收所选优惠券吗？",
+    "placeholder": {
+      "nickname": "请输入会员昵称",
+      "name": "请输入优惠券名称"
+    },
+    "sendForm": {
+      "grid": {
+        "discount": "优惠金额 / 折扣",
+        "validity": "有效期限",
+        "remainedCount": "剩余数量",
+        "actions": "操作"
+      },
+      "action": {
+        "send": "发送"
+      }
+    },
+    "selectForm": {
+      "discountType": "优惠类型",
+      "placeholder": {
+        "discountType": "请选择优惠类型"
+      },
+      "grid": {
+        "productScope": "类型",
+        "useTime": "使用时间",
+        "totalCount": "发放数量",
+        "takeLimit": "领取上限"
+      }
+    },
+    "formatter": {
+      "unknown": "未知",
+      "unlimited": "不限制",
+      "perPerson": "张/人",
+      "to": "至",
+      "validAfterReceive": "领取后第",
+      "daysValid": "天内可用"
+    },
+    "template": {
+      "formTitle": "优惠券模板",
+      "name": "优惠券名称",
+      "description": "优惠券描述",
+      "productScope": "优惠券类型",
+      "product": "商品",
+      "category": "商品分类",
+      "discountType": "优惠类型",
+      "discountPrice": "优惠券面额",
+      "discountPercent": "优惠券折扣",
+      "discountLimitPrice": "最多优惠",
+      "usePrice": "满多少元可以使用",
+      "takeType": "领取方式",
+      "totalCount": "发放数量",
+      "takeLimitCount": "每人限领个数",
+      "validityType": "有效期类型",
+      "validTimes": "固定日期",
+      "fixedStartTerm": "领取日期",
+      "status": "状态",
+      "createTime": "创建时间",
+      "unit": {
+        "yuan": "元",
+        "percent": "折",
+        "count": "张",
+        "day": "天",
+        "dayStart": "第",
+        "to": "至",
+        "dayValid": "天有效"
+      },
+      "formatter": {
+        "unknown": "未知",
+        "unlimited": "不限制",
+        "perPerson": "张/人",
+        "to": "至",
+        "validAfterReceive": "领取后第",
+        "daysValid": "天内可用"
+      },
+      "placeholder": {
+        "name": "请输入优惠券名称",
+        "description": "请输入优惠券描述",
+        "discountPrice": "请输入优惠金额，单位：元",
+        "discountPercent": "优惠券折扣不能小于 1 折，且不可大于 9.9 折",
+        "discountLimitPrice": "请输入最多优惠",
+        "usePrice": "无门槛请设为 0",
+        "totalCount": "发放数量，没有之后不能领取或发放，-1 为不限制",
+        "takeLimitCount": "设置为 -1 时，可无限领取",
+        "fixedStartTerm": "第 0 为今天生效",
+        "fixedEndTerm": "请输入结束天数",
+        "searchName": "请输入优惠券名",
+        "discountType": "请选择优惠类型",
+        "status": "请选择优惠券状态"
+      },
+      "grid": {
+        "productScope": "类型",
+        "discount": "优惠",
+        "discountLevel": "优惠力度",
+        "validTime": "使用时间",
+        "remainedCount": "剩余数量",
+        "takeLimitCount": "领取上限",
+        "actions": "操作"
+      }
+    }
+  },
+  "seckill": {
+    "title": "【营销】秒杀活动",
+    "list": "秒杀活动列表",
+    "name": "活动名称",
+    "close": "关闭",
+    "closing": "关闭中...",
+    "closeSuccess": "关闭成功",
+    "confirmClose": "确认关闭该秒杀活动吗？",
+    "config": {
+      "form": {
+        "name": "秒杀时段名称",
+        "startTime": "开始时间点",
+        "endTime": "结束时间点",
+        "sliderPicUrls": "秒杀轮播图",
+        "status": "状态",
+        "createTime": "创建时间"
+      },
+      "placeholder": {
+        "name": "请输入秒杀时段名称",
+        "startTime": "请选择开始时间点",
+        "endTime": "请选择结束时间点",
+        "status": "请选择状态"
+      },
+      "grid": {
+        "checkedChildren": "启用",
+        "unCheckedChildren": "禁用",
+        "actions": "操作"
+      }
+    },
+    "status": "活动状态",
+    "activity": {
+      "name": "活动名称",
+      "status": "活动状态",
+      "form": {
+        "name": "秒杀活动名称",
+        "startTime": "活动开始时间",
+        "endTime": "活动结束时间",
+        "configIds": "秒杀时段",
+        "totalLimitCount": "总限购数量",
+        "singleLimitCount": "单次限购数量",
+        "sort": "排序",
+        "remark": "备注",
+        "spuId": "秒杀商品"
+      },
+      "placeholder": {
+        "name": "请输入活动名称",
+        "status": "请选择活动状态",
+        "startTime": "请选择活动开始时间",
+        "endTime": "请选择活动结束时间",
+        "configIds": "请选择秒杀时段",
+        "totalLimitCount": "请输入总限购数量",
+        "singleLimitCount": "请输入单次限购数量",
+        "sort": "请输入排序",
+        "remark": "请输入备注"
+      }
+    }
+  },
+  "discountActivity": {
+    "title": "【营销】限时折扣活动",
+    "list": "限时折扣活动列表",
+    "name": "活动名称",
+    "startTime": "开始时间",
+    "endTime": "结束时间",
+    "status": "活动状态",
+    "discountPercent": "折扣比例",
+    "close": "关闭",
+    "closing": "关闭中...",
+    "closeSuccess": "关闭成功",
+    "confirmClose": "确认关闭该限时折扣活动吗？",
+    "placeholder": {
+      "name": "请输入活动名称",
+      "status": "请选择活动状态",
+      "startTime": "请选择开始时间",
+      "endTime": "请选择结束时间",
+      "remark": "请输入备注"
+    },
+    "form": {
+      "startTime": "开始时间",
+      "endTime": "结束时间",
+      "remark": "备注",
+      "spuIds": "活动商品",
+      "activeTime": "活动时间"
+    },
+    "grid": {
+      "id": "活动编号",
+      "createTime": "创建时间",
+      "actions": "操作"
+    }
+  },
+  "rewardActivity": {
+    "title": "【营销】满减送活动",
+    "list": "满减送活动列表",
+    "name": "活动名称",
+    "startTime": "开始时间",
+    "endTime": "结束时间",
+    "status": "活动状态",
+    "close": "关闭",
+    "closing": "关闭中...",
+    "closeSuccess": "关闭成功",
+    "confirmClose": "确认关闭该满减送活动吗？",
+    "placeholder": {
+      "name": "请输入活动名称",
+      "status": "请选择活动状态",
+      "remark": "请输入备注",
+      "rules": "请添加至少一条优惠规则"
+    },
+    "form": {
+      "name": "活动名称",
+      "remark": "备注",
+      "startAndEndTime": "活动时间",
+      "conditionType": "条件类型",
+      "productScope": "活动范围",
+      "productSpuIds": "选择商品",
+      "productCategoryIds": "选择分类",
+      "rules": "优惠设置"
+    },
+    "grid": {
+      "productScope": "活动范围",
+      "startTime": "活动开始时间",
+      "endTime": "活动结束时间",
+      "createTime": "创建时间",
+      "actions": "操作"
+    }
+  },
+  "point": {
+    "title": "【营销】积分商城",
+    "list": "积分商品列表",
+    "name": "商品名称",
+    "close": "关闭",
+    "closing": "关闭中...",
+    "closeSuccess": "关闭成功",
+    "confirmClose": "确认关闭该积分商品吗？",
+    "activity": {
+      "status": "活动状态",
+      "form": {
+        "sort": "排序",
+        "remark": "备注",
+        "spuId": "活动商品"
+      },
+      "placeholder": {
+        "status": "请选择活动状态",
+        "sort": "请输入排序",
+        "remark": "请输入备注"
+      },
+      "grid": {
+        "id": "活动编号",
+        "picUrl": "商品图片",
+        "spuName": "商品标题",
+        "marketPrice": "原价",
+        "stock": "库存",
+        "totalStock": "总库存",
+        "redeemedQuantity": "已兑换数量",
+        "createTime": "创建时间",
+        "actions": "操作"
+      }
+    }
+  },
+  "diy": {
+    "editor": {
+      "tab": {
+        "content": "内容",
+        "style": "样式"
+      },
+      "style": {
+        "margin": "外部边距",
+        "padding": "内部边距",
+        "borderRadius": "边框圆角",
+        "top": "上",
+        "right": "右",
+        "bottom": "下",
+        "left": "左",
+        "topLeft": "上左",
+        "topRight": "上右",
+        "bottomLeft": "下左",
+        "bottomRight": "下右",
+        "bgType": "组件背景",
+        "solidColor": "纯色",
+        "image": "图片",
+        "selectColor": "选择颜色",
+        "uploadImage": "上传图片",
+        "imageTip": "建议宽度 750px"
+      }
+    },
+    "page": {
+      "title": "【营销】装修页面",
+      "list": "装修页面列表",
+      "name": "页面名称",
+      "decorate": "装修",
+      "form": {
+        "name": "页面名称",
+        "remark": "备注",
+        "previewPicUrls": "预览图",
+        "createTime": "创建时间"
+      },
+      "placeholder": {
+        "name": "请输入页面名称",
+        "remark": "请输入备注"
+      },
+      "grid": {
+        "id": "编号",
+        "actions": "操作"
+      }
+    },
+    "template": {
+      "title": "【营销】装修模板",
+      "list": "模板列表",
+      "form": {
+        "name": "模板名称",
+        "remark": "备注",
+        "previewPicUrls": "预览图",
+        "createTime": "创建时间"
+      },
+      "placeholder": {
+        "name": "请输入模板名称",
+        "remark": "请输入备注"
+      },
+      "grid": {
+        "id": "编号",
+        "used": "是否使用",
+        "actions": "操作"
+      },
+      "action": {
+        "decorate": "装修",
+        "use": "使用"
+      }
+    }
+  },
+  "kefu": {
+    "title": "【营销】在线客服",
+    "session": "会话列表",
+    "member": "会员信息",
+    "orderHistory": "订单记录",
+    "productHistory": "浏览记录",
+    "quickReply": "快捷回复",
+    "send": "发送",
+    "sendSuccess": "发送成功"
+  },
+  "appLink": {
+    "mall": "商城",
+    "home": "首页",
+    "productCategory": "商品分类",
+    "cart": "购物车",
+    "userCenter": "个人中心",
+    "productSearch": "商品搜索",
+    "customPage": "自定义页面",
+    "customerService": "客服",
+    "systemSettings": "系统设置",
+    "faq": "常见问题",
+    "product": "商品",
+    "productList": "商品列表",
+    "productDetail": "商品详情",
+    "groupProductDetail": "拼团商品详情",
+    "seckillProductDetail": "秒杀商品详情",
+    "marketing": "营销活动",
+    "groupOrder": "拼团订单",
+    "marketingProduct": "营销商品",
+    "groupActivity": "拼团活动",
+    "seckillActivity": "秒杀活动",
+    "pointActivity": "积分商城活动",
+    "signIn": "签到中心",
+    "couponCenter": "优惠券中心",
+    "couponDetail": "优惠券详情",
+    "articleDetail": "文章详情",
+    "distribution": "分销商城",
+    "distributionCenter": "分销中心",
+    "promotionProduct": "推广商品",
+    "distributionOrder": "分销订单",
+    "myTeam": "我的团队",
+    "payment": "支付",
+    "recharge": "充值余额",
+    "rechargeLog": "充值记录",
+    "user": "用户中心",
+    "userInfo": "用户信息",
+    "userOrder": "用户订单",
+    "afterSaleOrder": "售后订单",
+    "productCollect": "商品收藏",
+    "browseHistory": "浏览记录",
+    "addressManage": "地址管理",
+    "userCommission": "用户佣金",
+    "userBalance": "用户余额",
+    "userPoint": "用户积分"
+  },
+  "tabBar": {
+    "title": "底部导航",
+    "item": {
+      "home": "首页",
+      "category": "分类",
+      "cart": "购物车",
+      "profile": "我的"
+    },
+    "theme": {
+      "red": "中国红",
+      "orange": "桔橙",
+      "gold": "明黄",
+      "green": "橄榄绿",
+      "cyan": "天青",
+      "blue": "海蓝",
+      "purple": "姹紫",
+      "brightRed": "嫣红",
+      "forestGreen": "森绿",
+      "mauve": "木槿",
+      "pink": "桃粉",
+      "brown": "棕褐",
+      "grey": "玄灰",
+      "gray": "草灰",
+      "black": "墨黑"
+    },
+    "property": {
+      "theme": "主题",
+      "defaultColor": "默认颜色",
+      "activeColor": "选中颜色",
+      "navBg": "导航背景",
+      "solidColor": "纯色",
+      "image": "图片",
+      "selectColor": "选择颜色",
+      "selectImage": "选择图片",
+      "bgImgTip": "建议尺寸 375 * 50",
+      "iconSettings": "图标设置",
+      "iconTips": "拖动左上角的小圆点可对其排序, 图标建议尺寸 44*44",
+      "notSelected": "未选中",
+      "selected": "已选中",
+      "text": "文字",
+      "textPlaceholder": "请输入文字",
+      "url": "链接"
+    }
+  },
+  "promotionArticle": {
+    "property": {
+      "article": "文章",
+      "selectArticle": "请选择文章"
+    }
+  }
+}

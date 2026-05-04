@@ -1,3 +1,5 @@
+import { $t } from '#/locales';
+
 /** 会员性别比例图表配置 */
 export function getSexChartOptions(data: any[]): any {
   return {
@@ -12,7 +14,7 @@ export function getSexChartOptions(data: any[]): any {
     },
     series: [
       {
-        name: '会员性别',
+        name: $t('statistics.member.sex.title'),
         type: 'pie',
         roseType: 'area',
         label: {

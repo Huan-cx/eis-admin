@@ -12,6 +12,7 @@ import { sendCoupon } from '#/api/mall/promotion/coupon/coupon';
 import { getCouponTemplatePage } from '#/api/mall/promotion/coupon/couponTemplate';
 
 import { useFormSchema, useGridColumns } from './send-form-data';
+import { $t } from '#/locales';
 
 /** 发送优惠券 */
 async function handleSendCoupon(row: MallCouponTemplateApi.CouponTemplate) {
@@ -21,7 +22,7 @@ async function handleSendCoupon(row: MallCouponTemplateApi.CouponTemplate) {
       templateId: row.id,
       userIds: modalApi.getData().userIds,
     });
-    message.success('发送成功');
+    message.success($t('promotion.coupon.sendForm.success'));
     await modalApi.close();
   } finally {
     modalApi.unlock();
@@ -66,13 +67,13 @@ const [Modal, modalApi] = useVbenModal({
 </script>
 
 <template>
-  <Modal title="发送优惠劵" class="w-1/2">
+  <Modal :title="$t('promotion.coupon.sendForm.title')" class="w-1/2">
     <Grid>
       <template #actions="{ row }">
         <TableAction
           :actions="[
             {
-              label: '发送',
+              label: $t('promotion.coupon.sendForm.action.send'),
               type: 'link',
               auth: ['promotion:coupon:send'],
               onClick: () => handleSendCoupon(row),

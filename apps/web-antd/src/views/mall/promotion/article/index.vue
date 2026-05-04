@@ -83,18 +83,20 @@ const [Grid, gridApi] = useVbenVxeGrid({
   <Page auto-content-height>
     <template #doc>
       <DocAlert
-        title="【营销】内容管理"
+        :title="$t('promotion.article.title')"
         url="https://doc.iocoder.cn/mall/promotion-content/"
       />
     </template>
 
     <FormModal @success="handleRefresh" />
-    <Grid table-title="文章列表">
+    <Grid :table-title="$t('promotion.article.list')">
       <template #toolbar-tools>
         <TableAction
           :actions="[
             {
-              label: $t('ui.actionTitle.create', ['文章']),
+              label: $t('ui.actionTitle.create', [
+                $t('promotion.article.name'),
+              ]),
               type: 'primary',
               icon: ACTION_ICON.ADD,
               auth: ['promotion:article:create'],

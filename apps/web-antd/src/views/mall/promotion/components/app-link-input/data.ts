@@ -26,193 +26,195 @@ export enum APP_LINK_TYPE_ENUM {
   PRODUCT_LIST, // 商品列表
 }
 
+import { $t } from '#/locales';
+
 /** APP 链接列表（做一下持久化？） */
 export const APP_LINK_GROUP_LIST = [
   {
-    name: '商城',
+    name: $t('promotion.appLink.mall'),
     links: [
       {
-        name: '首页',
+        name: $t('promotion.appLink.home'),
         path: '/pages/index/index',
       },
       {
-        name: '商品分类',
+        name: $t('promotion.appLink.productCategory'),
         path: '/pages/index/category',
         type: APP_LINK_TYPE_ENUM.PRODUCT_CATEGORY_LIST,
       },
       {
-        name: '购物车',
+        name: $t('promotion.appLink.cart'),
         path: '/pages/index/cart',
       },
       {
-        name: '个人中心',
+        name: $t('promotion.appLink.userCenter'),
         path: '/pages/index/user',
       },
       {
-        name: '商品搜索',
+        name: $t('promotion.appLink.productSearch'),
         path: '/pages/index/search',
       },
       {
-        name: '自定义页面',
+        name: $t('promotion.appLink.customPage'),
         path: '/pages/index/page',
         type: APP_LINK_TYPE_ENUM.DIY_PAGE_DETAIL,
       },
       {
-        name: '客服',
+        name: $t('promotion.appLink.customerService'),
         path: '/pages/chat/index',
       },
       {
-        name: '系统设置',
+        name: $t('promotion.appLink.systemSettings'),
         path: '/pages/public/setting',
       },
       {
-        name: '常见问题',
+        name: $t('promotion.appLink.faq'),
         path: '/pages/public/faq',
       },
     ],
   },
   {
-    name: '商品',
+    name: $t('promotion.appLink.product'),
     links: [
       {
-        name: '商品列表',
+        name: $t('promotion.appLink.productList'),
         path: '/pages/goods/list',
         type: APP_LINK_TYPE_ENUM.PRODUCT_LIST,
       },
       {
-        name: '商品详情',
+        name: $t('promotion.appLink.productDetail'),
         path: '/pages/goods/index',
         type: APP_LINK_TYPE_ENUM.PRODUCT_DETAIL_NORMAL,
       },
       {
-        name: '拼团商品详情',
+        name: $t('promotion.appLink.groupProductDetail'),
         path: '/pages/goods/groupon',
         type: APP_LINK_TYPE_ENUM.PRODUCT_DETAIL_COMBINATION,
       },
       {
-        name: '秒杀商品详情',
+        name: $t('promotion.appLink.seckillProductDetail'),
         path: '/pages/goods/seckill',
         type: APP_LINK_TYPE_ENUM.PRODUCT_DETAIL_SECKILL,
       },
     ],
   },
   {
-    name: '营销活动',
+    name: $t('promotion.appLink.marketing'),
     links: [
       {
-        name: '拼团订单',
+        name: $t('promotion.appLink.groupOrder'),
         path: '/pages/activity/groupon/order',
       },
       {
-        name: '营销商品',
+        name: $t('promotion.appLink.marketingProduct'),
         path: '/pages/activity/index',
       },
       {
-        name: '拼团活动',
+        name: $t('promotion.appLink.groupActivity'),
         path: '/pages/activity/groupon/list',
         type: APP_LINK_TYPE_ENUM.ACTIVITY_COMBINATION,
       },
       {
-        name: '秒杀活动',
+        name: $t('promotion.appLink.seckillActivity'),
         path: '/pages/activity/seckill/list',
         type: APP_LINK_TYPE_ENUM.ACTIVITY_SECKILL,
       },
       {
-        name: '积分商城活动',
+        name: $t('promotion.appLink.pointActivity'),
         path: '/pages/activity/point/list',
         type: APP_LINK_TYPE_ENUM.ACTIVITY_POINT,
       },
       {
-        name: '签到中心',
+        name: $t('promotion.appLink.signIn'),
         path: '/pages/app/sign',
       },
       {
-        name: '优惠券中心',
+        name: $t('promotion.appLink.couponCenter'),
         path: '/pages/coupon/list',
       },
       {
-        name: '优惠券详情',
+        name: $t('promotion.appLink.couponDetail'),
         path: '/pages/coupon/detail',
         type: APP_LINK_TYPE_ENUM.COUPON_DETAIL,
       },
       {
-        name: '文章详情',
+        name: $t('promotion.appLink.articleDetail'),
         path: '/pages/public/richtext',
         type: APP_LINK_TYPE_ENUM.ARTICLE_DETAIL,
       },
     ],
   },
   {
-    name: '分销商城',
+    name: $t('promotion.appLink.distribution'),
     links: [
       {
-        name: '分销中心',
+        name: $t('promotion.appLink.distributionCenter'),
         path: '/pages/commission/index',
       },
       {
-        name: '推广商品',
+        name: $t('promotion.appLink.promotionProduct'),
         path: '/pages/commission/goods',
       },
       {
-        name: '分销订单',
+        name: $t('promotion.appLink.distributionOrder'),
         path: '/pages/commission/order',
       },
       {
-        name: '我的团队',
+        name: $t('promotion.appLink.myTeam'),
         path: '/pages/commission/team',
       },
     ],
   },
   {
-    name: '支付',
+    name: $t('promotion.appLink.payment'),
     links: [
       {
-        name: '充值余额',
+        name: $t('promotion.appLink.recharge'),
         path: '/pages/pay/recharge',
       },
       {
-        name: '充值记录',
+        name: $t('promotion.appLink.rechargeLog'),
         path: '/pages/pay/recharge-log',
       },
     ],
   },
   {
-    name: '用户中心',
+    name: $t('promotion.appLink.user'),
     links: [
       {
-        name: '用户信息',
+        name: $t('promotion.appLink.userInfo'),
         path: '/pages/user/info',
       },
       {
-        name: '用户订单',
+        name: $t('promotion.appLink.userOrder'),
         path: '/pages/order/list',
       },
       {
-        name: '售后订单',
+        name: $t('promotion.appLink.afterSaleOrder'),
         path: '/pages/order/aftersale/list',
       },
       {
-        name: '商品收藏',
+        name: $t('promotion.appLink.productCollect'),
         path: '/pages/user/goods-collect',
       },
       {
-        name: '浏览记录',
+        name: $t('promotion.appLink.browseHistory'),
         path: '/pages/user/goods-log',
       },
       {
-        name: '地址管理',
+        name: $t('promotion.appLink.addressManage'),
         path: '/pages/user/address/list',
       },
       {
-        name: '用户佣金',
+        name: $t('promotion.appLink.userCommission'),
         path: '/pages/user/wallet/commission',
       },
       {
-        name: '用户余额',
+        name: $t('promotion.appLink.userBalance'),
         path: '/pages/user/wallet/money',
       },
       {
-        name: '用户积分',
+        name: $t('promotion.appLink.userPoint'),
         path: '/pages/user/wallet/score',
       },
     ],

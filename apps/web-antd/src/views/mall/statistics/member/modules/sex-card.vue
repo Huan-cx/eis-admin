@@ -5,6 +5,8 @@ import type { MallMemberStatisticsApi } from '#/api/mall/statistics/member';
 
 import { onMounted, ref } from 'vue';
 
+import { $t } from '#/locales';
+
 import { DICT_TYPE } from '@vben/constants';
 import { getDictOptions } from '@vben/hooks';
 import { EchartsUI, useEcharts } from '@vben/plugins/echarts';
@@ -28,7 +30,7 @@ async function loadMemberSexStatisticsList() {
   try {
     const list = await getMemberSexStatisticsList();
     const dictDataList = getDictOptions(DICT_TYPE.SYSTEM_USER_SEX, 'number');
-    dictDataList.push({ label: '未知', value: null } as any);
+    dictDataList.push({ label: $t('common.unknown'), value: null } as any);
     const chartData = dictDataList.map((dictData: any) => {
       const userCount = list.find(
         (item: MallMemberStatisticsApi.SexStatisticsRespVO) =>
@@ -54,7 +56,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Card :bordered="false" title="会员性别比例" class="h-full">
+  <Card :bordered="false" :title="$t('statistics.member.sex.title')" class="h-full">
     <Spin :spinning="loading">
       <EchartsUI ref="chartRef" />
     </Spin>

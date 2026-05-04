@@ -118,19 +118,23 @@ const [Grid, gridApi] = useVbenVxeGrid({
     </template>
 
     <FormModal @success="handleRefresh" />
-    <Grid table-title="商品分类列表">
+    <Grid :table-title="$t('mall-product.category.list')">
       <template #toolbar-tools>
         <TableAction
           :actions="[
             {
-              label: $t('ui.actionTitle.create', ['分类']),
+              label: $t('ui.actionTitle.create', [
+                $t('mall-product.category.name'),
+              ]),
               type: 'primary',
               icon: ACTION_ICON.ADD,
               auth: ['product:category:create'],
               onClick: handleCreate,
             },
             {
-              label: isExpanded ? '收缩' : '展开',
+              label: isExpanded
+                ? $t('mall-product.category.actions.collapse')
+                : $t('mall-product.category.actions.expand'),
               type: 'primary',
               onClick: handleExpand,
             },
@@ -141,7 +145,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
         <TableAction
           :actions="[
             {
-              label: '新增下级',
+              label: $t('mall-product.category.actions.append'),
               type: 'link',
               icon: ACTION_ICON.ADD,
               auth: ['product:category:create'],
@@ -155,7 +159,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
               onClick: handleEdit.bind(null, row),
             },
             {
-              label: '查看商品',
+              label: $t('mall-product.category.actions.viewSpu'),
               type: 'link',
               icon: ACTION_ICON.VIEW,
               auth: ['product:category:update'],

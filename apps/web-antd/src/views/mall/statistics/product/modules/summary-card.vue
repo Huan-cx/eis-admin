@@ -121,7 +121,7 @@ async function handleExport() {
 </script>
 
 <template>
-  <Card :bordered="false" title="商品概况" class="h-full">
+  <Card :bordered="false" :title="$t('statistics.product.summary.title')" class="h-full">
     <template #extra>
       <!-- 查询条件 -->
       <div class="flex items-center gap-2">
@@ -140,8 +140,8 @@ async function handleExport() {
     <Row :gutter="16" class="mb-4">
       <Col :xl="8" :md="8" :sm="24" class="mb-4">
         <SummaryCard
-          title="商品浏览量"
-          tooltip="在选定条件下，所有商品详情页被访问的次数，一个人在统计时间内访问多次记为多次"
+          :title="$t('statistics.product.summary.browseCount')"
+          :tooltip="$t('statistics.product.summary.browseCountTip')"
           icon="lucide:eye"
           icon-color="text-blue-500"
           icon-bg-color="bg-blue-100"
@@ -157,8 +157,8 @@ async function handleExport() {
       </Col>
       <Col :xl="8" :md="8" :sm="24" class="mb-4">
         <SummaryCard
-          title="商品访客数"
-          tooltip="在选定条件下，访问任何商品详情页的人数，一个人在统计时间范围内访问多次只记为一个"
+          :title="$t('statistics.product.summary.browseUserCount')"
+          :tooltip="$t('statistics.product.summary.browseUserCountTip')"
           icon="lucide:users"
           icon-color="text-purple-500"
           icon-bg-color="bg-purple-100"
@@ -174,8 +174,8 @@ async function handleExport() {
       </Col>
       <Col :xl="8" :md="8" :sm="24" class="mb-4">
         <SummaryCard
-          title="支付件数"
-          tooltip="在选定条件下，成功付款订单的商品件数之和"
+          :title="$t('statistics.product.summary.orderPayCount')"
+          :tooltip="$t('statistics.product.summary.orderPayCountTip')"
           icon="lucide:credit-card"
           icon-color="text-yellow-500"
           icon-bg-color="bg-yellow-100"
@@ -191,8 +191,8 @@ async function handleExport() {
       </Col>
       <Col :xl="8" :md="8" :sm="24" class="mb-4">
         <SummaryCard
-          title="支付金额"
-          tooltip="在选定条件下，成功付款订单的商品金额之和"
+          :title="$t('statistics.product.summary.orderPayPrice')"
+          :tooltip="$t('statistics.product.summary.orderPayPriceTip')"
           icon="lucide:banknote"
           icon-color="text-green-500"
           icon-bg-color="bg-green-100"
@@ -209,8 +209,8 @@ async function handleExport() {
       </Col>
       <Col :xl="8" :md="8" :sm="24" class="mb-4">
         <SummaryCard
-          title="退款件数"
-          tooltip="在选定条件下，成功退款的商品件数之和"
+          :title="$t('statistics.product.summary.afterSaleCount')"
+          :tooltip="$t('statistics.product.summary.afterSaleCountTip')"
           icon="lucide:wallet"
           icon-color="text-cyan-500"
           icon-bg-color="bg-cyan-100"
@@ -226,8 +226,8 @@ async function handleExport() {
       </Col>
       <Col :xl="8" :md="8" :sm="24" class="mb-4">
         <SummaryCard
-          title="退款金额"
-          tooltip="在选定条件下，成功退款的商品金额之和"
+          :title="$t('statistics.product.summary.afterSaleRefundPrice')"
+          :tooltip="$t('statistics.product.summary.afterSaleRefundPriceTip')"
           icon="lucide:receipt"
           icon-color="text-orange-500"
           icon-bg-color="bg-orange-100"

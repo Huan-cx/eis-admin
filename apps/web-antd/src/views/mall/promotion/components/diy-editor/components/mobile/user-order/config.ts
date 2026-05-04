@@ -1,5 +1,7 @@
 import type { ComponentStyle, DiyComponent } from '../../../util';
 
+import { $t } from '#/locales';
+
 /** 用户订单属性 */
 export interface UserOrderProperty {
   style: ComponentStyle; // 组件样式
@@ -8,7 +10,7 @@ export interface UserOrderProperty {
 /** 定义组件 */
 export const component = {
   id: 'UserOrder',
-  name: '用户订单',
+  name: $t('promotion.userOrder.title'),
   icon: 'lucide:clipboard-list',
   property: {
     style: {

@@ -1,0 +1,282 @@
+{
+  "brand": {
+    "title": "品牌管理",
+    "list": "品牌列表",
+    "name": "品牌名称",
+    "picUrl": "品牌图片",
+    "sort": "品牌排序",
+    "status": "品牌状态",
+    "description": "品牌描述",
+    "metaTitle": "SEO标题",
+    "metaDescription": "SEO描述",
+    "slug": "路径别名",
+    "placeholder": {
+      "name": "请输入品牌名称",
+      "picUrl": "请上传品牌图片",
+      "sort": "请输入品牌排序",
+      "status": "请选择品牌状态",
+      "description": "请输入品牌描述",
+      "metaTitle": "请输入SEO标题",
+      "metaDescription": "请输入SEO描述",
+      "slug": "请输入路径别名"
+    }
+  },
+  "category": {
+    "title": "分类管理",
+    "list": "商品分类列表",
+    "parent": "上级分类",
+    "top": "顶级分类",
+    "name": "分类名称",
+    "picUrl": "移动端分类图片",
+    "sort": "分类排序",
+    "status": "状态",
+    "metaTitle": {
+      "label": "SEO标题",
+      "placeholder": "请输入SEO标题"
+    },
+    "metaDescription": {
+      "label": "SEO描述",
+      "placeholder": "请输入SEO描述"
+    },
+    "slug": {
+      "label": "路径别名",
+      "placeholder": "请输入路径别名"
+    },
+    "placeholder": {
+      "parent": "请选择上级分类",
+      "name": "请输入分类名称",
+      "picUrl": "请上传移动端分类图片",
+      "sort": "请输入分类排序"
+    },
+    "actions": {
+      "append": "新增下级",
+      "viewSpu": "查看商品",
+      "expand": "展开全部",
+      "collapse": "折叠全部"
+    }
+  },
+  "comment": {
+    "title": "评价管理",
+    "list": "评价列表",
+    "spu": "商品",
+    "sku": "商品规格",
+    "userAvatar": "用户头像",
+    "userNickname": "用户名称",
+    "content": "评价内容",
+    "descriptionScores": "商品评分",
+    "benefitScores": "服务评分",
+    "picUrls": "评价图片",
+    "replyStatus": "回复状态",
+    "replied": "已回复",
+    "unreplied": "未回复",
+    "orderId": "订单编号",
+    "createTime": "评价时间",
+    "id": "评价编号",
+    "skuPicUrl": "商品图片",
+    "skuProperties": "商品属性",
+    "descriptionScore": "商品评分",
+    "benefitScore": "服务评分",
+    "replyContent": "回复内容",
+    "visible": "是否可见",
+    "placeholder": {
+      "spu": "请选择商品",
+      "sku": "请选择商品规格",
+      "userAvatar": "请上传用户头像",
+      "userNickname": "请输入用户名称",
+      "content": "请输入评价内容",
+      "picUrls": "请上传评价图片",
+      "spuName": "请输入商品名称",
+      "orderId": "请输入订单编号"
+    },
+    "actions": {
+      "create": "虚拟评价",
+      "reply": "回复",
+      "show": "显示",
+      "hide": "隐藏"
+    }
+  },
+  "property": {
+    "title": "属性管理",
+    "property": "属性",
+    "propertyValue": "属性值",
+    "name": "属性名称",
+    "remark": "备注",
+    "id": "属性编号",
+    "valueName": "属性值名称",
+    "valueId": "属性值编号",
+    "propertyItem": "属性项",
+    "placeholder": {
+      "name": "请输入属性名称",
+      "remark": "请输入备注",
+      "property": "请选择属性",
+      "propertyItem": "请选择属性项",
+      "valueName": "请输入属性值名称"
+    },
+    "list": {
+      "property": "属性列表",
+      "value": "属性值列表"
+    },
+    "actions": {
+      "createProperty": "新增属性",
+      "createValue": "新增属性值"
+    }
+  },
+  "propertyValue": {
+    "name": "属性值"
+  },
+  "home": {
+    "title": "商城手册（功能开启）",
+    "today": "今日",
+    "yesterdayData": "昨日数据",
+    "sales": "销售额",
+    "visitCount": "用户访问数",
+    "orderCount": "订单数",
+    "newUser": "新增用户",
+    "operationData": "运营数据",
+    "orderUndelivered": "待发货订单",
+    "orderAfterSaleApply": "退款中订单",
+    "orderWaitePickUp": "待核销订单",
+    "productAlertStock": "库存预警",
+    "productForSale": "上架商品",
+    "productInWarehouse": "仓库商品",
+    "withdrawAuditing": "提现待审核",
+    "rechargePrice": "账户充值",
+    "shortcut": "快捷入口",
+    "userManagement": "用户管理",
+    "productManagement": "商品管理",
+    "orderManagement": "订单管理",
+    "afterSaleManagement": "售后管理",
+    "brokerageManagement": "分销管理",
+    "coupon": "优惠券",
+    "bargainActivity": "拼团活动",
+    "commissionWithdraw": "佣金提现",
+    "memberStatistics": "用户统计",
+    "tradeTrend": "交易量趋势",
+    "timeRange": {
+      "day30": "30 天",
+      "week": "周",
+      "month": "月",
+      "year": "年"
+    },
+    "orderAmount": "订单金额",
+    "orderQuantity": "订单数量",
+    "lastWeek": "上周",
+    "thisWeek": "本周",
+    "lastMonth": "上月",
+    "thisMonth": "本月",
+    "lastYear": "去年",
+    "thisYear": "今年",
+    "weekDays": {
+      "sunday": "周日",
+      "monday": "周一",
+      "tuesday": "周二",
+      "wednesday": "周三",
+      "thursday": "周四",
+      "friday": "周五",
+      "saturday": "周六"
+    },
+    "month": "月",
+    "registerCount": "注册数"
+  },
+  "spu": {
+    "title": "商品管理",
+    "name": "商品名称",
+    "category": "商品分类",
+    "id": "商品编号",
+    "picUrl": "商品图片",
+    "status": "销售状态",
+    "price": "售价",
+    "marketPrice": "市场价",
+    "costPrice": "成本价",
+    "salesCount": "销量",
+    "virtualSalesCount": "虚拟销量",
+    "stock": "库存",
+    "browseCount": "浏览量",
+    "sort": "排序",
+    "createTime": "创建时间",
+    "keyword": "商品关键词",
+    "introduction": "商品介绍",
+    "description": "商品描述",
+    "statusOptions": {
+      "onSale": "上架",
+      "offSale": "下架"
+    },
+    "tabs": {
+      "selling": "在售",
+      "warehouse": "仓库中",
+      "soldOut": "已售罄",
+      "warning": "库存预警",
+      "recycle": "回收站"
+    },
+    "placeholder": {
+      "name": "请输入商品名称",
+      "category": "请选择商品分类",
+      "brand": "请选择商品品牌",
+      "keyword": "请输入商品关键词",
+      "introduction": "请输入商品介绍",
+      "description": "请输入商品详情",
+      "metaTitle": "请输入SEO标题",
+      "metaDescription": "请输入SEO描述",
+      "slug": "请输入路径别名"
+    },
+    "actions": {
+      "create": "新增商品",
+      "edit": "编辑商品",
+      "delete": "删除商品",
+      "export": "导出",
+      "detail": "详情",
+      "restore": "恢复",
+      "recycle": "移入回收站"
+    },
+    "form": {
+      "basic": "基础设置",
+      "sku": "价格库存",
+      "delivery": "物流设置",
+      "description": "商品详情",
+      "other": "其它设置",
+      "name": "商品名称",
+      "categoryName": "商品分类",
+      "brand": "商品品牌",
+      "keyword": "商品关键词",
+      "introduction": "商品介绍",
+      "picUrl": "商品封面图",
+      "sliderPicUrls": "商品轮播图",
+      "subCommissionType": "分销类型",
+      "subCommissionDefault": "默认",
+      "subCommissionCustom": "自定义",
+      "specType": "商品规格",
+      "specSingle": "单规格",
+      "specMultiple": "多规格",
+      "productAttributes": "商品属性",
+      "batchSetting": "批量设置",
+      "specList": "规格列表",
+      "deliveryTypes": "配送方式",
+      "deliveryTemplate": "运费模板",
+      "descriptionContent": "商品详情",
+      "sort": "商品排序",
+      "giveIntegral": "赠送积分",
+      "virtualSalesCount": "虚拟销量",
+      "addProperty": "添加属性",
+      "metaTitle": "SEO标题",
+      "metaDescription": "SEO描述",
+      "slug": "路径别名"
+    },
+    "validation": {
+      "stock": "商品库存必须大于等于 1！",
+      "price": "商品销售价格必须大于等于 0.01 元！",
+      "marketPrice": "商品市场价格必须大于等于 0.01 元！",
+      "costPrice": "商品成本价格必须大于等于 0.00 元！",
+      "nameEmpty": "商品名称不能为空",
+      "skuIncomplete": "【库存价格】不完善，请填写相关信息"
+    }
+  },
+  "i18n": {
+    "title": "商品多语言",
+    "save": "保存语言",
+    "placeholder": "请输入{0}的{1}语言",
+    "noLanguages": "暂无可用语言",
+    "validation": {
+      "saveFirst": "请先保存商品后再添加语言"
+    }
+  }
+}

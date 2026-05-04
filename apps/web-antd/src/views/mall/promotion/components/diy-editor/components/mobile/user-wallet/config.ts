@@ -1,5 +1,7 @@
 import type { ComponentStyle, DiyComponent } from '../../../util';
 
+import { $t } from '#/locales';
+
 /** 用户资产属性 */
 export interface UserWalletProperty {
   style: ComponentStyle; // 组件样式
@@ -8,7 +10,7 @@ export interface UserWalletProperty {
 /** 定义组件 */
 export const component = {
   id: 'UserWallet',
-  name: '用户资产',
+  name: $t('promotion.userWallet.title'),
   icon: 'lucide:wallet',
   property: {
     style: {

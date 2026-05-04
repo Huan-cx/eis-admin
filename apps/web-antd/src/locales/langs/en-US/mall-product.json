@@ -1,0 +1,282 @@
+{
+  "brand": {
+    "title": "Brand Management",
+    "list": "Brand List",
+    "name": "Brand Name",
+    "picUrl": "Brand Image",
+    "sort": "Brand Sort",
+    "status": "Brand Status",
+    "description": "Brand Description",
+    "metaTitle": "SEO Title",
+    "metaDescription": "SEO Description",
+    "slug": "Slug",
+    "placeholder": {
+      "name": "Please enter brand name",
+      "picUrl": "Please upload brand image",
+      "sort": "Please enter brand sort",
+      "status": "Please select brand status",
+      "description": "Please enter brand description",
+      "metaTitle": "Please enter SEO title",
+      "metaDescription": "Please enter SEO description",
+      "slug": "Please enter slug"
+    }
+  },
+  "category": {
+    "title": "Category Management",
+    "list": "Product Category List",
+    "parent": "Parent Category",
+    "top": "Top Category",
+    "name": "Category Name",
+    "picUrl": "Mobile Category Image",
+    "sort": "Category Sort",
+    "status": "Status",
+    "metaTitle": {
+      "label": "SEO Title",
+      "placeholder": "Please enter SEO title"
+    },
+    "metaDescription": {
+      "label": "SEO Description",
+      "placeholder": "Please enter SEO description"
+    },
+    "slug": {
+      "label": "Slug",
+      "placeholder": "Please enter slug"
+    },
+    "placeholder": {
+      "parent": "Please select parent category",
+      "name": "Please enter category name",
+      "picUrl": "Please upload mobile category image",
+      "sort": "Please enter category sort"
+    },
+    "actions": {
+      "append": "Add Subcategory",
+      "viewSpu": "View Products",
+      "expand": "Expand All",
+      "collapse": "Collapse All"
+    }
+  },
+  "comment": {
+    "title": "Comment Management",
+    "list": "Comment List",
+    "spu": "Product",
+    "sku": "Product Spec",
+    "userAvatar": "User Avatar",
+    "userNickname": "User Name",
+    "content": "Comment Content",
+    "descriptionScores": "Product Rating",
+    "benefitScores": "Service Rating",
+    "picUrls": "Comment Images",
+    "replyStatus": "Reply Status",
+    "replied": "Replied",
+    "unreplied": "Unreplied",
+    "orderId": "Order ID",
+    "createTime": "Comment Time",
+    "id": "Comment ID",
+    "skuPicUrl": "Product Image",
+    "skuProperties": "Product Properties",
+    "descriptionScore": "Product Rating",
+    "benefitScore": "Service Rating",
+    "replyContent": "Reply Content",
+    "visible": "Visible",
+    "placeholder": {
+      "spu": "Please select product",
+      "sku": "Please select product spec",
+      "userAvatar": "Please upload user avatar",
+      "userNickname": "Please enter user name",
+      "content": "Please enter comment content",
+      "picUrls": "Please upload comment images",
+      "spuName": "Please enter product name",
+      "orderId": "Please enter order ID"
+    },
+    "actions": {
+      "create": "Create Virtual Comment",
+      "reply": "Reply",
+      "show": "Show",
+      "hide": "Hide"
+    }
+  },
+  "property": {
+    "title": "Property Management",
+    "property": "Property",
+    "propertyValue": "Property Value",
+    "name": "Property Name",
+    "remark": "Remark",
+    "id": "Property ID",
+    "valueName": "Property Value Name",
+    "valueId": "Property Value ID",
+    "propertyItem": "Property Item",
+    "placeholder": {
+      "name": "Please enter property name",
+      "remark": "Please enter remark",
+      "property": "Please select property",
+      "propertyItem": "Please select property item",
+      "valueName": "Please enter property value name"
+    },
+    "list": {
+      "property": "Property List",
+      "value": "Property Value List"
+    },
+    "actions": {
+      "createProperty": "Create Property",
+      "createValue": "Create Property Value"
+    }
+  },
+  "propertyValue": {
+    "name": "Property Value"
+  },
+  "home": {
+    "title": "Mall Manual (Feature Enabled)",
+    "today": "Today",
+    "yesterdayData": "Yesterday Data",
+    "sales": "Sales",
+    "visitCount": "User Visits",
+    "orderCount": "Order Count",
+    "newUser": "New Users",
+    "operationData": "Operation Data",
+    "orderUndelivered": "Pending Delivery",
+    "orderAfterSaleApply": "Refunding Orders",
+    "orderWaitePickUp": "Pending Verification",
+    "productAlertStock": "Stock Alert",
+    "productForSale": "On Sale",
+    "productInWarehouse": "In Warehouse",
+    "withdrawAuditing": "Withdraw Pending",
+    "rechargePrice": "Wallet Recharge",
+    "shortcut": "Shortcuts",
+    "userManagement": "User Management",
+    "productManagement": "Product Management",
+    "orderManagement": "Order Management",
+    "afterSaleManagement": "After Sale",
+    "brokerageManagement": "Brokerage",
+    "coupon": "Coupon",
+    "bargainActivity": "Group Buy",
+    "commissionWithdraw": "Withdraw",
+    "memberStatistics": "User Statistics",
+    "tradeTrend": "Trade Trend",
+    "timeRange": {
+      "day30": "30 Days",
+      "week": "Week",
+      "month": "Month",
+      "year": "Year"
+    },
+    "orderAmount": "Order Amount",
+    "orderQuantity": "Order Quantity",
+    "lastWeek": "Last Week",
+    "thisWeek": "This Week",
+    "lastMonth": "Last Month",
+    "thisMonth": "This Month",
+    "lastYear": "Last Year",
+    "thisYear": "This Year",
+    "weekDays": {
+      "sunday": "Sun",
+      "monday": "Mon",
+      "tuesday": "Tue",
+      "wednesday": "Wed",
+      "thursday": "Thu",
+      "friday": "Fri",
+      "saturday": "Sat"
+    },
+    "month": "M",
+    "registerCount": "Registrations"
+  },
+  "spu": {
+    "title": "Product Management",
+    "name": "Product Name",
+    "category": "Product Category",
+    "id": "Product ID",
+    "picUrl": "Product Image",
+    "status": "Sales Status",
+    "price": "Price",
+    "marketPrice": "Market Price",
+    "costPrice": "Cost Price",
+    "salesCount": "Sales Count",
+    "virtualSalesCount": "Virtual Sales",
+    "stock": "Stock",
+    "browseCount": "Browse Count",
+    "sort": "Sort",
+    "createTime": "Create Time",
+    "keyword": "Product Keyword",
+    "introduction": "Product Introduction",
+    "description": "Product Description",
+    "statusOptions": {
+      "onSale": "On Sale",
+      "offSale": "Off Sale"
+    },
+    "tabs": {
+      "selling": "Selling",
+      "warehouse": "Warehouse",
+      "soldOut": "Sold Out",
+      "warning": "Low Stock",
+      "recycle": "Recycle Bin"
+    },
+    "placeholder": {
+      "name": "Please enter product name",
+      "category": "Please select product category",
+      "brand": "Please select product brand",
+      "keyword": "Please enter product keyword",
+      "introduction": "Please enter product introduction",
+      "description": "Please enter product description",
+      "metaTitle": "Please enter SEO title",
+      "metaDescription": "Please enter SEO description",
+      "slug": "Please enter slug"
+    },
+    "actions": {
+      "create": "Create Product",
+      "edit": "Edit Product",
+      "delete": "Delete Product",
+      "export": "Export",
+      "detail": "Detail",
+      "restore": "Restore",
+      "recycle": "Recycle"
+    },
+    "form": {
+      "basic": "Basic Settings",
+      "sku": "Price & Stock",
+      "delivery": "Delivery Settings",
+      "description": "Product Details",
+      "other": "Other Settings",
+      "name": "Product Name",
+      "categoryName": "Product Category",
+      "brand": "Product Brand",
+      "keyword": "Product Keyword",
+      "introduction": "Product Introduction",
+      "picUrl": "Product Cover",
+      "sliderPicUrls": "Product Slider",
+      "subCommissionType": "Commission Type",
+      "subCommissionDefault": "Default",
+      "subCommissionCustom": "Custom",
+      "specType": "Product Spec",
+      "specSingle": "Single Spec",
+      "specMultiple": "Multiple Spec",
+      "productAttributes": "Product Attributes",
+      "batchSetting": "Batch Setting",
+      "specList": "Spec List",
+      "deliveryTypes": "Delivery Types",
+      "deliveryTemplate": "Delivery Template",
+      "descriptionContent": "Product Description",
+      "sort": "Product Sort",
+      "giveIntegral": "Give Points",
+      "virtualSalesCount": "Virtual Sales",
+      "addProperty": "Add Property",
+      "metaTitle": "SEO Title",
+      "metaDescription": "SEO Description",
+      "slug": "Slug"
+    },
+    "validation": {
+      "stock": "Stock must be greater than or equal to 1!",
+      "price": "Price must be greater than or equal to 0.01!",
+      "marketPrice": "Market price must be greater than or equal to 0.01!",
+      "costPrice": "Cost price must be greater than or equal to 0.00!",
+      "nameEmpty": "Product name cannot be empty",
+      "skuIncomplete": "【Price & Stock】Incomplete, please fill in relevant information"
+    }
+  },
+  "i18n": {
+    "title": "Multi-language Translation",
+    "save": "Save Translation",
+    "placeholder": "Please enter {0} {1} translation",
+    "noLanguages": "No available languages",
+    "validation": {
+      "saveFirst": "Please save the product first before adding translations"
+    }
+  }
+}
