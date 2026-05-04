@@ -1,5 +1,7 @@
 import type { ComponentStyle, DiyComponent } from '../../../util';
 
+import { $t } from '#/locales';
+
 /** 视频播放属性 */
 export interface VideoPlayerProperty {
   videoUrl: string; // 视频链接
@@ -16,7 +18,7 @@ export interface VideoPlayerStyle extends ComponentStyle {
 /** 定义组件 */
 export const component = {
   id: 'VideoPlayer',
-  name: '视频播放',
+  name: $t('promotion.videoPlayer.title'),
   icon: 'lucide:video',
   property: {
     videoUrl: '',

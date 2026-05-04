@@ -99,7 +99,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
   <Page auto-content-height>
     <FormModal @success="handleRefresh" />
     <BindFormModal />
-    <Grid table-title="门店列表">
+    <Grid :table-title="$t('trade.delivery.pickUpStore.title')">
       <template #toolbar-tools>
         <TableAction
           :actions="[
@@ -124,7 +124,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
               onClick: handleEdit.bind(null, row),
             },
             {
-              label: '绑定店员',
+              label: $t('trade.delivery.pickUpStore.action.bind'),
               type: 'link',
               icon: ACTION_ICON.ADD,
               auth: ['trade:delivery:pick-up-store:update'],

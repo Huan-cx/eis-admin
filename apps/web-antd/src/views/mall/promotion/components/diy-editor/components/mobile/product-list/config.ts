@@ -1,5 +1,7 @@
 import type { ComponentStyle, DiyComponent } from '../../../util';
 
+import { $t } from '#/locales';
+
 /** 商品栏属性 */
 export interface ProductListProperty {
   layoutType: 'horizSwiper' | 'threeCol' | 'twoCol'; // 布局类型：双列 | 三列 | 水平滑动
@@ -27,7 +29,7 @@ export interface ProductListFieldProperty {
 /** 定义组件 */
 export const component = {
   id: 'ProductList',
-  name: '商品栏',
+  name: $t('promotion.productList.title'),
   icon: 'fluent:text-column-two-24-filled',
   property: {
     layoutType: 'twoCol',

@@ -37,8 +37,8 @@ const emit = defineEmits(['success']);
 const formData = ref<MallSeckillActivityApi.SeckillActivity>();
 const getTitle = computed(() => {
   return formData.value?.id
-    ? $t('ui.actionTitle.edit', ['秒杀活动'])
-    : $t('ui.actionTitle.create', ['秒杀活动']);
+    ? $t('ui.actionTitle.edit', [$t('promotion.seckill.activity.title')])
+    : $t('ui.actionTitle.create', [$t('promotion.seckill.activity.title')]);
 });
 
 const [Form, formApi] = useVbenForm({
@@ -160,7 +160,7 @@ const [Modal, modalApi] = useVbenModal({
         spuAndSkuListRef.value?.getSkuConfigs('productConfig') || [],
       );
       if (products.length === 0) {
-        message.error('请选择秒杀商品');
+        message.error($t('promotion.seckill.activity.form.placeholder.selectProduct'));
         return;
       }
       // 价格需要转为分
@@ -239,7 +239,7 @@ const [Modal, modalApi] = useVbenModal({
             >
               <!-- 扩展列：秒杀活动特有配置 -->
               <template #default>
-                <VxeColumn align="center" min-width="168" title="秒杀库存">
+                <VxeColumn align="center" min-width="168" :title="$t('promotion.seckill.activity.form.seckillStock')">
                   <template #default="{ row: sku }">
                     <InputNumber
                       v-model:value="sku.productConfig.stock"

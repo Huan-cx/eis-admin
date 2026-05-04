@@ -4,17 +4,18 @@ import type { VxeTableGridOptions } from '#/adapter/vxe-table';
 import { DICT_TYPE } from '@vben/constants';
 import { getDictOptions } from '@vben/hooks';
 import { fenToYuan } from '@vben/utils';
+import { $t } from '#/locales';
 
 /** 列表的搜索表单 */
 export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
       fieldName: 'status',
-      label: '活动状态',
+      label: $t('promotion.point.activity.status'),
       component: 'Select',
       componentProps: {
         options: getDictOptions(DICT_TYPE.COMMON_STATUS, 'number'),
-        placeholder: '请选择活动状态',
+        placeholder: $t('promotion.point.activity.placeholder.status'),
         allowClear: true,
       },
     },
@@ -26,12 +27,12 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
   return [
     {
       field: 'id',
-      title: '活动编号',
+      title: $t('promotion.point.activity.grid.id'),
       minWidth: 80,
     },
     {
       field: 'picUrl',
-      title: '商品图片',
+      title: $t('promotion.point.activity.grid.picUrl'),
       minWidth: 80,
       cellRender: {
         name: 'CellImage',
@@ -42,18 +43,18 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'spuName',
-      title: '商品标题',
+      title: $t('promotion.point.activity.grid.spuName'),
       minWidth: 300,
     },
     {
       field: 'marketPrice',
-      title: '原价',
+      title: $t('promotion.point.activity.grid.marketPrice'),
       minWidth: 100,
       formatter: ({ row }) => `￥${fenToYuan(row.marketPrice)}`,
     },
     {
       field: 'status',
-      title: '活动状态',
+      title: $t('promotion.point.activity.status'),
       minWidth: 100,
       cellRender: {
         name: 'CellDict',
@@ -62,17 +63,17 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'stock',
-      title: '库存',
+      title: $t('promotion.point.activity.grid.stock'),
       minWidth: 80,
     },
     {
       field: 'totalStock',
-      title: '总库存',
+      title: $t('promotion.point.activity.grid.totalStock'),
       minWidth: 80,
     },
     {
       field: 'redeemedQuantity',
-      title: '已兑换数量',
+      title: $t('promotion.point.activity.grid.redeemedQuantity'),
       minWidth: 100,
       formatter: ({ row }) => {
         return (row.totalStock || 0) - (row.stock || 0);
@@ -80,12 +81,12 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'createTime',
-      title: '创建时间',
+      title: $t('promotion.point.activity.grid.createTime'),
       minWidth: 180,
       formatter: 'formatDateTime',
     },
     {
-      title: '操作',
+      title: $t('promotion.point.activity.grid.actions'),
       width: 150,
       fixed: 'right',
       slots: { default: 'actions' },
@@ -106,11 +107,11 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'sort',
-      label: '排序',
+      label: $t('promotion.point.activity.form.sort'),
       component: 'InputNumber',
       componentProps: {
         min: 0,
-        placeholder: '请输入排序',
+        placeholder: $t('promotion.point.activity.placeholder.sort'),
         class: '!w-full',
       },
       defaultValue: 0,
@@ -118,17 +119,17 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'remark',
-      label: '备注',
+      label: $t('promotion.point.activity.form.remark'),
       component: 'Textarea',
       componentProps: {
-        placeholder: '请输入备注',
+        placeholder: $t('promotion.point.activity.placeholder.remark'),
         rows: 4,
       },
       formItemClass: 'col-span-2',
     },
     {
       fieldName: 'spuId',
-      label: '活动商品',
+      label: $t('promotion.point.activity.form.spuId'),
       component: 'Input',
       rules: 'required',
       formItemClass: 'col-span-2',

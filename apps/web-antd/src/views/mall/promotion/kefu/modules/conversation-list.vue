@@ -116,7 +116,7 @@ async function updateConversationPinnedFn(pinned: boolean) {
     id: rightClickConversation.value.id,
     pinned,
   });
-  message.success(pinned ? '置顶成功' : '取消置顶成功');
+  message.success(pinned ? $t('promotion.kefu.conversation.pinSuccess') : $t('promotion.kefu.conversation.unpinSuccess'));
   // 2. 关闭右键菜单，更新会话列表
   closeRightMenu();
   await kefuStore.updateConversation(rightClickConversation.value.id);
@@ -126,7 +126,7 @@ async function updateConversationPinnedFn(pinned: boolean) {
 async function deleteConversationFn() {
   // 1. 删除会话
   confirm({
-    content: '您确定要删除该会话吗？',
+    content: $t('promotion.kefu.conversation.deleteConfirm'),
   }).then(async () => {
     await deleteConversation(rightClickConversation.value.id);
     // 2. 关闭右键菜单，更新会话列表

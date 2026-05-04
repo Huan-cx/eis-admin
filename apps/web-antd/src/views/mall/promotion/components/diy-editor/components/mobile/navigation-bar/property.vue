@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { NavigationBarProperty } from './config';
 
+import { $t } from '#/locales';
+
 import { useVModel } from '@vueuse/core';
 import {
   Card,
@@ -25,7 +27,7 @@ const props = defineProps<{ modelValue: NavigationBarProperty }>();
 const emit = defineEmits(['update:modelValue']);
 
 const rules: Record<string, any> = {
-  name: [{ required: true, message: '请输入页面名称', trigger: 'blur' }],
+  name: [{ required: true, message: $t('promotion.navigationBar.property.required'), trigger: 'blur' }],
 }; // 表单校验
 
 const formData = useVModel(props, 'modelValue', emit);
@@ -41,46 +43,46 @@ if (!formData.value._local) {
     :model="formData"
     :rules="rules"
   >
-    <FormItem label="样式" name="styleType">
+    <FormItem :label="$t('promotion.navigationBar.property.style')" name="styleType">
       <RadioGroup v-model:value="formData!.styleType">
-        <Radio value="normal">标准</Radio>
+        <Radio value="normal">{{ $t('promotion.navigationBar.property.normal') }}</Radio>
         <Tooltip
-          title="沉侵式头部仅支持微信小程序、APP，建议页面第一个组件为图片展示类组件"
+          :title="$t('promotion.navigationBar.property.innerTooltip')"
           placement="top"
         >
-          <Radio value="inner">沉浸式</Radio>
+          <Radio value="inner">{{ $t('promotion.navigationBar.property.inner') }}</Radio>
         </Tooltip>
       </RadioGroup>
     </FormItem>
     <FormItem
-      label="常驻显示"
+      :label="$t('promotion.navigationBar.property.alwaysShow')"
       name="alwaysShow"
       v-if="formData.styleType === 'inner'"
     >
       <RadioGroup v-model:value="formData!.alwaysShow">
-        <Radio :value="false">关闭</Radio>
+        <Radio :value="false">{{ $t('promotion.navigationBar.property.close') }}</Radio>
         <Tooltip
-          title="常驻显示关闭后,头部小组件将在页面滑动时淡入"
+          :title="$t('promotion.navigationBar.property.alwaysShowTooltip')"
           placement="top"
         >
-          <Radio :value="true">开启</Radio>
+          <Radio :value="true">{{ $t('promotion.navigationBar.property.open') }}</Radio>
         </Tooltip>
       </RadioGroup>
     </FormItem>
-    <FormItem label="背景类型" name="bgType">
+    <FormItem :label="$t('promotion.navigationBar.property.bgType')" name="bgType">
       <RadioGroup v-model:value="formData.bgType">
-        <Radio value="color">纯色</Radio>
-        <Radio value="img">图片</Radio>
+        <Radio value="color">{{ $t('promotion.navigationBar.property.solidColor') }}</Radio>
+        <Radio value="img">{{ $t('promotion.navigationBar.property.image') }}</Radio>
       </RadioGroup>
     </FormItem>
     <FormItem
-      label="背景颜色"
+      :label="$t('promotion.navigationBar.property.bgColor')"
       name="bgColor"
       v-if="formData.bgType === 'color'"
     >
       <ColorInput v-model="formData.bgColor" />
     </FormItem>
-    <FormItem label="背景图片" name="bgImg" v-else>
+    <FormItem :label="$t('promotion.navigationBar.property.bgImage')" name="bgImg" v-else>
       <div class="flex items-center">
         <UploadImg
           v-model="formData.bgImg"
@@ -89,13 +91,13 @@ if (!formData.value._local) {
           height="56px"
           :show-description="false"
         />
-        <span class="mb-2 ml-2 text-xs text-gray-400">建议宽度：750</span>
+        <span class="mb-2 ml-2 text-xs text-gray-400">{{ $t('promotion.navigationBar.property.bgImageTip') }}</span>
       </div>
     </FormItem>
     <Card class="property-group" :bordered="false">
       <template #title>
         <div class="flex items-center justify-between">
-          <span>内容（小程序）</span>
+          <span>{{ $t('promotion.navigationBar.property.contentMp') }}</span>
           <FormItem name="_local.previewMp" class="mb-0">
             <Checkbox
               v-model:checked="formData._local.previewMp"
@@ -103,7 +105,7 @@ if (!formData.value._local) {
                 formData._local.previewOther = !formData._local.previewMp
               "
             >
-              预览
+              {{ $t('promotion.navigationBar.property.preview') }}
             </Checkbox>
           </FormItem>
         </div>
@@ -113,7 +115,7 @@ if (!formData.value._local) {
     <Card class="property-group" :bordered="false">
       <template #title>
         <div class="flex items-center justify-between">
-          <span>内容（非小程序）</span>
+          <span>{{ $t('promotion.navigationBar.property.contentOther') }}</span>
           <FormItem name="_local.previewOther" class="mb-0">
             <Checkbox
               v-model:checked="formData._local.previewOther"

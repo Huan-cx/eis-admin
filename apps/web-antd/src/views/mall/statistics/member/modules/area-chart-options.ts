@@ -3,6 +3,8 @@ import type { MallMemberStatisticsApi } from '#/api/mall/statistics/member';
 
 import { fenToYuan } from '@vben/utils';
 
+import { $t } from '#/locales';
+
 /** 会员地域分布图表配置 */
 export function getAreaChartOptions(
   data: MallMemberStatisticsApi.AreaStatisticsRespVO[],
@@ -10,7 +12,7 @@ export function getAreaChartOptions(
   if (!data || data.length === 0) {
     return {
       title: {
-        text: '暂无数据',
+        text: $t('common.noData'),
         left: 'center',
         top: 'center',
         textStyle: {
@@ -47,17 +49,17 @@ export function getAreaChartOptions(
       formatter: (params: any) => {
         const itemData = params?.data;
         if (!itemData) {
-          return `${params?.name || ''}<br/>暂无数据`;
+          return `${params?.name || ''}<br/>${$t('common.noData')}`;
         }
         return `${itemData.areaName || params.name}<br/>
-会员数量：${itemData.userCount || 0}<br/>
-订单创建数量：${itemData.orderCreateUserCount || 0}<br/>
-订单支付数量：${itemData.orderPayUserCount || 0}<br/>
-订单支付金额：￥${Number(fenToYuan(itemData.orderPayPrice || 0)).toFixed(2)}`;
+${$t('statistics.member.area.userCount')}：${itemData.userCount || 0}<br/>
+${$t('statistics.member.area.orderCreateUserCount')}：${itemData.orderCreateUserCount || 0}<br/>
+${$t('statistics.member.area.orderPayUserCount')}：${itemData.orderPayUserCount || 0}<br/>
+${$t('statistics.member.area.orderPayPrice')}：￥${Number(fenToYuan(itemData.orderPayPrice || 0)).toFixed(2)}`;
       },
     },
     visualMap: {
-      text: ['高', '低'],
+      text: [$t('statistics.common.high'), $t('statistics.common.low')],
       realtime: false,
       calculable: true,
       top: 'middle',
@@ -70,7 +72,7 @@ export function getAreaChartOptions(
     },
     series: [
       {
-        name: '会员地域分布',
+        name: $t('statistics.member.area.title'),
         type: 'map',
         map: 'china',
         roam: false,
@@ -94,37 +96,37 @@ export function getAreaChartOptions(
 /** VXE Grid 表格列配置 */
 export function getAreaTableColumns(): VxeTableGridOptions['columns'] {
   return [
-    {
-      field: 'areaName',
-      title: '省份',
-      minWidth: 80,
-      sortable: true,
-      showOverflow: 'tooltip',
-    },
-    {
-      field: 'userCount',
-      title: '会员数量',
-      minWidth: 100,
-      sortable: true,
-    },
-    {
-      field: 'orderCreateUserCount',
-      title: '订单创建数量',
-      minWidth: 120,
-      sortable: true,
-    },
-    {
-      field: 'orderPayUserCount',
-      title: '订单支付数量',
-      minWidth: 120,
-      sortable: true,
-    },
-    {
-      field: 'orderPayPrice',
-      title: '订单支付金额',
-      minWidth: 120,
-      sortable: true,
-      formatter: 'formatFenToYuanAmount',
-    },
-  ];
+      {
+        field: 'areaName',
+        title: $t('statistics.member.area.province'),
+        minWidth: 80,
+        sortable: true,
+        showOverflow: 'tooltip',
+      },
+      {
+        field: 'userCount',
+        title: $t('statistics.member.area.userCount'),
+        minWidth: 100,
+        sortable: true,
+      },
+      {
+        field: 'orderCreateUserCount',
+        title: $t('statistics.member.area.orderCreateUserCount'),
+        minWidth: 120,
+        sortable: true,
+      },
+      {
+        field: 'orderPayUserCount',
+        title: $t('statistics.member.area.orderPayUserCount'),
+        minWidth: 120,
+        sortable: true,
+      },
+      {
+        field: 'orderPayPrice',
+        title: $t('statistics.member.area.orderPayPrice'),
+        minWidth: 120,
+        sortable: true,
+        formatter: 'formatFenToYuanAmount',
+      },
+    ];
 }

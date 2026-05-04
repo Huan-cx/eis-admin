@@ -3,6 +3,8 @@ import type { EchartsUIType } from '@vben/plugins/echarts';
 
 import { onMounted, ref } from 'vue';
 
+import { $t } from '#/locales';
+
 import { getDictOptions } from '@vben/hooks';
 import { EchartsUI, useEcharts } from '@vben/plugins/echarts';
 
@@ -48,7 +50,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Card :bordered="false" title="会员终端" class="h-full">
+  <Card :bordered="false" :title="$t('statistics.member.terminal.title')" class="h-full">
     <Spin :spinning="loading">
       <EchartsUI ref="chartRef" />
     </Spin>

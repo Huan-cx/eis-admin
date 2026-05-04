@@ -13,6 +13,7 @@ import {
 import { getDictOptions } from '@vben/hooks';
 
 import { getRangePickerDefaultProps } from '#/utils';
+import { $t } from '#/locales';
 
 import {
   discountFormat,
@@ -35,24 +36,24 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'name',
-      label: '优惠券名称',
+      label: $t('promotion.coupon.template.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入优惠券名称',
+        placeholder: $t('promotion.coupon.template.placeholder.name'),
       },
       rules: 'required',
     },
     {
       fieldName: 'description',
-      label: '优惠券描述',
+      label: $t('promotion.coupon.template.description'),
       component: 'Textarea',
       componentProps: {
-        placeholder: '请输入优惠券描述',
+        placeholder: $t('promotion.coupon.template.placeholder.description'),
       },
     },
     {
       fieldName: 'productScope',
-      label: '优惠劵类型',
+      label: $t('promotion.coupon.template.productScope'),
       component: 'RadioGroup',
       componentProps: {
         options: getDictOptions(DICT_TYPE.PROMOTION_PRODUCT_SCOPE, 'number'),
@@ -62,7 +63,7 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'productSpuIds',
-      label: '商品',
+      label: $t('promotion.coupon.template.product'),
       component: 'Input',
       dependencies: {
         triggerFields: ['productScope', 'productScopeValues'],
@@ -82,7 +83,7 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'productCategoryIds',
-      label: '商品分类',
+      label: $t('promotion.coupon.template.category'),
       component: 'Input',
       dependencies: {
         triggerFields: ['productScope', 'productScopeValues'],
@@ -109,7 +110,7 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'discountType',
-      label: '优惠类型',
+      label: $t('promotion.coupon.template.discountType'),
       component: 'RadioGroup',
       componentProps: {
         options: getDictOptions(DICT_TYPE.PROMOTION_DISCOUNT_TYPE, 'number'),
@@ -119,13 +120,13 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'discountPrice',
-      label: '优惠券面额',
+      label: $t('promotion.coupon.template.discountPrice'),
       component: 'InputNumber',
       componentProps: {
         min: 0,
         precision: 2,
-        placeholder: '请输入优惠金额，单位：元',
-        addonAfter: '元',
+        placeholder: $t('promotion.coupon.template.placeholder.discountPrice'),
+        addonAfter: $t('promotion.coupon.template.unit.yuan'),
       },
       dependencies: {
         triggerFields: ['discountType'],
@@ -136,14 +137,14 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'discountPercent',
-      label: '优惠券折扣',
+      label: $t('promotion.coupon.template.discountPercent'),
       component: 'InputNumber',
       componentProps: {
         min: 1,
         max: 9.9,
         precision: 1,
-        placeholder: '优惠券折扣不能小于 1 折，且不可大于 9.9 折',
-        addonAfter: '折',
+        placeholder: $t('promotion.coupon.template.placeholder.discountPercent'),
+        addonAfter: $t('promotion.coupon.template.unit.percent'),
       },
       dependencies: {
         triggerFields: ['discountType'],
@@ -154,13 +155,13 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'discountLimitPrice',
-      label: '最多优惠',
+      label: $t('promotion.coupon.template.discountLimitPrice'),
       component: 'InputNumber',
       componentProps: {
         min: 0,
         precision: 2,
-        placeholder: '请输入最多优惠',
-        addonAfter: '元',
+        placeholder: $t('promotion.coupon.template.placeholder.discountLimitPrice'),
+        addonAfter: $t('promotion.coupon.template.unit.yuan'),
       },
       dependencies: {
         triggerFields: ['discountType'],
@@ -171,19 +172,19 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'usePrice',
-      label: '满多少元可以使用',
+      label: $t('promotion.coupon.template.usePrice'),
       component: 'InputNumber',
       componentProps: {
         min: 0,
         precision: 2,
-        placeholder: '无门槛请设为 0',
-        addonAfter: '元',
+        placeholder: $t('promotion.coupon.template.placeholder.usePrice'),
+        addonAfter: $t('promotion.coupon.template.unit.yuan'),
       },
       rules: 'required',
     },
     {
       fieldName: 'takeType',
-      label: '领取方式',
+      label: $t('promotion.coupon.template.takeType'),
       component: 'RadioGroup',
       componentProps: {
         options: getDictOptions(DICT_TYPE.PROMOTION_COUPON_TAKE_TYPE, 'number'),
@@ -193,12 +194,12 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'totalCount',
-      label: '发放数量',
+      label: $t('promotion.coupon.template.totalCount'),
       component: 'InputNumber',
       componentProps: {
         min: -1,
-        placeholder: '发放数量，没有之后不能领取或发放，-1 为不限制',
-        addonAfter: '张',
+        placeholder: $t('promotion.coupon.template.placeholder.totalCount'),
+        addonAfter: $t('promotion.coupon.template.unit.count'),
       },
       dependencies: {
         triggerFields: ['takeType'],
@@ -209,12 +210,12 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'takeLimitCount',
-      label: '每人限领个数',
+      label: $t('promotion.coupon.template.takeLimitCount'),
       component: 'InputNumber',
       componentProps: {
         min: -1,
-        placeholder: '设置为 -1 时，可无限领取',
-        addonAfter: '张',
+        placeholder: $t('promotion.coupon.template.placeholder.takeLimitCount'),
+        addonAfter: $t('promotion.coupon.template.unit.count'),
       },
       dependencies: {
         triggerFields: ['takeType'],
@@ -224,7 +225,7 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'validityType',
-      label: '有效期类型',
+      label: $t('promotion.coupon.template.validityType'),
       component: 'RadioGroup',
       componentProps: {
         options: getDictOptions(
@@ -237,7 +238,7 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'validTimes',
-      label: '固定日期',
+      label: $t('promotion.coupon.template.validTimes'),
       component: 'RangePicker',
       componentProps: {
         ...getRangePickerDefaultProps(),
@@ -252,13 +253,13 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'fixedStartTerm',
-      label: '领取日期',
+      label: $t('promotion.coupon.template.fixedStartTerm'),
       component: 'InputNumber',
       componentProps: {
         min: 0,
-        placeholder: '第 0 为今天生效',
-        addonBefore: '第',
-        addonAfter: '天',
+        placeholder: $t('promotion.coupon.template.placeholder.fixedStartTerm'),
+        addonBefore: $t('promotion.coupon.template.unit.dayStart'),
+        addonAfter: $t('promotion.coupon.template.unit.day'),
       },
       dependencies: {
         triggerFields: ['validityType'],
@@ -272,9 +273,9 @@ export function useFormSchema(): VbenFormSchema[] {
       component: 'InputNumber',
       componentProps: {
         min: 0,
-        placeholder: '请输入结束天数',
-        addonBefore: '至',
-        addonAfter: '天有效',
+        placeholder: $t('promotion.coupon.template.placeholder.fixedEndTerm'),
+        addonBefore: $t('promotion.coupon.template.unit.to'),
+        addonAfter: $t('promotion.coupon.template.unit.dayValid'),
       },
       dependencies: {
         triggerFields: ['validityType'],
@@ -314,36 +315,36 @@ export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
       fieldName: 'name',
-      label: '优惠券名称',
+      label: $t('promotion.coupon.template.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入优惠劵名',
+        placeholder: $t('promotion.coupon.template.placeholder.searchName'),
         allowClear: true,
       },
     },
     {
       fieldName: 'discountType',
-      label: '优惠类型',
+      label: $t('promotion.coupon.template.discountType'),
       component: 'Select',
       componentProps: {
-        placeholder: '请选择优惠类型',
+        placeholder: $t('promotion.coupon.template.placeholder.discountType'),
         allowClear: true,
         options: getDictOptions(DICT_TYPE.PROMOTION_DISCOUNT_TYPE, 'number'),
       },
     },
     {
       fieldName: 'status',
-      label: '优惠券状态',
+      label: $t('promotion.coupon.template.status'),
       component: 'Select',
       componentProps: {
-        placeholder: '请选择优惠券状态',
+        placeholder: $t('promotion.coupon.template.placeholder.status'),
         allowClear: true,
         options: getDictOptions(DICT_TYPE.COMMON_STATUS, 'number'),
       },
     },
     {
       fieldName: 'createTime',
-      label: '创建时间',
+      label: $t('promotion.coupon.template.createTime'),
       component: 'RangePicker',
       componentProps: {
         ...getRangePickerDefaultProps(),
@@ -363,12 +364,12 @@ export function useGridColumns(
   return [
     {
       field: 'name',
-      title: '优惠券名称',
+      title: $t('promotion.coupon.template.name'),
       minWidth: 140,
     },
     {
       field: 'productScope',
-      title: '类型',
+      title: $t('promotion.coupon.template.grid.productScope'),
       minWidth: 130,
       cellRender: {
         name: 'CellDict',
@@ -377,7 +378,7 @@ export function useGridColumns(
     },
     {
       field: 'discountType',
-      title: '优惠',
+      title: $t('promotion.coupon.template.grid.discount'),
       minWidth: 110,
       cellRender: {
         name: 'CellDict',
@@ -386,7 +387,7 @@ export function useGridColumns(
     },
     {
       field: 'discountPrice',
-      title: '优惠力度',
+      title: $t('promotion.coupon.template.grid.discountLevel'),
       minWidth: 110,
       formatter: ({ row }) => {
         return discountFormat(row);
@@ -394,7 +395,7 @@ export function useGridColumns(
     },
     {
       field: 'takeType',
-      title: '领取方式',
+      title: $t('promotion.coupon.template.takeType'),
       minWidth: 100,
       cellRender: {
         name: 'CellDict',
@@ -403,7 +404,7 @@ export function useGridColumns(
     },
     {
       field: 'validityType',
-      title: '使用时间',
+      title: $t('promotion.coupon.template.grid.validTime'),
       minWidth: 180,
       formatter: ({ row }) => {
         return validityTypeFormat(row);
@@ -411,7 +412,7 @@ export function useGridColumns(
     },
     {
       field: 'totalCount',
-      title: '发放数量',
+      title: $t('promotion.coupon.template.totalCount'),
       minWidth: 100,
       formatter: ({ row }) => {
         return totalCountFormat(row);
@@ -419,7 +420,7 @@ export function useGridColumns(
     },
     {
       field: 'remainedCount',
-      title: '剩余数量',
+      title: $t('promotion.coupon.template.grid.remainedCount'),
       minWidth: 100,
       formatter: ({ row }) => {
         return remainedCountFormat(row);
@@ -427,7 +428,7 @@ export function useGridColumns(
     },
     {
       field: 'takeLimitCount',
-      title: '领取上限',
+      title: $t('promotion.coupon.template.grid.takeLimitCount'),
       minWidth: 100,
       formatter: ({ row }) => {
         return takeLimitCountFormat(row);
@@ -435,7 +436,7 @@ export function useGridColumns(
     },
     {
       field: 'status',
-      title: '状态',
+      title: $t('promotion.coupon.template.status'),
       minWidth: 100,
       align: 'center',
       cellRender: {
@@ -449,12 +450,12 @@ export function useGridColumns(
     },
     {
       field: 'createTime',
-      title: '创建时间',
+      title: $t('promotion.coupon.template.createTime'),
       minWidth: 180,
       formatter: 'formatDateTime',
     },
     {
-      title: '操作',
+      title: $t('promotion.coupon.template.grid.actions'),
       width: 120,
       fixed: 'right',
       slots: { default: 'actions' },

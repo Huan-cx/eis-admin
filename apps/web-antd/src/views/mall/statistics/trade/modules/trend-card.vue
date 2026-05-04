@@ -108,7 +108,7 @@ async function handleExport() {
   try {
     // 导出的二次确认
     await confirm({
-      content: '确认导出交易状况数据吗？',
+      content: $t('statistics.trend.exportConfirm'),
     });
     // 发起导出
     exportLoading.value = true;
@@ -116,7 +116,7 @@ async function handleExport() {
       times: searchTimes.value.length > 0 ? searchTimes.value : undefined,
     });
     // 处理下载
-    downloadFileFromBlobPart({ fileName: '交易状况.xlsx', source: data });
+    downloadFileFromBlobPart({ fileName: `${$t('statistics.trend.title')}.xlsx`, source: data });
   } finally {
     exportLoading.value = false;
   }
@@ -124,7 +124,7 @@ async function handleExport() {
 </script>
 
 <template>
-  <Card :bordered="false" title="交易状况" class="h-full">
+  <Card :bordered="false" :title="$t('statistics.trend.title')" class="h-full">
     <template #extra>
       <!-- 查询条件 -->
       <div class="flex items-center gap-2">
@@ -143,8 +143,8 @@ async function handleExport() {
     <Row :gutter="16" class="mb-4">
       <Col :md="6" :sm="12" :xs="24" class="mb-4">
         <SummaryCard
-          title="营业额"
-          tooltip="商品支付金额、充值金额"
+          :title="$t('statistics.trend.turnover')"
+          :tooltip="$t('statistics.trend.turnoverTip')"
           icon="lucide:banknote"
           icon-color="text-blue-500"
           icon-bg-color="bg-blue-100"
@@ -162,8 +162,8 @@ async function handleExport() {
 
       <Col :md="6" :sm="12" :xs="24" class="mb-4">
         <SummaryCard
-          title="商品支付金额"
-          tooltip="用户购买商品的实际支付金额，包括微信支付、余额支付、支付宝支付、线下支付金额（拼团商品在成团之后计入，线下支付订单在后台确认支付后计入）"
+          :title="$t('statistics.trend.orderPayPrice')"
+          :tooltip="$t('statistics.trend.orderPayPriceTip')"
           icon="lucide:shopping-cart"
           icon-color="text-purple-500"
           icon-bg-color="bg-purple-100"
@@ -181,8 +181,8 @@ async function handleExport() {
 
       <Col :md="6" :sm="12" :xs="24" class="mb-4">
         <SummaryCard
-          title="充值金额"
-          tooltip="用户成功充值的金额"
+          :title="$t('statistics.trend.rechargePrice')"
+          :tooltip="$t('statistics.trend.rechargePriceTip')"
           icon="lucide:credit-card"
           icon-color="text-yellow-500"
           icon-bg-color="bg-yellow-100"
@@ -199,8 +199,8 @@ async function handleExport() {
       </Col>
       <Col :md="6" :sm="12" :xs="24" class="mb-4">
         <SummaryCard
-          title="支出金额"
-          tooltip="余额支付金额、支付佣金金额、商品退款金额"
+          :title="$t('statistics.trend.expensePrice')"
+          :tooltip="$t('statistics.trend.expensePriceTip')"
           icon="lucide:trending-down"
           icon-color="text-green-500"
           icon-bg-color="bg-green-100"
@@ -217,8 +217,8 @@ async function handleExport() {
       </Col>
       <Col :md="6" :sm="12" :xs="24" class="mb-4">
         <SummaryCard
-          title="余额支付金额"
-          tooltip="用户下单时使用余额实际支付的金额"
+          :title="$t('statistics.trend.walletPayPrice')"
+          :tooltip="$t('statistics.trend.walletPayPriceTip')"
           icon="lucide:wallet"
           icon-color="text-cyan-500"
           icon-bg-color="bg-cyan-100"
@@ -235,8 +235,8 @@ async function handleExport() {
       </Col>
       <Col :md="6" :sm="12" :xs="24" class="mb-4">
         <SummaryCard
-          title="支付佣金金额"
-          tooltip="后台给推广员支付的推广佣金，以实际支付为准"
+          :title="$t('statistics.trend.brokerageSettlementPrice')"
+          :tooltip="$t('statistics.trend.brokerageSettlementPriceTip')"
           icon="lucide:gift"
           icon-color="text-orange-500"
           icon-bg-color="bg-orange-100"
@@ -258,8 +258,8 @@ async function handleExport() {
 
       <Col :md="6" :sm="12" :xs="24" class="mb-4">
         <SummaryCard
-          title="商品退款金额"
-          tooltip="用户成功退款的商品金额"
+          :title="$t('statistics.trend.afterSaleRefundPrice')"
+          :tooltip="$t('statistics.trend.afterSaleRefundPriceTip')"
           icon="lucide:undo-2"
           icon-color="text-red-500"
           icon-bg-color="bg-red-100"

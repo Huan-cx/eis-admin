@@ -1,5 +1,7 @@
 import type { ComponentStyle, DiyComponent } from '../../../util';
 
+import { $t } from '#/locales';
+
 /** 商品卡片属性 */
 export interface ProductCardProperty {
   layoutType: 'oneColBigImg' | 'oneColSmallImg' | 'twoCol'; // 布局类型：单列大图 | 单列小图 | 双列
@@ -38,7 +40,7 @@ export interface ProductCardFieldProperty {
 /** 定义组件 */
 export const component = {
   id: 'ProductCard',
-  name: '商品卡片',
+  name: $t('promotion.productCard.title'),
   icon: 'lucide:grid-3x3',
   property: {
     layoutType: 'oneColBigImg',
@@ -53,7 +55,7 @@ export const component = {
     badge: { show: false, imgUrl: '' },
     btnBuy: {
       type: 'text',
-      text: '立即购买',
+      text: $t('promotion.productCard.button.buy'),
       // todo: @owen 根据主题色配置
       bgBeginColor: '#FF6000',
       bgEndColor: '#FE832A',

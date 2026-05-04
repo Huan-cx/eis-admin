@@ -1,0 +1,18 @@
+{
+  "name": "语言",
+  "title": "语言",
+  "code": "语言标识",
+  "nativeName": "本地名称",
+  "flag": "国旗图标",
+  "isDefault": "是否默认",
+  "list": "语言列表",
+  "setDefault": "设为默认",
+  "setDefaultSuccess": "已将 {0} 设置为默认语言",
+  "cancelDefaultSuccess": "已取消 {0} 的默认语言设置",
+  "cannotDisableDefault": "默认语言不能被禁用",
+  "mustEnableToSetDefault": "必须先启用语言才能设置为默认语言",
+  "confirmStatusChange": "确定将 {0} 的状态切换为【{1}】吗？",
+  "confirmSetDefault": "确定将 {0} 设置为默认语言吗？",
+  "confirmCancelDefault": "确定取消 {0} 的默认语言设置吗？",
+  "translate": "翻译"
+}

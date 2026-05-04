@@ -1,0 +1,784 @@
+{
+  "article": {
+    "title": "[Marketing] Article",
+    "list": "Article List",
+    "name": "Article Name",
+    "category": "Article Category",
+    "cover": "Cover Image",
+    "viewCount": "Views",
+    "sort": "Sort",
+    "status": "Status",
+    "createTime": "Create Time",
+    "content": "Content",
+    "description": "Description",
+    "introduction": "Introduction",
+    "i18n": "Internationalization",
+    "metaTitle": {
+      "label": "SEO Title",
+      "placeholder": "Please enter SEO title"
+    },
+    "metaDescription": {
+      "label": "SEO Description",
+      "placeholder": "Please enter SEO description"
+    },
+    "slug": {
+      "label": "Slug",
+      "placeholder": "Please enter slug"
+    },
+    "form": {
+      "title": "Article Title",
+      "categoryId": "Article Category",
+      "author": "Author",
+      "introduction": "Introduction",
+      "picUrl": "Cover Image",
+      "recommendHot": "Is Hot",
+      "recommendBanner": "Is Banner",
+      "spuId": "Product Link",
+      "sort": "Sort",
+      "status": "Status",
+      "content": "Content",
+      "createTime": "Create Time"
+    },
+    "placeholder": {
+      "title": "Please enter article title",
+      "description": "Please enter description",
+      "category": "Please select category",
+      "categoryId": "Please select category",
+      "author": "Please enter author",
+      "introduction": "Please enter introduction",
+      "picUrl": "Please upload cover",
+      "sort": "Please enter sort",
+      "status": "Please select status"
+    },
+    "grid": {
+      "id": "ID",
+      "title": "Title",
+      "picUrl": "Cover",
+      "categoryId": "Category",
+      "browseCount": "Views",
+      "author": "Author",
+      "introduction": "Introduction",
+      "sort": "Sort",
+      "status": "Status",
+      "createTime": "Create Time",
+      "actions": "Actions"
+    },
+    "category": {
+      "title": "Article Category",
+      "list": "Article Category List",
+      "form": {
+        "name": "Category Name",
+        "picUrl": "Category Image",
+        "sort": "Sort Order",
+        "status": "Status",
+        "createTime": "Create Time"
+      },
+      "placeholder": {
+        "name": "Please enter category name",
+        "picUrl": "Please upload category image",
+        "sort": "Please enter sort order",
+        "status": "Please select status"
+      },
+      "grid": {
+        "id": "ID",
+        "name": "Category Name",
+        "picUrl": "Category Image",
+        "status": "Status",
+        "sort": "Sort",
+        "createTime": "Create Time",
+        "actions": "Actions"
+      }
+    }
+  },
+  "banner": {
+    "title": "[Marketing] Banner",
+    "list": "Banner List",
+    "form": {
+      "title": "Banner Title",
+      "picUrl": "Image URL",
+      "position": "Position",
+      "url": "Link URL",
+      "sort": "Sort",
+      "status": "Status",
+      "memo": "Description",
+      "createTime": "Create Time"
+    },
+    "placeholder": {
+      "title": "Please enter banner title",
+      "picUrl": "Please upload image",
+      "url": "Please enter link URL",
+      "sort": "Please enter sort",
+      "status": "Please select status",
+      "memo": "Please enter description"
+    },
+    "grid": {
+      "title": "Banner Title",
+      "picUrl": "Image",
+      "createTime": "Create Time",
+      "actions": "Actions"
+    }
+  },
+  "bargain": {
+    "title": "[Marketing] Bargain Activity",
+    "list": "Bargain Activity List",
+    "name": "Activity Name",
+    "startTime": "Start Time",
+    "endTime": "End Time",
+    "status": "Activity Status",
+    "minPrice": "Min Price",
+    "helpCount": "Help Count",
+    "stock": "Stock",
+    "salesCount": "Sales",
+    "close": "Close",
+    "closing": "Closing...",
+    "closeSuccess": "Closed Successfully",
+    "confirmClose": "Confirm to close this bargain activity?",
+    "record": {
+      "title": "Bargain Record List",
+      "form": {
+        "status": "Bargain Status",
+        "createTime": "Create Time"
+      },
+      "placeholder": {
+        "status": "Please select bargain status"
+      },
+      "grid": {
+        "id": "ID",
+        "avatar": "Avatar",
+        "nickname": "Nickname",
+        "createTime": "Start Time",
+        "activityName": "Bargain Activity",
+        "bargainMinPrice": "Min Price",
+        "bargainPrice": "Current Price",
+        "helpMaxCount": "Total Help Count",
+        "helpCount": "Remaining Help Count",
+        "endTime": "End Time",
+        "orderId": "Order ID",
+        "actions": "Actions"
+      },
+      "helpGrid": {
+        "userId": "User ID",
+        "avatar": "Avatar",
+        "nickname": "Nickname",
+        "reducePrice": "Reduced Amount",
+        "createTime": "Help Time"
+      },
+      "action": {
+        "help": "Help"
+      }
+    },
+    "placeholder": {
+      "name": "Please enter activity name"
+    },
+    "activity": {
+      "name": "Activity Name",
+      "status": "Activity Status",
+      "title": "Bargain Activity",
+      "form": {
+        "name": "Activity Name",
+        "startTime": "Start Time",
+        "endTime": "End Time",
+        "helpMaxCount": "Max Helpers",
+        "bargainCount": "Bargain Count",
+        "totalLimitCount": "Purchase Limit",
+        "randomMinPrice": "Min Bargain Amount(Yuan)",
+        "randomMaxPrice": "Max Bargain Amount(Yuan)",
+        "spuId": "Bargain Product",
+        "selectProduct": "Please select bargain product",
+        "activityStock": "Activity Stock",
+        "rules": {
+          "bargainFirstPrice": "Bargain start price must be greater than 0!!!",
+          "bargainMinPrice": "Bargain min price cannot be less than 0!!!",
+          "stock": "Activity stock must be at least 1!!!"
+        }
+      },
+      "grid": {
+        "id": "Activity ID",
+        "name": "Activity Name",
+        "activityTime": "Activity Time",
+        "picUrl": "Product Image",
+        "spuName": "Product Title",
+        "bargainFirstPrice": "Start Price",
+        "bargainMinPrice": "Min Price",
+        "recordUserCount": "Total Participants",
+        "recordSuccessUserCount": "Successful Participants",
+        "helpUserCount": "Helpers",
+        "status": "Activity Status",
+        "stock": "Stock",
+        "totalStock": "Total Stock",
+        "createTime": "Create Time",
+        "action": "Actions"
+      },
+      "placeholder": {
+        "name": "Please enter activity name",
+        "status": "Please select status",
+        "startTime": "Please select start time",
+        "endTime": "Please select end time",
+        "helpMaxCount": "Need this count to get lowest price",
+        "bargainCount": "Max bargain attempts",
+        "totalLimitCount": "Max purchase count",
+        "randomMinPrice": "Min amount per bargain",
+        "randomMaxPrice": "Max amount per bargain"
+      }
+    }
+  },
+  "combination": {
+    "title": "[Marketing] Group Buy Activity",
+    "list": "Group Buy Activity List",
+    "name": "Activity Name",
+    "startTime": "Start Time",
+    "endTime": "End Time",
+    "status": "Activity Status",
+    "groupSize": "Group Size",
+    "stock": "Stock",
+    "salesCount": "Sales",
+    "close": "Close",
+    "closing": "Closing...",
+    "closeSuccess": "Closed Successfully",
+    "confirmClose": "Confirm to close this group buy activity?",
+    "record": {
+      "form": {
+        "status": "Combination Status",
+        "createTime": "Create Time"
+      },
+      "placeholder": {
+        "status": "Please select status",
+        "startTime": "Start Time",
+        "endTime": "End Time"
+      },
+      "grid": {
+        "id": "Combination ID",
+        "avatar": "Avatar",
+        "nickname": "Nickname",
+        "headId": "Group Leader",
+        "picUrl": "Product Image",
+        "spuName": "Product",
+        "activityName": "Activity",
+        "userSize": "Group Size",
+        "userCount": "Participants",
+        "createTime": "Join Time",
+        "endTime": "End Time",
+        "actions": "Actions"
+      },
+      "userGrid": {
+        "id": "ID",
+        "avatar": "Avatar",
+        "nickname": "Nickname",
+        "headId": "Group Leader",
+        "head": "Leader",
+        "member": "Member",
+        "createTime": "Join Time",
+        "endTime": "End Time"
+      },
+      "action": {
+        "viewUsers": "View Members"
+      }
+    },
+    "placeholder": {
+      "name": "Please enter activity name"
+    },
+    "activity": {
+      "name": "Activity Name",
+      "status": "Activity Status",
+      "title": "Group Buy Activity",
+      "form": {
+        "name": "Activity Name",
+        "startTime": "Start Time",
+        "endTime": "End Time",
+        "userSize": "Group Size",
+        "limitDuration": "Limit Duration",
+        "totalLimitCount": "Total Limit",
+        "singleLimitCount": "Single Limit",
+        "virtualGroup": "Virtual Group",
+        "spuId": "Combination Product",
+        "selectProduct": "Please select combination product"
+      },
+      "placeholder": {
+        "name": "Please enter activity name",
+        "status": "Please select status",
+        "startTime": "Please select start time",
+        "endTime": "Please select end time",
+        "userSize": "Need this count to form a group",
+        "limitDuration": "Limit duration(hours)",
+        "totalLimitCount": "Please enter total limit",
+        "singleLimitCount": "Please enter single limit"
+      },
+      "grid": {
+        "id": "Activity ID",
+        "activityTime": "Activity Time",
+        "picUrl": "Product Image",
+        "spuName": "Product Title",
+        "marketPrice": "Original Price",
+        "combinationPrice": "Group Price",
+        "groupCount": "Group Count",
+        "groupSuccessCount": "Success Count",
+        "recordCount": "Purchase Count",
+        "createTime": "Create Time",
+        "actions": "Actions"
+      }
+    }
+  },
+  "coupon": {
+    "title": "[Marketing] Coupon",
+    "list": "Coupon List",
+    "name": "Coupon Name",
+    "type": "Coupon Type",
+    "denominations": "Denomination",
+    "minPrice": "Min Price",
+    "status": "Status",
+    "receiveCount": "Received",
+    "takeType": "Take Type",
+    "form": {
+      "nickname": "Member Nickname",
+      "createTime": "Receive Time"
+    },
+    "grid": {
+      "productScope": "Type",
+      "discount": "Discount",
+      "discountLevel": "Discount Level",
+      "useTime": "Use Time",
+      "actions": "Actions"
+    },
+    "usedCount": "Used",
+    "all": "All",
+    "recycle": "Recycle",
+    "recycling": "Recycling...",
+    "recycleSuccess": "Recycled Successfully",
+    "confirmRecycle": "Recycling will reclaim unused coupons from members. Used coupons cannot be recycled. Are you sure you want to recycle?",
+    "placeholder": {
+      "nickname": "Please enter member nickname",
+      "name": "Please enter coupon name"
+    },
+    "sendForm": {
+      "grid": {
+        "discount": "Discount Amount / Discount",
+        "validity": "Validity Period",
+        "remainedCount": "Remaining Count",
+        "actions": "Actions"
+      },
+      "action": {
+        "send": "Send"
+      }
+    },
+    "selectForm": {
+      "discountType": "Discount Type",
+      "placeholder": {
+        "discountType": "Please select discount type"
+      },
+      "grid": {
+        "productScope": "Type",
+        "useTime": "Use Time",
+        "totalCount": "Total Count",
+        "takeLimit": "Take Limit"
+      }
+    },
+    "formatter": {
+      "unknown": "Unknown",
+      "unlimited": "Unlimited",
+      "perPerson": "/person",
+      "to": "to",
+      "validAfterReceive": "Valid from day",
+      "daysValid": "days after receiving"
+    },
+    "template": {
+      "formTitle": "Coupon Template",
+      "name": "Coupon Name",
+      "description": "Coupon Description",
+      "productScope": "Coupon Type",
+      "product": "Product",
+      "category": "Product Category",
+      "discountType": "Discount Type",
+      "discountPrice": "Discount Amount",
+      "discountPercent": "Discount Percent",
+      "discountLimitPrice": "Max Discount",
+      "usePrice": "Min Spend",
+      "takeType": "Take Type",
+      "totalCount": "Total Count",
+      "takeLimitCount": "Take Limit",
+      "validityType": "Validity Type",
+      "validTimes": "Fixed Date",
+      "fixedStartTerm": "Start Term",
+      "status": "Status",
+      "createTime": "Create Time",
+      "unit": {
+        "yuan": "Yuan",
+        "percent": "%",
+        "count": "pcs",
+        "day": "day",
+        "dayStart": "Day ",
+        "to": "to",
+        "dayValid": "days valid"
+      },
+      "placeholder": {
+        "name": "Please enter coupon name",
+        "description": "Please enter coupon description",
+        "discountPrice": "Please enter discount amount",
+        "discountPercent": "Discount must be between 1-9.9",
+        "discountLimitPrice": "Please enter max discount",
+        "usePrice": "Set 0 for no threshold",
+        "totalCount": "Total count, -1 for unlimited",
+        "takeLimitCount": "Set -1 for unlimited",
+        "fixedStartTerm": "Day 0 is today",
+        "fixedEndTerm": "Please enter end days",
+        "searchName": "Please enter coupon name",
+        "discountType": "Please select discount type",
+        "status": "Please select status"
+      },
+      "grid": {
+        "productScope": "Type",
+        "discount": "Discount",
+        "discountLevel": "Discount Level",
+        "validTime": "Valid Time",
+        "remainedCount": "Remaining",
+        "takeLimitCount": "Take Limit",
+        "actions": "Actions"
+      }
+    }
+  },
+  "seckill": {
+    "title": "[Marketing] Seckill Activity",
+    "list": "Seckill Activity List",
+    "name": "Activity Name",
+    "startTime": "Start Time",
+    "endTime": "End Time",
+    "status": "Activity Status",
+    "stock": "Stock",
+    "salesCount": "Sales",
+    "config": {
+      "form": {
+        "name": "Seckill Period Name",
+        "startTime": "Start Time",
+        "endTime": "End Time",
+        "sliderPicUrls": "Slider Images",
+        "status": "Status",
+        "createTime": "Create Time"
+      },
+      "placeholder": {
+        "name": "Please enter seckill period name",
+        "startTime": "Please select start time",
+        "endTime": "Please select end time",
+        "status": "Please select status"
+      },
+      "grid": {
+        "checkedChildren": "Enable",
+        "unCheckedChildren": "Disable",
+        "actions": "Actions"
+      }
+    },
+    "close": "Close",
+    "closing": "Closing activity...",
+    "closeSuccess": "Closed Successfully",
+    "confirmClose": "Confirm to close this seckill activity?",
+    "placeholder": {
+      "name": "Please enter activity name"
+    },
+    "activity": {
+      "name": "Activity Name",
+      "status": "Activity Status",
+      "form": {
+        "name": "Seckill Activity Name",
+        "startTime": "Start Time",
+        "endTime": "End Time",
+        "configIds": "Seckill Time Slots",
+        "totalLimitCount": "Total Limit",
+        "singleLimitCount": "Single Limit",
+        "sort": "Sort",
+        "remark": "Remark",
+        "spuId": "Seckill Product"
+      },
+      "placeholder": {
+        "name": "Please enter activity name",
+        "status": "Please select status",
+        "startTime": "Please select start time",
+        "endTime": "Please select end time",
+        "configIds": "Please select time slots",
+        "totalLimitCount": "Please enter total limit",
+        "singleLimitCount": "Please enter single limit",
+        "sort": "Please enter sort",
+        "remark": "Please enter remark"
+      }
+    }
+  },
+  "discountActivity": {
+    "title": "[Marketing] Discount Activity",
+    "list": "Discount Activity List",
+    "name": "Activity Name",
+    "startTime": "Start Time",
+    "endTime": "End Time",
+    "status": "Activity Status",
+    "discountPercent": "Discount Percent",
+    "close": "Close",
+    "closing": "Closing...",
+    "closeSuccess": "Closed Successfully",
+    "confirmClose": "Confirm to close this discount activity?",
+    "placeholder": {
+      "name": "Please enter activity name",
+      "status": "Please select status",
+      "startTime": "Please select start time",
+      "endTime": "Please select end time",
+      "remark": "Please enter remark"
+    },
+    "form": {
+      "startTime": "Start Time",
+      "endTime": "End Time",
+      "remark": "Remark",
+      "spuIds": "Products",
+      "activeTime": "Activity Time"
+    },
+    "grid": {
+      "id": "Activity ID",
+      "createTime": "Create Time",
+      "actions": "Actions"
+    }
+  },
+  "rewardActivity": {
+    "title": "[Marketing] Reward Activity",
+    "list": "Reward Activity List",
+    "name": "Activity Name",
+    "startTime": "Start Time",
+    "endTime": "End Time",
+    "status": "Activity Status",
+    "close": "Close",
+    "closing": "Closing...",
+    "closeSuccess": "Closed Successfully",
+    "confirmClose": "Confirm to close this reward activity?",
+    "placeholder": {
+      "name": "Please enter activity name",
+      "status": "Please select status",
+      "remark": "Please enter remark",
+      "rules": "Please add at least one discount rule"
+    },
+    "form": {
+      "name": "Activity Name",
+      "remark": "Remark",
+      "startAndEndTime": "Activity Time",
+      "conditionType": "Condition Type",
+      "productScope": "Product Scope",
+      "productSpuIds": "Select Products",
+      "productCategoryIds": "Select Categories",
+      "rules": "Discount Rules"
+    },
+    "grid": {
+      "productScope": "Product Scope",
+      "startTime": "Start Time",
+      "endTime": "End Time",
+      "createTime": "Create Time",
+      "actions": "Actions"
+    }
+  },
+  "point": {
+    "title": "[Marketing] Point Mall",
+    "list": "Point Activity List",
+    "name": "Activity Name",
+    "startTime": "Start Time",
+    "endTime": "End Time",
+    "status": "Activity Status",
+    "point": "Points",
+    "close": "Close",
+    "closing": "Closing...",
+    "closeSuccess": "Closed Successfully",
+    "confirmClose": "Confirm to close this point activity?",
+    "placeholder": {
+      "name": "Please enter activity name"
+    },
+    "activity": {
+      "status": "Status",
+      "form": {
+        "sort": "Sort",
+        "remark": "Remark",
+        "spuId": "Product"
+      },
+      "placeholder": {
+        "status": "Please select status",
+        "sort": "Please enter sort",
+        "remark": "Please enter remark"
+      },
+      "grid": {
+        "id": "Activity ID",
+        "picUrl": "Product Image",
+        "spuName": "Product Title",
+        "marketPrice": "Original Price",
+        "stock": "Stock",
+        "totalStock": "Total Stock",
+        "redeemedQuantity": "Redeemed",
+        "createTime": "Create Time",
+        "actions": "Actions"
+      }
+    }
+  },
+  "diy": {
+    "page": {
+      "title": "[Marketing] Mall DIY",
+      "list": "Page List",
+      "name": "Page",
+      "decorate": "Decorate",
+      "form": {
+        "name": "Page Name",
+        "remark": "Remark",
+        "previewPicUrls": "Preview Images",
+        "createTime": "Create Time"
+      },
+      "placeholder": {
+        "name": "Please enter page name",
+        "remark": "Please enter remark"
+      },
+      "grid": {
+        "id": "ID",
+        "actions": "Actions"
+      }
+    },
+    "template": {
+      "title": "[Marketing] Template Builder",
+      "list": "Template List",
+      "form": {
+        "name": "Template Name",
+        "remark": "Remark",
+        "previewPicUrls": "Preview Images",
+        "createTime": "Create Time"
+      },
+      "placeholder": {
+        "name": "Please enter template name",
+        "remark": "Please enter remark"
+      },
+      "grid": {
+        "id": "ID",
+        "used": "Used",
+        "actions": "Actions"
+      },
+      "action": {
+        "decorate": "Decorate",
+        "use": "Use"
+      }
+    },
+    "editor": {
+      "tab": {
+        "content": "Content",
+        "style": "Style"
+      },
+      "style": {
+        "margin": "Margin",
+        "padding": "Padding",
+        "borderRadius": "Border Radius",
+        "top": "Top",
+        "right": "Right",
+        "bottom": "Bottom",
+        "left": "Left",
+        "topLeft": "Top Left",
+        "topRight": "Top Right",
+        "bottomLeft": "Bottom Left",
+        "bottomRight": "Bottom Right",
+        "bgType": "Background",
+        "solidColor": "Solid Color",
+        "image": "Image",
+        "selectColor": "Select Color",
+        "uploadImage": "Upload Image",
+        "imageTip": "Recommended width 750px"
+      }
+    }
+  },
+  "kefu": {
+    "title": "[Marketing] Online Customer Service",
+    "session": "Session List",
+    "member": "Member Info",
+    "orderHistory": "Order History",
+    "productHistory": "Browse History",
+    "quickReply": "Quick Reply",
+    "send": "Send",
+    "sendSuccess": "Sent Successfully"
+  },
+  "appLink": {
+    "mall": "Mall",
+    "home": "Home",
+    "productCategory": "Product Category",
+    "cart": "Cart",
+    "userCenter": "User Center",
+    "productSearch": "Product Search",
+    "customPage": "Custom Page",
+    "customerService": "Customer Service",
+    "systemSettings": "Settings",
+    "faq": "FAQ",
+    "product": "Product",
+    "productList": "Product List",
+    "productDetail": "Product Detail",
+    "groupProductDetail": "Group Product Detail",
+    "seckillProductDetail": "Seckill Product Detail",
+    "marketing": "Marketing",
+    "groupOrder": "Group Order",
+    "marketingProduct": "Marketing Product",
+    "groupActivity": "Group Activity",
+    "seckillActivity": "Seckill Activity",
+    "pointActivity": "Point Activity",
+    "signIn": "Sign In",
+    "couponCenter": "Coupon Center",
+    "couponDetail": "Coupon Detail",
+    "articleDetail": "Article Detail",
+    "distribution": "Distribution",
+    "distributionCenter": "Distribution Center",
+    "promotionProduct": "Promotion Product",
+    "distributionOrder": "Distribution Order",
+    "myTeam": "My Team",
+    "payment": "Payment",
+    "recharge": "Recharge",
+    "rechargeLog": "Recharge Log",
+    "user": "User",
+    "userInfo": "User Info",
+    "userOrder": "User Order",
+    "afterSaleOrder": "After Sale Order",
+    "productCollect": "Product Collect",
+    "browseHistory": "Browse History",
+    "addressManage": "Address Manage",
+    "userCommission": "User Commission",
+    "userBalance": "User Balance",
+    "userPoint": "User Point"
+  },
+  "tabBar": {
+    "title": "Tab Bar",
+    "item": {
+      "home": "Home",
+      "category": "Category",
+      "cart": "Cart",
+      "profile": "Profile"
+    },
+    "theme": {
+      "red": "China Red",
+      "orange": "Orange",
+      "gold": "Golden Yellow",
+      "green": "Olive Green",
+      "cyan": "Sky Blue",
+      "blue": "Ocean Blue",
+      "purple": "Purple",
+      "brightRed": "Bright Red",
+      "forestGreen": "Forest Green",
+      "mauve": "Mauve",
+      "pink": "Pink",
+      "brown": "Brown",
+      "grey": "Grey",
+      "gray": "Light Grey",
+      "black": "Black"
+    },
+    "property": {
+      "theme": "Theme",
+      "defaultColor": "Default Color",
+      "activeColor": "Active Color",
+      "navBg": "Navigation Background",
+      "solidColor": "Solid Color",
+      "image": "Image",
+      "selectColor": "Select Color",
+      "selectImage": "Select Image",
+      "bgImgTip": "Recommended size 375 * 50",
+      "iconSettings": "Icon Settings",
+      "iconTips": "Drag the small dot to sort, recommended icon size 44*44",
+      "notSelected": "Unselected",
+      "selected": "Selected",
+      "text": "Text",
+      "textPlaceholder": "Please enter text",
+      "url": "URL"
+    }
+  },
+  "promotionArticle": {
+    "property": {
+      "article": "Article",
+      "selectArticle": "Please select article"
+    }
+  }
+}

@@ -92,12 +92,14 @@ const [Grid, gridApi] = useVbenVxeGrid({
     </template>
 
     <FormModal @success="handleRefresh" />
-    <Grid table-title="文章分类列表">
+    <Grid :table-title="$t('promotion.article.category.list')">
       <template #toolbar-tools>
         <TableAction
           :actions="[
             {
-              label: $t('ui.actionTitle.create', ['文章分类']),
+              label: $t('ui.actionTitle.create', [
+                $t('promotion.article.category.title'),
+              ]),
               type: 'primary',
               icon: ACTION_ICON.ADD,
               auth: ['promotion:article-category:create'],
@@ -114,7 +116,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
               type: 'link',
               icon: ACTION_ICON.EDIT,
               auth: ['promotion:article-category:update'],
-              disabled: [4,5,6].includes(row.id),
+              disabled: [4, 5, 6].includes(row.id),
               onClick: handleEdit.bind(null, row),
             },
             {
@@ -123,7 +125,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
               danger: true,
               icon: ACTION_ICON.DELETE,
               auth: ['promotion:article-category:delete'],
-              disabled: [4,5,6].includes(row.id),
+              disabled: [4, 5, 6].includes(row.id),
               popConfirm: {
                 title: $t('ui.actionMessage.deleteConfirm', [row.name]),
                 confirm: handleDelete.bind(null, row),

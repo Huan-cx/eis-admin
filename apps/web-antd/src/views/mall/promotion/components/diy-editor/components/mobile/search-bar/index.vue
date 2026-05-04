@@ -31,7 +31,7 @@ defineProps<{ property: SearchProperty }>();
         }"
       >
         <IconifyIcon icon="lucide:search" />
-        <span>{{ property.placeholder || '搜索商品' }}</span>
+        <span>{{ property.placeholder || $t('promotion.searchBar.property.placeholder') }}</span>
       </div>
       <div class="absolute right-2 flex items-center justify-center gap-2">
         <!-- 搜索热词 -->

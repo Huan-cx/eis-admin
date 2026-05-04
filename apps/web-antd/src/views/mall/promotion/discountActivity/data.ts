@@ -5,6 +5,8 @@ import { DICT_TYPE } from '@vben/constants';
 import { getDictOptions } from '@vben/hooks';
 import { formatDate } from '@vben/utils';
 
+import { $t } from '#/locales';
+
 /** 表单配置 */
 export function useFormSchema(): VbenFormSchema[] {
   return [
@@ -18,29 +20,29 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'name',
-      label: '活动名称',
+      label: $t('promotion.discountActivity.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入活动名称',
+        placeholder: $t('promotion.discountActivity.placeholder.name'),
       },
       rules: 'required',
     },
     {
       fieldName: 'status',
-      label: '活动状态',
+      label: $t('promotion.discountActivity.status'),
       component: 'Select',
       componentProps: {
-        placeholder: '请选择活动状态',
+        placeholder: $t('promotion.discountActivity.placeholder.status'),
         options: getDictOptions(DICT_TYPE.COMMON_STATUS, 'number'),
       },
       rules: 'required',
     },
     {
       fieldName: 'startTime',
-      label: '开始时间',
+      label: $t('promotion.discountActivity.form.startTime'),
       component: 'DatePicker',
       componentProps: {
-        placeholder: '请选择开始时间',
+        placeholder: $t('promotion.discountActivity.placeholder.startTime'),
         showTime: false,
         valueFormat: 'x',
         format: 'YYYY-MM-DD',
@@ -49,10 +51,10 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'endTime',
-      label: '结束时间',
+      label: $t('promotion.discountActivity.form.endTime'),
       component: 'DatePicker',
       componentProps: {
-        placeholder: '请选择结束时间',
+        placeholder: $t('promotion.discountActivity.placeholder.endTime'),
         showTime: false,
         valueFormat: 'x',
         format: 'YYYY-MM-DD',
@@ -61,17 +63,17 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'remark',
-      label: '备注',
+      label: $t('promotion.discountActivity.form.remark'),
       component: 'Textarea',
       componentProps: {
-        placeholder: '请输入备注',
+        placeholder: $t('promotion.discountActivity.placeholder.remark'),
         rows: 4,
       },
       formItemClass: 'col-span-2',
     },
     {
       fieldName: 'spuIds',
-      label: '活动商品',
+      label: $t('promotion.discountActivity.form.spuIds'),
       component: 'Input',
       formItemClass: 'col-span-2',
     },
@@ -83,29 +85,32 @@ export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
       fieldName: 'name',
-      label: '活动名称',
+      label: $t('promotion.discountActivity.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入活动名称',
+        placeholder: $t('promotion.discountActivity.placeholder.name'),
         allowClear: true,
       },
     },
     {
       fieldName: 'status',
-      label: '活动状态',
+      label: $t('promotion.discountActivity.status'),
       component: 'Select',
       componentProps: {
-        placeholder: '请选择活动状态',
+        placeholder: $t('promotion.discountActivity.placeholder.status'),
         allowClear: true,
         options: getDictOptions(DICT_TYPE.COMMON_STATUS, 'number'),
       },
     },
     {
       fieldName: 'activeTime',
-      label: '活动时间',
+      label: $t('promotion.discountActivity.form.activeTime'),
       component: 'RangePicker',
       componentProps: {
-        placeholder: ['开始时间', '结束时间'],
+        placeholder: [
+          $t('promotion.discountActivity.placeholder.startTime'),
+          $t('promotion.discountActivity.placeholder.endTime'),
+        ],
         allowClear: true,
         valueFormat: 'YYYY-MM-DD HH:mm:ss',
       },
@@ -118,17 +123,17 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
   return [
     {
       field: 'id',
-      title: '活动编号',
+      title: $t('promotion.discountActivity.grid.id'),
       minWidth: 80,
     },
     {
       field: 'name',
-      title: '活动名称',
+      title: $t('promotion.discountActivity.name'),
       minWidth: 140,
     },
     {
       field: 'activityTime',
-      title: '活动时间',
+      title: $t('promotion.discountActivity.form.activeTime'),
       minWidth: 210,
       formatter: ({ row }) => {
         if (!row.startTime || !row.endTime) return '';
@@ -137,7 +142,7 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'status',
-      title: '活动状态',
+      title: $t('promotion.discountActivity.status'),
       minWidth: 100,
       cellRender: {
         name: 'CellDict',
@@ -146,17 +151,17 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'remark',
-      title: '备注',
+      title: $t('promotion.discountActivity.form.remark'),
       minWidth: 200,
     },
     {
       field: 'createTime',
-      title: '创建时间',
+      title: $t('promotion.discountActivity.grid.createTime'),
       minWidth: 180,
       formatter: 'formatDateTime',
     },
     {
-      title: '操作',
+      title: $t('promotion.discountActivity.grid.actions'),
       width: 150,
       fixed: 'right',
       slots: { default: 'actions' },

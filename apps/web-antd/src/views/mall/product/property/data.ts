@@ -2,6 +2,7 @@ import type { VbenFormSchema } from '#/adapter/form';
 import type { VxeTableGridOptions } from '#/adapter/vxe-table';
 
 import { getPropertySimpleList } from '#/api/mall/product/property';
+import { $t } from '#/locales';
 import { getRangePickerDefaultProps } from '#/utils';
 
 // ============================== 属性 ==============================
@@ -19,19 +20,19 @@ export function usePropertyFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'name',
-      label: '属性名称',
+      label: $t('mall-product.property.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入属性名称',
+        placeholder: $t('mall-product.property.placeholder.name'),
       },
       rules: 'required',
     },
     {
       fieldName: 'remark',
-      label: '备注',
+      label: $t('mall-product.property.remark'),
       component: 'Textarea',
       componentProps: {
-        placeholder: '请输入备注',
+        placeholder: $t('mall-product.property.placeholder.remark'),
       },
     },
   ];
@@ -42,16 +43,16 @@ export function usePropertyGridFormSchema(): VbenFormSchema[] {
   return [
     {
       fieldName: 'name',
-      label: '属性名称',
+      label: $t('mall-product.property.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入属性名称',
+        placeholder: $t('mall-product.property.placeholder.name'),
         allowClear: true,
       },
     },
     {
       fieldName: 'createTime',
-      label: '创建时间',
+      label: $t('common.createTime'),
       component: 'RangePicker',
       componentProps: {
         ...getRangePickerDefaultProps(),
@@ -66,27 +67,27 @@ export function usePropertyGridColumns(): VxeTableGridOptions['columns'] {
   return [
     {
       field: 'id',
-      title: '属性编号',
+      title: $t('mall-product.property.id'),
       minWidth: 100,
     },
     {
       field: 'name',
-      title: '属性名称',
+      title: $t('mall-product.property.name'),
       minWidth: 200,
     },
     {
       field: 'remark',
-      title: '备注',
+      title: $t('mall-product.property.remark'),
       minWidth: 180,
     },
     {
       field: 'createTime',
-      title: '创建时间',
+      title: $t('common.createTime'),
       minWidth: 180,
       formatter: 'formatDateTime',
     },
     {
-      title: '操作',
+      title: $t('common.actions'),
       minWidth: 120,
       fixed: 'right',
       slots: { default: 'actions' },
@@ -109,12 +110,12 @@ export function useValueFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'propertyId',
-      label: '属性',
+      label: $t('mall-product.property.property'),
       component: 'ApiSelect',
       componentProps: (values) => {
         return {
           api: getPropertySimpleList,
-          placeholder: '请选择属性',
+          placeholder: $t('mall-product.property.placeholder.property'),
           labelField: 'name',
           valueField: 'id',
           disabled: !!values.id,
@@ -127,19 +128,19 @@ export function useValueFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'name',
-      label: '属性值名称',
+      label: $t('mall-product.property.valueName'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入属性值名称',
+        placeholder: $t('mall-product.property.placeholder.valueName'),
       },
       rules: 'required',
     },
     {
       fieldName: 'remark',
-      label: '备注',
+      label: $t('mall-product.property.remark'),
       component: 'Textarea',
       componentProps: {
-        placeholder: '请输入备注',
+        placeholder: $t('mall-product.property.placeholder.remark'),
       },
     },
   ];
@@ -150,11 +151,11 @@ export function useValueGridFormSchema(): VbenFormSchema[] {
   return [
     {
       fieldName: 'propertyId',
-      label: '属性项',
+      label: $t('mall-product.property.propertyItem'),
       component: 'ApiSelect',
       componentProps: {
         api: getPropertySimpleList,
-        placeholder: '请选择属性项',
+        placeholder: $t('mall-product.property.placeholder.propertyItem'),
         labelField: 'name',
         valueField: 'id',
         disabled: true,
@@ -163,10 +164,10 @@ export function useValueGridFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'name',
-      label: '属性值名称',
+      label: $t('mall-product.property.valueName'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入属性值名称',
+        placeholder: $t('mall-product.property.placeholder.valueName'),
         allowClear: true,
       },
     },
@@ -178,27 +179,27 @@ export function useValueGridColumns(): VxeTableGridOptions['columns'] {
   return [
     {
       field: 'id',
-      title: '属性值编号',
+      title: $t('mall-product.property.valueId'),
       minWidth: 100,
     },
     {
       field: 'name',
-      title: '属性值名称',
+      title: $t('mall-product.property.valueName'),
       minWidth: 180,
     },
     {
       field: 'remark',
-      title: '备注',
+      title: $t('mall-product.property.remark'),
       minWidth: 180,
     },
     {
-      title: '创建时间',
+      title: $t('common.createTime'),
       field: 'createTime',
       minWidth: 180,
       formatter: 'formatDateTime',
     },
     {
-      title: '操作',
+      title: $t('common.actions'),
       minWidth: 120,
       fixed: 'right',
       slots: { default: 'actions' },

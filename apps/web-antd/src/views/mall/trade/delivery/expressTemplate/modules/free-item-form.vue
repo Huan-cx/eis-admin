@@ -4,6 +4,8 @@ import type { SystemAreaApi } from '#/api/system/area';
 
 import { computed, nextTick, ref, watch } from 'vue';
 
+import { $t } from '@vben/locales';
+
 import { InputNumber, TreeSelect } from 'ant-design-vue';
 
 import { TableAction, useVbenVxeGrid } from '#/adapter/vxe-table';
@@ -111,15 +113,23 @@ function validate() {
   for (let i = 0; i < tableData.value.length; i++) {
     const item = tableData.value[i];
     if (!item.countries || item.countries.length === 0) {
-      throw new Error(`包邮设置第 ${i + 1} 行：区域不能为空`);
-    };
+      throw new Error(
+        $t('trade.delivery.expressTemplate.freeItem.validate.countries', [
+          i + 1,
+        ]),
+      );
+    }
     if (!item.freeCount || item.freeCount <= 0) {
       throw new Error(
         `包邮设置第 ${i + 1} 行：${columnTitle.value?.freeCountTitle}必须大于 0`,
       );
     }
     if (!item.freePrice || item.freePrice <= 0) {
-      throw new Error(`包邮设置第 ${i + 1} 行：包邮金额必须大于 0`);
+      throw new Error(
+        $t('trade.delivery.expressTemplate.freeItem.validate.freePrice', [
+          i + 1,
+        ]),
+      );
     }
   }
 }
@@ -141,7 +151,9 @@ defineExpose({
           value: 'code',
           children: 'children',
         }"
-        placeholder="请选择地区"
+        :placeholder="
+          $t('trade.delivery.expressTemplate.form.countryPlaceholder')
+        "
         class="w-full"
         multiple
         tree-checkable
@@ -168,11 +180,13 @@ defineExpose({
       <TableAction
         :actions="[
           {
-            label: '删除',
+            label: $t('common.delete'),
             type: 'link',
             danger: true,
             popConfirm: {
-              title: '确认删除该区域吗？',
+              title: $t(
+                'trade.delivery.expressTemplate.freeItem.deleteConfirm',
+              ),
               confirm: handleDelete.bind(null, row),
             },
           },
@@ -184,7 +198,7 @@ defineExpose({
         class="mt-2 flex justify-center"
         :actions="[
           {
-            label: '添加包邮区域',
+            label: $t('trade.delivery.expressTemplate.freeItem.add'),
             type: 'default',
             onClick: handleAdd,
           },

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { PopoverProperty } from './config';
 
+import { $t } from '#/locales';
+
 import { useVModel } from '@vueuse/core';
 import { Form, FormItem, Radio, RadioGroup, Tooltip } from 'ant-design-vue';
 
@@ -21,7 +23,7 @@ const formData = useVModel(props, 'modelValue', emit);
   <Form :label-col="{ style: { width: '80px' } }" :model="formData">
     <Draggable v-model="formData.list" :empty-item="{ showType: 'once' }">
       <template #default="{ element, index }">
-        <FormItem label="图片" :name="`list[${index}].imgUrl`">
+        <FormItem :label="$t('promotion.popover.property.image')" :name="`list[${index}].imgUrl`">
           <UploadImg
             v-model="element.imgUrl"
             height="56px"
@@ -29,16 +31,16 @@ const formData = useVModel(props, 'modelValue', emit);
             :show-description="false"
           />
         </FormItem>
-        <FormItem label="跳转链接" :name="`list[${index}].url`">
+        <FormItem :label="$t('promotion.popover.property.url')" :name="`list[${index}].url`">
           <AppLinkInput v-model="element.url" />
         </FormItem>
-        <FormItem label="显示次数" :name="`list[${index}].showType`">
+        <FormItem :label="$t('promotion.popover.property.showType')" :name="`list[${index}].showType`">
           <RadioGroup v-model:value="element.showType">
-            <Tooltip title="只显示一次，下次打开时不显示" placement="bottom">
-              <Radio value="once">一次</Radio>
+            <Tooltip :title="$t('promotion.popover.property.onceTooltip')" placement="bottom">
+              <Radio value="once">{{ $t('promotion.popover.property.once') }}</Radio>
             </Tooltip>
-            <Tooltip title="每次打开时都会显示" placement="bottom">
-              <Radio value="always">不限</Radio>
+            <Tooltip :title="$t('promotion.popover.property.alwaysTooltip')" placement="bottom">
+              <Radio value="always">{{ $t('promotion.popover.property.always') }}</Radio>
             </Tooltip>
           </RadioGroup>
         </FormItem>

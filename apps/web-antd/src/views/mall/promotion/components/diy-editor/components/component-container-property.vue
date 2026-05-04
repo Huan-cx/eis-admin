@@ -17,6 +17,7 @@ import {
 } from 'ant-design-vue';
 
 import UploadImg from '#/components/upload/image-upload.vue';
+import { $t } from '#/locales';
 import { ColorInput } from '#/views/mall/promotion/components';
 
 /**
@@ -31,67 +32,67 @@ const formData = useVModel(props, 'modelValue', emit);
 
 const treeData: any[] = [
   {
-    label: '外部边距',
+    label: $t('promotion.diy.editor.style.margin'),
     prop: 'margin',
     children: [
       {
-        label: '上',
+        label: $t('promotion.diy.editor.style.top'),
         prop: 'marginTop',
       },
       {
-        label: '右',
+        label: $t('promotion.diy.editor.style.right'),
         prop: 'marginRight',
       },
       {
-        label: '下',
+        label: $t('promotion.diy.editor.style.bottom'),
         prop: 'marginBottom',
       },
       {
-        label: '左',
+        label: $t('promotion.diy.editor.style.left'),
         prop: 'marginLeft',
       },
     ],
   },
   {
-    label: '内部边距',
+    label: $t('promotion.diy.editor.style.padding'),
     prop: 'padding',
     children: [
       {
-        label: '上',
+        label: $t('promotion.diy.editor.style.top'),
         prop: 'paddingTop',
       },
       {
-        label: '右',
+        label: $t('promotion.diy.editor.style.right'),
         prop: 'paddingRight',
       },
       {
-        label: '下',
+        label: $t('promotion.diy.editor.style.bottom'),
         prop: 'paddingBottom',
       },
       {
-        label: '左',
+        label: $t('promotion.diy.editor.style.left'),
         prop: 'paddingLeft',
       },
     ],
   },
   {
-    label: '边框圆角',
+    label: $t('promotion.diy.editor.style.borderRadius'),
     prop: 'borderRadius',
     children: [
       {
-        label: '上左',
+        label: $t('promotion.diy.editor.style.topLeft'),
         prop: 'borderTopLeftRadius',
       },
       {
-        label: '上右',
+        label: $t('promotion.diy.editor.style.topRight'),
         prop: 'borderTopRightRadius',
       },
       {
-        label: '下右',
+        label: $t('promotion.diy.editor.style.bottomRight'),
         prop: 'borderBottomRightRadius',
       },
       {
-        label: '下左',
+        label: $t('promotion.diy.editor.style.bottomLeft'),
         prop: 'borderBottomLeftRadius',
       },
     ],
@@ -128,27 +129,41 @@ function handleSliderChange(prop: string) {
 <template>
   <Tabs>
     <!-- 每个组件的自定义内容 -->
-    <TabPane tab="内容" key="content" v-if="$slots.default">
+    <TabPane
+      :tab="$t('promotion.diy.editor.tab.content')"
+      key="content"
+      v-if="$slots.default"
+    >
       <slot></slot>
     </TabPane>
 
     <!-- 每个组件的通用内容 -->
-    <TabPane tab="样式" key="style" force-render>
-      <div class="mb-2 bg-gray-100 p-2 text-sm">组件样式：</div>
+    <TabPane
+      :tab="$t('promotion.diy.editor.tab.style')"
+      key="style"
+      force-render
+    >
+      <div class="mb-2 bg-gray-100 p-2 text-sm">
+        {{ $t('promotion.diy.editor.tab.style') }}：
+      </div>
       <div class="flex flex-col gap-2 rounded-md p-4 shadow-lg">
         <Form :model="formData">
           <FormItem
-            label="组件背景"
+            :label="$t('promotion.diy.editor.style.bgType')"
             name="bgType"
             :label-col="{ style: { width: '109px' } }"
           >
             <RadioGroup v-model:value="formData.bgType">
-              <Radio value="color">纯色</Radio>
-              <Radio value="img">图片</Radio>
+              <Radio value="color">
+                {{ $t('promotion.diy.editor.style.solidColor') }}
+              </Radio>
+              <Radio value="img">
+                {{ $t('promotion.diy.editor.style.image') }}
+              </Radio>
             </RadioGroup>
           </FormItem>
           <FormItem
-            label="选择颜色"
+            :label="$t('promotion.diy.editor.style.selectColor')"
             name="bgColor"
             :label-col="{ style: { width: '109px' } }"
             v-if="formData.bgType === 'color'"
@@ -156,7 +171,7 @@ function handleSliderChange(prop: string) {
             <ColorInput v-model="formData.bgColor" />
           </FormItem>
           <FormItem
-            label="上传图片"
+            :label="$t('promotion.diy.editor.style.uploadImage')"
             name="bgImg"
             :label-col="{ style: { width: '109px' } }"
             v-else
@@ -166,7 +181,9 @@ function handleSliderChange(prop: string) {
               :limit="1"
               :show-description="false"
             >
-              <template #tip>建议宽度 750px</template>
+              <template #tip>
+                {{ $t('promotion.diy.editor.style.imageTip') }}
+              </template>
             </UploadImg>
           </FormItem>
           <Tree :tree-data="treeData" default-expand-all :block-node="true">

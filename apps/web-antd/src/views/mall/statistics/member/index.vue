@@ -3,6 +3,8 @@ import type { MallMemberStatisticsApi } from '#/api/mall/statistics/member';
 
 import { onMounted, ref } from 'vue';
 
+import { $t } from '#/locales';
+
 import { DocAlert, Page, SummaryCard } from '@vben/common-ui';
 import { fenToYuan } from '@vben/utils';
 
@@ -51,7 +53,7 @@ onMounted(async () => {
       <Row :gutter="16">
         <Col :md="6" :sm="12" :xs="24">
           <SummaryCard
-            title="累计会员数"
+            :title="$t('statistics.member.userCount')"
             :value="summary?.userCount || 0"
             icon="fa-solid:users"
             icon-color="text-blue-500"
@@ -60,7 +62,7 @@ onMounted(async () => {
         </Col>
         <Col :md="6" :sm="12" :xs="24">
           <SummaryCard
-            title="累计充值人数"
+            :title="$t('statistics.member.rechargeUserCount')"
             :value="summary?.rechargeUserCount || 0"
             icon="fa-solid:user"
             icon-color="text-purple-500"
@@ -69,7 +71,7 @@ onMounted(async () => {
         </Col>
         <Col :md="6" :sm="12" :xs="24">
           <SummaryCard
-            title="累计充值金额"
+            :title="$t('statistics.member.rechargePrice')"
             :value="Number(fenToYuan(summary?.rechargePrice || 0))"
             :decimals="2"
             prefix="￥"
@@ -80,7 +82,7 @@ onMounted(async () => {
         </Col>
         <Col :md="6" :sm="12" :xs="24">
           <SummaryCard
-            title="累计消费金额"
+            :title="$t('statistics.member.expensePrice')"
             :value="Number(fenToYuan(summary?.expensePrice || 0))"
             :decimals="2"
             prefix="￥"

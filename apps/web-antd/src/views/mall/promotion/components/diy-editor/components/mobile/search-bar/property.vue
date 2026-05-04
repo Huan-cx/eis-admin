@@ -19,6 +19,7 @@ import {
   Tooltip,
 } from 'ant-design-vue';
 
+import { $t } from '#/locales';
 import { ColorInput, Draggable } from '#/views/mall/promotion/components';
 
 import ComponentContainerProperty from '../../component-container-property.vue';
@@ -49,43 +50,68 @@ watch(
 <template>
   <ComponentContainerProperty v-model="formData.style">
     <Form :model="formData" :label-col="{ style: { width: '80px' } }">
-      <Card title="搜索热词" class="property-group">
+      <Card
+        :title="$t('promotion.searchBar.property.hotKeywords')"
+        class="property-group"
+      >
         <Draggable
           v-model="formData.hotKeywords"
           :empty-item="{
             type: 'input',
-            placeholder: '请输入热词',
+            placeholder: $t(
+              'promotion.searchBar.property.hotKeywordPlaceholder',
+            ),
           }"
         >
           <template #default="{ index }">
             <Input
               v-model:value="formData.hotKeywords[index]"
-              placeholder="请输入热词"
+              :placeholder="
+                $t('promotion.searchBar.property.hotKeywordPlaceholder')
+              "
             />
           </template>
         </Draggable>
       </Card>
-      <Card title="搜索样式" class="property-group">
-        <FormItem label="框体样式">
+      <Card
+        :title="$t('promotion.searchBar.property.style')"
+        class="property-group"
+      >
+        <FormItem :label="$t('promotion.searchBar.property.boxStyle')">
           <RadioGroup v-model:value="formData!.borderRadius">
-            <Tooltip title="方形" placement="top">
+            <Tooltip
+              :title="$t('promotion.searchBar.property.square')"
+              placement="top"
+            >
               <RadioButton :value="0">
                 <IconifyIcon icon="tabler:input-search" class="size-6" />
               </RadioButton>
             </Tooltip>
-            <Tooltip title="圆形" placement="top">
+            <Tooltip
+              :title="$t('promotion.searchBar.property.round')"
+              placement="top"
+            >
               <RadioButton :value="10">
                 <IconifyIcon icon="iconoir:input-search" class="size-6" />
               </RadioButton>
             </Tooltip>
           </RadioGroup>
         </FormItem>
-        <FormItem label="提示文字" name="placeholder">
+        <FormItem
+          :label="$t('promotion.searchBar.property.placeholder')"
+          name="placeholder"
+        >
           <Input v-model:value="formData.placeholder" />
         </FormItem>
-        <FormItem label="文本位置" name="placeholderPosition">
+        <FormItem
+          :label="$t('promotion.searchBar.property.textPosition')"
+          name="placeholderPosition"
+        >
           <RadioGroup v-model:value="formData!.placeholderPosition">
-            <Tooltip title="居左" placement="top">
+            <Tooltip
+              :title="$t('promotion.searchBar.property.alignLeft')"
+              placement="top"
+            >
               <RadioButton value="left">
                 <IconifyIcon
                   icon="ant-design:align-left-outlined"
@@ -93,7 +119,10 @@ watch(
                 />
               </RadioButton>
             </Tooltip>
-            <Tooltip title="居中" placement="top">
+            <Tooltip
+              :title="$t('promotion.searchBar.property.alignCenter')"
+              placement="top"
+            >
               <RadioButton value="center">
                 <IconifyIcon
                   icon="ant-design:align-center-outlined"
@@ -103,16 +132,28 @@ watch(
             </Tooltip>
           </RadioGroup>
         </FormItem>
-        <FormItem label="扫一扫" name="showScan">
+        <FormItem
+          :label="$t('promotion.searchBar.property.scan')"
+          name="showScan"
+        >
           <Switch v-model:checked="formData!.showScan" />
         </FormItem>
-        <FormItem label="框体高度" name="height">
+        <FormItem
+          :label="$t('promotion.searchBar.property.height')"
+          name="height"
+        >
           <Slider v-model:value="formData!.height" :max="50" :min="28" />
         </FormItem>
-        <FormItem label="框体颜色" name="backgroundColor">
+        <FormItem
+          :label="$t('promotion.searchBar.property.boxColor')"
+          name="backgroundColor"
+        >
           <ColorInput v-model="formData.backgroundColor" />
         </FormItem>
-        <FormItem label="文本颜色" name="textColor">
+        <FormItem
+          :label="$t('promotion.searchBar.property.textColor')"
+          name="textColor"
+        >
           <ColorInput v-model="formData.textColor" />
         </FormItem>
       </Card>

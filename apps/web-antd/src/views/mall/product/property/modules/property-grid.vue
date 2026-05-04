@@ -90,12 +90,14 @@ const [Grid, gridApi] = useVbenVxeGrid({
 <template>
   <div class="h-full">
     <PropertyFormModal @success="handleRefresh" />
-    <Grid table-title="属性列表">
+    <Grid :table-title="$t('mall-product.property.list.property')">
       <template #toolbar-tools>
         <TableAction
           :actions="[
             {
-              label: $t('ui.actionTitle.create', ['属性']),
+              label: $t('ui.actionTitle.create', [
+                $t('mall-product.property.property'),
+              ]),
               type: 'primary',
               icon: ACTION_ICON.ADD,
               auth: ['product:property:create'],

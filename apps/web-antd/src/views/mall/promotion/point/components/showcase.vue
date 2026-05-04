@@ -129,7 +129,7 @@ function emitActivityChange() {
     </div>
 
     <!-- 添加活动按钮 -->
-    <Tooltip v-if="canAdd" title="选择活动">
+    <Tooltip v-if="canAdd" :title="$t('promotion.point.activity.selectForm.title')">
       <div
         class="flex h-[60px] w-[60px] cursor-pointer items-center justify-center rounded-lg border border-dashed border-gray-300 hover:border-blue-400"
         @click="handleOpenActivitySelect"

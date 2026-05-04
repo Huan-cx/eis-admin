@@ -34,8 +34,8 @@ const formData = ref<Partial<MallRewardActivityApi.RewardActivity>>({
 });
 const getTitle = computed(() => {
   return formData.value?.id
-    ? $t('ui.actionTitle.edit', ['满减送'])
-    : $t('ui.actionTitle.create', ['满减送']);
+    ? $t('ui.actionTitle.edit', [$t('promotion.rewardActivity.title')])
+    : $t('ui.actionTitle.create', [$t('promotion.rewardActivity.title')]);
 });
 
 const [Form, formApi] = useVbenForm({

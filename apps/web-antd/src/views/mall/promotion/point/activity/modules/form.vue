@@ -34,8 +34,8 @@ const emit = defineEmits(['success']);
 const formData = ref<MallPointActivityApi.PointActivity>();
 const getTitle = computed(() => {
   return formData.value?.id
-    ? $t('ui.actionTitle.edit', ['积分活动'])
-    : $t('ui.actionTitle.create', ['积分活动']);
+    ? $t('ui.actionTitle.edit', [$t('promotion.point.activity.title')])
+    : $t('ui.actionTitle.create', [$t('promotion.point.activity.title')]);
 });
 
 const [Form, formApi] = useVbenForm({
@@ -230,7 +230,7 @@ const [Modal, modalApi] = useVbenModal({
             >
               <!-- 扩展列：积分商城特有配置 -->
               <template #default>
-                <VxeColumn align="center" min-width="168" title="可兑换库存">
+                <VxeColumn align="center" min-width="168" :title="$t('promotion.point.activity.form.exchangeStock')">
                   <template #default="{ row: sku }">
                     <InputNumber
                       v-model:value="sku.productConfig.stock"
@@ -240,7 +240,7 @@ const [Modal, modalApi] = useVbenModal({
                     />
                   </template>
                 </VxeColumn>
-                <VxeColumn align="center" min-width="168" title="可兑换次数">
+                <VxeColumn align="center" min-width="168" :title="$t('promotion.point.activity.form.exchangeCount')">
                   <template #default="{ row: sku }">
                     <InputNumber
                       v-model:value="sku.productConfig.count"
@@ -249,7 +249,7 @@ const [Modal, modalApi] = useVbenModal({
                     />
                   </template>
                 </VxeColumn>
-                <VxeColumn align="center" min-width="168" title="所需积分">
+                <VxeColumn align="center" min-width="168" :title="$t('promotion.point.activity.form.requiredPoint')">
                   <template #default="{ row: sku }">
                     <InputNumber
                       v-model:value="sku.productConfig.point"

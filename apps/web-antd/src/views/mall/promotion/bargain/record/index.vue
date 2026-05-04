@@ -64,12 +64,12 @@ const [Grid] = useVbenVxeGrid({
 
     <HelpListModalApi />
 
-    <Grid table-title="砍价记录列表">
+    <Grid :table-title="$t('promotion.bargain.record.title')">
       <template #actions="{ row }">
         <TableAction
           :actions="[
             {
-              label: '助力',
+              label: $t('promotion.bargain.record.action.help'),
               type: 'link',
               icon: ACTION_ICON.VIEW,
               auth: ['promotion:bargain-help:query'],

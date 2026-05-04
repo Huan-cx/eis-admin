@@ -46,7 +46,7 @@ watch(
 );
 </script>
 <template>
-  <Input v-model:value="appLink" placeholder="输入或选择链接">
+  <Input v-model:value="appLink" :placeholder="$t('promotion.appLink.input.placeholder')">
     <template #addonAfter>
       <Button
         @click="handleOpenDialog"

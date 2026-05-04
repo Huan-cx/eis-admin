@@ -33,6 +33,9 @@ export namespace MallSpuApi {
     createTime?: Date; // 商品创建时间
     status?: number; // 商品状态
     browseCount?: number; // 浏览量
+    metaTitle?: string; // SEO标题
+    metaDescription?: string; // SEO描述
+    slug?: string; // 语义化URL
   }
 
   /** 商品 SKU */

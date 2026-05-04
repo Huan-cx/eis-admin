@@ -7,21 +7,22 @@ import { DICT_TYPE } from '@vben/constants';
 import { fenToYuan, formatDateTime } from '@vben/utils';
 
 import { DictTag } from '#/components/dict-tag';
+import { $t } from '#/locales';
 
 /** 订单基础信息 schema */
 export function useOrderInfoSchema(): DescriptionItemSchema[] {
   return [
     {
       field: 'no',
-      label: '订单号',
+      label: $t('trade.order.detail.orderInfoSchema.no'),
     },
     {
       field: 'user.nickname',
-      label: '买家',
+      label: $t('trade.order.detail.orderInfoSchema.buyer'),
     },
     {
       field: 'type',
-      label: '订单类型',
+      label: $t('trade.order.detail.orderInfoSchema.type'),
       render: (val) =>
         h(DictTag, {
           type: DICT_TYPE.TRADE_ORDER_TYPE,
@@ -30,7 +31,7 @@ export function useOrderInfoSchema(): DescriptionItemSchema[] {
     },
     {
       field: 'terminal',
-      label: '订单来源',
+      label: $t('trade.order.detail.orderInfoSchema.terminal'),
       render: (val) =>
         h(DictTag, {
           type: DICT_TYPE.TERMINAL,
@@ -39,19 +40,19 @@ export function useOrderInfoSchema(): DescriptionItemSchema[] {
     },
     {
       field: 'userRemark',
-      label: '买家留言',
+      label: $t('trade.order.detail.orderInfoSchema.userRemark'),
     },
     {
       field: 'remark',
-      label: '商家备注',
+      label: $t('trade.order.detail.orderInfoSchema.remark'),
     },
     {
       field: 'payOrderId',
-      label: '支付单号',
+      label: $t('trade.order.detail.orderInfoSchema.payOrderId'),
     },
     {
       field: 'payChannelCode',
-      label: '付款方式',
+      label: $t('trade.order.detail.orderInfoSchema.payChannelCode'),
       render: (val) =>
         h(DictTag, {
           type: DICT_TYPE.PAY_CHANNEL_CODE,
@@ -60,7 +61,7 @@ export function useOrderInfoSchema(): DescriptionItemSchema[] {
     },
     {
       field: 'brokerageUser.nickname',
-      label: '推广用户',
+      label: $t('trade.order.detail.orderInfoSchema.brokerageUser'),
     },
   ];
 }
@@ -70,7 +71,7 @@ export function useOrderStatusSchema(): DescriptionItemSchema[] {
   return [
     {
       field: 'status',
-      label: '订单状态',
+      label: $t('trade.order.detail.orderStatusSchema.status'),
       render: (val) =>
         h(DictTag, {
           type: DICT_TYPE.TRADE_ORDER_STATUS,
@@ -79,15 +80,12 @@ export function useOrderStatusSchema(): DescriptionItemSchema[] {
     },
     {
       field: 'reminder',
-      label: '提醒',
+      label: $t('trade.order.detail.orderStatusSchema.reminder'),
       render: () =>
         h('div', { class: 'space-y-1' }, [
-          h('div', '买家付款成功后，货款将直接进入您的商户号（微信、支付宝）'),
-          h('div', '请及时关注你发出的包裹状态，确保可以配送至买家手中'),
-          h(
-            'div',
-            '如果买家表示没收到货或货物有问题，请及时联系买家处理，友好协商',
-          ),
+          h('div', $t('trade.order.detail.orderStatusSchema.reminder1')),
+          h('div', $t('trade.order.detail.orderStatusSchema.reminder2')),
+          h('div', $t('trade.order.detail.orderStatusSchema.reminder3')),
         ]),
     },
   ];
@@ -98,18 +96,18 @@ export function useOrderPriceSchema(): DescriptionItemSchema[] {
   return [
     {
       field: 'totalPrice',
-      label: '商品总额',
-      render: (val) => `${fenToYuan(val ?? 0)} 元`,
+      label: $t('trade.order.detail.priceSchema.totalPrice'),
+      render: (val) => `${fenToYuan(val ?? 0)} ${$t('common.yuan')}`,
     },
     {
       field: 'deliveryPrice',
-      label: '运费金额',
-      render: (val) => `${fenToYuan(val ?? 0)} 元`,
+      label: $t('trade.order.detail.priceSchema.deliveryPrice'),
+      render: (val) => `${fenToYuan(val ?? 0)} ${$t('common.yuan')}`,
     },
     {
       field: 'adjustPrice',
-      label: '订单调价',
-      render: (val) => `${fenToYuan(val ?? 0)} 元`,
+      label: $t('trade.order.detail.priceSchema.adjustPrice'),
+      render: (val) => `${fenToYuan(val ?? 0)} ${$t('common.yuan')}`,
     },
     // {
     //   field: 'couponPrice',
@@ -137,8 +135,8 @@ export function useOrderPriceSchema(): DescriptionItemSchema[] {
     // },
     {
       field: 'payPrice',
-      label: '应付金额',
-      render: (val) => `${fenToYuan(val ?? 0)} 元`,
+      label: $t('trade.order.detail.priceSchema.payPrice'),
+      render: (val) => `${fenToYuan(val ?? 0)} ${$t('common.yuan')}`,
     },
   ];
 }
@@ -148,7 +146,7 @@ export function useDeliveryInfoSchema(): DescriptionItemSchema[] {
   return [
     {
       field: 'deliveryType',
-      label: '配送方式',
+      label: $t('trade.order.detail.deliveryInfoSchema.deliveryType'),
       span: 3,
       render: (val) =>
         h(DictTag, {
@@ -158,64 +156,175 @@ export function useDeliveryInfoSchema(): DescriptionItemSchema[] {
     },
     {
       field: 'receiverAddress',
-      label: '收货地址',
+      label: $t('trade.order.detail.deliveryInfoSchema.receiverAddress'),
       render: (val) => {
         if (!val) return '';
         return h('div', [
-          h('div', `收件人: ${val.firstName} ${val.lastName}`),
-          val.companyName ? h('div', `公司: ${val.companyName}`) : null,
-          h('div', `街道: ${val.street}`),
+          h(
+            'div',
+            `${$t('trade.order.detail.deliveryInfoSchema.receiver')}: ${val.firstName} ${val.lastName}`,
+          ),
+          val.companyName
+            ? h(
+                'div',
+                `${$t('trade.order.detail.deliveryInfoSchema.company')}: ${val.companyName}`,
+              )
+            : null,
+          h(
+            'div',
+            `${$t('trade.order.detail.deliveryInfoSchema.street')}: ${val.street}`,
+          ),
           h('div', `${val.postcode} ${val.city}`),
-          val.state ? h('div', `州/省: ${val.state}`) : null,
-          h('div', `国家: ${val.country}`),
-          h('div', `电话: ${val.phone}`),
-          val.email ? h('div', `邮箱: ${val.email}`) : null,
-          val.vat ? h('div', `增值税号: ${val.vat}`) : null,
-          val.eori ? h('div', `EORI号: ${val.eori}`) : null,
+          val.state
+            ? h(
+                'div',
+                `${$t('trade.order.detail.deliveryInfoSchema.state')}: ${val.state}`,
+              )
+            : null,
+          h(
+            'div',
+            `${$t('trade.order.detail.deliveryInfoSchema.country')}: ${val.country}`,
+          ),
+          h(
+            'div',
+            `${$t('trade.order.detail.deliveryInfoSchema.phone')}: ${val.phone}`,
+          ),
+          val.email
+            ? h(
+                'div',
+                `${$t('trade.order.detail.deliveryInfoSchema.email')}: ${val.email}`,
+              )
+            : null,
+          val.vat
+            ? h(
+                'div',
+                `${$t('trade.order.detail.deliveryInfoSchema.vat')}: ${val.vat}`,
+              )
+            : null,
+          val.eori
+            ? h(
+                'div',
+                `${$t('trade.order.detail.deliveryInfoSchema.eori')}: ${val.eori}`,
+              )
+            : null,
         ]);
       },
     },
     {
       field: 'billingAddress',
-      label: '账单地址',
+      label: $t('trade.order.detail.deliveryInfoSchema.billingAddress'),
       render: (val) => {
         if (!val) return '';
         return h('div', [
-          val.companyName ? h('div', `公司: ${val.companyName}`) : null,
-          h('div', `姓名: ${val.firstName} ${val.lastName}`),
-          h('div', `街道: ${val.street}`),
+          val.companyName
+            ? h(
+                'div',
+                `${$t('trade.order.detail.deliveryInfoSchema.company')}: ${val.companyName}`,
+              )
+            : null,
+          h(
+            'div',
+            `${$t('trade.order.detail.deliveryInfoSchema.name')}: ${val.firstName} ${val.lastName}`,
+          ),
+          h(
+            'div',
+            `${$t('trade.order.detail.deliveryInfoSchema.street')}: ${val.street}`,
+          ),
           h('div', `${val.postcode} ${val.city}`),
-          val.state ? h('div', `州/省: ${val.state}`) : null,
-          h('div', `国家: ${val.country}`),
-          h('div', `电话: ${val.phone}`),
-          val.email ? h('div', `邮箱: ${val.email}`) : null,
-          val.vat ? h('div', `增值税号: ${val.vat}`) : null,
-          val.eori ? h('div', `EORI号: ${val.eori}`) : null,
+          val.state
+            ? h(
+                'div',
+                `${$t('trade.order.detail.deliveryInfoSchema.state')}: ${val.state}`,
+              )
+            : null,
+          h(
+            'div',
+            `${$t('trade.order.detail.deliveryInfoSchema.country')}: ${val.country}`,
+          ),
+          h(
+            'div',
+            `${$t('trade.order.detail.deliveryInfoSchema.phone')}: ${val.phone}`,
+          ),
+          val.email
+            ? h(
+                'div',
+                `${$t('trade.order.detail.deliveryInfoSchema.email')}: ${val.email}`,
+              )
+            : null,
+          val.vat
+            ? h(
+                'div',
+                `${$t('trade.order.detail.deliveryInfoSchema.vat')}: ${val.vat}`,
+              )
+            : null,
+          val.eori
+            ? h(
+                'div',
+                `${$t('trade.order.detail.deliveryInfoSchema.eori')}: ${val.eori}`,
+              )
+            : null,
         ]);
       },
     },
     {
       field: 'businessAddress',
-      label: '商业地址',
+      label: $t('trade.order.detail.deliveryInfoSchema.businessAddress'),
       render: (val) => {
         if (!val) return '';
         return h('div', [
-          val.companyName ? h('div', `公司: ${val.companyName}`) : null,
-          h('div', `姓名: ${val.firstName} ${val.lastName}`),
-          h('div', `街道: ${val.street}`),
+          val.companyName
+            ? h(
+                'div',
+                `${$t('trade.order.detail.deliveryInfoSchema.company')}: ${val.companyName}`,
+              )
+            : null,
+          h(
+            'div',
+            `${$t('trade.order.detail.deliveryInfoSchema.name')}: ${val.firstName} ${val.lastName}`,
+          ),
+          h(
+            'div',
+            `${$t('trade.order.detail.deliveryInfoSchema.street')}: ${val.street}`,
+          ),
           h('div', `${val.postcode} ${val.city}`),
-          val.state ? h('div', `州/省: ${val.state}`) : null,
-          h('div', `国家: ${val.country}`),
-          h('div', `电话: ${val.phone}`),
-          val.email ? h('div', `邮箱: ${val.email}`) : null,
-          val.vat ? h('div', `增值税号: ${val.vat}`) : null,
-          val.eori ? h('div', `EORI号: ${val.eori}`) : null,
+          val.state
+            ? h(
+                'div',
+                `${$t('trade.order.detail.deliveryInfoSchema.state')}: ${val.state}`,
+              )
+            : null,
+          h(
+            'div',
+            `${$t('trade.order.detail.deliveryInfoSchema.country')}: ${val.country}`,
+          ),
+          h(
+            'div',
+            `${$t('trade.order.detail.deliveryInfoSchema.phone')}: ${val.phone}`,
+          ),
+          val.email
+            ? h(
+                'div',
+                `${$t('trade.order.detail.deliveryInfoSchema.email')}: ${val.email}`,
+              )
+            : null,
+          val.vat
+            ? h(
+                'div',
+                `${$t('trade.order.detail.deliveryInfoSchema.vat')}: ${val.vat}`,
+              )
+            : null,
+          val.eori
+            ? h(
+                'div',
+                `${$t('trade.order.detail.deliveryInfoSchema.eori')}: ${val.eori}`,
+              )
+            : null,
         ]);
       },
     },
     {
       field: 'deliveryTime',
-      label: '发货时间',
+      label: $t('trade.order.detail.deliveryInfoSchema.deliveryTime'),
       render: (val) => formatDateTime(val) as string,
     },
   ];
@@ -226,30 +335,30 @@ export function useProductColumns(): VxeTableGridOptions['columns'] {
   return [
     {
       field: 'spuName',
-      title: '商品',
+      title: $t('trade.order.detail.productColumns.spuName'),
       minWidth: 300,
       slots: { default: 'spuName' },
     },
     {
       field: 'price',
-      title: '商品原价',
+      title: $t('trade.order.detail.productColumns.price'),
       width: 150,
       formatter: 'formatFenToYuanAmount',
     },
     {
       field: 'count',
-      title: '数量',
+      title: $t('trade.order.detail.productColumns.count'),
       width: 100,
     },
     {
       field: 'payPrice',
-      title: '合计',
+      title: $t('trade.order.detail.productColumns.payPrice'),
       width: 150,
       formatter: 'formatFenToYuanAmount',
     },
     {
       field: 'afterSaleStatus',
-      title: '售后状态',
+      title: $t('trade.order.detail.productColumns.afterSaleStatus'),
       width: 120,
       cellRender: {
         name: 'CellDict',
@@ -264,13 +373,13 @@ export function useExpressTrackColumns(): VxeTableGridOptions['columns'] {
   return [
     {
       field: 'time',
-      title: '时间',
+      title: $t('trade.order.detail.expressTrackColumns.time'),
       width: 180,
       formatter: 'formatDateTime',
     },
     {
       field: 'content',
-      title: '物流状态',
+      title: $t('trade.order.detail.expressTrackColumns.content'),
       minWidth: 300,
     },
   ];
@@ -281,19 +390,19 @@ export function useOperateLogColumns(): VxeTableGridOptions['columns'] {
   return [
     {
       field: 'createTime',
-      title: '操作时间',
+      title: $t('trade.order.detail.operateLogColumns.createTime'),
       width: 180,
       formatter: 'formatDateTime',
     },
     {
       field: 'userType',
-      title: '操作人',
+      title: $t('trade.order.detail.operateLogColumns.userType'),
       width: 100,
       slots: { default: 'userType' },
     },
     {
       field: 'content',
-      title: '操作内容',
+      title: $t('trade.order.detail.operateLogColumns.content'),
       minWidth: 200,
     },
   ];

@@ -1,0 +1,94 @@
+{
+  "common": {
+    "high": "High",
+    "low": "Low"
+  },
+  "trade": {
+    "yesterdayOrderCount": "Yesterday Order Count",
+    "monthOrderCount": "Month Order Count",
+    "yesterdayPayPrice": "Yesterday Pay Amount",
+    "monthPayPrice": "Month Pay Amount"
+  },
+  "trend": {
+    "title": "Transaction Status",
+    "exportConfirm": "Confirm export transaction status data?",
+    "turnover": "Turnover",
+    "turnoverTip": "Product payment amount, recharge amount",
+    "orderPayPrice": "Product Payment Amount",
+    "orderPayPriceTip": "Actual payment amount for products purchased by users, including WeChat Pay, balance payment, Alipay, offline payment (group purchase products are counted after the group is formed, offline payment orders are counted after payment is confirmed in the background)",
+    "rechargePrice": "Recharge Amount",
+    "rechargePriceTip": "Amount successfully recharged by users",
+    "expensePrice": "Expense Amount",
+    "expensePriceTip": "Balance payment amount, brokerage payment amount, product refund amount",
+    "walletPayPrice": "Wallet Payment Amount",
+    "walletPayPriceTip": "Actual amount paid by users using balance when placing orders",
+    "brokerageSettlementPrice": "Brokerage Payment Amount",
+    "brokerageSettlementPriceTip": "Promotion commission paid by the backend to promoters, based on actual payment",
+    "afterSaleRefundPrice": "Product Refund Amount",
+    "afterSaleRefundPriceTip": "Product amount successfully refunded by users"
+  },
+  "member": {
+    "userCount": "Total Members",
+    "rechargeUserCount": "Total Recharge Users",
+    "rechargePrice": "Total Recharge Amount",
+    "expensePrice": "Total Consumption Amount",
+    "terminal": {
+      "title": "Member Terminal"
+    },
+    "sex": {
+      "title": "Member Gender Ratio"
+    },
+    "area": {
+      "title": "Member Regional Distribution",
+      "province": "Province",
+      "userCount": "Member Count",
+      "orderCreateUserCount": "Order Create Count",
+      "orderPayUserCount": "Order Pay Count",
+      "orderPayPrice": "Order Pay Amount"
+    },
+    "funnel": {
+      "title": "Member Overview",
+      "registerUserCount": "Registered Users",
+      "relativeRate": "Growth Rate",
+      "visitor": "Visitor",
+      "activeUserCount": "Active Users",
+      "order": "Ordered",
+      "rechargeUserCount": "Recharge Users",
+      "atv": "Average Transaction Value",
+      "payUser": "Paid Users"
+    }
+  },
+  "product": {
+    "summary": {
+      "title": "Product Overview",
+      "amount": "Amount",
+      "count": "Count",
+      "browseCount": "Product Views",
+      "browseCountTip": "Under selected conditions, the number of times all product detail pages are visited. One person visiting multiple times within the statistical period is counted multiple times",
+      "browseUserCount": "Product Visitors",
+      "browseUserCountTip": "Under selected conditions, the number of people who visited any product detail page. One person visiting multiple times within the statistical period is counted only once",
+      "orderPayCount": "Paid Quantity",
+      "orderPayCountTip": "Under selected conditions, the sum of product quantities in successfully paid orders",
+      "orderPayPrice": "Paid Amount",
+      "orderPayPriceTip": "Under selected conditions, the sum of product amounts in successfully paid orders",
+      "afterSaleCount": "Refund Quantity",
+      "afterSaleCountTip": "Under selected conditions, the sum of product quantities successfully refunded",
+      "afterSaleRefundPrice": "Refund Amount",
+      "afterSaleRefundPriceTip": "Under selected conditions, the sum of product amounts successfully refunded"
+    },
+    "rank": {
+      "title": "Product Ranking",
+      "spuId": "Product ID",
+      "picUrl": "Product Image",
+      "name": "Product Name",
+      "browseCount": "Views",
+      "browseUserCount": "Visitors",
+      "cartCount": "Added to Cart",
+      "orderCount": "Ordered",
+      "orderPayCount": "Paid",
+      "orderPayPrice": "Paid Amount (Yuan)",
+      "favoriteCount": "Favorites",
+      "browseConvertPercent": "Visitor-Payment Conversion Rate(%)"
+    }
+  }
+}

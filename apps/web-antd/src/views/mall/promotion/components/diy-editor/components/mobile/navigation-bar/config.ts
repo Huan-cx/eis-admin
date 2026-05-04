@@ -1,5 +1,7 @@
 import type { DiyComponent } from '../../../util';
 
+import { $t } from '#/locales';
+
 /** 顶部导航栏属性 */
 export interface NavigationBarProperty {
   bgType: 'color' | 'img'; // 背景类型
@@ -36,7 +38,7 @@ export interface NavigationBarCellProperty {
 /** 定义组件 */
 export const component = {
   id: 'NavigationBar',
-  name: '顶部导航栏',
+  name: $t('promotion.navigationBar.title'),
   icon: 'tabler:layout-navbar',
   property: {
     bgType: 'color',

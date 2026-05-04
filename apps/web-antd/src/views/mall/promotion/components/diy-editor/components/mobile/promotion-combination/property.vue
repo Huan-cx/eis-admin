@@ -3,6 +3,8 @@ import type { PromotionCombinationProperty } from './config';
 
 import { IconifyIcon } from '@vben/icons';
 
+import { $t } from '#/locales';
+
 import { useVModel } from '@vueuse/core';
 import {
   Card,
@@ -40,13 +42,13 @@ const formData = useVModel(props, 'modelValue', emit);
       :wrapper-col="{ span: 18 }"
       :model="formData"
     >
-      <Card title="拼团活动" class="property-group" :bordered="false">
+      <Card :title="$t('promotion.combination.activity.title')" class="property-group" :bordered="false">
         <CombinationShowcase v-model="formData.activityIds" />
       </Card>
-      <Card title="商品样式" class="property-group" :bordered="false">
-        <FormItem label="布局" name="type">
+      <Card :title="$t('promotion.diy.editor.style.productStyle')" class="property-group" :bordered="false">
+        <FormItem :label="$t('promotion.diy.editor.style.layout')" name="type">
           <RadioGroup v-model:value="formData.layoutType">
-            <Tooltip title="单列大图" placement="bottom">
+            <Tooltip :title="$t('promotion.diy.editor.style.layout.oneColBigImg')" placement="bottom">
               <RadioButton value="oneColBigImg">
                 <IconifyIcon
                   icon="fluent:text-column-one-24-filled"
@@ -54,7 +56,7 @@ const formData = useVModel(props, 'modelValue', emit);
                 />
               </RadioButton>
             </Tooltip>
-            <Tooltip title="单列小图" placement="bottom">
+            <Tooltip :title="$t('promotion.diy.editor.style.layout.oneColSmallImg')" placement="bottom">
               <RadioButton value="oneColSmallImg">
                 <IconifyIcon
                   icon="fluent:text-column-two-left-24-filled"
@@ -62,7 +64,7 @@ const formData = useVModel(props, 'modelValue', emit);
                 />
               </RadioButton>
             </Tooltip>
-            <Tooltip title="双列" placement="bottom">
+            <Tooltip :title="$t('promotion.diy.editor.style.layout.twoCol')" placement="bottom">
               <RadioButton value="twoCol">
                 <IconifyIcon
                   icon="fluent:text-column-two-24-filled"
@@ -72,74 +74,74 @@ const formData = useVModel(props, 'modelValue', emit);
             </Tooltip>
           </RadioGroup>
         </FormItem>
-        <FormItem label="商品名称" name="fields.name.show">
+        <FormItem :label="$t('promotion.diy.editor.style.productName')" name="fields.name.show">
           <div class="flex gap-2">
             <ColorInput v-model="formData.fields.name.color" />
             <Checkbox v-model:checked="formData.fields.name.show" />
           </div>
         </FormItem>
-        <FormItem label="商品简介" name="fields.introduction.show">
+        <FormItem :label="$t('promotion.diy.editor.style.productIntroduction')" name="fields.introduction.show">
           <div class="flex gap-2">
             <ColorInput v-model="formData.fields.introduction.color" />
             <Checkbox v-model:checked="formData.fields.introduction.show" />
           </div>
         </FormItem>
-        <FormItem label="商品价格" name="fields.price.show">
+        <FormItem :label="$t('promotion.diy.editor.style.productPrice')" name="fields.price.show">
           <div class="flex gap-2">
             <ColorInput v-model="formData.fields.price.color" />
             <Checkbox v-model:checked="formData.fields.price.show" />
           </div>
         </FormItem>
-        <FormItem label="市场价" name="fields.marketPrice.show">
+        <FormItem :label="$t('promotion.diy.editor.style.marketPrice')" name="fields.marketPrice.show">
           <div class="flex gap-2">
             <ColorInput v-model="formData.fields.marketPrice.color" />
             <Checkbox v-model:checked="formData.fields.marketPrice.show" />
           </div>
         </FormItem>
-        <FormItem label="商品销量" name="fields.salesCount.show">
+        <FormItem :label="$t('promotion.diy.editor.style.productSales')" name="fields.salesCount.show">
           <div class="flex gap-2">
             <ColorInput v-model="formData.fields.salesCount.color" />
             <Checkbox v-model:checked="formData.fields.salesCount.show" />
           </div>
         </FormItem>
-        <FormItem label="商品库存" name="fields.stock.show">
+        <FormItem :label="$t('promotion.diy.editor.style.productStock')" name="fields.stock.show">
           <div class="flex gap-2">
             <ColorInput v-model="formData.fields.stock.color" />
             <Checkbox v-model:checked="formData.fields.stock.show" />
           </div>
         </FormItem>
       </Card>
-      <Card title="角标" class="property-group" :bordered="false">
-        <FormItem label="角标" name="badge.show">
+      <Card :title="$t('promotion.diy.editor.style.badge')" class="property-group" :bordered="false">
+        <FormItem :label="$t('promotion.diy.editor.style.badge')" name="badge.show">
           <Switch v-model:checked="formData.badge.show" />
         </FormItem>
-        <FormItem label="角标" name="badge.imgUrl" v-if="formData.badge.show">
+        <FormItem :label="$t('promotion.diy.editor.style.badge')" name="badge.imgUrl" v-if="formData.badge.show">
           <UploadImg v-model="formData.badge.imgUrl" height="44px" width="72px">
             <!-- TODO @芋艿：这里不提示；是不是组件得封装下；-->
             <template #tip> 建议尺寸：36 * 22</template>
           </UploadImg>
         </FormItem>
       </Card>
-      <Card title="按钮" class="property-group" :bordered="false">
-        <FormItem label="按钮类型" name="btnBuy.type">
+      <Card :title="$t('promotion.diy.editor.style.button')" class="property-group" :bordered="false">
+        <FormItem :label="$t('promotion.diy.editor.style.buttonType')" name="btnBuy.type">
           <RadioGroup v-model:value="formData.btnBuy.type">
             <RadioButton value="text">文字</RadioButton>
             <RadioButton value="img">图片</RadioButton>
           </RadioGroup>
         </FormItem>
         <template v-if="formData.btnBuy.type === 'text'">
-          <FormItem label="按钮文字" name="btnBuy.text">
+          <FormItem :label="$t('promotion.diy.editor.style.buttonText')" name="btnBuy.text">
             <Input v-model:value="formData.btnBuy.text" />
           </FormItem>
-          <FormItem label="左侧背景" name="btnBuy.bgBeginColor">
+          <FormItem :label="$t('promotion.diy.editor.style.leftBg')" name="btnBuy.bgBeginColor">
             <ColorInput v-model="formData.btnBuy.bgBeginColor" />
           </FormItem>
-          <FormItem label="右侧背景" name="btnBuy.bgEndColor">
+          <FormItem :label="$t('promotion.diy.editor.style.rightBg')" name="btnBuy.bgEndColor">
             <ColorInput v-model="formData.btnBuy.bgEndColor" />
           </FormItem>
         </template>
         <template v-else>
-          <FormItem label="图片" name="btnBuy.imgUrl">
+          <FormItem :label="$t('promotion.diy.editor.style.image')" name="btnBuy.imgUrl">
             <UploadImg
               v-model="formData.btnBuy.imgUrl"
               height="56px"
@@ -147,27 +149,27 @@ const formData = useVModel(props, 'modelValue', emit);
               :show-description="false"
             >
               <!-- TODO @芋艿：这里不提示；是不是组件得封装下；-->
-              <template #tip> 建议尺寸：56 * 56</template>
+              <template #tip>{{ $t('promotion.diy.editor.style.buttonSizeTip') }}</template>
             </UploadImg>
           </FormItem>
         </template>
       </Card>
-      <Card title="商品样式" class="property-group" :bordered="false">
-        <FormItem label="上圆角" name="borderRadiusTop">
+      <Card :title="$t('promotion.diy.editor.style.productStyle')" class="property-group" :bordered="false">
+        <FormItem :label="$t('promotion.diy.editor.style.borderRadiusTop')" name="borderRadiusTop">
           <Slider
             v-model:value="formData.borderRadiusTop"
             :max="100"
             :min="0"
           />
         </FormItem>
-        <FormItem label="下圆角" name="borderRadiusBottom">
+        <FormItem :label="$t('promotion.diy.editor.style.borderRadiusBottom')" name="borderRadiusBottom">
           <Slider
             v-model:value="formData.borderRadiusBottom"
             :max="100"
             :min="0"
           />
         </FormItem>
-        <FormItem label="间隔" name="space">
+        <FormItem :label="$t('promotion.diy.editor.style.space')" name="space">
           <Slider v-model:value="formData.space" :max="100" :min="0" />
         </FormItem>
       </Card>

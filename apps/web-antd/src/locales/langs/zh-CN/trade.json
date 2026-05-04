@@ -1,0 +1,416 @@
+{
+  "order": {
+    "form": {
+      "status": "订单状态",
+      "statusPlaceholder": "请选择订单状态",
+      "payChannelCode": "支付方式",
+      "payChannelCodePlaceholder": "请选择支付方式",
+      "createTime": "创建时间",
+      "terminal": "订单来源",
+      "terminalPlaceholder": "请选择订单来源",
+      "deliveryType": "配送方式",
+      "deliveryTypePlaceholder": "请选择配送方式",
+      "logisticsId": "快递公司",
+      "logisticsIdPlaceholder": "请选择快递公司",
+      "pickUpStoreId": "自提门店",
+      "pickUpStoreIdPlaceholder": "请选择自提门店",
+      "pickUpVerifyCode": "核销码",
+      "pickUpVerifyCodePlaceholder": "请输入核销码",
+      "no": "订单号",
+      "noPlaceholder": "请输入订单号",
+      "userId": "用户 UID",
+      "userIdPlaceholder": "请输入用户 UID",
+      "userNickname": "用户昵称",
+      "userNicknamePlaceholder": "请输入用户昵称",
+      "userMobile": "用户电话",
+      "userMobilePlaceholder": "请输入用户电话",
+      "remark": "备注"
+    },
+    "grid": {
+      "no": "订单号",
+      "createTime": "下单时间",
+      "terminal": "订单来源",
+      "payChannelCode": "支付方式",
+      "payTime": "支付时间",
+      "type": "订单类型",
+      "payPrice": "实际支付",
+      "user": "买家/收货人",
+      "buyer": "买家",
+      "receiver": "收货人",
+      "businessAddress": "商业地址",
+      "billingAddress": "账单地址",
+      "storeName": "门店名称",
+      "storePhone": "门店手机",
+      "pickUpStore": "自提门店",
+      "deliveryType": "配送方式",
+      "status": "订单状态"
+    },
+    "priceForm": {
+      "payPrice": "应付金额(总)",
+      "payPricePlaceholder": "请输入应付金额(总)",
+      "adjustPrice": "订单调价",
+      "adjustPricePlaceholder": "请输入订单调价",
+      "adjustPriceHelp": "订单调价。正数，加价；负数，减价",
+      "newPayPrice": "调价后"
+    },
+    "addressForm": {
+      "receiveUseBilling": "收货地址与账单地址相同",
+      "businessUseBilling": "商业地址与账单地址相同",
+      "receiverFirstName": "收件人名字",
+      "receiverLastName": "收件人姓氏",
+      "companyName": "公司名称",
+      "street": "街道地址",
+      "city": "城市",
+      "state": "州/省",
+      "country": "国家",
+      "postcode": "邮政编码",
+      "phone": "电话",
+      "email": "邮箱",
+      "vat": "增值税号",
+      "eori": "EORI号",
+      "billingCompanyName": "账单公司名称",
+      "billingFirstName": "账单名",
+      "billingLastName": "账单姓",
+      "billingStreet": "账单街道地址",
+      "billingCity": "账单城市",
+      "billingState": "账单州/省",
+      "billingCountry": "账单国家",
+      "billingPostcode": "账单邮政编码",
+      "billingPhone": "账单电话",
+      "billingEmail": "账单邮箱",
+      "billingVat": "账单增值税号",
+      "billingEori": "账单EORI号",
+      "businessCompanyName": "商业公司名称",
+      "businessFirstName": "商业名",
+      "businessLastName": "商业姓",
+      "businessStreet": "商业街道地址",
+      "businessCity": "商业城市",
+      "businessState": "商业州/省",
+      "businessCountry": "商业国家",
+      "businessPostcode": "商业邮政编码",
+      "businessPhone": "商业电话",
+      "businessEmail": "商业邮箱",
+      "businessVat": "商业增值税号",
+      "businessEori": "商业EORI号"
+    },
+    "deliveryForm": {
+      "expressType": "发货方式",
+      "express": "快递",
+      "none": "无需发货",
+      "logisticsId": "物流公司",
+      "logisticsIdPlaceholder": "请选择物流公司",
+      "logisticsNo": "物流单号",
+      "logisticsNoPlaceholder": "请输入物流单号"
+    },
+    "index": {
+      "doc1": "【交易】交易订单",
+      "doc2": "【交易】购物车",
+      "title": "订单列表",
+      "originalPrice": "原价",
+      "quantity": "数量",
+      "piece": "个",
+      "delivery": "发货",
+      "remark": "备注",
+      "updateAddress": "修改地址"
+    },
+    "detail": {
+      "orderInfo": "订单信息",
+      "orderStatus": "订单状态",
+      "priceInfo": "费用信息",
+      "deliveryInfo": "收货信息",
+      "productInfo": "商品信息",
+      "expressInfo": "物流详情",
+      "operateLog": "操作日志",
+      "orderNotFound": "交易订单不存在",
+      "confirmPickUp": "确认核销订单吗？",
+      "processing": "正在处理中...",
+      "pickUpSuccess": "核销成功",
+      "back": "返回",
+      "updatePrice": "调整价格",
+      "remark": "备注",
+      "delivery": "发货",
+      "updateAddress": "修改地址",
+      "pickUp": "核销",
+      "system": "系统",
+      "orderInfoSchema": {
+        "no": "订单号",
+        "buyer": "买家",
+        "type": "订单类型",
+        "terminal": "订单来源",
+        "userRemark": "买家留言",
+        "remark": "商家备注",
+        "payOrderId": "支付单号",
+        "payChannelCode": "付款方式",
+        "brokerageUser": "推广用户"
+      },
+      "orderStatusSchema": {
+        "status": "订单状态",
+        "reminder": "提醒",
+        "reminder1": "买家付款成功后，货款将直接进入您的商户号（微信、支付宝）",
+        "reminder2": "请及时关注你发出的包裹状态，确保可以配送至买家手中",
+        "reminder3": "如果买家表示没收到货或货物有问题，请及时联系买家处理，友好协商"
+      },
+      "priceSchema": {
+        "totalPrice": "商品总额",
+        "deliveryPrice": "运费金额",
+        "adjustPrice": "订单调价",
+        "payPrice": "应付金额"
+      },
+      "deliveryInfoSchema": {
+        "deliveryType": "配送方式",
+        "receiverAddress": "收货地址",
+        "billingAddress": "账单地址",
+        "businessAddress": "商业地址",
+        "deliveryTime": "发货时间",
+        "receiver": "收件人",
+        "company": "公司",
+        "street": "街道",
+        "state": "州/省",
+        "country": "国家",
+        "phone": "电话",
+        "email": "邮箱",
+        "vat": "增值税号",
+        "eori": "EORI号",
+        "name": "姓名"
+      },
+      "productColumns": {
+        "spuName": "商品",
+        "price": "商品原价",
+        "count": "数量",
+        "payPrice": "合计",
+        "afterSaleStatus": "售后状态"
+      },
+      "expressTrackColumns": {
+        "time": "时间",
+        "content": "物流状态"
+      },
+      "operateLogColumns": {
+        "createTime": "操作时间",
+        "userType": "操作人",
+        "content": "操作内容"
+      }
+    },
+    "modules": {
+      "deliveryForm": {
+        "title": "发货"
+      },
+      "remarkForm": {
+        "title": "订单备注"
+      }
+    }
+  },
+  "config": {
+    "doc1": "【交易】交易订单",
+    "doc2": "【交易】购物车",
+    "afterSale": "售后",
+    "delivery": "配送",
+    "brokerage": "分销",
+    "form": {
+      "afterSaleRefundReasons": "退款理由",
+      "afterSaleRefundReasonsPlaceholder": "请直接输入退款理由",
+      "afterSaleReturnReasons": "退货理由",
+      "afterSaleReturnReasonsPlaceholder": "请直接输入退货理由",
+      "deliveryExpressFreeEnabled": "启用包邮",
+      "deliveryExpressFreeEnabledHelp": "商城是否启用全场包邮",
+      "deliveryExpressFreePrice": "满额包邮",
+      "deliveryExpressFreePricePlaceholder": "请输入满额包邮金额",
+      "deliveryExpressFreePriceHelp": "商城商品满多少金额即可包邮，单位：元",
+      "deliveryPickUpEnabled": "启用门店自提",
+      "brokerageEnabled": "启用分佣",
+      "brokerageEnabledHelp": "商城是否开启分销模式",
+      "brokerageEnabledCondition": "分佣模式",
+      "brokerageEnabledConditionHelp": "人人分销：每个用户都可以成为推广员 \n 指定分销：仅可在后台手动设置推广员",
+      "brokerageBindMode": "分销关系绑定",
+      "brokerageBindModeHelp": "首次绑定：只要用户没有推广人，随时都可以绑定推广关系 \n 注册绑定：只有新用户注册时或首次进入系统时才可以绑定推广关系",
+      "brokeragePosterUrls": "分销海报图",
+      "brokeragePosterUrlsHelp": "个人中心分销海报图片，建议尺寸 600x1000",
+      "brokerageFirstPercent": "一级返佣比例（%）",
+      "brokerageFirstPercentPlaceholder": "请输入一级返佣比例",
+      "brokerageFirstPercentHelp": "订单交易成功后给推广人返佣的百分比",
+      "brokerageSecondPercent": "二级返佣比例（%）",
+      "brokerageSecondPercentPlaceholder": "请输入二级返佣比例",
+      "brokerageSecondPercentHelp": "订单交易成功后给推广人的推荐人返佣的百分比",
+      "brokerageFrozenDays": "佣金冻结天数",
+      "brokerageFrozenDaysPlaceholder": "请输入佣金冻结天数",
+      "brokerageFrozenDaysHelp": "防止用户退款，佣金被提现了，所以需要设置佣金冻结时间，单位：天",
+      "brokerageWithdrawMinPrice": "提现最低金额（元）",
+      "brokerageWithdrawMinPricePlaceholder": "请输入提现最低金额",
+      "brokerageWithdrawMinPriceHelp": "用户提现最低金额限制，单位：元",
+      "brokerageWithdrawFeePercent": "提现手续费（%）",
+      "brokerageWithdrawFeePercentPlaceholder": "请输入提现手续费百分比",
+      "brokerageWithdrawFeePercentHelp": "提现手续费百分比，范围 0-100，0 为无提现手续费。例：设置 10，即收取 10% 手续费，提现10 元，到账 9 元，1 元手续费",
+      "brokerageWithdrawTypes": "提现方式",
+      "brokerageWithdrawTypesHelp": "商城开通提现的付款方式"
+    }
+  },
+  "delivery": {
+    "pickUpOrder": {
+      "title": "核销订单",
+      "inputVerifyCode": "请输入核销码",
+      "processing": "订单核销中 ...",
+      "browserNotSupported": "浏览器不支持扫码枪连接，请更换浏览器重试",
+      "connectSuccess": "成功连接扫码枪",
+      "connectFirst": "请先连接或打开扫码枪",
+      "disconnectSuccess": "已成功断开扫码枪连接",
+      "summary": {
+        "orderCount": "订单数量",
+        "orderAmount": "订单金额",
+        "refundCount": "退款单数",
+        "refundAmount": "退款金额"
+      },
+      "action": {
+        "pickup": "核销",
+        "connect": "连接扫描枪",
+        "disconnect": "断开扫描枪"
+      },
+      "form": {
+        "createTime": "创建时间",
+        "pickUpStoreIds": "自提门店",
+        "pickUpStoreIdsPlaceholder": "请选择自提门店",
+        "no": "订单号",
+        "noPlaceholder": "请输入订单号",
+        "userId": "用户 UID",
+        "userIdPlaceholder": "请输入用户 UID",
+        "userNickname": "用户昵称",
+        "userNicknamePlaceholder": "请输入用户昵称",
+        "userMobile": "用户电话",
+        "userMobilePlaceholder": "请输入用户电话"
+      },
+      "grid": {
+        "no": "订单号",
+        "user": "用户信息",
+        "brokerageUser": "推荐人信息",
+        "spuName": "商品信息",
+        "payPrice": "实付金额(元)",
+        "storeStaffName": "核销员",
+        "pickUpStoreId": "核销门店",
+        "payStatus": "支付状态",
+        "status": "订单状态",
+        "createTime": "下单时间"
+      }
+    },
+    "expressTemplate": {
+      "title": "快递模板列表",
+      "chargeMode": {
+        "piece": {
+          "start": "首件",
+          "extra": "续件"
+        },
+        "weight": {
+          "start": "首件重量(kg)",
+          "extra": "续件重量(kg)"
+        },
+        "volume": {
+          "start": "首件体积(m³)",
+          "extra": "续件体积(m³)"
+        }
+      },
+      "freeMode": {
+        "piece": "包邮件数",
+        "weight": "包邮重量(kg)",
+        "volume": "包邮体积(m³)"
+      },
+      "grid": {
+        "countries": "区域",
+        "startPrice": "运费(元)",
+        "extraPrice": "续费(元)",
+        "freePrice": "包邮金额(元)",
+        "name": "模板名称",
+        "chargeMode": "计费方式",
+        "sort": "显示顺序"
+      },
+      "form": {
+        "name": "模板名称",
+        "namePlaceholder": "请输入模板名称",
+        "chargeMode": "计费方式",
+        "chargeModePlaceholder": "请选择计费方式",
+        "sort": "显示顺序",
+        "sortPlaceholder": "请输入显示顺序",
+        "charges": "运费设置",
+        "frees": "包邮设置",
+        "countryPlaceholder": "请选择地区"
+      },
+      "chargeItem": {
+        "validate": {
+          "countries": "运费设置第 {0} 行：区域不能为空",
+          "startPrice": "运费设置第 {0} 行：运费必须大于0",
+          "extraPrice": "运费设置第 {0} 行：续费必须大于 0"
+        },
+        "deleteConfirm": "确认删除该区域吗？",
+        "add": "添加计费区域"
+      },
+      "freeItem": {
+        "validate": {
+          "countries": "包邮设置第 {0} 行：区域不能为空",
+          "freePrice": "包邮设置第 {0} 行：包邮金额必须大于 0"
+        },
+        "deleteConfirm": "确认删除该区域吗？",
+        "add": "添加包邮区域"
+      }
+    },
+    "pickUpStore": {
+      "title": "门店列表",
+      "action": {
+        "bind": "绑定店员"
+      },
+      "form": {
+        "name": "门店名称",
+        "namePlaceholder": "请输入门店名称",
+        "phone": "门店手机",
+        "phonePlaceholder": "请输入门店手机",
+        "logo": "门店 logo",
+        "logoPlaceholder": "请上传门店 logo",
+        "logoHelp": "推荐 180x180 图片分辨率",
+        "introduction": "门店简介",
+        "introductionPlaceholder": "请输入门店简介",
+        "areaId": "门店所在地区",
+        "areaIdPlaceholder": "请选择省市区",
+        "detailAddress": "门店详细地址",
+        "detailAddressPlaceholder": "请输入门店详细地址",
+        "rangeTime": "营业时间",
+        "status": "门店状态",
+        "statusPlaceholder": "请选择门店状态",
+        "longitude": "经度",
+        "longitudePlaceholder": "请输入门店经度",
+        "latitude": "纬度",
+        "latitudePlaceholder": "请输入门店纬度",
+        "verifyUserIds": "门店店员",
+        "verifyUserIdsPlaceholder": "请选择门店店员",
+        "mapKeyWarning": "请先配置腾讯位置服务的 key",
+        "getLatLng": "获取经纬度",
+        "bindTitle": "绑定店员"
+      },
+      "grid": {
+        "logo": "门店 logo",
+        "name": "门店名称",
+        "phone": "门店手机",
+        "detailAddress": "地址",
+        "openingTime": "营业时间",
+        "status": "开启状态"
+      }
+    },
+    "express": {
+      "title": "快递公司列表",
+      "exportFileName": "快递公司.xls",
+      "form": {
+        "code": "公司编码",
+        "codePlaceholder": "请输入快递编码",
+        "name": "公司名称",
+        "namePlaceholder": "请输入快递名称",
+        "logo": "公司 logo",
+        "logoHelp": "推荐 180x180 图片分辨率",
+        "sort": "显示顺序",
+        "sortPlaceholder": "请输入显示顺序",
+        "status": "开启状态",
+        "statusPlaceholder": "请选择状态"
+      },
+      "grid": {
+        "code": "公司编码",
+        "name": "公司名称",
+        "logo": "公司 logo",
+        "sort": "显示顺序",
+        "status": "状态"
+      }
+    }
+  }
+}

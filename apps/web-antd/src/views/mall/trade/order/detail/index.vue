@@ -28,6 +28,7 @@ import {
 import { useDescription } from '#/components/description';
 import { DictTag } from '#/components/dict-tag';
 import { TableAction } from '#/components/table-action';
+import { $t } from '#/locales';
 
 import AddressForm from '../modules/address-form.vue';
 import DeliveryForm from '../modules/delivery-form.vue';
@@ -40,8 +41,8 @@ import {
   useOrderInfoSchema,
   useOrderPriceSchema,
   useOrderStatusSchema,
-  useProductColumns
-} from "./data";
+  useProductColumns,
+} from './data';
 
 defineOptions({ name: 'TradeOrderDetail' });
 
@@ -61,7 +62,7 @@ const pickUpStore = ref<
 >();
 
 const [OrderInfoDescriptions] = useDescription({
-  title: '订单信息',
+  title: $t('trade.order.detail.orderInfo'),
   bordered: false,
   column: 3,
   class: 'mx-4',
@@ -69,7 +70,7 @@ const [OrderInfoDescriptions] = useDescription({
 });
 
 const [OrderStatusDescriptions] = useDescription({
-  title: '订单状态',
+  title: $t('trade.order.detail.orderStatus'),
   bordered: false,
   column: 1,
   class: 'mx-4',
@@ -77,7 +78,7 @@ const [OrderStatusDescriptions] = useDescription({
 });
 
 const [OrderPriceDescriptions] = useDescription({
-  title: '费用信息',
+  title: $t('trade.order.detail.priceInfo'),
   bordered: false,
   column: 4,
   class: 'mx-4',
@@ -85,7 +86,7 @@ const [OrderPriceDescriptions] = useDescription({
 });
 
 const [DeliveryInfoDescriptions] = useDescription({
-  title: '收货信息',
+  title: $t('trade.order.detail.deliveryInfo'),
   bordered: false,
   column: 3,
   class: 'mx-4',
@@ -167,7 +168,7 @@ async function getDetail() {
   try {
     const res = await getOrder(orderId.value);
     if (res === null) {
-      message.error('交易订单不存在');
+      message.error($t('trade.order.detail.orderNotFound'));
       handleBack();
       return;
     }
@@ -214,14 +215,14 @@ const handleUpdatePrice = () => {
 
 /** 核销 */
 const handlePickUp = async () => {
-  await confirm('确认核销订单吗？');
+  await confirm($t('trade.order.detail.confirmPickUp'));
   const hideLoading = message.loading({
-    content: '正在处理中...',
+    content: $t('trade.order.detail.processing'),
     duration: 0,
   });
   try {
     await pickUpOrder(order.value.id!);
-    message.success('核销成功');
+    message.success($t('trade.order.detail.pickUpSuccess'));
     await getDetail();
   } finally {
     hideLoading();
@@ -247,24 +248,24 @@ onMounted(async () => {
       <TableAction
         :actions="[
           {
-            label: '返回',
+            label: $t('trade.order.detail.back'),
             type: 'default',
             icon: 'lucide:arrow-left',
             onClick: handleBack,
           },
           {
-            label: '调整价格',
+            label: $t('trade.order.detail.updatePrice'),
             type: 'primary',
             onClick: handleUpdatePrice,
             ifShow: order.status === TradeOrderStatusEnum.UNPAID.status,
           },
           {
-            label: '备注',
+            label: $t('trade.order.detail.remark'),
             type: 'primary',
             onClick: handleRemark,
           },
           {
-            label: '发货',
+            label: $t('trade.order.detail.delivery'),
             type: 'primary',
             onClick: handleDelivery,
             ifShow:
@@ -272,7 +273,7 @@ onMounted(async () => {
               order.deliveryType === DeliveryTypeEnum.EXPRESS.type,
           },
           {
-            label: '修改地址',
+            label: $t('trade.order.detail.updateAddress'),
             type: 'primary',
             onClick: handleUpdateAddress,
             ifShow:
@@ -280,7 +281,7 @@ onMounted(async () => {
               order.deliveryType === DeliveryTypeEnum.EXPRESS.type,
           },
           {
-            label: '核销',
+            label: $t('trade.order.detail.pickUp'),
             type: 'primary',
             onClick: handlePickUp,
             ifShow:
@@ -307,7 +308,7 @@ onMounted(async () => {
     </div>
     <!-- 商品信息 -->
     <div class="mb-4">
-      <ProductGrid table-title="商品信息">
+      <ProductGrid :table-title="$t('trade.order.detail.productInfo')">
         <template #spuName="{ row }">
           <div class="flex flex-1 flex-col items-start gap-1 text-left">
             <span class="text-sm">{{ row.spuName }}</span>
@@ -334,13 +335,15 @@ onMounted(async () => {
     </div>
     <!-- 物流详情 -->
     <div v-if="expressTrackList.length > 0" class="mb-4">
-      <ExpressTrackGrid table-title="物流详情" />
+      <ExpressTrackGrid :table-title="$t('trade.order.detail.expressInfo')" />
     </div>
     <!-- 操作日志 -->
     <div>
-      <OperateLogGrid table-title="操作日志">
+      <OperateLogGrid :table-title="$t('trade.order.detail.operateLog')">
         <template #userType="{ row }">
-          <Tag v-if="row.userType === 0" color="default"> 系统 </Tag>
+          <Tag v-if="row.userType === 0" color="default">
+            {{ $t('trade.order.detail.system') }}
+          </Tag>
           <DictTag v-else :type="DICT_TYPE.USER_TYPE" :value="row.userType" />
         </template>
       </OperateLogGrid>

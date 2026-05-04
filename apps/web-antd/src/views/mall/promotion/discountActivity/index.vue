@@ -41,14 +41,14 @@ function handleEdit(row: MallDiscountActivityApi.DiscountActivity) {
 
 /** 关闭满减活动 */
 async function handleClose(row: MallDiscountActivityApi.DiscountActivity) {
-  await confirm('确认关闭该限时折扣活动吗？');
+  await confirm($t('promotion.discountActivity.confirmClose'));
   const hideLoading = message.loading({
-    content: '正在关闭中...',
+    content: $t('promotion.discountActivity.closing'),
     duration: 0,
   });
   try {
     await closeDiscountActivity(row.id!);
-    message.success('关闭成功');
+    message.success($t('promotion.discountActivity.closeSuccess'));
     handleRefresh();
   } finally {
     hideLoading();
@@ -107,19 +107,21 @@ const [Grid, gridApi] = useVbenVxeGrid({
   <Page auto-content-height>
     <template #doc>
       <DocAlert
-        title="【营销】限时折扣"
+        :title="$t('promotion.discountActivity.title')"
         url="https://doc.iocoder.cn/mall/promotion-discount/"
       />
     </template>
 
     <FormModal @success="handleRefresh" />
 
-    <Grid table-title="限时折扣活动列表">
+    <Grid :table-title="$t('promotion.discountActivity.list')">
       <template #toolbar-tools>
         <TableAction
           :actions="[
             {
-              label: $t('ui.actionTitle.create', ['限时折扣活动']),
+              label: $t('ui.actionTitle.create', [
+                $t('promotion.discountActivity.name'),
+              ]),
               type: 'primary',
               icon: ACTION_ICON.ADD,
               auth: ['promotion:discount-activity:create'],
@@ -139,7 +141,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
               onClick: handleEdit.bind(null, row),
             },
             {
-              label: '关闭',
+              label: $t('promotion.discountActivity.close'),
               type: 'link',
               danger: true,
               icon: ACTION_ICON.DELETE,

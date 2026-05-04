@@ -5,6 +5,7 @@ import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 
 import { fenToYuan, isObject, jsonParse } from '@vben/utils';
+import { $t } from '#/locales';
 
 import ProductItem from './product-item.vue';
 
@@ -47,24 +48,24 @@ function formatOrderColor(order: any) {
 /** 格式化订单状态 */
 function formatOrderStatus(order: any) {
   if (order.status === 0) {
-    return '待付款';
+    return $t('promotion.kefu.order.status.pendingPayment');
   }
   if (order.status === 10 && order.deliveryType === 1) {
-    return '待发货';
+    return $t('promotion.kefu.order.status.pendingDelivery');
   }
   if (order.status === 10 && order.deliveryType === 2) {
-    return '待核销';
+    return $t('promotion.kefu.order.status.pendingVerification');
   }
   if (order.status === 20) {
-    return '待收货';
+    return $t('promotion.kefu.order.status.pendingReceipt');
   }
   if (order.status === 30 && !order.commentStatus) {
-    return '待评价';
+    return $t('promotion.kefu.order.status.pendingReview');
   }
   if (order.status === 30 && order.commentStatus) {
-    return '已完成';
+    return $t('promotion.kefu.order.status.completed');
   }
-  return '已关闭';
+  return $t('promotion.kefu.order.status.closed');
 }
 </script>
 
@@ -76,7 +77,7 @@ function formatOrderStatus(order: any) {
   >
     <div class="flex h-6 items-center justify-between px-1 font-bold">
       <div class="flex flex-row text-sm">
-        <div>订单号：</div>
+        <div>{{ $t('promotion.kefu.order.no') }}：</div>
         <span
           class="cursor-pointer text-primary hover:underline"
           @click="openDetail(getMessageContent.id)"
@@ -110,7 +111,7 @@ function formatOrderStatus(order: any) {
     <div class="flex justify-end pr-1.5 pt-2.5 font-bold">
       <div class="flex items-center">
         <div class="text-sm leading-normal">
-          共 {{ getMessageContent?.productCount }} 件商品,总金额:
+          {{ $t('promotion.kefu.order.total', [getMessageContent?.productCount]) }}
         </div>
         <div class="text-sm font-medium leading-normal">
           ￥{{ fenToYuan(getMessageContent?.payPrice) }}

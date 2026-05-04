@@ -20,8 +20,8 @@ const emit = defineEmits(['success']);
 const formData = ref<MallDiyTemplateApi.DiyTemplate>();
 const getTitle = computed(() => {
   return formData.value?.id
-    ? $t('ui.actionTitle.edit', ['装修模板'])
-    : $t('ui.actionTitle.create', ['装修模板']);
+    ? $t('ui.actionTitle.edit', [$t('promotion.diy.template.title')])
+    : $t('ui.actionTitle.create', [$t('promotion.diy.template.title')]);
 });
 
 const [Form, formApi] = useVbenForm({

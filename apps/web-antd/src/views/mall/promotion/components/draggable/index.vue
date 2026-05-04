@@ -60,13 +60,13 @@ const handleDelete = function (index: number) {
         <div
           class="-m-2 mb-1 flex flex-row items-center justify-between rounded-t bg-secondary p-2"
         >
-          <Tooltip title="拖动排序">
+          <Tooltip :title="$t('promotion.draggable.tooltip.drag')">
             <IconifyIcon
               icon="lucide:move"
               class="drag-icon cursor-move text-gray-500"
             />
           </Tooltip>
-          <Tooltip title="删除">
+          <Tooltip :title="$t('promotion.draggable.tooltip.delete')">
             <IconifyIcon
               icon="ep:delete"
               class="cursor-pointer text-red-500"

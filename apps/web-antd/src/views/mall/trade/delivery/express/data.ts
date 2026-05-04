@@ -3,6 +3,7 @@ import type { VxeTableGridOptions } from '#/adapter/vxe-table';
 
 import { CommonStatusEnum, DICT_TYPE } from '@vben/constants';
 import { getDictOptions } from '@vben/hooks';
+import { $t } from '@vben/locales';
 
 import { z } from '#/adapter/form';
 
@@ -44,11 +45,11 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'sort',
-      label: '显示顺序',
+      label: $t('trade.delivery.express.form.sort'),
       component: 'InputNumber',
       componentProps: {
         min: 0,
-        placeholder: '请输入显示顺序',
+        placeholder: $t('trade.delivery.express.form.sortPlaceholder'),
       },
       rules: 'required',
     },

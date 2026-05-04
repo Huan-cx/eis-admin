@@ -96,49 +96,49 @@ function handleDelete(ruleIndex: number) {
                   :precision="2"
                   :step="0.1"
                   class="!w-40"
-                  placeholder="请输入金额"
+                  :placeholder="$t('promotion.rewardActivity.form.placeholder.amount')"
                 />
                 <Input
                   v-else
                   v-model:value="rule.limit"
                   :min="0"
                   class="!w-40"
-                  placeholder="请输入数量"
+                  :placeholder="$t('promotion.rewardActivity.form.placeholder.quantity')"
                   type="number"
                 />
-                <span>{{ isPriceCondition ? '元' : '件' }}</span>
+                <span>{{ isPriceCondition ? $t('promotion.rewardActivity.form.unit.yuan') : $t('promotion.rewardActivity.form.unit.item') }}</span>
               </div>
             </FormItem>
             <!-- 优惠内容 -->
-            <FormItem label="优惠内容:" :colon="false" class="!mb-0">
+            <FormItem :label="$t('promotion.rewardActivity.form.discountContent')" :colon="false" class="!mb-0">
               <div class="flex flex-col gap-3">
                 <!-- 订单金额优惠 -->
                 <div
                   class="flex items-center gap-2 rounded-md bg-gray-50 px-3 py-2"
                 >
                   <span class="!w-21 shrink-0 text-sm text-gray-500">
-                    订单金额优惠
+                    {{ $t('promotion.rewardActivity.form.discountPrice') }}
                   </span>
-                  <span>减</span>
+                  <span>{{ $t('promotion.rewardActivity.form.discountMinus') }}</span>
                   <InputNumber
                     v-model:value="rule.discountPrice"
                     :min="0"
                     :precision="2"
                     :step="0.1"
                     class="!w-32"
-                    placeholder="请输入金额"
+                    :placeholder="$t('promotion.rewardActivity.form.placeholder.amount')"
                   />
-                  <span>元</span>
+                  <span>{{ $t('promotion.rewardActivity.form.unit.yuan') }}</span>
                 </div>
                 <!-- 包邮 -->
                 <div
                   class="flex items-center gap-2 rounded-md bg-gray-50 px-3 py-2"
                 >
-                  <span class="w-20 shrink-0 text-sm text-gray-500">包邮</span>
+                  <span class="w-20 shrink-0 text-sm text-gray-500">{{ $t('promotion.rewardActivity.form.freeDelivery') }}</span>
                   <Switch
                     v-model:checked="rule.freeDelivery"
-                    checked-children="是"
-                    un-checked-children="否"
+                    :checked-children="$t('promotion.rewardActivity.form.yes')"
+                    :un-checked-children="$t('promotion.rewardActivity.form.no')"
                   />
                 </div>
                 <!-- 送积分 -->
@@ -146,16 +146,16 @@ function handleDelete(ruleIndex: number) {
                   class="flex items-center gap-2 rounded-md bg-gray-50 px-3 py-2"
                 >
                   <span class="w-20 shrink-0 text-sm text-gray-500">
-                    送积分
+                    {{ $t('promotion.rewardActivity.form.sendPoint') }}
                   </span>
-                  <span>送</span>
+                  <span>{{ $t('promotion.rewardActivity.form.send') }}</span>
                   <InputNumber
                     v-model:value="rule.point"
                     :min="0"
                     class="!w-32"
-                    placeholder="请输入积分"
+                    :placeholder="$t('promotion.rewardActivity.form.placeholder.point')"
                   />
-                  <span>积分</span>
+                  <span>{{ $t('promotion.rewardActivity.form.unit.point') }}</span>
                 </div>
                 <!-- 送优惠券 -->
                 <div

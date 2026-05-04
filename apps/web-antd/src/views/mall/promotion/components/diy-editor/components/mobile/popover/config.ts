@@ -1,5 +1,7 @@
 import type { DiyComponent } from '../../../util';
 
+import { $t } from '#/locales';
+
 /** 弹窗广告属性 */
 export interface PopoverProperty {
   list: PopoverItemProperty[]; // 弹窗列表
@@ -15,7 +17,7 @@ export interface PopoverItemProperty {
 /** 定义组件 */
 export const component = {
   id: 'Popover',
-  name: '弹窗广告',
+  name: $t('promotion.popover.title'),
   icon: 'carbon:popup',
   position: 'fixed',
   property: {

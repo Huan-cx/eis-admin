@@ -37,8 +37,8 @@ const emit = defineEmits(['success']);
 const formData = ref<MallCombinationActivityApi.CombinationActivity>();
 const getTitle = computed(() => {
   return formData.value?.id
-    ? $t('ui.actionTitle.edit', ['拼团活动'])
-    : $t('ui.actionTitle.create', ['拼团活动']);
+    ? $t('ui.actionTitle.edit', [$t('promotion.combination.activity.title')])
+    : $t('ui.actionTitle.create', [$t('promotion.combination.activity.title')]);
 });
 
 const [Form, formApi] = useVbenForm({
@@ -153,7 +153,7 @@ const [Modal, modalApi] = useVbenModal({
       const products: MallCombinationActivityApi.CombinationProduct[] =
         cloneDeep(spuAndSkuListRef.value?.getSkuConfigs('productConfig') || []);
       if (products.length === 0) {
-        message.error('请选择拼团商品');
+        message.error($t('promotion.combination.activity.form.selectProduct'));
         return;
       }
       // 价格需要转为分

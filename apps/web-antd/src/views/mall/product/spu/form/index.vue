@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { MallSpuApi } from '#/api/mall/product/spu';
+import type { MallI18nApi } from '#/api/mall/product/i18n';
 import type {
   PropertyAndValues,
   RuleConfig,
@@ -12,10 +13,13 @@ import { Page, useVbenModal } from '@vben/common-ui';
 import { useTabs } from '@vben/hooks';
 import { convertToInteger, formatToFraction } from '@vben/utils';
 
-import { Button, Card, message } from 'ant-design-vue';
+import { Button, Card, message, Space } from 'ant-design-vue';
 
 import { useVbenForm } from '#/adapter/form';
+import { getSpuI18nList, saveSpuI18n } from '#/api/mall/product/i18n';
 import { createSpu, getSpu, updateSpu } from '#/api/mall/product/spu';
+import I18nEditor from '#/components/i18n-editor/I18nEditor.vue';
+import { $t } from '#/locales';
 import { getPropertyList, SkuList } from '#/views/mall/product/spu/components';
 
 import {
@@ -32,9 +36,11 @@ const spuId = ref<number>();
 const { params, name } = useRoute();
 const { closeCurrentTab } = useTabs();
 const activeTabName = ref('info');
-const formLoading = ref(false); // 表单的加载中：1）修改时的数据加载；2）提交的按钮禁用
-const isDetail = ref(name === 'ProductSpuDetail'); // 是否查看详情
-const skuListRef = ref(); // 商品属性列表 Ref
+const formLoading = ref(false);
+const isDetail = ref(name === 'ProductSpuDetail');
+const skuListRef = ref();
+const i18nData = ref<MallI18nApi.TranslationItem[]>([]);
+const i18nEditorRef = ref<InstanceType<typeof I18nEditor>>();
 
 const formData = ref<MallSpuApi.Spu>({
   name: '',
@@ -50,7 +56,7 @@ const formData = ref<MallSpuApi.Spu>({
   subCommissionType: false,
   skus: [
     {
-      name: '', // SKU 名称，提交时会自动使用 SPU 名称
+      name: '',
       price: 0,
       marketPrice: 0,
       costPrice: 0,
@@ -67,31 +73,30 @@ const formData = ref<MallSpuApi.Spu>({
   sort: 0,
   giveIntegral: 0,
   virtualSalesCount: 0,
-}); // spu 表单数据
-const propertyList = ref<PropertyAndValues[]>([]); // 商品属性列表
+});
+const propertyList = ref<PropertyAndValues[]>([]);
 const ruleConfig: RuleConfig[] = [
   {
     name: 'stock',
     rule: (arg: number) => arg >= 0,
-    message: '商品库存必须大于等于 1 ！！！',
+    message: $t('mall-product.spu.validation.stock'),
   },
   {
     name: 'price',
     rule: (arg: number) => arg >= 0.01,
-    message: '商品销售价格必须大于等于 0.01 元！！！',
+    message: $t('mall-product.spu.validation.price'),
   },
   {
     name: 'marketPrice',
     rule: (arg: number) => arg >= 0.01,
-    message: '商品市场价格必须大于等于 0.01 元！！！',
+    message: $t('mall-product.spu.validation.marketPrice'),
   },
   {
     name: 'costPrice',
     rule: (arg: number) => arg >= 0.01,
-    message: '商品成本价格必须大于等于 0.00 元！！！',
+    message: $t('mall-product.spu.validation.costPrice'),
   },
-]; // sku 相关属性校验规则
-
+];
 const [InfoForm, infoFormApi] = useVbenForm({
   commonConfig: {
     componentProps: {
@@ -168,37 +173,31 @@ const [OtherForm, otherFormApi] = useVbenForm({
   showDefaultActions: false,
 });
 
-/** tab 切换 */
 function handleTabChange(key: string) {
   activeTabName.value = key;
 }
 
-/** 提交表单 */
 async function handleSubmit() {
-  const values: MallSpuApi.Spu = await infoFormApi
+  const formValues: MallSpuApi.Spu = await infoFormApi
     .merge(skuFormApi)
     .merge(deliveryFormApi)
     .merge(descriptionFormApi)
     .merge(otherFormApi)
     .submitAllForm(true);
-  values.skus = formData.value.skus;
-  // 校验商品名称不能为空（用于 SKU name）
-  if (!values.name || values.name.trim() === '') {
-    message.error('商品名称不能为空');
+  formValues.skus = formData.value.skus;
+  if (!formValues.name || formValues.name.trim() === '') {
+    message.error($t('mall-product.spu.validation.nameEmpty'));
     return;
   }
-  if (values.skus) {
+  if (formValues.skus) {
     try {
-      // 校验 sku
       skuListRef.value.validateSku();
     } catch {
-      message.error('【库存价格】不完善，请填写相关信息');
+      message.error($t('mall-product.spu.validation.skuIncomplete'));
       return;
     }
-    values.skus.forEach((item) => {
-      // 给 sku name 赋值（使用商品名称作为 SKU 名称）
-      item.name = values.name;
-      // 金额转换：元转分
+    formValues.skus.forEach((item) => {
+      item.name = formValues.name;
       item.price = convertToInteger(item.price);
       item.marketPrice = convertToInteger(item.marketPrice);
       item.costPrice = convertToInteger(item.costPrice);
@@ -206,26 +205,24 @@ async function handleSubmit() {
       item.secondBrokeragePrice = convertToInteger(item.secondBrokeragePrice);
     });
   }
-  // 处理轮播图列表：上传组件可能返回对象或字符串，统一处理成字符串数组
   const newSliderPicUrls: any[] = [];
-  values.sliderPicUrls!.forEach((item: any) => {
-    // 如果是前端选的图
+  formValues.sliderPicUrls!.forEach((item: any) => {
     typeof item === 'object'
       ? newSliderPicUrls.push(item.url)
       : newSliderPicUrls.push(item);
   });
-  values.sliderPicUrls = newSliderPicUrls;
+  formValues.sliderPicUrls = newSliderPicUrls;
 
-  // 提交数据
-  await (spuId.value ? updateSpu(values) : createSpu(values)).then(() => {
-    getDetail();
-    message.success('操作成功');
-  }).catch(() => {
-    message.error('操作失败');
-  });
+  await (spuId.value ? updateSpu(formValues) : createSpu(formValues))
+    .then(() => {
+      getDetail();
+      message.success($t('ui.actionMessage.operationSuccess'));
+    })
+    .catch(() => {
+      message.error($t('ui.actionMessage.operationFailed'));
+    });
 }
 
-/** 获得详情 */
 async function getDetail() {
   if (isDetail.value) {
     isDetail.value = true;
@@ -235,12 +232,10 @@ async function getDetail() {
     descriptionFormApi.setDisabled(true);
     otherFormApi.setDisabled(true);
   }
-  // 将 SKU 的属性，整理成 PropertyAndValues 数组
   propertyList.value = getPropertyList(formData.value);
   formLoading.value = true;
   try {
     const res = await getSpu(spuId.value!);
-    // 金额转换：元转分
     res.skus?.forEach((item) => {
       item.price = formatToFraction(item.price);
       item.marketPrice = formatToFraction(item.marketPrice);
@@ -249,52 +244,59 @@ async function getDetail() {
       item.secondBrokeragePrice = formatToFraction(item.secondBrokeragePrice);
     });
     formData.value = res;
-    // 初始化各表单值
     infoFormApi.setValues(res).then();
     skuFormApi.setValues(res).then();
     deliveryFormApi.setValues(res).then();
     descriptionFormApi.setValues(res).then();
     otherFormApi.setValues(res).then();
-    // 将 SKU 的属性，整理成 PropertyAndValues 数组
     propertyList.value = getPropertyList(formData.value);
   } finally {
     formLoading.value = false;
   }
 }
 
-// =========== sku form 逻辑 ===========
-
-/** 打开属性添加表单 */
 function openPropertyAddForm() {
   productPropertyAddFormApi.open();
 }
 
-/** 调用 SkuList generateTableData 方法*/
+async function loadI18nData() {
+  if (!spuId.value) {
+    i18nData.value = [];
+    return;
+  }
+  try {
+    i18nData.value = await getSpuI18nList(spuId.value);
+  } catch (error) {
+    console.error('加载国际化数据失败:', error);
+    i18nData.value = [];
+  }
+}
+
+function openI18nEditor() {
+  loadI18nData().then(() => {
+    i18nEditorRef.value?.modalApi.open();
+  });
+}
+
 function generateSkus(propertyList: PropertyAndValues[]) {
   skuListRef.value.generateTableData(propertyList);
 }
 
-/** 分销类型 */
 function handleChangeSubCommissionType() {
-  // 默认为零，类型切换后也要重置为零
   for (const item of formData.value.skus!) {
     item.firstBrokeragePrice = 0;
     item.secondBrokeragePrice = 0;
   }
 }
 
-/** 选择规格 */
 function handleChangeSpec() {
-  // 详情模式下不重置属性和sku列表
   if (isDetail.value || formData.value.id) {
     return;
   }
-  // 重置商品属性列表
   propertyList.value = [];
-  // 重置 sku 列表
   formData.value.skus = [
     {
-      name: '', // SKU 名称，提交时会自动使用 SPU 名称
+      name: '',
       price: 0,
       marketPrice: 0,
       costPrice: 0,
@@ -309,7 +311,6 @@ function handleChangeSpec() {
   ];
 }
 
-/** 监听 sku form schema 变化，更新表单 */
 watch(
   propertyList,
   () => {
@@ -320,7 +321,6 @@ watch(
   { deep: true },
 );
 
-/** 初始化 */
 onMounted(async () => {
   spuId.value = params.id as unknown as number;
   if (!spuId.value) {
@@ -341,35 +341,44 @@ onMounted(async () => {
         :tab-list="[
           {
             key: 'info',
-            tab: '基础设置',
+            tab: $t('mall-product.spu.form.basic'),
           },
           {
             key: 'sku',
-            tab: '价格库存',
+            tab: $t('mall-product.spu.form.sku'),
           },
           {
             key: 'delivery',
-            tab: '物流设置',
+            tab: $t('mall-product.spu.form.delivery'),
           },
           {
             key: 'description',
-            tab: '商品详情',
+            tab: $t('mall-product.spu.form.description'),
           },
           {
             key: 'other',
-            tab: '其它设置',
+            tab: $t('mall-product.spu.form.other'),
           },
         ]"
         :active-key="activeTabName"
         @tab-change="handleTabChange"
       >
         <template #tabBarExtraContent>
-          <Button type="primary" v-if="!isDetail" @click="handleSubmit">
-            保存
-          </Button>
-          <Button type="default" v-else @click="() => closeCurrentTab()">
-            返回列表
-          </Button>
+          <Space>
+            <Button
+              v-if="!isDetail && spuId"
+              type="default"
+              @click="openI18nEditor"
+            >
+              {{ $t('mall-product.i18n.title') }}
+            </Button>
+            <Button type="primary" v-if="!isDetail" @click="handleSubmit">
+              {{ $t('common.save') }}
+            </Button>
+            <Button type="default" v-else @click="() => closeCurrentTab()">
+              {{ $t('common.backToList') }}
+            </Button>
+          </Space>
         </template>
 
         <InfoForm class="w-3/5" v-show="activeTabName === 'info'" />
@@ -387,7 +396,7 @@ onMounted(async () => {
           <template #productAttributes>
             <div>
               <Button class="mb-10px mr-15px" @click="openPropertyAddForm">
-                添加属性
+                {{ $t('mall-product.spu.form.addProperty') }}
               </Button>
               <ProductAttributes
                 :is-detail="isDetail"
@@ -422,6 +431,51 @@ onMounted(async () => {
         <OtherForm class="w-3/5" v-show="activeTabName === 'other'" />
       </Card>
     </Page>
+
+    <I18nEditor
+      v-if="spuId"
+      ref="i18nEditorRef"
+      :title="$t('mall-product.i18n.title')"
+      :entity-id="spuId"
+      :fields="[
+        { key: 'name', label: $t('mall-product.spu.name'), type: 'input' },
+        {
+          key: 'keyword',
+          label: $t('mall-product.spu.keyword'),
+          type: 'input',
+        },
+        {
+          key: 'introduction',
+          label: $t('mall-product.spu.introduction'),
+          type: 'input',
+        },
+        {
+          key: 'description',
+          label: $t('mall-product.spu.description'),
+          type: 'richText',
+        },
+        {
+          key: 'metaTitle',
+          label: $t('mall-product.spu.form.metaTitle'),
+          type: 'input',
+        },
+        {
+          key: 'metaDescription',
+          label: $t('mall-product.spu.form.metaDescription'),
+          type: 'textarea',
+        },
+      ]"
+      :default-data="{
+        name: formData.name ?? '',
+        keyword: formData.keyword ?? '',
+        introduction: formData.introduction ?? '',
+        description: formData.description ?? '',
+        metaTitle: formData.metaTitle ?? '',
+        metaDescription: formData.metaDescription ?? '',
+      }"
+      :initial-data="i18nData"
+      :save-api="saveSpuI18n"
+    />
   </div>
 </template>
 <style lang="scss" scoped>

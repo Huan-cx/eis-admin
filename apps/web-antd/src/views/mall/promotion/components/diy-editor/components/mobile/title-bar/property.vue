@@ -3,6 +3,8 @@ import type { TitleBarProperty } from './config';
 
 import { IconifyIcon } from '@vben/icons';
 
+import { $t } from '#/locales';
+
 import { useVModel } from '@vueuse/core';
 import {
   Card,
@@ -39,8 +41,8 @@ const rules = {}; // 表单校验
 <template>
   <ComponentContainerProperty v-model="formData.style">
     <Form :model="formData" :rules="rules">
-      <Card title="风格" class="property-group">
-        <FormItem label="背景图片" name="bgImgUrl">
+      <Card :title="$t('promotion.titleBar.property.style')" class="property-group">
+        <FormItem :label="$t('promotion.titleBar.property.bgImg')" name="bgImgUrl">
           <UploadImg
             v-model="formData.bgImgUrl"
             width="100%"
@@ -48,12 +50,12 @@ const rules = {}; // 表单校验
             :show-description="false"
           >
             <!-- TODO @芋艿：这里不提示；是不是组件得封装下；-->
-            <template #tip>建议尺寸 750*80</template>
+            <template #tip>{{ $t('promotion.titleBar.property.bgImgTip') }}</template>
           </UploadImg>
         </FormItem>
-        <FormItem label="标题位置" name="textAlign">
+        <FormItem :label="$t('promotion.titleBar.property.titlePosition')" name="textAlign">
           <RadioGroup v-model:value="formData!.textAlign">
-            <Tooltip title="居左" placement="top">
+            <Tooltip :title="$t('promotion.titleBar.property.alignLeft')" placement="top">
               <RadioButton value="left">
                 <IconifyIcon
                   icon="ant-design:align-left-outlined"
@@ -61,7 +63,7 @@ const rules = {}; // 表单校验
                 />
               </RadioButton>
             </Tooltip>
-            <Tooltip title="居中" placement="top">
+            <Tooltip :title="$t('promotion.titleBar.property.alignCenter')" placement="top">
               <RadioButton value="center">
                 <IconifyIcon
                   icon="ant-design:align-center-outlined"
@@ -71,15 +73,15 @@ const rules = {}; // 表单校验
             </Tooltip>
           </RadioGroup>
         </FormItem>
-        <FormItem label="偏移量" name="marginLeft">
+        <FormItem :label="$t('promotion.titleBar.property.offset')" name="marginLeft">
           <Slider v-model:value="formData.marginLeft" :max="100" :min="0" />
         </FormItem>
-        <FormItem label="高度" name="height">
+        <FormItem :label="$t('promotion.titleBar.property.height')" name="height">
           <Slider v-model:value="formData.height" :max="200" :min="20" />
         </FormItem>
       </Card>
-      <Card title="主标题" class="property-group">
-        <FormItem label="文字" name="title">
+      <Card :title="$t('promotion.titleBar.property.mainTitle')" class="property-group">
+        <FormItem :label="$t('promotion.titleBar.property.text')" name="title">
           <InputWithColor
             v-model="formData.title"
             v-model:color="formData.titleColor"
@@ -87,10 +89,10 @@ const rules = {}; // 表单校验
             :maxlength="20"
           />
         </FormItem>
-        <FormItem label="大小" name="titleSize">
+        <FormItem :label="$t('promotion.titleBar.property.size')" name="titleSize">
           <Slider v-model:value="formData.titleSize" :max="60" :min="10" />
         </FormItem>
-        <FormItem label="粗细" name="titleWeight">
+        <FormItem :label="$t('promotion.titleBar.property.weight')" name="titleWeight">
           <Slider
             v-model:value="formData.titleWeight"
             :min="100"
@@ -99,8 +101,8 @@ const rules = {}; // 表单校验
           />
         </FormItem>
       </Card>
-      <Card title="副标题" class="property-group">
-        <FormItem label="文字" name="description">
+      <Card :title="$t('promotion.titleBar.property.subTitle')" class="property-group">
+        <FormItem :label="$t('promotion.titleBar.property.text')" name="description">
           <InputWithColor
             v-model="formData.description"
             v-model:color="formData.descriptionColor"
@@ -108,14 +110,14 @@ const rules = {}; // 表单校验
             :maxlength="50"
           />
         </FormItem>
-        <FormItem label="大小" name="descriptionSize">
+        <FormItem :label="$t('promotion.titleBar.property.size')" name="descriptionSize">
           <Slider
             v-model:value="formData.descriptionSize"
             :max="60"
             :min="10"
           />
         </FormItem>
-        <FormItem label="粗细" name="descriptionWeight">
+        <FormItem :label="$t('promotion.titleBar.property.weight')" name="descriptionWeight">
           <Slider
             v-model:value="formData.descriptionWeight"
             :min="100"
@@ -124,27 +126,27 @@ const rules = {}; // 表单校验
           />
         </FormItem>
       </Card>
-      <Card title="查看更多" class="property-group">
-        <FormItem label="是否显示" name="more.show">
+      <Card :title="$t('promotion.titleBar.property.more')" class="property-group">
+        <FormItem :label="$t('promotion.titleBar.property.show')" name="more.show">
           <Checkbox v-model:checked="formData.more.show" />
         </FormItem>
         <!-- 更多按钮的 样式选择 -->
         <template v-if="formData.more.show">
-          <FormItem label="样式" name="more.type">
+          <FormItem :label="$t('promotion.titleBar.property.type')" name="more.type">
             <RadioGroup v-model:value="formData.more.type">
-              <Radio value="text">文字</Radio>
-              <Radio value="icon">图标</Radio>
-              <Radio value="all">文字+图标</Radio>
+              <Radio value="text">{{ $t('promotion.titleBar.property.text') }}</Radio>
+              <Radio value="icon">{{ $t('promotion.titleBar.property.icon') }}</Radio>
+              <Radio value="all">{{ $t('promotion.titleBar.property.textIcon') }}</Radio>
             </RadioGroup>
           </FormItem>
           <FormItem
-            label="更多文字"
+            :label="$t('promotion.titleBar.property.moreText')"
             name="more.text"
             v-show="formData.more.type !== 'icon'"
           >
             <Input v-model:value="formData.more.text" />
           </FormItem>
-          <FormItem label="跳转链接" name="more.url">
+          <FormItem :label="$t('promotion.titleBar.property.url')" name="more.url">
             <AppLinkInput v-model="formData.more.url" />
           </FormItem>
         </template>

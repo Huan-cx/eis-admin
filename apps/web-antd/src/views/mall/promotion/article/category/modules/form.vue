@@ -22,8 +22,8 @@ const emit = defineEmits(['success']);
 const formData = ref<MallArticleCategoryApi.ArticleCategory>();
 const getTitle = computed(() => {
   return formData.value?.id
-    ? $t('ui.actionTitle.edit', ['文章分类'])
-    : $t('ui.actionTitle.create', ['文章分类']);
+    ? $t('ui.actionTitle.edit', [$t('promotion.article.category.title')])
+    : $t('ui.actionTitle.create', [$t('promotion.article.category.title')]);
 });
 
 const [Form, formApi] = useVbenForm({

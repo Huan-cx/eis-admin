@@ -45,8 +45,8 @@ const emit = defineEmits(['success']);
 const formData = ref<Partial<MallDiscountActivityApi.DiscountActivity>>({});
 const getTitle = computed(() => {
   return formData.value?.id
-    ? $t('ui.actionTitle.edit', ['限时折扣活动'])
-    : $t('ui.actionTitle.create', ['限时折扣活动']);
+    ? $t('ui.actionTitle.edit', [$t('promotion.discountActivity.title')])
+    : $t('ui.actionTitle.create', [$t('promotion.discountActivity.title')]);
 });
 
 const [Form, formApi] = useVbenForm({
@@ -231,7 +231,7 @@ const [Modal, modalApi] = useVbenModal({
     }
     // 校验是否选择了商品
     if (spuList.value.length === 0) {
-      message.warning('请选择活动商品');
+      message.warning($t('promotion.discountActivity.form.placeholder.selectProduct'));
       return;
     }
     modalApi.lock();

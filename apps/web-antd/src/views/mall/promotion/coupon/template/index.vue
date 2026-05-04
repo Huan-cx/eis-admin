@@ -62,7 +62,7 @@ async function handleStatusChange(
 ): Promise<boolean | undefined> {
   return new Promise((resolve, reject) => {
     confirm({
-      content: `你要将${row.name}的状态切换为【${newStatus === CommonStatusEnum.ENABLE ? '启用' : '停用'}】吗？`,
+      content: $t('promotion.coupon.template.statusChangeConfirm', [row.name, newStatus === CommonStatusEnum.ENABLE ? $t('promotion.coupon.template.status.enable') : $t('promotion.coupon.template.status.disable')]),
     })
       .then(async () => {
         // 更新优惠券模板状态
@@ -72,7 +72,7 @@ async function handleStatusChange(
         resolve(true);
       })
       .catch(() => {
-        reject(new Error('取消操作'));
+        reject(new Error($t('promotion.coupon.template.cancelOperation')));
       });
   });
 }
@@ -118,12 +118,12 @@ const [Grid, gridApi] = useVbenVxeGrid({
     </template>
 
     <FormModal @success="handleRefresh" />
-    <Grid table-title="优惠券列表">
+    <Grid :table-title="$t('promotion.coupon.template.list')">
       <template #toolbar-tools>
         <TableAction
           :actions="[
             {
-              label: $t('ui.actionTitle.create', ['优惠券模板']),
+              label: $t('ui.actionTitle.create', [$t('promotion.coupon.template.title')]),
               type: 'primary',
               icon: ACTION_ICON.ADD,
               auth: ['promotion:coupon-template:create'],

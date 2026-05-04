@@ -63,19 +63,19 @@ const formatSeckillPrice = (
 const formSchema = computed<VbenFormSchema[]>(() => [
   {
     fieldName: 'name',
-    label: '活动名称',
+    label: $t('promotion.seckill.activity.form.name'),
     component: 'Input',
     componentProps: {
-      placeholder: '请输入活动名称',
+      placeholder: $t('promotion.seckill.activity.placeholder.name'),
       clearable: true,
     },
   },
   {
     fieldName: 'status',
-    label: '活动状态',
+    label: $t('promotion.seckill.activity.form.status'),
     component: 'Select',
     componentProps: {
-      placeholder: '请选择活动状态',
+      placeholder: $t('promotion.seckill.activity.placeholder.status'),
       clearable: true,
       options: getDictOptions(DICT_TYPE.COMMON_STATUS, 'number'),
     },
@@ -93,18 +93,18 @@ const gridColumns = computed<VxeGridProps['columns']>(() => {
   columns.push(
     {
       field: 'id',
-      title: '活动编号',
+      title: $t('promotion.seckill.activity.grid.id'),
       minWidth: 80,
       align: 'center',
     },
     {
       field: 'name',
-      title: '活动名称',
+      title: $t('promotion.seckill.activity.form.name'),
       minWidth: 140,
     },
     {
       field: 'activityTime',
-      title: '活动时间',
+      title: $t('promotion.seckill.activity.grid.activityTime'),
       minWidth: 210,
       formatter: ({ row }) => {
         return `${formatDate(row.startTime, 'YYYY-MM-DD')} ~ ${formatDate(row.endTime, 'YYYY-MM-DD')}`;
@@ -112,7 +112,7 @@ const gridColumns = computed<VxeGridProps['columns']>(() => {
     },
     {
       field: 'picUrl',
-      title: '商品图片',
+      title: $t('promotion.seckill.activity.grid.picUrl'),
       width: 100,
       align: 'center',
       cellRender: {
@@ -121,12 +121,12 @@ const gridColumns = computed<VxeGridProps['columns']>(() => {
     },
     {
       field: 'spuName',
-      title: '商品标题',
+      title: $t('promotion.seckill.activity.grid.spuName'),
       minWidth: 300,
     },
     {
       field: 'marketPrice',
-      title: '原价',
+      title: $t('promotion.seckill.activity.grid.marketPrice'),
       minWidth: 100,
       align: 'center',
       formatter: ({ cellValue }) => {
@@ -135,7 +135,7 @@ const gridColumns = computed<VxeGridProps['columns']>(() => {
     },
     {
       field: 'products',
-      title: '秒杀价',
+      title: $t('promotion.seckill.activity.grid.seckillPrice'),
       minWidth: 100,
       align: 'center',
       formatter: ({ cellValue }) => {
@@ -144,7 +144,7 @@ const gridColumns = computed<VxeGridProps['columns']>(() => {
     },
     {
       field: 'status',
-      title: '活动状态',
+      title: $t('promotion.seckill.activity.form.status'),
       minWidth: 100,
       align: 'center',
       cellRender: {
@@ -154,7 +154,7 @@ const gridColumns = computed<VxeGridProps['columns']>(() => {
     },
     {
       field: 'createTime',
-      title: '创建时间',
+      title: $t('promotion.seckill.activity.grid.createTime'),
       width: 180,
       align: 'center',
       cellRender: {
@@ -271,7 +271,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <Modal title="选择活动" class="w-[950px]">
+  <Modal :title="$t('promotion.seckill.activity.selectForm.title')" class="w-[950px]">
     <Grid />
   </Modal>
 </template>

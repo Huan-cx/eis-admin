@@ -37,8 +37,8 @@ const emit = defineEmits(['success']);
 const formData = ref<MallBargainActivityApi.BargainActivity>();
 const getTitle = computed(() => {
   return formData.value?.id
-    ? $t('ui.actionTitle.edit', ['砍价活动'])
-    : $t('ui.actionTitle.create', ['砍价活动']);
+    ? $t('ui.actionTitle.edit', [$t('promotion.bargain.activity.title')])
+    : $t('ui.actionTitle.create', [$t('promotion.bargain.activity.title')]);
 });
 
 const [Form, formApi] = useVbenForm({
@@ -62,17 +62,17 @@ const ruleConfig: RuleConfig[] = [
   {
     name: 'productConfig.bargainFirstPrice',
     rule: (arg) => arg > 0,
-    message: '商品砍价起始价格必须大于 0 ！！！',
+    message: $t('promotion.bargain.activity.form.rules.bargainFirstPrice'),
   },
   {
     name: 'productConfig.bargainMinPrice',
     rule: (arg) => arg >= 0,
-    message: '商品砍价底价不能小于 0 ！！！',
+    message: $t('promotion.bargain.activity.form.rules.bargainMinPrice'),
   },
   {
     name: 'productConfig.stock',
     rule: (arg) => arg >= 1,
-    message: '商品活动库存必须大于等于 1 ！！！',
+    message: $t('promotion.bargain.activity.form.rules.stock'),
   },
 ];
 
@@ -169,7 +169,7 @@ const [Modal, modalApi] = useVbenModal({
         spuAndSkuListRef.value?.getSkuConfigs('productConfig') || [],
       );
       if (products.length === 0) {
-        message.error('请选择砍价商品');
+        message.error($t('promotion.bargain.activity.form.selectProduct'));
         return;
       }
       // 价格需要转为分
@@ -299,7 +299,7 @@ const [Modal, modalApi] = useVbenModal({
                     />
                   </template>
                 </VxeColumn>
-                <VxeColumn align="center" min-width="168" title="活动库存">
+                <VxeColumn align="center" min-width="168" :title="$t('promotion.bargain.activity.form.activityStock')">
                   <template #default="{ row: sku }">
                     <InputNumber
                       v-model:value="sku.productConfig.stock"

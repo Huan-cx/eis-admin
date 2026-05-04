@@ -5,6 +5,8 @@ import { IconifyIcon } from '@vben/icons';
 
 import { Card, Tag } from 'ant-design-vue';
 
+import { $t } from '#/locales';
+
 /** 交易对照卡片 */
 defineOptions({ name: 'ComparisonCard' });
 
@@ -69,7 +71,9 @@ const formattedReference = computed(() => {
       </div>
       <div class="mt-2 border-t border-gray-200 pt-2">
         <div class="flex items-center justify-between text-sm">
-          <span class="text-gray-500">昨日数据</span>
+          <span class="text-gray-500">{{
+            $t('mall-product.home.yesterdayData')
+          }}</span>
           <span>{{ prefix }}{{ formattedReference }}</span>
         </div>
       </div>

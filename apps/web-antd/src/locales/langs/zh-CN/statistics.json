@@ -1,0 +1,94 @@
+{
+  "common": {
+    "high": "高",
+    "low": "低"
+  },
+  "trade": {
+    "yesterdayOrderCount": "昨日订单数量",
+    "monthOrderCount": "本月订单数量",
+    "yesterdayPayPrice": "昨日支付金额",
+    "monthPayPrice": "本月支付金额"
+  },
+  "trend": {
+    "title": "交易状况",
+    "exportConfirm": "确认导出交易状况数据吗？",
+    "turnover": "营业额",
+    "turnoverTip": "商品支付金额、充值金额",
+    "orderPayPrice": "商品支付金额",
+    "orderPayPriceTip": "用户购买商品的实际支付金额，包括微信支付、余额支付、支付宝支付、线下支付金额（拼团商品在成团之后计入，线下支付订单在后台确认支付后计入）",
+    "rechargePrice": "充值金额",
+    "rechargePriceTip": "用户成功充值的金额",
+    "expensePrice": "支出金额",
+    "expensePriceTip": "余额支付金额、支付佣金金额、商品退款金额",
+    "walletPayPrice": "余额支付金额",
+    "walletPayPriceTip": "用户下单时使用余额实际支付的金额",
+    "brokerageSettlementPrice": "支付佣金金额",
+    "brokerageSettlementPriceTip": "后台给推广员支付的推广佣金，以实际支付为准",
+    "afterSaleRefundPrice": "商品退款金额",
+    "afterSaleRefundPriceTip": "用户成功退款的商品金额"
+  },
+  "member": {
+    "userCount": "累计会员数",
+    "rechargeUserCount": "累计充值人数",
+    "rechargePrice": "累计充值金额",
+    "expensePrice": "累计消费金额",
+    "terminal": {
+      "title": "会员终端"
+    },
+    "sex": {
+      "title": "会员性别比例"
+    },
+    "area": {
+      "title": "会员地域分布",
+      "province": "省份",
+      "userCount": "会员数量",
+      "orderCreateUserCount": "订单创建数量",
+      "orderPayUserCount": "订单支付数量",
+      "orderPayPrice": "订单支付金额"
+    },
+    "funnel": {
+      "title": "会员概览",
+      "registerUserCount": "注册用户数量",
+      "relativeRate": "环比增长率",
+      "visitor": "访客",
+      "activeUserCount": "活跃用户数量",
+      "order": "下单",
+      "rechargeUserCount": "充值用户数量",
+      "atv": "客单价",
+      "payUser": "成交用户"
+    }
+  },
+  "product": {
+    "summary": {
+      "title": "商品概况",
+      "amount": "金额",
+      "count": "数量",
+      "browseCount": "商品浏览量",
+      "browseCountTip": "在选定条件下，所有商品详情页被访问的次数，一个人在统计时间内访问多次记为多次",
+      "browseUserCount": "商品访客数",
+      "browseUserCountTip": "在选定条件下，访问任何商品详情页的人数，一个人在统计时间范围内访问多次只记为一个",
+      "orderPayCount": "支付件数",
+      "orderPayCountTip": "在选定条件下，成功付款订单的商品件数之和",
+      "orderPayPrice": "支付金额",
+      "orderPayPriceTip": "在选定条件下，成功付款订单的商品金额之和",
+      "afterSaleCount": "退款件数",
+      "afterSaleCountTip": "在选定条件下，成功退款的商品件数之和",
+      "afterSaleRefundPrice": "退款金额",
+      "afterSaleRefundPriceTip": "在选定条件下，成功退款的商品金额之和"
+    },
+    "rank": {
+      "title": "商品排行",
+      "spuId": "商品 ID",
+      "picUrl": "商品图片",
+      "name": "商品名称",
+      "browseCount": "浏览量",
+      "browseUserCount": "访客数",
+      "cartCount": "加购件数",
+      "orderCount": "下单件数",
+      "orderPayCount": "支付件数",
+      "orderPayPrice": "支付金额（元）",
+      "favoriteCount": "收藏数",
+      "browseConvertPercent": "访客-支付转化率(%)"
+    }
+  }
+}

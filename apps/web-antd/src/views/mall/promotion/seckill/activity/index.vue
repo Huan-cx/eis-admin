@@ -46,13 +46,13 @@ function handleCreate() {
 /** 关闭活动 */
 async function handleClose(row: MallSeckillActivityApi.SeckillActivity) {
   const hideLoading = message.loading({
-    content: '活动关闭中...',
+    content: $t('promotion.seckill.closing'),
     duration: 0,
   });
   try {
     await closeSeckillActivity(row.id as number);
     message.success({
-      content: '关闭成功',
+      content: $t('promotion.seckill.closeSuccess'),
     });
     handleRefresh();
   } finally {
@@ -119,18 +119,20 @@ onMounted(async () => {
   <Page auto-content-height>
     <template #doc>
       <DocAlert
-        title="【营销】秒杀活动"
+        :title="$t('promotion.seckill.title')"
         url="https://doc.iocoder.cn/mall/promotion-seckill/"
       />
     </template>
 
     <FormModal @success="handleRefresh" />
-    <Grid table-title="秒杀活动列表">
+    <Grid :table-title="$t('promotion.seckill.list')">
       <template #toolbar-tools>
         <TableAction
           :actions="[
             {
-              label: $t('ui.actionTitle.create', ['秒杀活动']),
+              label: $t('ui.actionTitle.create', [
+                $t('promotion.seckill.name'),
+              ]),
               type: 'primary',
               icon: ACTION_ICON.ADD,
               auth: ['promotion:seckill-activity:create'],
@@ -167,13 +169,13 @@ onMounted(async () => {
               onClick: handleEdit.bind(null, row),
             },
             {
-              label: '关闭',
+              label: $t('promotion.seckill.close'),
               type: 'link',
               danger: true,
               auth: ['promotion:seckill-activity:close'],
               ifShow: row.status === 0,
               popConfirm: {
-                title: '确认关闭该秒杀活动吗？',
+                title: $t('promotion.seckill.confirmClose'),
                 confirm: handleClose.bind(null, row),
               },
             },

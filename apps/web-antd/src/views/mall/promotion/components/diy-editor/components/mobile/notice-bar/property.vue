@@ -5,6 +5,7 @@ import { useVModel } from '@vueuse/core';
 import { Card, Form, FormItem, Input } from 'ant-design-vue';
 
 import UploadImg from '#/components/upload/image-upload.vue';
+import { $t } from '#/locales';
 import {
   AppLinkInput,
   ColorInput,
@@ -22,36 +23,62 @@ const emit = defineEmits(['update:modelValue']);
 
 const formData = useVModel(props, 'modelValue', emit);
 const rules = {
-  content: [{ required: true, message: '请输入公告', trigger: 'blur' }],
+  content: [
+    {
+      required: true,
+      message: $t('promotion.noticeBar.property.required'),
+      trigger: 'blur',
+    },
+  ],
 }; // 表单校验
 </script>
 
 <template>
   <ComponentContainerProperty v-model="formData.style">
     <Form :model="formData" :rules="rules">
-      <FormItem label="公告图标" name="iconUrl">
+      <FormItem :label="$t('promotion.noticeBar.property.icon')" name="iconUrl">
         <UploadImg
           v-model="formData.iconUrl"
           height="48px"
           :show-description="false"
         >
           <!-- TODO @芋艿：这里不提示；是不是组件得封装下；-->
-          <template #tip>建议尺寸：24 * 24</template>
+          <template #tip>
+            {{ $t('promotion.noticeBar.property.iconTip') }}
+          </template>
         </UploadImg>
       </FormItem>
-      <FormItem label="背景颜色" name="backgroundColor">
+      <FormItem
+        :label="$t('promotion.noticeBar.property.bgColor')"
+        name="backgroundColor"
+      >
         <ColorInput v-model="formData.backgroundColor" />
       </FormItem>
-      <FormItem label="文字颜色" name="textColor">
+      <FormItem
+        :label="$t('promotion.noticeBar.property.textColor')"
+        name="textColor"
+      >
         <ColorInput v-model="formData.textColor" />
       </FormItem>
-      <Card title="公告内容" class="property-group">
+      <Card
+        :title="$t('promotion.noticeBar.property.content')"
+        class="property-group"
+      >
         <Draggable v-model="formData.contents">
           <template #default="{ element }">
-            <FormItem label="公告" name="text">
-              <Input v-model:value="element.text" placeholder="请输入公告" />
+            <FormItem
+              :label="$t('promotion.noticeBar.property.notice')"
+              name="text"
+            >
+              <Input
+                v-model:value="element.text"
+                :placeholder="$t('promotion.noticeBar.property.placeholder')"
+              />
             </FormItem>
-            <FormItem label="链接" name="url">
+            <FormItem
+              :label="$t('promotion.noticeBar.property.url')"
+              name="url"
+            >
               <AppLinkInput v-model="element.url" />
             </FormItem>
           </template>

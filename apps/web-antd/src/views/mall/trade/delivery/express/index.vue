@@ -31,7 +31,10 @@ function handleRefresh() {
 /** 导出表格 */
 async function handleExport() {
   const data = await exportDeliveryExpress(await gridApi.formApi.getValues());
-  downloadFileFromBlobPart({ fileName: '快递公司.xls', source: data });
+  downloadFileFromBlobPart({
+    fileName: $t('trade.delivery.express.exportFileName'),
+    source: data,
+  });
 }
 
 /** 创建快递公司 */
@@ -93,7 +96,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
 <template>
   <Page auto-content-height>
     <FormModal @success="handleRefresh" />
-    <Grid table-title="快递公司列表">
+    <Grid :table-title="$t('trade.delivery.express.title')">
       <template #toolbar-tools>
         <TableAction
           :actions="[

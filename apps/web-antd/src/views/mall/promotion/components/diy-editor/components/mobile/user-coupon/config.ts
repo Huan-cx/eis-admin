@@ -1,5 +1,7 @@
 import type { ComponentStyle, DiyComponent } from '../../../util';
 
+import { $t } from '#/locales';
+
 /** 用户卡券属性 */
 export interface UserCouponProperty {
   style: ComponentStyle; // 组件样式
@@ -8,7 +10,7 @@ export interface UserCouponProperty {
 /** 定义组件 */
 export const component = {
   id: 'UserCoupon',
-  name: '用户卡券',
+  name: $t('promotion.userCoupon.title'),
   icon: 'lucide:ticket',
   property: {
     style: {

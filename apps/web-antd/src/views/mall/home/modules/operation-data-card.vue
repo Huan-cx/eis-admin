@@ -9,6 +9,7 @@ import { Card } from 'ant-design-vue';
 import { getTabsCount } from '#/api/mall/product/spu';
 import { getWalletRechargePrice } from '#/api/mall/statistics/pay';
 import { getOrderCount } from '#/api/mall/statistics/trade';
+import { $t } from '#/locales';
 
 /** 运营数据卡片 */
 defineOptions({ name: 'OperationDataCard' });
@@ -26,23 +27,43 @@ interface DataItem {
 
 /** 数据 */
 const data = reactive({
-  orderUndelivered: { name: '待发货订单', value: 0, routerName: 'TradeOrder' },
+  orderUndelivered: {
+    name: $t('mall-product.home.orderUndelivered'),
+    value: 0,
+    routerName: 'TradeOrder',
+  },
   orderAfterSaleApply: {
-    name: '退款中订单',
+    name: $t('mall-product.home.orderAfterSaleApply'),
     value: 0,
     routerName: 'TradeAfterSale',
   },
-  orderWaitePickUp: { name: '待核销订单', value: 0, routerName: 'TradeOrder' },
-  productAlertStock: { name: '库存预警', value: 0, routerName: 'ProductSpu' },
-  productForSale: { name: '上架商品', value: 0, routerName: 'ProductSpu' },
-  productInWarehouse: { name: '仓库商品', value: 0, routerName: 'ProductSpu' },
+  orderWaitePickUp: {
+    name: $t('mall-product.home.orderWaitePickUp'),
+    value: 0,
+    routerName: 'TradeOrder',
+  },
+  productAlertStock: {
+    name: $t('mall-product.home.productAlertStock'),
+    value: 0,
+    routerName: 'ProductSpu',
+  },
+  productForSale: {
+    name: $t('mall-product.home.productForSale'),
+    value: 0,
+    routerName: 'ProductSpu',
+  },
+  productInWarehouse: {
+    name: $t('mall-product.home.productInWarehouse'),
+    value: 0,
+    routerName: 'ProductSpu',
+  },
   withdrawAuditing: {
-    name: '提现待审核',
+    name: $t('mall-product.home.withdrawAuditing'),
     value: 0,
     routerName: 'TradeBrokerageWithdraw',
   },
   rechargePrice: {
-    name: '账户充值',
+    name: $t('mall-product.home.rechargePrice'),
     value: 0,
     prefix: '￥',
     decimals: 2,
@@ -102,7 +123,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Card :bordered="false" title="运营数据">
+  <Card :bordered="false" :title="$t('mall-product.home.operationData')">
     <div class="flex flex-row flex-wrap items-center gap-8 p-4">
       <div
         v-for="(item, key) in data"

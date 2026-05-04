@@ -17,26 +17,26 @@ export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
       fieldName: 'name',
-      label: '活动名称',
+      label: $t('promotion.rewardActivity.name'),
       component: 'Input',
       componentProps: {
-        placeholder: '请输入活动名称',
+        placeholder: $t('promotion.rewardActivity.placeholder.name'),
         allowClear: true,
       },
     },
     {
       fieldName: 'status',
-      label: '活动状态',
+      label: $t('promotion.rewardActivity.status'),
       component: 'Select',
       componentProps: {
         options: getDictOptions(DICT_TYPE.COMMON_STATUS, 'number'),
-        placeholder: '请选择活动状态',
+        placeholder: $t('promotion.rewardActivity.placeholder.status'),
         allowClear: true,
       },
     },
     {
       fieldName: 'createTime',
-      label: '活动时间',
+      label: $t('promotion.rewardActivity.form.startAndEndTime'),
       component: 'RangePicker',
       componentProps: {
         ...getRangePickerDefaultProps(),
@@ -51,12 +51,12 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
   return [
     {
       field: 'name',
-      title: '活动名称',
+      title: $t('promotion.rewardActivity.name'),
       minWidth: 200,
     },
     {
       field: 'productScope',
-      title: '活动范围',
+      title: $t('promotion.rewardActivity.grid.productScope'),
       minWidth: 120,
       cellRender: {
         name: 'CellDict',
@@ -65,19 +65,19 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'startTime',
-      title: '活动开始时间',
+      title: $t('promotion.rewardActivity.grid.startTime'),
       minWidth: 180,
       formatter: 'formatDateTime',
     },
     {
       field: 'endTime',
-      title: '活动结束时间',
+      title: $t('promotion.rewardActivity.grid.endTime'),
       minWidth: 180,
       formatter: 'formatDateTime',
     },
     {
       field: 'status',
-      title: '状态',
+      title: $t('promotion.rewardActivity.status'),
       minWidth: 100,
       cellRender: {
         name: 'CellDict',
@@ -86,12 +86,12 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'createTime',
-      title: '创建时间',
+      title: $t('promotion.rewardActivity.grid.createTime'),
       minWidth: 180,
       formatter: 'formatDateTime',
     },
     {
-      title: '操作',
+      title: $t('promotion.rewardActivity.grid.actions'),
       width: 200,
       fixed: 'right',
       slots: { default: 'actions' },
@@ -112,27 +112,27 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'name',
-      label: '活动名称',
+      label: $t('promotion.rewardActivity.name'),
       component: 'Input',
       rules: 'required',
       componentProps: {
-        placeholder: '请输入活动名称',
+        placeholder: $t('promotion.rewardActivity.placeholder.name'),
         allowClear: true,
       },
     },
     {
       fieldName: 'remark',
-      label: '备注',
+      label: $t('promotion.rewardActivity.form.remark'),
       component: 'Textarea',
       componentProps: {
-        placeholder: '请输入备注',
+        placeholder: $t('promotion.rewardActivity.placeholder.remark'),
         rows: 4,
         allowClear: true,
       },
     },
     {
       fieldName: 'startAndEndTime',
-      label: '活动时间',
+      label: $t('promotion.rewardActivity.form.startAndEndTime'),
       component: 'RangePicker',
       rules: 'required',
       componentProps: {
@@ -147,7 +147,7 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'conditionType',
-      label: '条件类型',
+      label: $t('promotion.rewardActivity.form.conditionType'),
       component: 'RadioGroup',
       componentProps: {
         options: getDictOptions(DICT_TYPE.PROMOTION_CONDITION_TYPE, 'number'),
@@ -158,7 +158,7 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'productScope',
-      label: '活动范围',
+      label: $t('promotion.rewardActivity.form.productScope'),
       component: 'RadioGroup',
       componentProps: {
         options: getDictOptions(DICT_TYPE.PROMOTION_PRODUCT_SCOPE, 'number'),
@@ -169,7 +169,7 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'productSpuIds',
-      label: '选择商品',
+      label: $t('promotion.rewardActivity.form.productSpuIds'),
       component: 'Input',
       dependencies: {
         triggerFields: ['productScope', 'productScopeValues'],
@@ -190,7 +190,7 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'productCategoryIds',
-      label: '选择分类',
+      label: $t('promotion.rewardActivity.form.productCategoryIds'),
       component: 'Input',
       dependencies: {
         triggerFields: ['productScope', 'productScopeValues'],
@@ -220,12 +220,12 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'rules',
-      label: '优惠设置',
+      label: $t('promotion.rewardActivity.form.rules'),
       component: 'Input',
       formItemClass: 'items-start',
       rules: z
         .array(z.any())
-        .min(1, { message: '请添加至少一条优惠规则' })
+        .min(1, { message: $t('promotion.rewardActivity.placeholder.rules') })
         .default([]),
     },
     {

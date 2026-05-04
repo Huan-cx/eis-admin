@@ -9,6 +9,7 @@ import { useVModel } from '@vueuse/core';
 import { Form, FormItem, Select } from 'ant-design-vue';
 
 import { getArticlePage } from '#/api/mall/promotion/article';
+import { $t } from '#/locales';
 
 import ComponentContainerProperty from '../../component-container-property.vue';
 
@@ -48,10 +49,13 @@ onMounted(() => {
       :wrapper-col="{ span: 18 }"
       :model="formData"
     >
-      <FormItem label="文章" name="id">
+      <FormItem
+        :label="$t('promotion.promotionArticle.property.article')"
+        name="id"
+      >
         <Select
           v-model:value="formData.id"
-          placeholder="请选择文章"
+          :placeholder="$t('promotion.promotionArticle.property.selectArticle')"
           class="w-full"
           :show-search="true"
           :loading="loading"

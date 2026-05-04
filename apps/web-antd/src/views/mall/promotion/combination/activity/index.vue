@@ -43,14 +43,14 @@ function handleEdit(row: MallCombinationActivityApi.CombinationActivity) {
 async function handleClose(
   row: MallCombinationActivityApi.CombinationActivity,
 ) {
-  await confirm('确认关闭该拼团活动吗？');
+  await confirm($t('promotion.combination.confirmClose'));
   const hideLoading = message.loading({
-    content: '关闭中...',
+    content: $t('promotion.combination.closing'),
     duration: 0,
   });
   try {
     await closeCombinationActivity(row.id!);
-    message.success('关闭成功');
+    message.success($t('promotion.combination.closeSuccess'));
     handleRefresh();
   } finally {
     hideLoading();
@@ -109,19 +109,21 @@ const [Grid, gridApi] = useVbenVxeGrid({
   <Page auto-content-height>
     <template #doc>
       <DocAlert
-        title="【营销】拼团活动"
+        :title="$t('promotion.combination.title')"
         url="https://doc.iocoder.cn/mall/promotion-combination/"
       />
     </template>
 
     <FormModal @success="handleRefresh" />
 
-    <Grid table-title="拼团活动列表">
+    <Grid :table-title="$t('promotion.combination.list')">
       <template #toolbar-tools>
         <TableAction
           :actions="[
             {
-              label: $t('ui.actionTitle.create', ['拼团活动']),
+              label: $t('ui.actionTitle.create', [
+                $t('promotion.combination.name'),
+              ]),
               type: 'primary',
               icon: ACTION_ICON.ADD,
               auth: ['promotion:combination-activity:create'],
@@ -141,7 +143,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
               onClick: handleEdit.bind(null, row),
             },
             {
-              label: '关闭',
+              label: $t('promotion.combination.close'),
               type: 'link',
               danger: true,
               icon: ACTION_ICON.DELETE,

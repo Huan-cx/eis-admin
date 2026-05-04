@@ -47,7 +47,7 @@ async function initTencentLbsMap() {
   const data = await getTradeConfig();
   const key = data.tencentLbsKey;
   if (!key) {
-    message.warning('请先配置腾讯位置服务的 key');
+    message.warning($t('trade.delivery.pickUpStore.form.mapKeyWarning'));
     return;
   }
 
@@ -142,14 +142,16 @@ const [Modal, modalApi] = useVbenModal({
   <Modal :title="getTitle" class="w-2/5">
     <Form class="mx-4" />
     <template #prepend-footer>
-      <Button @click="mapVisible = true"> 获取经纬度 </Button>
+      <Button @click="mapVisible = true">
+        {{ $t('trade.delivery.pickUpStore.form.getLatLng') }}
+      </Button>
     </template>
   </Modal>
 
   <!-- 地图弹窗 -->
   <a-modal
     v-model:open="mapVisible"
-    title="获取经纬度"
+    :title="$t('trade.delivery.pickUpStore.form.getLatLng')"
     :width="800"
     :footer="null"
   >

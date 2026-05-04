@@ -1,5 +1,7 @@
 import type { ComponentStyle, DiyComponent } from '../../../util';
 
+import { $t } from '#/locales';
+
 /** 秒杀属性 */
 export interface PromotionSeckillProperty {
   layoutType: 'oneColBigImg' | 'oneColSmallImg' | 'twoCol'; // 布局类型：单列 | 三列
@@ -38,7 +40,7 @@ export interface PromotionSeckillFieldProperty {
 /** 定义组件 */
 export const component = {
   id: 'PromotionSeckill',
-  name: '秒杀',
+  name: $t('promotion.seckill.activity.title'),
   icon: 'mdi:calendar-time',
   property: {
     layoutType: 'oneColBigImg',
@@ -53,7 +55,7 @@ export const component = {
     badge: { show: false, imgUrl: '' },
     btnBuy: {
       type: 'text',
-      text: '立即秒杀',
+      text: $t('promotion.seckill.activity.button.seckill'),
       bgBeginColor: '#FF6000',
       bgEndColor: '#FE832A',
       imgUrl: '',

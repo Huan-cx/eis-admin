@@ -27,8 +27,8 @@ const formData = ref<Partial<MallCommentApi.Comment>>({
 });
 const getTitle = computed(() => {
   return formData.value?.id
-    ? $t('ui.actionTitle.edit', ['虚拟评论'])
-    : $t('ui.actionTitle.create', ['虚拟评论']);
+    ? $t('ui.actionTitle.edit', [$t('mall-product.comment.actions.create')])
+    : $t('ui.actionTitle.create', [$t('mall-product.comment.actions.create')]);
 });
 
 const [Form, formApi] = useVbenForm({
@@ -65,7 +65,7 @@ async function openSkuSelect() {
     (await formApi.getValues()) as Partial<MallCommentApi.Comment>;
   const currentSpuId = currentValues.spuId ?? formData.value?.spuId;
   if (!currentSpuId) {
-    message.warning('请先选择商品');
+    message.warning($t('common.pleaseSelectProduct'));
     return;
   }
   skuTableSelectRef.value?.open({ spuId: currentSpuId });
@@ -149,7 +149,7 @@ const [Modal, modalApi] = useVbenModal({
             :disabled="!formData?.spuId"
             @click="openSkuSelect"
           >
-            选择规格
+            {{ $t('common.selectSpec') }}
           </Button>
           <span
             v-if="
@@ -158,10 +158,12 @@ const [Modal, modalApi] = useVbenModal({
               selectedSku.properties.length > 0
             "
           >
-            已选：
+            {{ $t('common.selected') }}：
             {{ selectedSku.properties.map((p: any) => p.valueName).join('/') }}
           </span>
-          <span v-else-if="selectedSku">已选：{{ selectedSku.id }}</span>
+          <span v-else-if="selectedSku">
+            {{ $t('common.selected') }}：{{ selectedSku.id }}
+          </span>
         </div>
       </template>
     </Form>

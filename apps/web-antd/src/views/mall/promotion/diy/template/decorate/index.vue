@@ -7,6 +7,7 @@ import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 
 import { useTabs } from '@vben/hooks';
+import { $t } from '#/locales';
 import { IconifyIcon } from '@vben/icons';
 import { useAccessStore } from '@vben/stores';
 import { isEmpty } from '@vben/utils';
@@ -31,9 +32,9 @@ const DIY_PAGE_INDEX_KEY = 'diy_page_index'; // 特殊：存储 reset 重置时�
 
 const selectedTemplateItem = ref(0);
 const templateItems = ref([
-  { key: 0, name: '基础设置', icon: 'lucide:settings' },
-  { key: 1, name: '首页', icon: 'lucide:home' },
-  { key: 2, name: '我的', icon: 'lucide:user' },
+  { key: 0, name: $t('promotion.diy.template.decorate.tab.basic'), icon: 'lucide:settings' },
+  { key: 1, name: $t('promotion.diy.template.decorate.tab.home'), icon: 'lucide:home' },
+  { key: 2, name: $t('promotion.diy.template.decorate.tab.mine'), icon: 'lucide:user' },
 ]); // 左上角工具栏操作按钮
 
 const formData = ref<MallDiyTemplateApi.DiyTemplateProperty>();
@@ -130,7 +131,7 @@ async function submitForm() {
         await updateDiyPageProperty(data!);
       }
     }
-    message.success('保存成功');
+    message.success($t('promotion.diy.template.decorate.saveSuccess'));
   } finally {
     hideLoading();
   }

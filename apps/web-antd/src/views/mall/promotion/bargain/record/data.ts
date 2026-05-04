@@ -5,16 +5,17 @@ import { DICT_TYPE } from '@vben/constants';
 import { getDictOptions } from '@vben/hooks';
 
 import { getRangePickerDefaultProps } from '#/utils';
+import { $t } from '#/locales';
 
 /** 列表的搜索表单 */
 export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
       fieldName: 'status',
-      label: '砍价状态',
+      label: $t('promotion.bargain.record.form.status'),
       component: 'Select',
       componentProps: {
-        placeholder: '请选择砍价状态',
+        placeholder: $t('promotion.bargain.record.placeholder.status'),
         allowClear: true,
         options: getDictOptions(
           DICT_TYPE.PROMOTION_BARGAIN_RECORD_STATUS,
@@ -24,7 +25,7 @@ export function useGridFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'createTime',
-      label: '创建时间',
+      label: $t('promotion.bargain.record.form.createTime'),
       component: 'RangePicker',
       componentProps: {
         ...getRangePickerDefaultProps(),
@@ -39,12 +40,12 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
   return [
     {
       field: 'id',
-      title: '编号',
+      title: $t('promotion.bargain.record.grid.id'),
       minWidth: 50,
     },
     {
       field: 'avatar',
-      title: '用户头像',
+      title: $t('promotion.bargain.record.grid.avatar'),
       minWidth: 120,
       cellRender: {
         name: 'CellImage',
@@ -57,45 +58,45 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'nickname',
-      title: '用户昵称',
+      title: $t('promotion.bargain.record.grid.nickname'),
       minWidth: 100,
     },
     {
       field: 'createTime',
-      title: '发起时间',
+      title: $t('promotion.bargain.record.grid.createTime'),
       width: 180,
       formatter: 'formatDateTime',
     },
     {
       field: 'activity.name',
-      title: '砍价活动',
+      title: $t('promotion.bargain.record.grid.activityName'),
       minWidth: 150,
     },
     {
       field: 'activity.bargainMinPrice',
-      title: '最低价',
+      title: $t('promotion.bargain.record.grid.bargainMinPrice'),
       minWidth: 100,
       formatter: 'formatAmount2',
     },
     {
       field: 'bargainPrice',
-      title: '当前价',
+      title: $t('promotion.bargain.record.grid.bargainPrice'),
       minWidth: 100,
       formatter: 'formatAmount2',
     },
     {
       field: 'activity.helpMaxCount',
-      title: '总砍价次数',
+      title: $t('promotion.bargain.record.grid.helpMaxCount'),
       minWidth: 100,
     },
     {
       field: 'helpCount',
-      title: '剩余砍价次数',
+      title: $t('promotion.bargain.record.grid.helpCount'),
       minWidth: 100,
     },
     {
       field: 'status',
-      title: '砍价状态',
+      title: $t('promotion.bargain.record.form.status'),
       minWidth: 100,
       cellRender: {
         name: 'CellDict',
@@ -104,17 +105,17 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'endTime',
-      title: '结束时间',
+      title: $t('promotion.bargain.record.grid.endTime'),
       minWidth: 180,
       formatter: 'formatDateTime',
     },
     {
       field: 'orderId',
-      title: '订单编号',
+      title: $t('promotion.bargain.record.grid.orderId'),
       minWidth: 100,
     },
     {
-      title: '操作',
+      title: $t('promotion.bargain.record.grid.actions'),
       width: 100,
       fixed: 'right',
       slots: { default: 'actions' },
@@ -127,12 +128,12 @@ export function useHelpGridColumns(): VxeTableGridOptions['columns'] {
   return [
     {
       field: 'userId',
-      title: '用户编号',
+      title: $t('promotion.bargain.record.helpGrid.userId'),
       minWidth: 80,
     },
     {
       field: 'avatar',
-      title: '用户头像',
+      title: $t('promotion.bargain.record.helpGrid.avatar'),
       minWidth: 80,
       cellRender: {
         name: 'CellImage',
@@ -145,18 +146,18 @@ export function useHelpGridColumns(): VxeTableGridOptions['columns'] {
     },
     {
       field: 'nickname',
-      title: '用户昵称',
+      title: $t('promotion.bargain.record.helpGrid.nickname'),
       minWidth: 100,
     },
     {
       field: 'reducePrice',
-      title: '砍价金额',
+      title: $t('promotion.bargain.record.helpGrid.reducePrice'),
       minWidth: 100,
       formatter: 'formatAmount2',
     },
     {
       field: 'createTime',
-      title: '助力时间',
+      title: $t('promotion.bargain.record.helpGrid.createTime'),
       width: 180,
       formatter: 'formatDateTime',
     },

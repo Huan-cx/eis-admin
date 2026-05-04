@@ -79,19 +79,31 @@ onMounted(() => {
   <Page>
     <template #doc>
       <DocAlert
-        title="【交易】交易订单"
+        :title="$t('trade.config.doc1')"
         url="https://doc.iocoder.cn/mall/trade-order/"
       />
       <DocAlert
-        title="【交易】购物车"
+        :title="$t('trade.config.doc2')"
         url="https://doc.iocoder.cn/mall/trade-cart/"
       />
     </template>
     <Card>
       <Tabs :active-key="activeKey" @change="handleTabChange">
-        <Tabs.TabPane tab="售后" key="afterSale" :force-render="true" />
-        <Tabs.TabPane tab="配送" key="delivery" :force-render="true" />
-        <Tabs.TabPane tab="分销" key="brokerage" :force-render="true" />
+        <Tabs.TabPane
+          :tab="$t('trade.config.afterSale')"
+          key="afterSale"
+          :force-render="true"
+        />
+        <Tabs.TabPane
+          :tab="$t('trade.config.delivery')"
+          key="delivery"
+          :force-render="true"
+        />
+        <Tabs.TabPane
+          :tab="$t('trade.config.brokerage')"
+          key="brokerage"
+          :force-render="true"
+        />
       </Tabs>
       <Form class="w-2/5" />
     </Card>

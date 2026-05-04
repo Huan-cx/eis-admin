@@ -63,12 +63,12 @@ const [Grid] = useVbenVxeGrid({
 
     <UserListModal />
 
-    <Grid table-title="拼团记录列表">
+    <Grid :table-title="$t('promotion.combination.record.title')">
       <template #actions="{ row }">
         <TableAction
           :actions="[
             {
-              label: '查看成员',
+              label: $t('promotion.combination.record.action.viewUsers'),
               type: 'link',
               icon: ACTION_ICON.VIEW,
               onClick: handleViewUsers.bind(null, row),
