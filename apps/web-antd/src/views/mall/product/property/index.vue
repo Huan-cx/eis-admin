@@ -5,6 +5,7 @@ import { DocAlert, Page } from '@vben/common-ui';
 
 import PropertyGrid from './modules/property-grid.vue';
 import ValueGrid from './modules/value-grid.vue';
+import { $t } from '#/locales';
 
 const searchPropertyId = ref<number>(); // 搜索的属性 ID
 
@@ -17,7 +18,7 @@ function handlePropertyIdSelect(propertyId: number) {
   <Page auto-content-height>
     <template #doc>
       <DocAlert
-        title="【商品】商品属性"
+        :title="$t('mall-product.property.title')"
         url="https://doc.iocoder.cn/mall/product-property/"
       />
     </template>

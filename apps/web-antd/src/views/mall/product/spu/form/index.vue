@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { MallSpuApi } from '#/api/mall/product/spu';
 import type { MallI18nApi } from '#/api/mall/product/i18n';
+import type { MallSpuApi } from '#/api/mall/product/spu';
 import type {
   PropertyAndValues,
   RuleConfig,

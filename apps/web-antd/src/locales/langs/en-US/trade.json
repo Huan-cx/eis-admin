@@ -199,6 +199,223 @@
       }
     }
   },
+  "b2b": {
+    "rfq": {
+      "index": {
+        "title": "RFQ List",
+        "quantity": "Quantity",
+        "expectedPrice": "Expected Price",
+        "assignSupplier": "Assign Supplier"
+      },
+      "form": {
+        "status": "Status",
+        "statusPlaceholder": "Please select status",
+        "no": "RFQ No.",
+        "noPlaceholder": "Please enter RFQ no.",
+        "userId": "User ID",
+        "userIdPlaceholder": "Please enter user ID",
+        "contactName": "Contact Name",
+        "contactNamePlaceholder": "Please enter contact name",
+        "email": "Email",
+        "emailPlaceholder": "Please enter email"
+      },
+      "grid": {
+        "no": "RFQ No.",
+        "status": "Status",
+        "supplierName": "Supplier",
+        "itemCount": "Item Count",
+        "submittedAt": "Submitted At",
+        "createdAt": "Created At",
+        "userName": "Customer Name"
+      },
+      "assignSupplierForm": {
+        "title": "Assign Supplier",
+        "supplierId": "Supplier ID",
+        "supplierIdPlaceholder": "Please enter supplier ID",
+        "supplierName": "Supplier Name",
+        "supplierNamePlaceholder": "Please enter supplier name"
+      },
+      "detail": {
+        "title": "RFQ Detail",
+        "items": "Item Details",
+        "quantity": "Quantity",
+        "expectedPrice": "Expected Price",
+        "specifications": "Specifications",
+        "unit": "Unit",
+        "brand": "Brand",
+        "no": "RFQ No.",
+        "status": "Status",
+        "requirement": "Requirements",
+        "supplierName": "Supplier",
+        "validUntil": "Valid Until",
+        "submittedAt": "Submitted At",
+        "createdAt": "Created At",
+        "productName": "Product Name",
+        "skuName": "SKU Name",
+        "count": "Quantity",
+        "userName": "Customer Name"
+      },
+      "status": {
+        "pending": "Pending",
+        "submitted": "Submitted",
+        "processing": "Processing",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      },
+      "actions": {
+        "view": "View",
+        "assign": "Assign Supplier",
+        "quote": "Quick Quote"
+      }
+    },
+    "order": {
+      "index": {
+        "title": "B2B Order List",
+        "quantity": "Quantity",
+        "unitPrice": "Unit Price",
+        "subtotal": "Subtotal",
+        "approve": "Approve",
+        "reject": "Reject",
+        "delivery": "Deliver"
+      },
+      "form": {
+        "status": "Status",
+        "statusPlaceholder": "Please select status",
+        "no": "Order No.",
+        "noPlaceholder": "Please enter order no.",
+        "userId": "User ID",
+        "userIdPlaceholder": "Please enter user ID"
+      },
+      "grid": {
+        "no": "Order No.",
+        "status": "Status",
+        "totalPrice": "Total Price",
+        "payPrice": "Paid Amount",
+        "currency": "Currency",
+        "incoterms": "Incoterms",
+        "createdAt": "Created At"
+      },
+      "detail": {
+        "title": "B2B Order Detail",
+        "items": "Item Details",
+        "quantity": "Quantity",
+        "unitPrice": "Unit Price",
+        "subtotal": "Subtotal",
+        "no": "Order No.",
+        "status": "Status",
+        "payStatus": "Payment Status",
+        "totalPrice": "Total Price",
+        "payPrice": "Paid Amount",
+        "currency": "Currency",
+        "incoterms": "Incoterms",
+        "deliveryType": "Delivery Type",
+        "paymentMethod": "Payment Method",
+        "contractNo": "Contract No.",
+        "createdAt": "Created At"
+      },
+      "approvalForm": {
+        "approveTitle": "Approve",
+        "rejectTitle": "Reject Order",
+        "remark": "Reject Reason",
+        "remarkPlaceholder": "Please enter reject reason"
+      },
+      "deliveryForm": {
+        "title": "Deliver",
+        "logisticsCompany": "Logistics Company",
+        "logisticsCompanyPlaceholder": "Please select logistics company",
+        "logisticsNo": "Tracking Number",
+        "logisticsNoPlaceholder": "Please enter tracking number"
+      }
+    },
+    "quotation": {
+      "title": "Quotation Management",
+      "index": {
+        "title": "Quotation List",
+        "quantity": "Quantity",
+        "unitPrice": "Unit Price",
+        "subtotal": "Subtotal"
+      },
+      "form": {
+        "status": "Status",
+        "statusPlaceholder": "Please select status",
+        "no": "Quotation No.",
+        "noPlaceholder": "Please enter quotation no.",
+        "rfqNo": "RFQ No.",
+        "rfqNoPlaceholder": "Please enter RFQ no.",
+        "supplierId": "Supplier ID",
+        "supplierIdPlaceholder": "Please enter supplier ID"
+      },
+      "grid": {
+        "no": "Quotation No.",
+        "rfqNo": "RFQ No.",
+        "supplierName": "Supplier",
+        "status": "Status",
+        "totalPrice": "Total Price",
+        "currency": "Currency",
+        "incoterms": "Incoterms",
+        "createdAt": "Created At"
+      },
+      "detail": {
+        "title": "Quotation Detail",
+        "items": "Quotation Details",
+        "quantity": "Quantity",
+        "unitPrice": "Unit Price",
+        "subtotal": "Subtotal",
+        "no": "Quotation No.",
+        "rfqNo": "RFQ No.",
+        "supplierName": "Supplier",
+        "status": "Status",
+        "totalPrice": "Total Price",
+        "currency": "Currency",
+        "incoterms": "Incoterms",
+        "deliveryType": "Delivery Type",
+        "validUntil": "Valid Until",
+        "remark": "Remark",
+        "acceptedAt": "Accepted At",
+        "createdAt": "Created At",
+        "spuName": "Product Name",
+        "skuName": "SKU Name",
+        "count": "Quantity"
+      },
+      "createForm": {
+        "title": "Create Quotation",
+        "rfqId": "RFQ ID",
+        "rfqIdPlaceholder": "Please enter RFQ ID",
+        "supplierId": "Supplier ID",
+        "supplierIdPlaceholder": "Please enter supplier ID",
+        "supplierName": "Supplier Name",
+        "supplierNamePlaceholder": "Please enter supplier name",
+        "currency": "Currency Type",
+        "currencyPlaceholder": "Please select currency type",
+        "incoterms": "Incoterms",
+        "incotermsPlaceholder": "Please select incoterms",
+        "deliveryType": "Delivery Type",
+        "deliveryTypePlaceholder": "Please select delivery type",
+        "validDays": "Valid Days",
+        "validDaysPlaceholder": "Please enter valid days",
+        "remark": "Remark",
+        "remarkPlaceholder": "Please enter remark",
+        "items": "Quotation Items",
+        "unitPrice": "Unit Price",
+        "unitPricePlaceholder": "Please enter unit price"
+      },
+      "status": {
+        "pending": "Pending",
+        "quoted": "Quoted",
+        "accepted": "Accepted",
+        "rejected": "Rejected",
+        "expired": "Expired"
+      },
+      "delivery": {
+        "express": "Express Delivery",
+        "self": "Self Pickup"
+      },
+      "actions": {
+        "view": "View",
+        "create": "Create Quotation"
+      }
+    }
+  },
   "config": {
     "doc1": "[Trade] Trade Orders",
     "doc2": "[Trade] Shopping Cart",

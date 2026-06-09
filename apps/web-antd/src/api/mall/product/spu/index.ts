@@ -9,7 +9,8 @@ export namespace MallSpuApi {
     name?: string; // 商品名称
     categoryId?: number; // 商品分类
     keyword?: string; // 关键字
-    unit?: number; // 单位
+    unit?: string; // 单位
+    minQty?: number; // 最小起订量
     picUrl?: string; // 商品封面图
     sliderPicUrls?: string[]; // 商品轮播图
     introduction?: string; // 商品简介
@@ -52,6 +53,14 @@ export namespace MallSpuApi {
     stock?: number; // 库存
     weight?: number; // 商品重量，单位：kg 千克
     volume?: number; // 商品体积，单位：m^3 平米
+    minQty?: number; // 最小起订量
+    length?: number; // 长，单位：cm 厘米
+    width?: number; // 宽，单位：cm 厘米
+    height?: number; // 高，单位：cm 厘米
+    unit?: string; // 单位
+    model?: string; // 型号
+    hsCode?: string; // 海关编码（HS Code）
+    remark?: string; // 备注
     firstBrokeragePrice?: number | string; // 一级分销的佣金
     secondBrokeragePrice?: number | string; // 二级分销的佣金
     salesCount?: number; // 商品销量

@@ -165,5 +165,17 @@ export function useSkuGridColumns(): VxeGridProps['columns'] {
         return fenToYuan(cellValue);
       },
     },
+    {
+      field: 'minQty',
+      title: '最小起订量',
+      width: 100,
+      align: 'center',
+    },
+    {
+      field: 'unit',
+      title: '单位',
+      width: 80,
+      align: 'center',
+    },
   ];
 }

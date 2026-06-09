@@ -69,6 +69,25 @@ const routes: RouteRecordRaw[] = [
         component: () =>
           import('#/views/mall/trade/afterSale/detail/index.vue'),
       },
+      {
+        path: String.raw`b2b/rfq/detail/:id(\d+)`,
+        name: 'TradeB2BRfqDetail',
+        meta: {
+          title: '询价单详情',
+          activePath: '/mall/trade/b2b/rfq',
+        },
+        component: () => import('#/views/mall/trade/b2b/rfq/detail/index.vue'),
+      },
+      {
+        path: String.raw`b2b/quotation/detail/:id(\d+)`,
+        name: 'TradeB2BQuotationDetail',
+        meta: {
+          title: '报价单详情',
+          activePath: '/mall/trade/b2b/quotation',
+        },
+        component: () =>
+          import('#/views/mall/trade/b2b/quotation/detail/index.vue'),
+      },
     ],
   },
   {

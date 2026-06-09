@@ -243,6 +243,222 @@
       "brokerageWithdrawTypesHelp": "商城开通提现的付款方式"
     }
   },
+  "b2b": {
+    "rfq": {
+        "title": "询价单管理",
+        "index": {
+          "title": "询价单列表",
+          "quantity": "数量",
+          "expectedPrice": "期望价格",
+          "assignSupplier": "分配供应商"
+        },
+        "form": {
+          "status": "状态",
+          "statusPlaceholder": "请选择状态",
+          "supplierId": "供应商ID",
+          "supplierIdPlaceholder": "请输入供应商ID",
+          "contactName": "联系人姓名",
+          "contactNamePlaceholder": "请输入联系人姓名",
+          "email": "邮箱",
+          "emailPlaceholder": "请输入邮箱"
+        },
+        "grid": {
+          "no": "询价单号",
+          "status": "状态",
+          "userName": "客户名称",
+          "supplierName": "供应商",
+          "itemCount": "商品数量",
+          "submittedAt": "提交时间",
+          "createdAt": "创建时间"
+        },
+        "detail": {
+          "title": "询价单详情",
+          "items": "商品明细",
+          "quantity": "数量",
+          "expectedPrice": "期望价格",
+          "specifications": "规格",
+          "unit": "单位",
+          "brand": "品牌",
+          "no": "询价单号",
+          "status": "状态",
+          "userName": "客户名称",
+          "supplierName": "供应商",
+          "requirement": "需求说明",
+          "validUntil": "有效期至",
+          "submittedAt": "提交时间",
+          "createdAt": "创建时间",
+          "productName": "商品名称",
+          "skuName": "规格名称",
+          "count": "数量"
+        },
+        "status": {
+          "pending": "待处理",
+          "submitted": "已提交",
+          "processing": "处理中",
+          "completed": "已完成",
+          "cancelled": "已取消"
+        },
+        "assignSupplierForm": {
+          "title": "分配供应商",
+          "supplierId": "供应商ID",
+          "supplierIdPlaceholder": "请输入供应商ID",
+          "supplierName": "供应商名称",
+          "supplierNamePlaceholder": "请输入供应商名称"
+        },
+        "actions": {
+          "view": "查看",
+          "assign": "分配供应商",
+          "quote": "快速报价"
+        }
+      },
+    "order": {
+      "index": {
+        "title": "B2B订单列表",
+        "quantity": "数量",
+        "unitPrice": "单价",
+        "subtotal": "小计",
+        "approve": "审核通过",
+        "reject": "拒绝",
+        "delivery": "发货"
+      },
+      "form": {
+        "status": "状态",
+        "statusPlaceholder": "请选择状态",
+        "no": "订单号",
+        "noPlaceholder": "请输入订单号",
+        "userId": "用户ID",
+        "userIdPlaceholder": "请输入用户ID"
+      },
+      "grid": {
+        "no": "订单号",
+        "status": "状态",
+        "totalPrice": "订单总额",
+        "payPrice": "支付金额",
+        "currency": "货币",
+        "incoterms": "贸易术语",
+        "createdAt": "创建时间"
+      },
+      "detail": {
+        "title": "B2B订单详情",
+        "items": "商品明细",
+        "quantity": "数量",
+        "unitPrice": "单价",
+        "subtotal": "小计",
+        "no": "订单号",
+        "status": "状态",
+        "payStatus": "支付状态",
+        "totalPrice": "订单总额",
+        "payPrice": "支付金额",
+        "currency": "货币",
+        "incoterms": "贸易术语",
+        "deliveryType": "配送方式",
+        "paymentMethod": "付款方式",
+        "contractNo": "合同编号",
+        "createdAt": "创建时间"
+      },
+      "approvalForm": {
+        "approveTitle": "审核通过",
+        "rejectTitle": "拒绝订单",
+        "remark": "拒绝理由",
+        "remarkPlaceholder": "请输入拒绝理由"
+      },
+      "deliveryForm": {
+        "title": "发货",
+        "logisticsCompany": "物流公司",
+        "logisticsCompanyPlaceholder": "请选择物流公司",
+        "logisticsNo": "物流单号",
+        "logisticsNoPlaceholder": "请输入物流单号"
+      }
+    },
+    "quotation": {
+        "title": "报价单管理",
+        "index": {
+          "title": "报价单列表",
+          "quantity": "数量",
+          "unitPrice": "单价",
+          "subtotal": "小计"
+        },
+        "form": {
+          "status": "状态",
+          "statusPlaceholder": "请选择状态",
+          "no": "报价单号",
+          "noPlaceholder": "请输入报价单号",
+          "rfqNo": "询价单号",
+          "rfqNoPlaceholder": "请输入询价单号",
+          "supplierId": "供应商ID",
+          "supplierIdPlaceholder": "请输入供应商ID"
+        },
+        "grid": {
+          "no": "报价单号",
+          "rfqNo": "询价单号",
+          "supplierName": "供应商",
+          "status": "状态",
+          "totalPrice": "总金额",
+          "currency": "货币",
+          "incoterms": "贸易条款",
+          "createdAt": "创建时间"
+        },
+        "detail": {
+          "title": "报价单详情",
+          "items": "报价明细",
+          "quantity": "数量",
+          "unitPrice": "单价",
+          "subtotal": "小计",
+          "no": "报价单号",
+          "rfqNo": "询价单号",
+          "supplierName": "供应商",
+          "status": "状态",
+          "totalPrice": "总金额",
+          "currency": "货币",
+          "incoterms": "贸易条款",
+          "deliveryType": "配送方式",
+          "validUntil": "有效期至",
+          "remark": "备注",
+          "acceptedAt": "接受时间",
+          "createdAt": "创建时间",
+          "spuName": "商品名称",
+          "skuName": "规格名称",
+          "count": "数量"
+        },
+        "createForm": {
+          "title": "创建报价单",
+          "rfqId": "询价单ID",
+          "rfqIdPlaceholder": "请输入询价单ID",
+          "supplierId": "供应商ID",
+          "supplierIdPlaceholder": "请输入供应商ID",
+          "supplierName": "供应商名称",
+          "supplierNamePlaceholder": "请输入供应商名称",
+          "currency": "货币类型",
+          "currencyPlaceholder": "请选择货币类型",
+          "incoterms": "贸易条款",
+          "incotermsPlaceholder": "请选择贸易条款",
+          "deliveryType": "配送方式",
+          "deliveryTypePlaceholder": "请选择配送方式",
+          "validDays": "有效期天数",
+          "validDaysPlaceholder": "请输入有效期天数",
+          "remark": "备注",
+          "remarkPlaceholder": "请输入备注信息",
+          "items": "报价明细",
+          "unitPrice": "单价",
+          "unitPricePlaceholder": "请输入单价"
+        },
+        "status": {
+          "pending": "待报价",
+          "quoted": "已报价",
+          "accepted": "已接受",
+          "rejected": "已拒绝",
+          "expired": "已过期"
+        },
+        "delivery": {
+          "express": "快递配送",
+          "self": "自提"
+        },
+        "actions": {
+          "view": "查看",
+          "create": "创建报价单"
+        }
+      }
+  },
   "delivery": {
     "pickUpOrder": {
       "title": "核销订单",

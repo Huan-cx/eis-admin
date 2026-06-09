@@ -286,24 +286,24 @@ export function useOtherFormSchema(): VbenFormSchema[] {
       },
       rules: 'required',
     },
-    {
-      fieldName: 'giveIntegral',
-      label: $t('mall-product.spu.form.giveIntegral'),
-      component: 'InputNumber',
-      componentProps: {
-        min: 0,
-      },
-      rules: 'required',
-    },
-    {
-      fieldName: 'virtualSalesCount',
-      label: $t('mall-product.spu.form.virtualSalesCount'),
-      component: 'InputNumber',
-      componentProps: {
-        min: 0,
-      },
-      rules: 'required',
-    },
+    // {
+    //   fieldName: 'giveIntegral',
+    //   label: $t('mall-product.spu.form.giveIntegral'),
+    //   component: 'InputNumber',
+    //   componentProps: {
+    //     min: 0,
+    //   },
+    //   rules: 'required',
+    // },
+    // {
+    //   fieldName: 'virtualSalesCount',
+    //   label: $t('mall-product.spu.form.virtualSalesCount'),
+    //   component: 'InputNumber',
+    //   componentProps: {
+    //     min: 0,
+    //   },
+    //   rules: 'required',
+    // },
     // ========== SEO 相关字段 =========
     {
       fieldName: 'metaTitle',

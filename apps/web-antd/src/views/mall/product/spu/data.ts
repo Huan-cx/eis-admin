@@ -138,6 +138,16 @@ export function useGridColumns(
       minWidth: 80,
     },
     {
+      field: 'minQty',
+      title: $t('mall-product.spu.minQty'),
+      minWidth: 100,
+    },
+    {
+      field: 'unit',
+      title: $t('mall-product.spu.unit'),
+      minWidth: 80,
+    },
+    {
       field: 'browseCount',
       title: $t('mall-product.spu.browseCount'),
       minWidth: 100,

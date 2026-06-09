@@ -236,6 +236,106 @@ export const TradeOrderStatusEnum = {
   },
 };
 
+/**
+ * B2B询价单 - 状态
+ */
+export const B2BRfqStatusEnum = {
+  DRAFT: {
+    status: 0,
+    name: '草稿',
+  },
+  SUBMITTED: {
+    status: 10,
+    name: '待报价',
+  },
+  PROCESSING: {
+    status: 15,
+    name: '处理中',
+  },
+  QUOTED: {
+    status: 20,
+    name: '已报价',
+  },
+  ACCEPTED: {
+    status: 30,
+    name: '已接受',
+  },
+  REJECTED: {
+    status: 40,
+    name: '已拒绝',
+  },
+  CANCELED: {
+    status: 50,
+    name: '已取消',
+  },
+};
+
+/**
+ * B2B报价单 - 状态
+ */
+export const B2BQuotationStatusEnum = {
+  PENDING: {
+    status: 0,
+    name: '待报价',
+  },
+  QUOTED: {
+    status: 10,
+    name: '已报价',
+  },
+  ACCEPTED: {
+    status: 20,
+    name: '已接受',
+  },
+  REJECTED: {
+    status: 30,
+    name: '已拒绝',
+  },
+  EXPIRED: {
+    status: 40,
+    name: '已过期',
+  },
+};
+
+/**
+ * B2B贸易条款 - INCOTERMS
+ */
+export const B2BIncotermsEnum = {
+  EXW: {
+    code: 'EXW',
+    name: '工厂交货',
+  },
+  FOB: {
+    code: 'FOB',
+    name: '离岸价',
+  },
+  CIF: {
+    code: 'CIF',
+    name: '到岸价',
+  },
+  DDP: {
+    code: 'DDP',
+    name: '完税后交货',
+  },
+};
+
+/**
+ * B2B货币类型
+ */
+export const B2BCurrencyEnum = {
+  CNY: {
+    code: 'CNY',
+    name: '人民币',
+  },
+  USD: {
+    code: 'USD',
+    name: '美元',
+  },
+  EUR: {
+    code: 'EUR',
+    name: '欧元',
+  },
+};
+
 // 预设颜色
 export const PREDEFINE_COLORS = [
   '#ff4500',

@@ -20,6 +20,7 @@ import { Button, Image, Input, InputNumber, message } from 'ant-design-vue';
 
 import { VxeColumn, VxeTable } from '#/adapter/vxe-table';
 import { ImageUpload } from '#/components/upload';
+import { $t } from '#/locales';
 
 defineOptions({ name: 'SkuList' });
 
@@ -65,6 +66,14 @@ function createEmptySku(): MallSpuApi.Sku {
     stock: 0,
     weight: 0,
     volume: 0,
+    minQty: 1,
+    length: 0,
+    width: 0,
+    height: 0,
+    unit: '',
+    model: '',
+    hsCode: '',
+    remark: '',
     firstBrokeragePrice: 0,
     secondBrokeragePrice: 0,
   };
@@ -308,7 +317,7 @@ defineExpose({
       }"
       size="small"
     >
-      <VxeColumn align="center" title="图片" width="120" fixed="left">
+      <VxeColumn align="center" :title="$t('mall-product.spu.picUrl')" width="120" fixed="left">
         <template #default="{ row }">
           <ImageUpload
             v-model:value="row.picUrl"
@@ -335,17 +344,17 @@ defineExpose({
           </template>
         </VxeColumn>
       </template>
-      <VxeColumn align="center" title="商品名称" width="168">
+      <VxeColumn align="center" :title="$t('mall-product.spu.name')" width="168">
         <template #default="{ row }">
           <Input v-model:value="row.name" class="w-full" />
         </template>
       </VxeColumn>
-      <VxeColumn align="center" title="商品条码" width="168">
+      <VxeColumn align="center" :title="$t('mall-product.spu.barCode')" width="168">
         <template #default="{ row }">
           <Input v-model:value="row.barCode" class="w-full" />
         </template>
       </VxeColumn>
-      <VxeColumn align="center" title="销售价" width="168">
+      <VxeColumn align="center" :title="$t('mall-product.spu.price')" width="168">
         <template #default="{ row }">
           <InputNumber
             v-model:value="row.price"
@@ -356,7 +365,7 @@ defineExpose({
           />
         </template>
       </VxeColumn>
-      <VxeColumn align="center" title="市场价" width="168">
+      <VxeColumn align="center" :title="$t('mall-product.spu.marketPrice')" width="168">
         <template #default="{ row }">
           <InputNumber
             v-model:value="row.marketPrice"
@@ -367,7 +376,7 @@ defineExpose({
           />
         </template>
       </VxeColumn>
-      <VxeColumn align="center" title="成本价" width="168">
+      <VxeColumn align="center" :title="$t('mall-product.spu.costPrice')" width="168">
         <template #default="{ row }">
           <InputNumber
             v-model:value="row.costPrice"
@@ -378,12 +387,12 @@ defineExpose({
           />
         </template>
       </VxeColumn>
-      <VxeColumn align="center" title="库存" width="168">
+      <VxeColumn align="center" :title="$t('mall-product.spu.stock')" width="168">
         <template #default="{ row }">
           <InputNumber v-model:value="row.stock" :min="0" class="w-full" />
         </template>
       </VxeColumn>
-      <VxeColumn align="center" title="重量(kg)" width="168">
+      <VxeColumn align="center" :title="$t('mall-product.spu.weight')" width="168">
         <template #default="{ row }">
           <InputNumber
             v-model:value="row.weight"
@@ -394,19 +403,81 @@ defineExpose({
           />
         </template>
       </VxeColumn>
-      <VxeColumn align="center" title="体积(m^3)" width="168">
-        <template #default="{ row }">
-          <InputNumber
-            v-model:value="row.volume"
-            :min="0"
-            :precision="2"
-            :step="0.1"
-            class="w-full"
-          />
-        </template>
-      </VxeColumn>
-      <template v-if="formData?.subCommissionType">
-        <VxeColumn align="center" title="一级返佣(元)" width="168">
+      <VxeColumn align="center" :title="$t('mall-product.spu.volume')" width="168">
+          <template #default="{ row }">
+            <InputNumber
+              v-model:value="row.volume"
+              :min="0"
+              :precision="2"
+              :step="0.1"
+              class="w-full"
+            />
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.minQty')" width="120">
+          <template #default="{ row }">
+            <InputNumber
+              v-model:value="row.minQty"
+              :min="1"
+              class="w-full"
+            />
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.length')" width="120">
+          <template #default="{ row }">
+            <InputNumber
+              v-model:value="row.length"
+              :min="0"
+              :precision="2"
+              :step="0.1"
+              class="w-full"
+            />
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.width')" width="120">
+          <template #default="{ row }">
+            <InputNumber
+              v-model:value="row.width"
+              :min="0"
+              :precision="2"
+              :step="0.1"
+              class="w-full"
+            />
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.height')" width="120">
+          <template #default="{ row }">
+            <InputNumber
+              v-model:value="row.height"
+              :min="0"
+              :precision="2"
+              :step="0.1"
+              class="w-full"
+            />
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.unit')" width="120">
+          <template #default="{ row }">
+            <Input v-model:value="row.unit" class="w-full" />
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.model')" width="168">
+          <template #default="{ row }">
+            <Input v-model:value="row.model" class="w-full" :maxlength="64" />
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.hsCode')" width="168">
+          <template #default="{ row }">
+            <Input v-model:value="row.hsCode" class="w-full" :maxlength="32" />
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.remark')" width="200">
+          <template #default="{ row }">
+            <Input v-model:value="row.remark" class="w-full" :maxlength="512" />
+          </template>
+        </VxeColumn>
+        <template v-if="formData?.subCommissionType">
+        <VxeColumn align="center" :title="$t('mall-product.spu.firstBrokeragePrice')" width="168">
           <template #default="{ row }">
             <InputNumber
               v-model:value="row.firstBrokeragePrice"
@@ -417,7 +488,7 @@ defineExpose({
             />
           </template>
         </VxeColumn>
-        <VxeColumn align="center" title="二级返佣(元)" width="168">
+        <VxeColumn align="center" :title="$t('mall-product.spu.secondBrokeragePrice')" width="168">
           <template #default="{ row }">
             <InputNumber
               v-model:value="row.secondBrokeragePrice"
@@ -433,7 +504,7 @@ defineExpose({
         v-if="formData?.specType"
         align="center"
         fixed="right"
-        title="操作"
+        :title="$t('common.actions')"
         width="100"
       >
         <template #default="{ row }">
@@ -472,7 +543,7 @@ defineExpose({
       @checkbox-all="handleSelectionChange"
     >
       <VxeColumn v-if="isComponent" type="checkbox" width="45" fixed="left" />
-      <VxeColumn align="center" title="图片" max-width="140" fixed="left">
+      <VxeColumn align="center" :title="$t('mall-product.spu.picUrl')" max-width="140" fixed="left">
         <template #default="{ row }">
           <Image
             v-if="row.picUrl"
@@ -499,48 +570,88 @@ defineExpose({
           </template>
         </VxeColumn>
       </template>
-      <VxeColumn align="center" title="商品条码" width="100">
+      <VxeColumn align="center" :title="$t('mall-product.spu.barCode')" width="100">
         <template #default="{ row }">
           {{ row.barCode }}
         </template>
       </VxeColumn>
-      <VxeColumn align="center" title="销售价(元)" width="80">
+      <VxeColumn align="center" :title="$t('mall-product.spu.price')" width="80">
         <template #default="{ row }">
           {{ row.price }}
         </template>
       </VxeColumn>
-      <VxeColumn align="center" title="市场价(元)" width="80">
+      <VxeColumn align="center" :title="$t('mall-product.spu.marketPrice')" width="80">
         <template #default="{ row }">
           {{ row.marketPrice }}
         </template>
       </VxeColumn>
-      <VxeColumn align="center" title="成本价(元)" width="80">
+      <VxeColumn align="center" :title="$t('mall-product.spu.costPrice')" width="80">
         <template #default="{ row }">
           {{ row.costPrice }}
         </template>
       </VxeColumn>
-      <VxeColumn align="center" title="库存" width="80">
+      <VxeColumn align="center" :title="$t('mall-product.spu.stock')" width="80">
         <template #default="{ row }">
           {{ row.stock }}
         </template>
       </VxeColumn>
-      <VxeColumn align="center" title="重量(kg)" width="80">
+      <VxeColumn align="center" :title="$t('mall-product.spu.weight')" width="80">
         <template #default="{ row }">
           {{ row.weight }}
         </template>
       </VxeColumn>
-      <VxeColumn align="center" title="体积(m^3)" width="80">
-        <template #default="{ row }">
-          {{ row.volume }}
-        </template>
-      </VxeColumn>
-      <template v-if="formData?.subCommissionType">
-        <VxeColumn align="center" title="一级返佣(元)" width="80">
+      <VxeColumn align="center" :title="$t('mall-product.spu.volume')" width="80">
+          <template #default="{ row }">
+            {{ row.volume }}
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.minQty')" width="80">
+          <template #default="{ row }">
+            {{ row.minQty }}
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.length')" width="80">
+          <template #default="{ row }">
+            {{ row.length }}
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.width')" width="80">
+          <template #default="{ row }">
+            {{ row.width }}
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.height')" width="80">
+          <template #default="{ row }">
+            {{ row.height }}
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.unit')" width="80">
+          <template #default="{ row }">
+            {{ row.unit }}
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.model')" width="120">
+          <template #default="{ row }">
+            {{ row.model }}
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.hsCode')" width="120">
+          <template #default="{ row }">
+            {{ row.hsCode }}
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.remark')" width="150">
+          <template #default="{ row }">
+            {{ row.remark }}
+          </template>
+        </VxeColumn>
+        <template v-if="formData?.subCommissionType">
+        <VxeColumn align="center" :title="$t('mall-product.spu.firstBrokeragePrice')" width="80">
           <template #default="{ row }">
             {{ row.firstBrokeragePrice }}
           </template>
         </VxeColumn>
-        <VxeColumn align="center" title="二级返佣(元)" width="80">
+        <VxeColumn align="center" :title="$t('mall-product.spu.secondBrokeragePrice')" width="80">
           <template #default="{ row }">
             {{ row.secondBrokeragePrice }}
           </template>
@@ -563,7 +674,7 @@ defineExpose({
       }"
     >
       <VxeColumn v-if="isComponent" type="checkbox" width="45" fixed="left" />
-      <VxeColumn align="center" title="图片" max-width="140" fixed="left">
+      <VxeColumn align="center" :title="$t('mall-product.spu.picUrl')" max-width="140" fixed="left">
         <template #default="{ row }">
           <Image
             :src="row.picUrl"
@@ -589,33 +700,43 @@ defineExpose({
           </template>
         </VxeColumn>
       </template>
-      <VxeColumn align="center" title="商品条码" width="100">
+      <VxeColumn align="center" :title="$t('mall-product.spu.barCode')" width="100">
         <template #default="{ row }">
           {{ row.barCode }}
         </template>
       </VxeColumn>
-      <VxeColumn align="center" title="销售价(元)" width="80">
+      <VxeColumn align="center" :title="$t('mall-product.spu.price')" width="80">
         <template #default="{ row }">
           {{ formatToFraction(row.price) }}
         </template>
       </VxeColumn>
-      <VxeColumn align="center" title="市场价(元)" width="80">
+      <VxeColumn align="center" :title="$t('mall-product.spu.marketPrice')" width="80">
         <template #default="{ row }">
           {{ formatToFraction(row.marketPrice) }}
         </template>
       </VxeColumn>
-      <VxeColumn align="center" title="成本价(元)" width="80">
+      <VxeColumn align="center" :title="$t('mall-product.spu.costPrice')" width="80">
         <template #default="{ row }">
           {{ formatToFraction(row.costPrice) }}
         </template>
       </VxeColumn>
-      <VxeColumn align="center" title="库存" width="80">
-        <template #default="{ row }">
-          {{ row.stock }}
-        </template>
-      </VxeColumn>
-      <!-- 方便扩展每个活动配置的属性不一样  -->
-      <slot name="extension"></slot>
+      <VxeColumn align="center" :title="$t('mall-product.spu.stock')" width="80">
+          <template #default="{ row }">
+            {{ row.stock }}
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.minQty')" width="80">
+          <template #default="{ row }">
+            {{ row.minQty }}
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.unit')" width="80">
+          <template #default="{ row }">
+            {{ row.unit }}
+          </template>
+        </VxeColumn>
+        <!-- 方便扩展每个活动配置的属性不一样  -->
+        <slot name="extension"></slot>
     </VxeTable>
   </div>
 </template>

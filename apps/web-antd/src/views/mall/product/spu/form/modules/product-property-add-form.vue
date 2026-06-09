@@ -49,7 +49,7 @@ watch(
 const formSchema: VbenFormSchema[] = [
   {
     fieldName: 'name',
-    label: '属性名称',
+    label: $t('mall-product.property.name'),
     component: 'ApiSelect',
     componentProps: {
       api: async () => {
@@ -62,7 +62,7 @@ const formSchema: VbenFormSchema[] = [
       },
       showSearch: true,
       filterOption: true,
-      placeholder: '请选择属性名称。如果不存在，可手动输入选择',
+      placeholder: $t('mall-product.property.placeholder.name'),
       mode: 'tags',
       allowClear: true,
     },
@@ -140,7 +140,7 @@ const [Modal, modalApi] = useVbenModal({
 </script>
 
 <template>
-  <Modal title="添加商品属性">
+  <Modal :title="$t('mall-product.property.actions.createProperty')">
     <Form />
   </Modal>
 </template>
