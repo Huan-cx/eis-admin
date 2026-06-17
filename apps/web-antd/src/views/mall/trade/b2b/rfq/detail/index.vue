@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import { Page } from '@vben/common-ui';
+import { fenToYuan, formatDateTime } from '@vben/utils';
 
 import { Image, List, Tag } from 'ant-design-vue';
 
@@ -70,13 +71,13 @@ onMounted(async () => {
             {{ rfqDetail.requirement || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('trade.b2b.rfq.detail.validUntil')">
-            {{ rfqDetail.validUntil || '-' }}
+            {{ formatDateTime(rfqDetail.validUntil) || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('trade.b2b.rfq.detail.submittedAt')">
-            {{ rfqDetail.submittedAt || '-' }}
+            {{ formatDateTime(rfqDetail.submittedAt) || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('trade.b2b.rfq.detail.createdAt')">
-            {{ rfqDetail.createdAt || '-' }}
+            {{ formatDateTime(rfqDetail.createTime) || '-' }}
           </a-descriptions-item>
         </a-descriptions>
       </div>
@@ -104,7 +105,8 @@ onMounted(async () => {
                     </span>
                     <span>
                       {{ $t('trade.b2b.rfq.detail.expectedPrice') }}:
-                      {{ item.expectedPrice }}
+                      {{ fenToYuan(item.expectedPrice) }}
+                      {{ $t('common.yuan') }}
                     </span>
                     <span v-if="item.specifications">
                       {{ $t('trade.b2b.rfq.detail.specifications') }}:

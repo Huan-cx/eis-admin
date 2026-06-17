@@ -21,7 +21,6 @@ export namespace MallOrderApi {
 
   /** 订单信息 */
   export interface Order {
-
     id?: number; // 订单编号
     no?: string; // 订单流水号
     createTime?: Date; // 下单时间
