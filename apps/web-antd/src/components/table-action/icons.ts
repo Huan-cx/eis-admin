@@ -14,4 +14,6 @@ export const ACTION_ICON = {
   BOOK: 'lucide:book',
   AUDIT: 'lucide:file-check',
   TRANSLATE: 'lucide:translate',
+  CHECK: 'lucide:check-circle',
+  PAY: 'lucide:credit-card',
 };

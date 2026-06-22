@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import type { MallSupplierApi } from '#/api/mall/product/supplier';
-
 import { computed, ref } from 'vue';
 
 import { useVbenModal } from '@vben/common-ui';
@@ -8,7 +6,11 @@ import { useVbenModal } from '@vben/common-ui';
 import { message } from 'ant-design-vue';
 
 import { useVbenForm } from '#/adapter/form';
-import { createSupplier, getSupplier, updateSupplier } from '#/api/mall/product/supplier';
+import {
+  createSupplier,
+  getSupplier,
+  updateSupplier,
+} from '#/api/mall/product/supplier';
 import { $t } from '#/locales';
 
 import { useFormSchema } from '../data';

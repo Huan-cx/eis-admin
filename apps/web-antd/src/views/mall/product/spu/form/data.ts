@@ -1,11 +1,12 @@
 import type { VbenFormSchema } from '#/adapter/form';
 
-import { DeliveryTypeEnum, DICT_TYPE } from '@vben/constants';
+import { DICT_TYPE } from '@vben/constants';
 import { getDictOptions } from '@vben/hooks';
 import { handleTree } from '@vben/utils';
 
 import { getSimpleBrandList } from '#/api/mall/product/brand';
 import { getCategoryList } from '#/api/mall/product/category';
+import { getSimpleSupplierList } from '#/api/mall/product/supplier';
 import { getSimpleTemplateList } from '#/api/mall/trade/delivery/expressTemplate';
 import { $t } from '#/locales';
 
@@ -58,6 +59,19 @@ export function useInfoFormSchema(): VbenFormSchema[] {
       rules: 'required',
     },
     {
+      fieldName: 'supplierIds',
+      label: $t('mall-product.spu.form.supplier'),
+      component: 'ApiSelect',
+      componentProps: {
+        api: getSimpleSupplierList,
+        labelField: 'name',
+        valueField: 'id',
+        mode: 'multiple',
+        allowClear: true,
+        placeholder: $t('mall-product.spu.placeholder.supplier'),
+      },
+    },
+    {
       fieldName: 'keyword',
       label: $t('mall-product.spu.form.keyword'),
       component: 'Input',
@@ -98,6 +112,96 @@ export function useInfoFormSchema(): VbenFormSchema[] {
         maxSize: 30,
       },
       rules: 'required',
+    },
+  ];
+}
+
+/** 配送设置的表单 */
+export function useDeliveryFormSchema(): VbenFormSchema[] {
+  return [
+    {
+      fieldName: 'deliveryTypes',
+      label: $t('mall-product.spu.form.deliveryType'),
+      component: 'CheckboxGroup',
+      rules: 'required',
+      componentProps: {
+        options: [
+          {
+            label: $t('mall-product.spu.form.deliveryType.express'),
+            value: 1,
+          },
+          {
+            label: $t('mall-product.spu.form.deliveryType.self'),
+            value: 2,
+          },
+        ],
+      },
+    },
+    {
+      fieldName: 'deliveryTemplateId',
+      label: $t('mall-product.spu.form.deliveryTemplate'),
+      dependencies: {
+        triggerFields: ['deliveryTypes'],
+        component: 'Select',
+        show: (values) =>
+          values.deliveryTypes && values.deliveryTypes.includes(1),
+      },
+      rules: 'required',
+      componentProps: {
+        api: getSimpleTemplateList,
+        labelField: 'name',
+        valueField: 'id',
+        placeholder: $t('mall-product.spu.placeholder.deliveryTemplate'),
+      },
+    },
+  ];
+}
+
+/** 商品详情的表单 */
+export function useDescriptionFormSchema(): VbenFormSchema[] {
+  return [
+    {
+      fieldName: 'description',
+      label: $t('mall-product.spu.form.description'),
+      component: 'RichTextEditor',
+      rules: 'required',
+    },
+  ];
+}
+
+/** 其他设置的表单 */
+export function useOtherFormSchema(): VbenFormSchema[] {
+  return [
+    {
+      fieldName: 'sort',
+      label: $t('mall-product.spu.form.sort'),
+      component: 'InputNumber',
+      componentProps: {
+        min: 0,
+        max: 9999,
+        precision: 0,
+      },
+      defaultValue: 0,
+    },
+    {
+      fieldName: 'giveIntegral',
+      label: $t('mall-product.spu.form.giveIntegral'),
+      component: 'InputNumber',
+      componentProps: {
+        min: 0,
+        precision: 0,
+      },
+      defaultValue: 0,
+    },
+    {
+      fieldName: 'virtualSalesCount',
+      label: $t('mall-product.spu.form.virtualSalesCount'),
+      component: 'InputNumber',
+      componentProps: {
+        min: 0,
+        precision: 0,
+      },
+      defaultValue: 0,
     },
   ];
 }
@@ -197,141 +301,6 @@ export function useSkuFormSchema(
         triggerFields: ['specType'],
         // 当 specType 为 true（多规格）且 propertyList 有数据时显示
         show: (values) => values.specType === true && propertyList.length > 0,
-      },
-    },
-  ];
-}
-
-/** 物流设置的表单 */
-export function useDeliveryFormSchema(): VbenFormSchema[] {
-  return [
-    {
-      fieldName: 'id',
-      component: 'Input',
-      dependencies: {
-        triggerFields: [''],
-        show: () => false,
-      },
-    },
-    {
-      fieldName: 'deliveryTypes',
-      label: $t('mall-product.spu.form.deliveryTypes'),
-      component: 'CheckboxGroup',
-      componentProps: {
-        options: getDictOptions(DICT_TYPE.TRADE_DELIVERY_TYPE, 'number'),
-      },
-      rules: 'required',
-    },
-    {
-      fieldName: 'deliveryTemplateId',
-      label: $t('mall-product.spu.form.deliveryTemplate'),
-      component: 'ApiSelect',
-      componentProps: {
-        api: getSimpleTemplateList,
-        labelField: 'name',
-        valueField: 'id',
-      },
-      dependencies: {
-        triggerFields: ['deliveryTypes'],
-        show: (values) =>
-          !!values.deliveryTypes &&
-          values.deliveryTypes.includes(DeliveryTypeEnum.EXPRESS.type),
-      },
-      rules: 'required',
-    },
-  ];
-}
-
-/** 商品详情的表单 */
-export function useDescriptionFormSchema(): VbenFormSchema[] {
-  return [
-    {
-      fieldName: 'id',
-      component: 'Input',
-      dependencies: {
-        triggerFields: [''],
-        show: () => false,
-      },
-    },
-    {
-      fieldName: 'description',
-      label: $t('mall-product.spu.form.descriptionContent'),
-      component: 'RichTextarea',
-      componentProps: {
-        placeholder: $t('mall-product.spu.placeholder.description'),
-        height: 1000,
-      },
-      rules: 'required',
-    },
-  ];
-}
-
-/** 其它设置的表单 */
-export function useOtherFormSchema(): VbenFormSchema[] {
-  return [
-    {
-      fieldName: 'id',
-      component: 'Input',
-      dependencies: {
-        triggerFields: [''],
-        show: () => false,
-      },
-    },
-    {
-      fieldName: 'sort',
-      label: $t('mall-product.spu.form.sort'),
-      component: 'InputNumber',
-      componentProps: {
-        min: 0,
-      },
-      rules: 'required',
-    },
-    // {
-    //   fieldName: 'giveIntegral',
-    //   label: $t('mall-product.spu.form.giveIntegral'),
-    //   component: 'InputNumber',
-    //   componentProps: {
-    //     min: 0,
-    //   },
-    //   rules: 'required',
-    // },
-    // {
-    //   fieldName: 'virtualSalesCount',
-    //   label: $t('mall-product.spu.form.virtualSalesCount'),
-    //   component: 'InputNumber',
-    //   componentProps: {
-    //     min: 0,
-    //   },
-    //   rules: 'required',
-    // },
-    // ========== SEO 相关字段 =========
-    {
-      fieldName: 'metaTitle',
-      label: $t('mall-product.spu.form.metaTitle'),
-      component: 'Input',
-      componentProps: {
-        placeholder: $t('mall-product.spu.placeholder.metaTitle'),
-        maxlength: 200,
-      },
-    },
-    {
-      fieldName: 'metaDescription',
-      label: $t('mall-product.spu.form.metaDescription'),
-      component: 'Textarea',
-      componentProps: {
-        placeholder: $t('mall-product.spu.placeholder.metaDescription'),
-        autoSize: { minRows: 2, maxRows: 3 },
-        showCount: true,
-        maxlength: 500,
-      },
-    },
-    {
-      fieldName: 'slug',
-      label: $t('mall-product.spu.form.slug'),
-      component: 'Input',
-      componentProps: {
-        placeholder: $t('mall-product.spu.placeholder.slug'),
-        maxlength: 100,
       },
     },
   ];

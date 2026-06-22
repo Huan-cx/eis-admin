@@ -6,26 +6,21 @@ import { useRouter } from 'vue-router';
 
 import { Page, useVbenModal } from '@vben/common-ui';
 import { B2BRfqStatusEnum } from '@vben/constants';
+import { fenToYuan } from '@vben/utils';
+
 import { Image, List, Tag } from 'ant-design-vue';
 
 import { ACTION_ICON, TableAction, useVbenVxeGrid } from '#/adapter/vxe-table';
 import { getRfqPage } from '#/api/mall/trade/b2b/rfq';
 import { $t } from '#/locales';
-import { fenToYuan } from '@vben/utils';
 
 import { useGridColumns, useGridFormSchema } from './data';
 import AssignForm from './modules/assign-form.vue';
-import QuoteForm from './modules/quote-form.vue';
 
 const { push } = useRouter();
 
 const [AssignFormModal, assignFormModalApi] = useVbenModal({
   connectedComponent: AssignForm,
-  destroyOnClose: true,
-});
-
-const [QuoteFormModal, quoteFormModalApi] = useVbenModal({
-  connectedComponent: QuoteForm,
   destroyOnClose: true,
 });
 
@@ -36,7 +31,7 @@ function handleRefresh() {
 
 /** 详情 */
 function handleDetail(row: B2BRfqApi.RfqPageItem) {
-  push({ name: 'B2BRfqDetail', params: { id: row.id } });
+  push({ name: 'TradeB2BRfqDetailPage', params: { id: row.id } });
 }
 
 /** 分配供应商 */
@@ -44,9 +39,9 @@ function handleAssign(row: B2BRfqApi.RfqPageItem) {
   assignFormModalApi.setData({ id: row.id }).open();
 }
 
-/** 快速报价 */
+/** 快速报价 - 跳转到报价编辑页 */
 function handleQuote(row: B2BRfqApi.RfqPageItem) {
-  quoteFormModalApi.setData({ id: row.id }).open();
+  push({ name: 'TradeB2BQuotationFormPage', query: { rfqId: row.id } });
 }
 
 const [Grid, gridApi] = useVbenVxeGrid({
@@ -88,7 +83,6 @@ const [Grid, gridApi] = useVbenVxeGrid({
 <template>
   <Page auto-content-height>
     <AssignFormModal @success="handleRefresh" />
-    <QuoteFormModal @success="handleRefresh" />
     <Grid :table-title="$t('trade.b2b.rfq.index.title')">
       <template #expand_content="{ row }">
         <div v-if="row.items && row.items.length > 0" class="expand-content">
@@ -98,7 +92,9 @@ const [Grid, gridApi] = useVbenVxeGrid({
                 <List.Item.Meta>
                   <template #title>
                     {{ item.productName }}
-                    <Tag color="blue" v-if="item.skuName">{{ item.skuName }}</Tag>
+                    <Tag color="blue" v-if="item.skuName">
+                      {{ item.skuName }}
+                    </Tag>
                   </template>
                   <template #avatar>
                     <Image :src="item.imageUrl" :width="60" :height="60" />
@@ -106,13 +102,20 @@ const [Grid, gridApi] = useVbenVxeGrid({
                   <template #description>
                     <div class="flex flex-wrap gap-4">
                       <span>
-                        {{ $t('trade.b2b.rfq.detail.quantity') }}：{{ item.count }}
+                        {{ $t('trade.b2b.rfq.detail.quantity') }}：{{
+                          item.count
+                        }}
                       </span>
                       <span>
-                        {{ $t('trade.b2b.rfq.detail.expectedPrice') }}：{{ fenToYuan(item.expectedPrice) }} {{ $t('common.yuan') }}
+                        {{ $t('trade.b2b.rfq.detail.expectedPrice') }}：{{
+                          fenToYuan(item.expectedPrice)
+                        }}
+                        {{ $t('common.yuan') }}
                       </span>
                       <span v-if="item.specifications">
-                        {{ $t('trade.b2b.rfq.detail.specifications') }}：{{ item.specifications }}
+                        {{ $t('trade.b2b.rfq.detail.specifications') }}：{{
+                          item.specifications
+                        }}
                       </span>
                       <span v-if="item.unit">
                         {{ $t('trade.b2b.rfq.detail.unit') }}：{{ item.unit }}

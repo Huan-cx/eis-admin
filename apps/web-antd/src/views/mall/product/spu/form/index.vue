@@ -196,13 +196,19 @@ async function handleSubmit() {
       message.error($t('mall-product.spu.validation.skuIncomplete'));
       return;
     }
-    formValues.skus.forEach((item) => {
-      item.name = formValues.name;
-      item.price = convertToInteger(item.price);
-      item.marketPrice = convertToInteger(item.marketPrice);
-      item.costPrice = convertToInteger(item.costPrice);
-      item.firstBrokeragePrice = convertToInteger(item.firstBrokeragePrice);
-      item.secondBrokeragePrice = convertToInteger(item.secondBrokeragePrice);
+    // 创建SKU的副本进行价格转换，避免修改原始数据
+    formValues.skus = formValues.skus.map((item) => {
+      const skuItem = { ...item };
+      // 如果SKU没有填写name，则使用SPU的name
+      if (!skuItem.name || skuItem.name.trim() === '') {
+        skuItem.name = formValues.name;
+      }
+      skuItem.price = convertToInteger(skuItem.price);
+      skuItem.marketPrice = convertToInteger(skuItem.marketPrice);
+      skuItem.costPrice = convertToInteger(skuItem.costPrice);
+      skuItem.firstBrokeragePrice = convertToInteger(skuItem.firstBrokeragePrice);
+      skuItem.secondBrokeragePrice = convertToInteger(skuItem.secondBrokeragePrice);
+      return skuItem;
     });
   }
   const newSliderPicUrls: any[] = [];

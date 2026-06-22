@@ -262,7 +262,7 @@ export function useGridColumns(): VxeTableGridOptions['columns'] {
       formatter: 'formatDateTime',
     },
     {
-      title: $t('common.action'),
+      title: $t('common.actions'),
       width: 220,
       fixed: 'right',
       slots: { default: 'actions' },

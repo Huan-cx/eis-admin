@@ -1,21 +1,13 @@
 import type { VbenFormSchema } from '#/adapter/form';
 import type { VxeGridPropTypes } from '#/adapter/vxe-table';
-import type { MallDeliveryPickUpStoreApi } from '#/api/mall/trade/delivery/pickUpStore';
 
 import { DeliveryTypeEnum, DICT_TYPE } from '@vben/constants';
 import { getDictOptions } from '@vben/hooks';
 import { convertToInteger, formatToFraction } from '@vben/utils';
 
 import { getSimpleDeliveryExpressList } from '#/api/mall/trade/delivery/express';
-import { getSimpleDeliveryPickUpStoreList } from '#/api/mall/trade/delivery/pickUpStore';
 import { $t } from '#/locales';
 import { getRangePickerDefaultProps } from '#/utils';
-
-/** 关联数据 */
-let pickUpStoreList: MallDeliveryPickUpStoreApi.DeliveryPickUpStore[] = [];
-getSimpleDeliveryPickUpStoreList().then((data) => {
-  pickUpStoreList = data;
-});
 
 /** 列表的搜索表单 */
 export function useGridFormSchema(): VbenFormSchema[] {
@@ -27,6 +19,32 @@ export function useGridFormSchema(): VbenFormSchema[] {
       componentProps: {
         options: getDictOptions(DICT_TYPE.TRADE_ORDER_STATUS, 'number'),
         placeholder: $t('trade.order.form.statusPlaceholder'),
+        allowClear: true,
+      },
+    },
+    {
+      fieldName: 'approvalStatus',
+      label: $t('trade.order.form.approvalStatus'),
+      component: 'Select',
+      componentProps: {
+        options: getDictOptions(
+          DICT_TYPE.TRADE_ORDER_APPROVAL_STATUS,
+          'number',
+        ),
+        placeholder: $t('trade.order.form.approvalStatusPlaceholder'),
+        allowClear: true,
+      },
+    },
+    {
+      fieldName: 'payProgressStatus',
+      label: $t('trade.order.form.payProgressStatus'),
+      component: 'Select',
+      componentProps: {
+        options: getDictOptions(
+          DICT_TYPE.TRADE_ORDER_PAY_PROGRESS_STATUS,
+          'number',
+        ),
+        placeholder: $t('trade.order.form.payProgressStatusPlaceholder'),
         allowClear: true,
       },
     },
@@ -96,24 +114,7 @@ export function useGridFormSchema(): VbenFormSchema[] {
         placeholder: $t('trade.order.form.pickUpStoreIdPlaceholder'),
         allowClear: true,
       },
-      dependencies: {
-        triggerFields: ['deliveryType'],
-        show: (values) => values.deliveryType === DeliveryTypeEnum.PICK_UP.type,
-      },
-    },
-    {
-      fieldName: 'pickUpVerifyCode',
-      label: $t('trade.order.form.pickUpVerifyCode'),
-      component: 'Input',
-      componentProps: {
-        placeholder: $t('trade.order.form.pickUpVerifyCodePlaceholder'),
-        allowClear: true,
-      },
-      dependencies: {
-        triggerFields: ['deliveryType'],
-        show: (values) => values.deliveryType === DeliveryTypeEnum.PICK_UP.type,
-      },
-    },
+
     {
       fieldName: 'no',
       label: $t('trade.order.form.no'),
@@ -184,6 +185,24 @@ export function useGridColumns(): VxeGridPropTypes.Columns {
       minWidth: 120,
     },
     {
+      field: 'approvalStatus',
+      title: $t('trade.order.detail.approvalStatus'),
+      cellRender: {
+        name: 'CellDict',
+        props: { type: DICT_TYPE.TRADE_ORDER_APPROVAL_STATUS },
+      },
+      minWidth: 100,
+    },
+    {
+      field: 'payProgressStatus',
+      title: $t('trade.order.detail.payProgress'),
+      cellRender: {
+        name: 'CellDict',
+        props: { type: DICT_TYPE.TRADE_ORDER_PAY_PROGRESS_STATUS },
+      },
+      minWidth: 100,
+    },
+    {
       field: 'payChannelCode',
       title: $t('trade.order.grid.payChannelCode'),
       cellRender: {
@@ -214,29 +233,26 @@ export function useGridColumns(): VxeGridPropTypes.Columns {
       minWidth: 180,
     },
     {
+      field: 'paidPrice',
+      title: $t('trade.order.detail.paidAmount'),
+      formatter: 'formatFenToYuanAmount',
+      minWidth: 120,
+    },
+    {
       field: 'user',
       title: $t('trade.order.grid.user'),
       formatter: ({ row }) => {
-        if (row.deliveryType === DeliveryTypeEnum.EXPRESS.type) {
-          let addressStr = `${$t('trade.order.grid.buyer')}：${row.user?.nickname}`;
-          if (!row.receiveUseBilling) {
-            addressStr += ` / ${$t('trade.order.grid.receiver')}： ${row.receiverAddress?.firstName} ${row.receiverAddress?.lastName} ${row.receiverAddress?.phone} ${row.receiverAddress?.country} ${row.receiverAddress?.state} ${row.receiverAddress?.city} ${row.receiverAddress?.street}`;
-          }
-          if (!row.businessUseBilling) {
-            addressStr += ` / ${$t('trade.order.grid.businessAddress')}：${row.businessAddress?.companyName} ${row.businessAddress?.firstName} ${row.businessAddress?.lastName} ${row.businessAddress?.country} ${row.businessAddress?.state} ${row.businessAddress?.city} ${row.businessAddress?.street}`;
-          }
-          if (!row.receiveUseBilling && !row.businessUseBilling) {
-            addressStr += ` / ${$t('trade.order.grid.billingAddress')}：${row.billingAddress?.firstName} ${row.billingAddress?.lastName} ${row.billingAddress?.country} ${row.billingAddress?.state} ${row.billingAddress?.city} ${row.billingAddress?.street}`;
-          }
-          return addressStr;
+        let addressStr = `${$t('trade.order.grid.buyer')}：${row.user?.nickname}`;
+        if (!row.receiveUseBilling) {
+          addressStr += ` / ${$t('trade.order.grid.receiver')}： ${row.receiverAddress?.firstName} ${row.receiverAddress?.lastName} ${row.receiverAddress?.phone} ${row.receiverAddress?.country} ${row.receiverAddress?.state} ${row.receiverAddress?.city} ${row.receiverAddress?.street}`;
         }
-        if (row.deliveryType === DeliveryTypeEnum.PICK_UP.type) {
-          return `${$t('trade.order.grid.storeName')}：${pickUpStoreList.find((item) => item.id === row.pickUpStoreId)?.name} /
-                    ${$t('trade.order.grid.storePhone')}：${pickUpStoreList.find((item) => item.id === row.pickUpStoreId)?.phone} /
-                    ${$t('trade.order.grid.pickUpStore')}：${pickUpStoreList.find((item) => item.id === row.pickUpStoreId)?.detailAddress}
-                    `;
+        if (!row.importerUseBilling) {
+          addressStr += ` / ${$t('trade.order.grid.importerAddress')}：${row.importerAddress?.companyName} ${row.importerAddress?.firstName} ${row.importerAddress?.lastName} ${row.importerAddress?.country} ${row.importerAddress?.state} ${row.importerAddress?.city} ${row.importerAddress?.street}`;
         }
-        return '';
+        if (!row.receiveUseBilling && !row.importerUseBilling) {
+          addressStr += ` / ${$t('trade.order.grid.billingAddress')}：${row.billingAddress?.firstName} ${row.billingAddress?.lastName} ${row.billingAddress?.country} ${row.billingAddress?.state} ${row.billingAddress?.city} ${row.billingAddress?.street}`;
+        }
+        return addressStr;
       },
       minWidth: 180,
     },
@@ -259,10 +275,52 @@ export function useGridColumns(): VxeGridPropTypes.Columns {
       minWidth: 80,
     },
     {
-      title: $t('common.action'),
-      width: 180,
+      title: $t('common.actions'),
+      width: 240,
       fixed: 'right',
       slots: { default: 'actions' },
+    },
+  ];
+}
+
+/** 付款记录表格列配置 */
+export function usePaymentColumns(): VxeGridPropTypes.Columns {
+  return [
+    {
+      field: 'paidAt',
+      title: $t('trade.order.detail.payTime'),
+      width: 180,
+      formatter: 'formatDateTime',
+    },
+    {
+      field: 'amount',
+      title: $t('trade.order.form.payAmount'),
+      width: 120,
+      formatter: 'formatFenToYuanAmount',
+    },
+    {
+      field: 'paymentMethod',
+      title: $t('trade.order.detail.paymentMethod'),
+      width: 120,
+      cellRender: {
+        name: 'CellDict',
+        props: { type: DICT_TYPE.TRADE_ORDER_PAYMENT_METHOD },
+      },
+    },
+    {
+      field: 'transactionId',
+      title: $t('trade.order.form.transactionNo'),
+      minWidth: 200,
+    },
+    {
+      field: 'operatorName',
+      title: $t('trade.order.detail.operator'),
+      width: 120,
+    },
+    {
+      field: 'remark',
+      title: $t('trade.order.form.remark'),
+      minWidth: 200,
     },
   ];
 }
@@ -356,6 +414,32 @@ export function useAddressFormSchema(): VbenFormSchema[] {
         show: () => false,
       },
     },
+    // 快捷设置标题
+    {
+      fieldName: 'quickSettingsTitle',
+      label: '',
+      component: 'Divider',
+      renderComponentContent: () => {
+        return {
+          default: () => [`⚙️ ${$t('trade.order.addressForm.quickSettings')}`],
+        };
+      },
+      formItemClass: 'col-span-2 !mb-2 !mt-0',
+    },
+    // 收货地址标题
+    {
+      fieldName: 'receiverAddressTitle',
+      label: '',
+      component: 'Divider',
+      formItemClass: 'col-span-2 !mb-2 !mt-4',
+      renderComponentContent: () => {
+        return {
+          default: () => [
+            `📍 ${$t('trade.order.addressForm.receiverAddress')}`,
+          ],
+        };
+      },
+    },
     {
       fieldName: 'receiveUseBilling',
       label: $t('trade.order.addressForm.receiveUseBilling'),
@@ -365,22 +449,26 @@ export function useAddressFormSchema(): VbenFormSchema[] {
         unCheckedChildren: $t('common.no'),
       },
       defaultValue: false,
-    },
-    {
-      fieldName: 'businessUseBilling',
-      label: $t('trade.order.addressForm.businessUseBilling'),
-      component: 'Switch',
-      componentProps: {
-        checkedChildren: $t('common.yes'),
-        unCheckedChildren: $t('common.no'),
-      },
-      defaultValue: false,
+      formItemClass: 'col-span-1',
+      wrapperClass: '!justify-start',
     },
     {
       fieldName: 'receiverAddress.firstName',
       label: $t('trade.order.addressForm.receiverFirstName'),
       component: 'Input',
       rules: 'required',
+      formItemClass: 'col-span-1',
+      dependencies: {
+        triggerFields: ['receiveUseBilling'],
+        show: (values) => !values.receiveUseBilling,
+      },
+    },
+    {
+      fieldName: 'receiverAddress.lastName',
+      label: $t('trade.order.addressForm.receiverLastName'),
+      component: 'Input',
+      rules: 'required',
+      formItemClass: 'col-span-1',
       dependencies: {
         triggerFields: ['receiveUseBilling'],
         show: (values) => !values.receiveUseBilling,
@@ -400,6 +488,7 @@ export function useAddressFormSchema(): VbenFormSchema[] {
       fieldName: 'receiverAddress.companyName',
       label: $t('trade.order.addressForm.companyName'),
       component: 'Input',
+      formItemClass: 'col-span-2',
       dependencies: {
         triggerFields: ['receiveUseBilling'],
         show: (values) => !values.receiveUseBilling,
@@ -410,6 +499,7 @@ export function useAddressFormSchema(): VbenFormSchema[] {
       label: $t('trade.order.addressForm.street'),
       component: 'Input',
       rules: 'required',
+      formItemClass: 'col-span-2',
       dependencies: {
         triggerFields: ['receiveUseBilling'],
         show: (values) => !values.receiveUseBilling,
@@ -420,6 +510,7 @@ export function useAddressFormSchema(): VbenFormSchema[] {
       label: $t('trade.order.addressForm.city'),
       component: 'Input',
       rules: 'required',
+      formItemClass: 'col-span-1',
       dependencies: {
         triggerFields: ['receiveUseBilling'],
         show: (values) => !values.receiveUseBilling,
@@ -430,6 +521,7 @@ export function useAddressFormSchema(): VbenFormSchema[] {
       label: $t('trade.order.addressForm.state'),
       component: 'Input',
       rules: 'required',
+      formItemClass: 'col-span-1',
       dependencies: {
         triggerFields: ['receiveUseBilling'],
         show: (values) => !values.receiveUseBilling,
@@ -440,6 +532,7 @@ export function useAddressFormSchema(): VbenFormSchema[] {
       label: $t('trade.order.addressForm.country'),
       component: 'Input',
       rules: 'required',
+      formItemClass: 'col-span-1',
       dependencies: {
         triggerFields: ['receiveUseBilling'],
         show: (values) => !values.receiveUseBilling,
@@ -449,6 +542,7 @@ export function useAddressFormSchema(): VbenFormSchema[] {
       fieldName: 'receiverAddress.postcode',
       label: $t('trade.order.addressForm.postcode'),
       component: 'Input',
+      formItemClass: 'col-span-1',
       dependencies: {
         triggerFields: ['receiveUseBilling'],
         show: (values) => !values.receiveUseBilling,
@@ -459,6 +553,7 @@ export function useAddressFormSchema(): VbenFormSchema[] {
       label: $t('trade.order.addressForm.phone'),
       component: 'Input',
       rules: 'required',
+      formItemClass: 'col-span-1',
       dependencies: {
         triggerFields: ['receiveUseBilling'],
         show: (values) => !values.receiveUseBilling,
@@ -468,6 +563,7 @@ export function useAddressFormSchema(): VbenFormSchema[] {
       fieldName: 'receiverAddress.email',
       label: $t('trade.order.addressForm.email'),
       component: 'Input',
+      formItemClass: 'col-span-1',
       dependencies: {
         triggerFields: ['receiveUseBilling'],
         show: (values) => !values.receiveUseBilling,
@@ -477,6 +573,7 @@ export function useAddressFormSchema(): VbenFormSchema[] {
       fieldName: 'receiverAddress.vat',
       label: $t('trade.order.addressForm.vat'),
       component: 'Input',
+      formItemClass: 'col-span-1',
       dependencies: {
         triggerFields: ['receiveUseBilling'],
         show: (values) => !values.receiveUseBilling,
@@ -486,184 +583,247 @@ export function useAddressFormSchema(): VbenFormSchema[] {
       fieldName: 'receiverAddress.eori',
       label: $t('trade.order.addressForm.eori'),
       component: 'Input',
+      formItemClass: 'col-span-1',
       dependencies: {
         triggerFields: ['receiveUseBilling'],
         show: (values) => !values.receiveUseBilling,
+      },
+    },
+    // 账单地址标题
+    {
+      fieldName: 'billingAddressTitle',
+      label: '',
+      component: 'Divider',
+      formItemClass: 'col-span-2 !mb-2 !mt-4',
+      renderComponentContent: () => {
+        return {
+          default: () => [`💰 ${$t('trade.order.addressForm.billingAddress')}`],
+        };
       },
     },
     {
       fieldName: 'billingAddress.companyName',
       label: $t('trade.order.addressForm.billingCompanyName'),
       component: 'Input',
+      formItemClass: 'col-span-2',
     },
     {
       fieldName: 'billingAddress.firstName',
       label: $t('trade.order.addressForm.billingFirstName'),
       component: 'Input',
       rules: 'required',
+      formItemClass: 'col-span-1',
     },
     {
       fieldName: 'billingAddress.lastName',
       label: $t('trade.order.addressForm.billingLastName'),
       component: 'Input',
       rules: 'required',
+      formItemClass: 'col-span-1',
     },
     {
       fieldName: 'billingAddress.street',
       label: $t('trade.order.addressForm.billingStreet'),
       component: 'Input',
       rules: 'required',
+      formItemClass: 'col-span-2',
     },
     {
       fieldName: 'billingAddress.city',
       label: $t('trade.order.addressForm.billingCity'),
       component: 'Input',
       rules: 'required',
+      formItemClass: 'col-span-1',
     },
     {
       fieldName: 'billingAddress.state',
       label: $t('trade.order.addressForm.billingState'),
       component: 'Input',
       rules: 'required',
+      formItemClass: 'col-span-1',
     },
     {
       fieldName: 'billingAddress.country',
       label: $t('trade.order.addressForm.billingCountry'),
       component: 'Input',
       rules: 'required',
+      formItemClass: 'col-span-1',
     },
     {
       fieldName: 'billingAddress.postcode',
       label: $t('trade.order.addressForm.billingPostcode'),
       component: 'Input',
+      formItemClass: 'col-span-1',
     },
     {
       fieldName: 'billingAddress.phone',
       label: $t('trade.order.addressForm.billingPhone'),
       component: 'Input',
       rules: 'required',
+      formItemClass: 'col-span-1',
     },
     {
       fieldName: 'billingAddress.email',
       label: $t('trade.order.addressForm.billingEmail'),
       component: 'Input',
+      formItemClass: 'col-span-1',
     },
     {
       fieldName: 'billingAddress.vat',
       label: $t('trade.order.addressForm.billingVat'),
       component: 'Input',
+      formItemClass: 'col-span-1',
     },
     {
       fieldName: 'billingAddress.eori',
       label: $t('trade.order.addressForm.billingEori'),
       component: 'Input',
+      formItemClass: 'col-span-1',
     },
+    // 进口商地址标题
     {
-      fieldName: 'businessAddress.companyName',
-      label: $t('trade.order.addressForm.businessCompanyName'),
-      component: 'Input',
-      dependencies: {
-        triggerFields: ['businessUseBilling'],
-        show: (values) => !values.businessUseBilling,
+      fieldName: 'importerAddressTitle',
+      label: '',
+      component: 'Divider',
+      formItemClass: 'col-span-2 !mb-2 !mt-4',
+      renderComponentContent: () => {
+        return {
+          default: () => [
+            `🏢 ${$t('trade.order.addressForm.importerAddress')}`,
+          ],
+        };
       },
     },
     {
-      fieldName: 'businessAddress.firstName',
-      label: $t('trade.order.addressForm.businessFirstName'),
+      fieldName: 'importerUseBilling',
+      label: $t('trade.order.addressForm.importerUseBilling'),
+      component: 'Switch',
+      componentProps: {
+        checkedChildren: $t('common.yes'),
+        unCheckedChildren: $t('common.no'),
+      },
+      defaultValue: false,
+      formItemClass: 'col-span-1',
+      wrapperClass: '!justify-start',
+    },
+    {
+      fieldName: 'importerAddress.companyName',
+      label: $t('trade.order.addressForm.importerCompanyName'),
       component: 'Input',
+      formItemClass: 'col-span-2',
       dependencies: {
-        triggerFields: ['businessUseBilling'],
-        show: (values) => !values.businessUseBilling,
+        triggerFields: ['importerUseBilling'],
+        show: (values) => !values.importerUseBilling,
       },
     },
     {
-      fieldName: 'businessAddress.lastName',
-      label: $t('trade.order.addressForm.businessLastName'),
+      fieldName: 'importerAddress.firstName',
+      label: $t('trade.order.addressForm.importerFirstName'),
       component: 'Input',
+      formItemClass: 'col-span-1',
       dependencies: {
-        triggerFields: ['businessUseBilling'],
-        show: (values) => !values.businessUseBilling,
+        triggerFields: ['importerUseBilling'],
+        show: (values) => !values.importerUseBilling,
       },
     },
     {
-      fieldName: 'businessAddress.street',
-      label: $t('trade.order.addressForm.businessStreet'),
+      fieldName: 'importerAddress.lastName',
+      label: $t('trade.order.addressForm.importerLastName'),
       component: 'Input',
+      formItemClass: 'col-span-1',
       dependencies: {
-        triggerFields: ['businessUseBilling'],
-        show: (values) => !values.businessUseBilling,
+        triggerFields: ['importerUseBilling'],
+        show: (values) => !values.importerUseBilling,
       },
     },
     {
-      fieldName: 'businessAddress.city',
-      label: $t('trade.order.addressForm.businessCity'),
+      fieldName: 'importerAddress.street',
+      label: $t('trade.order.addressForm.importerStreet'),
       component: 'Input',
+      formItemClass: 'col-span-2',
       dependencies: {
-        triggerFields: ['businessUseBilling'],
-        show: (values) => !values.businessUseBilling,
+        triggerFields: ['importerUseBilling'],
+        show: (values) => !values.importerUseBilling,
       },
     },
     {
-      fieldName: 'businessAddress.state',
-      label: $t('trade.order.addressForm.businessState'),
+      fieldName: 'importerAddress.city',
+      label: $t('trade.order.addressForm.importerCity'),
       component: 'Input',
+      formItemClass: 'col-span-1',
       dependencies: {
-        triggerFields: ['businessUseBilling'],
-        show: (values) => !values.businessUseBilling,
+        triggerFields: ['importerUseBilling'],
+        show: (values) => !values.importerUseBilling,
       },
     },
     {
-      fieldName: 'businessAddress.country',
-      label: $t('trade.order.addressForm.businessCountry'),
+      fieldName: 'importerAddress.state',
+      label: $t('trade.order.addressForm.importerState'),
       component: 'Input',
+      formItemClass: 'col-span-1',
       dependencies: {
-        triggerFields: ['businessUseBilling'],
-        show: (values) => !values.businessUseBilling,
+        triggerFields: ['importerUseBilling'],
+        show: (values) => !values.importerUseBilling,
       },
     },
     {
-      fieldName: 'businessAddress.postcode',
-      label: $t('trade.order.addressForm.businessPostcode'),
+      fieldName: 'importerAddress.country',
+      label: $t('trade.order.addressForm.importerCountry'),
       component: 'Input',
+      formItemClass: 'col-span-1',
       dependencies: {
-        triggerFields: ['businessUseBilling'],
-        show: (values) => !values.businessUseBilling,
+        triggerFields: ['importerUseBilling'],
+        show: (values) => !values.importerUseBilling,
       },
     },
     {
-      fieldName: 'businessAddress.phone',
-      label: $t('trade.order.addressForm.businessPhone'),
+      fieldName: 'importerAddress.postcode',
+      label: $t('trade.order.addressForm.importerPostcode'),
       component: 'Input',
+      formItemClass: 'col-span-1',
       dependencies: {
-        triggerFields: ['businessUseBilling'],
-        show: (values) => !values.businessUseBilling,
+        triggerFields: ['importerUseBilling'],
+        show: (values) => !values.importerUseBilling,
       },
     },
     {
-      fieldName: 'businessAddress.email',
-      label: $t('trade.order.addressForm.businessEmail'),
+      fieldName: 'importerAddress.phone',
+      label: $t('trade.order.addressForm.importerPhone'),
       component: 'Input',
+      formItemClass: 'col-span-1',
       dependencies: {
-        triggerFields: ['businessUseBilling'],
-        show: (values) => !values.businessUseBilling,
+        triggerFields: ['importerUseBilling'],
+        show: (values) => !values.importerUseBilling,
       },
     },
     {
-      fieldName: 'businessAddress.vat',
-      label: $t('trade.order.addressForm.businessVat'),
+      fieldName: 'importerAddress.email',
+      label: $t('trade.order.addressForm.importerEmail'),
       component: 'Input',
+      formItemClass: 'col-span-1',
       dependencies: {
-        triggerFields: ['businessUseBilling'],
-        show: (values) => !values.businessUseBilling,
+        triggerFields: ['importerUseBilling'],
+        show: (values) => !values.importerUseBilling,
       },
     },
     {
-      fieldName: 'businessAddress.eori',
-      label: $t('trade.order.addressForm.businessEori'),
+      fieldName: 'importerAddress.vat',
+      label: $t('trade.order.addressForm.importerVat'),
       component: 'Input',
+      formItemClass: 'col-span-1',
       dependencies: {
-        triggerFields: ['businessUseBilling'],
-        show: (values) => !values.businessUseBilling,
+        triggerFields: ['importerUseBilling'],
+        show: (values) => !values.importerUseBilling,
+      },
+    },
+    {
+      fieldName: 'importerAddress.eori',
+      label: $t('trade.order.addressForm.importerEori'),
+      component: 'Input',
+      formItemClass: 'col-span-1',
+      dependencies: {
+        triggerFields: ['importerUseBilling'],
+        show: (values) => !values.importerUseBilling,
       },
     },
   ];
@@ -686,29 +846,26 @@ export function useDeliveryFormSchema(): VbenFormSchema[] {
       component: 'RadioGroup',
       componentProps: {
         options: [
-          { label: $t('trade.order.deliveryForm.express'), value: 'express' },
-          { label: $t('trade.order.deliveryForm.none'), value: 'none' },
+          { label: $t('trade.order.deliveryForm.express'), value: 1 },
+          { label: $t('trade.order.deliveryForm.logistics'), value: 2 },
         ],
-        buttonStyle: 'solid',
-        optionType: 'button',
       },
-      defaultValue: 'express',
+      defaultValue: 1,
     },
     {
       fieldName: 'logisticsId',
-      label: $t('trade.order.deliveryForm.logisticsId'),
+      label: $t('trade.order.deliveryForm.logisticsCompany'),
       component: 'ApiSelect',
       componentProps: {
         api: getSimpleDeliveryExpressList,
         labelField: 'name',
         valueField: 'id',
-        placeholder: $t('trade.order.deliveryForm.logisticsIdPlaceholder'),
+        placeholder: $t('trade.order.deliveryForm.logisticsCompanyPlaceholder'),
       },
       dependencies: {
         triggerFields: ['expressType'],
-        show: (values) => values.expressType === 'express',
+        show: (values) => values.expressType === 1,
       },
-      rules: 'required',
     },
     {
       fieldName: 'logisticsNo',
@@ -719,7 +876,75 @@ export function useDeliveryFormSchema(): VbenFormSchema[] {
       },
       dependencies: {
         triggerFields: ['expressType'],
-        show: (values) => values.expressType === 'express',
+        show: (values) => values.expressType === 1,
+      },
+    },
+  ];
+}
+
+/** 人工付款表单配置 */
+export function usePaymentFormSchema(): VbenFormSchema[] {
+  return [
+    {
+      fieldName: 'amount',
+      label: $t('trade.order.form.payAmount'),
+      component: 'InputNumber',
+      componentProps: {
+        min: 0.01,
+        step: 0.01,
+        precision: 2,
+        placeholder: $t('trade.order.form.payAmountPlaceholder'),
+        style: { width: '100%' },
+      },
+      rules: 'required',
+    },
+    {
+      fieldName: 'paymentMethod',
+      label: $t('trade.order.form.payMethod'),
+      component: 'Select',
+      componentProps: {
+        options: getDictOptions(DICT_TYPE.TRADE_ORDER_PAYMENT_METHOD, 'number'),
+        placeholder: $t('trade.order.form.payMethodPlaceholder'),
+        style: { width: '100%' },
+      },
+      rules: 'required',
+    },
+    {
+      fieldName: 'transactionId',
+      label: $t('trade.order.form.transactionNo'),
+      component: 'Input',
+      componentProps: {
+        placeholder: `${$t('trade.order.form.transactionNo')}（${$t(
+          'common.optional',
+        )}）`,
+      },
+    },
+    {
+      fieldName: 'remark',
+      label: $t('trade.order.form.remark'),
+      component: 'InputTextArea',
+      componentProps: {
+        rows: 3,
+        maxlength: 200,
+        showCount: true,
+        placeholder: `${$t('trade.order.form.remark')}（${$t('common.optional')}）`,
+      },
+    },
+  ];
+}
+
+/** 审批驳回表单配置 */
+export function useApprovalRejectFormSchema(): VbenFormSchema[] {
+  return [
+    {
+      fieldName: 'reason',
+      label: $t('trade.order.form.rejectReason'),
+      component: 'InputTextArea',
+      componentProps: {
+        rows: 4,
+        maxlength: 200,
+        showCount: true,
+        placeholder: $t('trade.order.form.rejectReasonPlaceholder'),
       },
       rules: 'required',
     },

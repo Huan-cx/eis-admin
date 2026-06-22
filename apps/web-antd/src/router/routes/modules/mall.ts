@@ -60,6 +60,16 @@ const routes: RouteRecordRaw[] = [
         component: () => import('#/views/mall/trade/order/detail/index.vue'),
       },
       {
+        path: String.raw`order-shipment/detail/:id(\d+)`,
+        name: 'TradeOrderShipmentDetail',
+        meta: {
+          title: '物流详情',
+          activePath: '/mall/trade/order-shipment',
+        },
+        component: () =>
+          import('#/views/mall/trade/orderShipment/detail/index.vue'),
+      },
+      {
         path: String.raw`after-sale/detail/:id(\d+)`,
         name: 'TradeAfterSaleDetail',
         meta: {
@@ -70,8 +80,8 @@ const routes: RouteRecordRaw[] = [
           import('#/views/mall/trade/afterSale/detail/index.vue'),
       },
       {
-        path: String.raw`b2b/rfq/detail/:id(\d+)`,
-        name: 'TradeB2BRfqDetail',
+        path: 'b2b/rfq/detail/:id',
+        name: 'TradeB2BRfqDetailPage',
         meta: {
           title: '询价单详情',
           activePath: '/mall/trade/b2b/rfq',
@@ -79,14 +89,43 @@ const routes: RouteRecordRaw[] = [
         component: () => import('#/views/mall/trade/b2b/rfq/detail/index.vue'),
       },
       {
-        path: String.raw`b2b/quotation/detail/:id(\d+)`,
-        name: 'TradeB2BQuotationDetail',
+        path: 'b2b/quotation/detail/:id',
+        name: 'TradeB2BQuotationDetailPage',
         meta: {
           title: '报价单详情',
           activePath: '/mall/trade/b2b/quotation',
         },
         component: () =>
           import('#/views/mall/trade/b2b/quotation/detail/index.vue'),
+      },
+      {
+        path: 'b2b/quotation/form',
+        name: 'TradeB2BQuotationFormPage',
+        meta: {
+          title: '报价单编辑',
+          activePath: '/mall/trade/b2b/quotation',
+        },
+        component: () =>
+          import('#/views/mall/trade/b2b/quotation/form/index.vue'),
+      },
+      {
+        path: 'b2b/quotation/form/:id',
+        name: 'TradeB2BQuotationEditPage',
+        meta: {
+          title: '报价单编辑',
+          activePath: '/mall/trade/b2b/quotation',
+        },
+        component: () =>
+          import('#/views/mall/trade/b2b/quotation/form/index.vue'),
+      },
+      {
+        path: 'b2b/compare',
+        name: 'TradeB2BCompare',
+        meta: {
+          title: '比价工作台',
+          activePath: '/mall/trade/b2b/rfq',
+        },
+        component: () => import('#/views/mall/trade/b2b/compare/index.vue'),
       },
     ],
   },

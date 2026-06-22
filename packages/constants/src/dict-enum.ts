@@ -102,6 +102,9 @@ const MALL_DICT = {
   TRADE_B2B_RFQ_STATUS: 'trade_b2b_rfq_status', // B2B询价状态
   TRADE_B2B_QUOTATION_STATUS: 'trade_b2b_quotation_status', // B2B报价状态
   TRADE_B2B_INCOTERMS: 'trade_b2b_incoterms', // B2B贸易条款
+  TRADE_ORDER_APPROVAL_STATUS: 'trade_order_approval_status', // 订单审批状态
+  TRADE_ORDER_PAY_PROGRESS_STATUS: 'trade_order_pay_progress_status', // 订单付款进度
+  TRADE_ORDER_PAYMENT_METHOD: 'trade_order_payment_method', // 订单付款方式
 
   /** ========== MALL - 营销模块 ========== */
 

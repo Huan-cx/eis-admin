@@ -4,14 +4,13 @@ import type { MallTradeStatisticsApi } from '#/api/mall/statistics/trade';
 
 import { onMounted, ref } from 'vue';
 
-import { $t } from '#/locales';
-
 import { DocAlert, Page, StatisticCard } from '@vben/common-ui';
 import { fenToYuan } from '@vben/utils';
 
 import { Col, Row } from 'ant-design-vue';
 
 import { getTradeStatisticsSummary } from '#/api/mall/statistics/trade';
+import { $t } from '#/locales';
 
 import TradeTrendCard from './modules/trend-card.vue';
 

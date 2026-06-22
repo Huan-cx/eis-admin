@@ -26,6 +26,7 @@ export interface RfqDetail {
   submittedAt?: string;
   createdAt: string;
   items: RfqItem[];
+  hasFinalQuotation?: boolean;
 }
 
 export interface RfqPageItem {
@@ -38,4 +39,5 @@ export interface RfqPageItem {
   submittedAt?: string;
   createdAt: string;
   itemCount: number;
+  hasFinalQuotation?: boolean;
 }

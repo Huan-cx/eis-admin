@@ -1,0 +1,119 @@
+{
+  "b2b": {
+    "quotation": {
+      "actions": {
+        "submitReview": "Submit Review"
+      },
+      "actionMessage": {
+        "saveFailed": "Save failed",
+        "submitReviewSuccess": "Review submitted successfully",
+        "submitReviewFailed": "Failed to submit review",
+        "initDataFailed": "Failed to initialize data"
+      },
+      "formPage": {
+        "basicInfo": "Basic Info",
+        "productQuotation": "Product Quotation",
+        "priceSummary": "Price Summary",
+        "selectSupplier": "Please select a supplier",
+        "addFee": "Add Fee",
+        "totalProductAmount": "Total Product Amount",
+        "feeItems": "Total Fees"
+      },
+      "feeType": {
+        "freight": "Freight",
+        "insurance": "Insurance",
+        "customs": "Customs Fee",
+        "other": "Other Fees"
+      }
+    }
+  },
+  "shipment": {
+    "title": "Shipment Management",
+    "listTitle": "Shipment List",
+    "detailTitle": "Shipment Detail",
+    "form": {
+      "orderNo": "Order No",
+      "shipmentNo": "Shipment No",
+      "status": "Status",
+      "statusPlaceholder": "Select Status",
+      "shipmentType": "Shipment Type",
+      "shipmentTypePlaceholder": "Select Shipment Type",
+      "loadingPort": "Port of Loading",
+      "dischargePort": "Port of Discharge",
+      "carrier": "Carrier",
+      "vesselFlight": "Vessel / Flight",
+      "containerNo": "Container No",
+      "blNo": "B/L No",
+      "etd": "ETD",
+      "eta": "ETA",
+      "atd": "ATD",
+      "ata": "ATA",
+      "totalCtns": "Total Cartons",
+      "totalNw": "Total Net Weight",
+      "totalGw": "Total Gross Weight",
+      "totalCbm": "Total CBM",
+      "remark": "Remark",
+      "createTime": "Create Time"
+    },
+    "status": {
+      "pending": "Pending Shipment",
+      "inProduction": "In Production",
+      "cargoReady": "Cargo Ready",
+      "qcPassed": "QC Passed",
+      "qcFailed": "QC Failed",
+      "shipped": "Shipped",
+      "inTransit": "In Transit",
+      "customsCleared": "Customs Cleared",
+      "delivered": "Delivered",
+      "canceled": "Canceled"
+    },
+    "type": {
+      "fcl": "FCL - Full Container Load",
+      "lcl": "LCL - Less than Container Load",
+      "air": "Air Freight",
+      "express": "Express",
+      "land": "Land Transportation"
+    },
+    "event": {
+      "title": "Shipment Events",
+      "eventType": "Event Type",
+      "eventTime": "Event Time",
+      "eventTitle": "Event Title",
+      "description": "Description",
+      "attachments": "Attachments",
+      "operator": "Operator",
+      "addTitle": "Add Shipment Event",
+      "editTitle": "Edit Shipment Event"
+    },
+    "packingList": {
+      "title": "Packing List",
+      "skuCode": "SKU Code",
+      "productName": "Product Name",
+      "packagingWay": "Packaging",
+      "pcsPerCtn": "Pcs per Ctn",
+      "quantity": "Quantity",
+      "ctns": "Cartons",
+      "nwPerCtn": "NW per Ctn",
+      "gwPerCtn": "GW per Ctn",
+      "cbmPerCtn": "CBM per Ctn",
+      "totalNw": "Total NW",
+      "totalGw": "Total GW",
+      "totalCbm": "Total CBM",
+      "summary": "Packing Summary"
+    },
+    "actions": {
+      "detail": "Detail",
+      "edit": "Edit",
+      "updateStatus": "Update Status",
+      "addEvent": "Add Event",
+      "orderDetail": "Order Detail",
+      "refresh": "Refresh"
+    },
+    "actionMessage": {
+      "updateSuccess": "Updated successfully",
+      "updateFailed": "Update failed",
+      "statusUpdateSuccess": "Status updated successfully",
+      "eventAddSuccess": "Event added successfully"
+    }
+  }
+}

@@ -58,6 +58,7 @@ const tableHeaders = ref<{ label: string; prop: string }[]>([]);
 function createEmptySku(): MallSpuApi.Sku {
   return {
     name: '', // SKU 名称，提交时会自动使用 SPU 名称
+    skuCode: '',
     price: 0,
     marketPrice: 0,
     costPrice: 0,
@@ -72,6 +73,10 @@ function createEmptySku(): MallSpuApi.Sku {
     height: 0,
     unit: '',
     model: '',
+    packagingWay: '',
+    pcsPerCtn: 0,
+    nwPerCtn: 0,
+    gwPerCtn: 0,
     hsCode: '',
     remark: '',
     firstBrokeragePrice: 0,
@@ -349,6 +354,11 @@ defineExpose({
           <Input v-model:value="row.name" class="w-full" />
         </template>
       </VxeColumn>
+      <VxeColumn align="center" :title="$t('mall-product.spu.skuCode')" width="168">
+        <template #default="{ row }">
+          <Input v-model:value="row.skuCode" class="w-full" />
+        </template>
+      </VxeColumn>
       <VxeColumn align="center" :title="$t('mall-product.spu.barCode')" width="168">
         <template #default="{ row }">
           <Input v-model:value="row.barCode" class="w-full" />
@@ -464,6 +474,26 @@ defineExpose({
         <VxeColumn align="center" :title="$t('mall-product.spu.model')" width="168">
           <template #default="{ row }">
             <Input v-model:value="row.model" class="w-full" :maxlength="64" />
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.packagingWay')" width="140">
+          <template #default="{ row }">
+            <Input v-model:value="row.packagingWay" class="w-full" :maxlength="64" />
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.pcsPerCtn')" width="100">
+          <template #default="{ row }">
+            <InputNumber v-model:value="row.pcsPerCtn" :min="0" class="w-full" />
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.nwPerCtn')" width="100">
+          <template #default="{ row }">
+            <InputNumber v-model:value="row.nwPerCtn" :min="0" :precision="3" class="w-full" />
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.gwPerCtn')" width="100">
+          <template #default="{ row }">
+            <InputNumber v-model:value="row.gwPerCtn" :min="0" :precision="3" class="w-full" />
           </template>
         </VxeColumn>
         <VxeColumn align="center" :title="$t('mall-product.spu.hsCode')" width="168">
@@ -633,6 +663,26 @@ defineExpose({
         <VxeColumn align="center" :title="$t('mall-product.spu.model')" width="120">
           <template #default="{ row }">
             {{ row.model }}
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.packagingWay')" width="100">
+          <template #default="{ row }">
+            {{ row.packagingWay }}
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.pcsPerCtn')" width="80">
+          <template #default="{ row }">
+            {{ row.pcsPerCtn }}
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.nwPerCtn')" width="80">
+          <template #default="{ row }">
+            {{ row.nwPerCtn }}
+          </template>
+        </VxeColumn>
+        <VxeColumn align="center" :title="$t('mall-product.spu.gwPerCtn')" width="80">
+          <template #default="{ row }">
+            {{ row.gwPerCtn }}
           </template>
         </VxeColumn>
         <VxeColumn align="center" :title="$t('mall-product.spu.hsCode')" width="120">

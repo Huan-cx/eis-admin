@@ -201,13 +201,25 @@ export const BrokerageWithdrawTypeEnum = {
  * 配送方式枚举
  */
 export const DeliveryTypeEnum = {
-  EXPRESS: {
+  SEA: {
     type: 1,
-    name: '快递发货',
+    name: '海运',
   },
-  PICK_UP: {
+  AIR: {
     type: 2,
-    name: '到店自提',
+    name: '空运',
+  },
+  EXPRESS: {
+    type: 3,
+    name: '快递',
+  },
+  RAILWAY: {
+    type: 4,
+    name: '铁路',
+  },
+  TRUCK: {
+    type: 5,
+    name: '公路',
   },
 };
 /**
@@ -233,6 +245,42 @@ export const TradeOrderStatusEnum = {
   CANCELED: {
     status: 40,
     name: '已取消',
+  },
+};
+
+/**
+ * 交易订单 - 审批状态
+ */
+export const TradeOrderApprovalStatusEnum = {
+  PENDING: {
+    status: 0,
+    name: '待审批',
+  },
+  APPROVED: {
+    status: 1,
+    name: '已通过',
+  },
+  REJECTED: {
+    status: 2,
+    name: '已驳回',
+  },
+};
+
+/**
+ * 交易订单 - 付款进度状态
+ */
+export const TradeOrderPayProgressStatusEnum = {
+  UNPAID: {
+    status: 0,
+    name: '待付款',
+  },
+  PARTIAL_PAID: {
+    status: 1,
+    name: '部分付款',
+  },
+  FULL_PAID: {
+    status: 2,
+    name: '全额付款',
   },
 };
 
@@ -274,21 +322,25 @@ export const B2BRfqStatusEnum = {
  * B2B报价单 - 状态
  */
 export const B2BQuotationStatusEnum = {
-  PENDING: {
+  DRAFT: {
     status: 0,
-    name: '待报价',
+    name: '草稿',
   },
-  QUOTED: {
+  PENDING_REVIEW: {
+    status: 5,
+    name: '待审核',
+  },
+  APPROVED: {
     status: 10,
-    name: '已报价',
-  },
-  ACCEPTED: {
-    status: 20,
-    name: '已接受',
+    name: '已审核',
   },
   REJECTED: {
-    status: 30,
+    status: 20,
     name: '已拒绝',
+  },
+  ACCEPTED: {
+    status: 30,
+    name: '已接受',
   },
   EXPIRED: {
     status: 40,

@@ -17,51 +17,39 @@ export function useOrderInfoSchema(): DescriptionItemSchema[] {
       label: $t('trade.order.detail.orderInfoSchema.no'),
     },
     {
-      field: 'user.nickname',
+      field: 'userName',
       label: $t('trade.order.detail.orderInfoSchema.buyer'),
     },
     {
-      field: 'type',
-      label: $t('trade.order.detail.orderInfoSchema.type'),
-      render: (val) =>
-        h(DictTag, {
-          type: DICT_TYPE.TRADE_ORDER_TYPE,
-          value: val,
-        }),
+      field: 'currency',
+      label: $t('trade.order.detail.currency'),
     },
     {
-      field: 'terminal',
-      label: $t('trade.order.detail.orderInfoSchema.terminal'),
-      render: (val) =>
-        h(DictTag, {
-          type: DICT_TYPE.TERMINAL,
-          value: val,
-        }),
+      field: 'quotationNo',
+      label: $t('trade.order.detail.noQuote'),
     },
     {
-      field: 'userRemark',
-      label: $t('trade.order.detail.orderInfoSchema.userRemark'),
+      field: 'contractNo',
+      label: $t('trade.order.detail.contractNo'),
+    },
+    {
+      field: 'payTime',
+      label: $t('trade.order.detail.payTime'),
+      render: (val) => (val ? (formatDateTime(val) as string) : '-'),
+    },
+    {
+      field: 'deliveryTime',
+      label: $t('trade.order.detail.deliveryTime'),
+      render: (val) => (val ? (formatDateTime(val) as string) : '-'),
+    },
+    {
+      field: 'createTime',
+      label: $t('trade.order.detail.createdAt'),
+      render: (val) => (val ? (formatDateTime(val) as string) : '-'),
     },
     {
       field: 'remark',
       label: $t('trade.order.detail.orderInfoSchema.remark'),
-    },
-    {
-      field: 'payOrderId',
-      label: $t('trade.order.detail.orderInfoSchema.payOrderId'),
-    },
-    {
-      field: 'payChannelCode',
-      label: $t('trade.order.detail.orderInfoSchema.payChannelCode'),
-      render: (val) =>
-        h(DictTag, {
-          type: DICT_TYPE.PAY_CHANNEL_CODE,
-          value: val,
-        }),
-    },
-    {
-      field: 'brokerageUser.nickname',
-      label: $t('trade.order.detail.orderInfoSchema.brokerageUser'),
     },
   ];
 }
@@ -79,14 +67,31 @@ export function useOrderStatusSchema(): DescriptionItemSchema[] {
         }),
     },
     {
-      field: 'reminder',
-      label: $t('trade.order.detail.orderStatusSchema.reminder'),
-      render: () =>
-        h('div', { class: 'space-y-1' }, [
-          h('div', $t('trade.order.detail.orderStatusSchema.reminder1')),
-          h('div', $t('trade.order.detail.orderStatusSchema.reminder2')),
-          h('div', $t('trade.order.detail.orderStatusSchema.reminder3')),
-        ]),
+      field: 'approvalStatus',
+      label: $t('trade.order.detail.approvalStatus'),
+      render: (val) =>
+        h(DictTag, {
+          type: DICT_TYPE.TRADE_ORDER_APPROVAL_STATUS,
+          value: val,
+        }),
+    },
+    {
+      field: 'payProgressStatus',
+      label: $t('trade.order.detail.payProgress'),
+      render: (val) =>
+        h(DictTag, {
+          type: DICT_TYPE.TRADE_ORDER_PAY_PROGRESS_STATUS,
+          value: val,
+        }),
+    },
+    {
+      field: 'deliveryType',
+      label: $t('trade.order.detail.deliveryType'),
+      render: (val) =>
+        h(DictTag, {
+          type: DICT_TYPE.TRADE_DELIVERY_TYPE,
+          value: val,
+        }),
     },
   ];
 }
@@ -105,38 +110,19 @@ export function useOrderPriceSchema(): DescriptionItemSchema[] {
       render: (val) => `${fenToYuan(val ?? 0)} ${$t('common.yuan')}`,
     },
     {
-      field: 'adjustPrice',
-      label: $t('trade.order.detail.priceSchema.adjustPrice'),
-      render: (val) => `${fenToYuan(val ?? 0)} ${$t('common.yuan')}`,
-    },
-    // {
-    //   field: 'couponPrice',
-    //   label: '优惠劵优惠',
-    //   render: (val) =>
-    //     h('span', { class: 'text-red-500' }, `${fenToYuan(val ?? 0)} 元`),
-    // },
-    // {
-    //   field: 'vipPrice',
-    //   label: 'VIP 优惠',
-    //   render: (val) =>
-    //     h('span', { class: 'text-red-500' }, `${fenToYuan(val ?? 0)} 元`),
-    // },
-    // {
-    //   field: 'discountPrice',
-    //   label: '活动优惠',
-    //   render: (val) =>
-    //     h('span', { class: 'text-red-500' }, `${fenToYuan(val ?? 0)} 元`),
-    // },
-    // {
-    //   field: 'pointPrice',
-    //   label: '积分抵扣',
-    //   render: (val) =>
-    //     h('span', { class: 'text-red-500' }, `${fenToYuan(val ?? 0)} 元`),
-    // },
-    {
       field: 'payPrice',
       label: $t('trade.order.detail.priceSchema.payPrice'),
       render: (val) => `${fenToYuan(val ?? 0)} ${$t('common.yuan')}`,
+    },
+    {
+      field: 'paidPrice',
+      label: $t('trade.order.detail.paidAmount'),
+      render: (val) =>
+        h(
+          'span',
+          { class: 'text-green-500 font-medium' },
+          `${fenToYuan(val ?? 0)} ${$t('common.yuan')}`,
+        ),
     },
   ];
 }
@@ -145,187 +131,9 @@ export function useOrderPriceSchema(): DescriptionItemSchema[] {
 export function useDeliveryInfoSchema(): DescriptionItemSchema[] {
   return [
     {
-      field: 'deliveryType',
-      label: $t('trade.order.detail.deliveryInfoSchema.deliveryType'),
+      field: 'logisticsId',
+      label: $t('trade.order.detail.logisticsNo'),
       span: 3,
-      render: (val) =>
-        h(DictTag, {
-          type: DICT_TYPE.TRADE_DELIVERY_TYPE,
-          value: val,
-        }),
-    },
-    {
-      field: 'receiverAddress',
-      label: $t('trade.order.detail.deliveryInfoSchema.receiverAddress'),
-      render: (val) => {
-        if (!val) return '';
-        return h('div', [
-          h(
-            'div',
-            `${$t('trade.order.detail.deliveryInfoSchema.receiver')}: ${val.firstName} ${val.lastName}`,
-          ),
-          val.companyName
-            ? h(
-                'div',
-                `${$t('trade.order.detail.deliveryInfoSchema.company')}: ${val.companyName}`,
-              )
-            : null,
-          h(
-            'div',
-            `${$t('trade.order.detail.deliveryInfoSchema.street')}: ${val.street}`,
-          ),
-          h('div', `${val.postcode} ${val.city}`),
-          val.state
-            ? h(
-                'div',
-                `${$t('trade.order.detail.deliveryInfoSchema.state')}: ${val.state}`,
-              )
-            : null,
-          h(
-            'div',
-            `${$t('trade.order.detail.deliveryInfoSchema.country')}: ${val.country}`,
-          ),
-          h(
-            'div',
-            `${$t('trade.order.detail.deliveryInfoSchema.phone')}: ${val.phone}`,
-          ),
-          val.email
-            ? h(
-                'div',
-                `${$t('trade.order.detail.deliveryInfoSchema.email')}: ${val.email}`,
-              )
-            : null,
-          val.vat
-            ? h(
-                'div',
-                `${$t('trade.order.detail.deliveryInfoSchema.vat')}: ${val.vat}`,
-              )
-            : null,
-          val.eori
-            ? h(
-                'div',
-                `${$t('trade.order.detail.deliveryInfoSchema.eori')}: ${val.eori}`,
-              )
-            : null,
-        ]);
-      },
-    },
-    {
-      field: 'billingAddress',
-      label: $t('trade.order.detail.deliveryInfoSchema.billingAddress'),
-      render: (val) => {
-        if (!val) return '';
-        return h('div', [
-          val.companyName
-            ? h(
-                'div',
-                `${$t('trade.order.detail.deliveryInfoSchema.company')}: ${val.companyName}`,
-              )
-            : null,
-          h(
-            'div',
-            `${$t('trade.order.detail.deliveryInfoSchema.name')}: ${val.firstName} ${val.lastName}`,
-          ),
-          h(
-            'div',
-            `${$t('trade.order.detail.deliveryInfoSchema.street')}: ${val.street}`,
-          ),
-          h('div', `${val.postcode} ${val.city}`),
-          val.state
-            ? h(
-                'div',
-                `${$t('trade.order.detail.deliveryInfoSchema.state')}: ${val.state}`,
-              )
-            : null,
-          h(
-            'div',
-            `${$t('trade.order.detail.deliveryInfoSchema.country')}: ${val.country}`,
-          ),
-          h(
-            'div',
-            `${$t('trade.order.detail.deliveryInfoSchema.phone')}: ${val.phone}`,
-          ),
-          val.email
-            ? h(
-                'div',
-                `${$t('trade.order.detail.deliveryInfoSchema.email')}: ${val.email}`,
-              )
-            : null,
-          val.vat
-            ? h(
-                'div',
-                `${$t('trade.order.detail.deliveryInfoSchema.vat')}: ${val.vat}`,
-              )
-            : null,
-          val.eori
-            ? h(
-                'div',
-                `${$t('trade.order.detail.deliveryInfoSchema.eori')}: ${val.eori}`,
-              )
-            : null,
-        ]);
-      },
-    },
-    {
-      field: 'businessAddress',
-      label: $t('trade.order.detail.deliveryInfoSchema.businessAddress'),
-      render: (val) => {
-        if (!val) return '';
-        return h('div', [
-          val.companyName
-            ? h(
-                'div',
-                `${$t('trade.order.detail.deliveryInfoSchema.company')}: ${val.companyName}`,
-              )
-            : null,
-          h(
-            'div',
-            `${$t('trade.order.detail.deliveryInfoSchema.name')}: ${val.firstName} ${val.lastName}`,
-          ),
-          h(
-            'div',
-            `${$t('trade.order.detail.deliveryInfoSchema.street')}: ${val.street}`,
-          ),
-          h('div', `${val.postcode} ${val.city}`),
-          val.state
-            ? h(
-                'div',
-                `${$t('trade.order.detail.deliveryInfoSchema.state')}: ${val.state}`,
-              )
-            : null,
-          h(
-            'div',
-            `${$t('trade.order.detail.deliveryInfoSchema.country')}: ${val.country}`,
-          ),
-          h(
-            'div',
-            `${$t('trade.order.detail.deliveryInfoSchema.phone')}: ${val.phone}`,
-          ),
-          val.email
-            ? h(
-                'div',
-                `${$t('trade.order.detail.deliveryInfoSchema.email')}: ${val.email}`,
-              )
-            : null,
-          val.vat
-            ? h(
-                'div',
-                `${$t('trade.order.detail.deliveryInfoSchema.vat')}: ${val.vat}`,
-              )
-            : null,
-          val.eori
-            ? h(
-                'div',
-                `${$t('trade.order.detail.deliveryInfoSchema.eori')}: ${val.eori}`,
-              )
-            : null,
-        ]);
-      },
-    },
-    {
-      field: 'deliveryTime',
-      label: $t('trade.order.detail.deliveryInfoSchema.deliveryTime'),
-      render: (val) => formatDateTime(val) as string,
     },
   ];
 }
@@ -340,7 +148,71 @@ export function useProductColumns(): VxeTableGridOptions['columns'] {
       slots: { default: 'spuName' },
     },
     {
-      field: 'price',
+      field: 'skuName',
+      title: $t('trade.order.detail.productColumns.skuName'),
+      minWidth: 150,
+    },
+    {
+      field: 'skuCode',
+      title: $t('trade.order.detail.productColumns.skuCode'),
+      minWidth: 120,
+    },
+    {
+      field: 'barCode',
+      title: $t('trade.order.detail.productColumns.barCode'),
+      minWidth: 120,
+    },
+    {
+      field: 'minQty',
+      title: $t('trade.order.detail.productColumns.minQty'),
+      width: 100,
+    },
+    {
+      field: 'unit',
+      title: $t('trade.order.detail.productColumns.unit'),
+      width: 80,
+    },
+    {
+      field: 'weight',
+      title: $t('trade.order.detail.productColumns.weight'),
+      width: 100,
+      formatter: ({ cellValue }) => {
+        return cellValue ? `${cellValue} kg` : '-';
+      },
+    },
+    {
+      field: 'hsCode',
+      title: $t('trade.order.detail.productColumns.hsCode'),
+      minWidth: 120,
+    },
+    {
+      field: 'packagingWay',
+      title: $t('trade.order.detail.productColumns.packagingWay'),
+      minWidth: 100,
+    },
+    {
+      field: 'pcsPerCtn',
+      title: $t('trade.order.detail.productColumns.pcsPerCtn'),
+      width: 100,
+    },
+    {
+      field: 'nwPerCtn',
+      title: $t('trade.order.detail.productColumns.nwPerCtn'),
+      width: 120,
+      formatter: ({ cellValue }) => {
+        return cellValue ? `${cellValue} kg` : '-';
+      },
+    },
+    {
+      field: 'gwPerCtn',
+      title: $t('trade.order.detail.productColumns.gwPerCtn'),
+      width: 120,
+      formatter: ({ cellValue }) => {
+        return cellValue ? `${cellValue} kg` : '-';
+      },
+    },
+    {
+      field: 'unitPrice',
       title: $t('trade.order.detail.productColumns.price'),
       width: 150,
       formatter: 'formatFenToYuanAmount',
@@ -351,8 +223,8 @@ export function useProductColumns(): VxeTableGridOptions['columns'] {
       width: 100,
     },
     {
-      field: 'payPrice',
-      title: $t('trade.order.detail.productColumns.payPrice'),
+      field: 'totalPrice',
+      title: $t('trade.order.detail.subtotal'),
       width: 150,
       formatter: 'formatFenToYuanAmount',
     },
@@ -404,6 +276,52 @@ export function useOperateLogColumns(): VxeTableGridOptions['columns'] {
       field: 'content',
       title: $t('trade.order.detail.operateLogColumns.content'),
       minWidth: 200,
+    },
+  ];
+}
+
+/** 付款记录 columns */
+export function usePaymentColumns(): VxeTableGridOptions['columns'] {
+  return [
+    {
+      field: 'paidAt',
+      title: $t('trade.order.detail.payTime'),
+      width: 180,
+      formatter: 'formatDateTime',
+    },
+    {
+      field: 'amount',
+      title: $t('trade.order.form.payAmount'),
+      width: 150,
+      formatter: 'formatFenToYuanAmount',
+    },
+    {
+      field: 'paymentMethod',
+      title: $t('trade.order.detail.paymentMethod'),
+      width: 120,
+      cellRender: {
+        name: 'CellDict',
+        props: { type: DICT_TYPE.TRADE_ORDER_PAYMENT_METHOD },
+      },
+    },
+    {
+      field: 'payChannelCode',
+      title: $t('trade.order.detail.paymentChannel'),
+      width: 120,
+      cellRender: {
+        name: 'CellDict',
+        props: { type: DICT_TYPE.PAY_CHANNEL_CODE },
+      },
+    },
+    {
+      field: 'remark',
+      title: $t('trade.order.form.remark'),
+      minWidth: 200,
+    },
+    {
+      field: 'operatorName',
+      title: $t('trade.order.detail.operator'),
+      width: 120,
     },
   ];
 }

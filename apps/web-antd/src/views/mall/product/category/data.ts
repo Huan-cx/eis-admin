@@ -28,7 +28,7 @@ export function useFormSchema(): VbenFormSchema[] {
       componentProps: {
         allowClear: true,
         api: async () => {
-          const data = await getCategoryList({ parentId: 0 });
+          const data = await getCategoryList({});
           data.unshift({
             id: 0,
             name: $t('mall-product.category.top'),

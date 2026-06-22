@@ -85,7 +85,7 @@ export function useChargesColumns(
       slots: { default: 'extraPrice' },
     },
     {
-      title: $t('common.action'),
+      title: $t('common.actions'),
       width: 80,
       fixed: 'right',
       slots: { default: 'actions' },

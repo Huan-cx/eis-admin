@@ -136,6 +136,12 @@ export function useSkuGridColumns(): VxeGridProps['columns'] {
       align: 'center',
     },
     {
+      field: 'skuCode',
+      title: 'SKU编号',
+      minWidth: 120,
+      align: 'center',
+    },
+    {
       field: 'picUrl',
       title: '图片',
       width: 100,

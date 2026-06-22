@@ -42,5 +42,11 @@
   "id": "编号",
   "status": "状态",
   "sort": "排序",
-  "actions": "操作"
+  "actions": "操作",
+  "empty": "暂无数据",
+  "yuan": "元",
+  "success": "成功",
+  "fail": "失败",
+  "index": "序号",
+  "quotation": "报价"
 }

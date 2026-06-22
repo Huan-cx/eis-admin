@@ -1,9 +1,7 @@
 import type { VbenFormSchema } from '#/adapter/form';
 import type { VxeGridPropTypes } from '#/adapter/vxe-table';
-import type { B2BRfqApi } from '#/api/mall/trade/b2b/rfq';
 
-import { DICT_TYPE } from '@vben/constants';
-
+import { getSimpleSupplierList } from '#/api/mall/product/supplier';
 import { $t } from '#/locales';
 
 export function useGridFormSchema(): VbenFormSchema[] {
@@ -14,11 +12,17 @@ export function useGridFormSchema(): VbenFormSchema[] {
       component: 'Select',
       componentProps: {
         options: [
-          { label: $t('trade.b2b.rfq.status.pending'), value: 0 },
+          { label: $t('trade.b2b.rfq.status.draft'), value: 0 },
           { label: $t('trade.b2b.rfq.status.submitted'), value: 10 },
-          { label: $t('trade.b2b.rfq.status.processing'), value: 20 },
-          { label: $t('trade.b2b.rfq.status.completed'), value: 30 },
-          { label: $t('trade.b2b.rfq.status.cancelled'), value: 40 },
+          { label: $t('trade.b2b.rfq.status.processing'), value: 15 },
+          { label: $t('trade.b2b.rfq.status.quotationReceived'), value: 16 },
+          { label: $t('trade.b2b.rfq.status.pendingComparison'), value: 17 },
+          { label: $t('trade.b2b.rfq.status.quoted'), value: 20 },
+          { label: $t('trade.b2b.rfq.status.accepted'), value: 30 },
+          { label: $t('trade.b2b.rfq.status.ordered'), value: 35 },
+          { label: $t('trade.b2b.rfq.status.rejected'), value: 40 },
+          { label: $t('trade.b2b.rfq.status.expired'), value: 45 },
+          { label: $t('trade.b2b.rfq.status.cancelled'), value: 50 },
         ],
         placeholder: $t('trade.b2b.rfq.form.statusPlaceholder'),
         allowClear: true,
@@ -26,10 +30,13 @@ export function useGridFormSchema(): VbenFormSchema[] {
     },
     {
       fieldName: 'supplierId',
-      label: $t('trade.b2b.rfq.form.supplierId'),
-      component: 'Input',
+      label: $t('trade.b2b.rfq.form.supplier'),
+      component: 'ApiSelect',
       componentProps: {
-        placeholder: $t('trade.b2b.rfq.form.supplierIdPlaceholder'),
+        api: getSimpleSupplierList,
+        labelField: 'name',
+        valueField: 'id',
+        placeholder: $t('trade.b2b.rfq.form.supplierPlaceholder'),
         allowClear: true,
       },
     },
@@ -69,13 +76,9 @@ export function useGridColumns(): VxeGridPropTypes.Columns {
       minWidth: 180,
     },
     {
-      field: 'status',
+      field: 'statusName',
       title: $t('trade.b2b.rfq.grid.status'),
       minWidth: 100,
-      cellRender: {
-        name: 'CellDict',
-        props: { type: DICT_TYPE.TRADE_B2B_RFQ_STATUS },
-      },
     },
     {
       field: 'userName',
@@ -93,19 +96,30 @@ export function useGridColumns(): VxeGridPropTypes.Columns {
       minWidth: 80,
     },
     {
+      field: 'incoterms',
+      title: $t('trade.b2b.rfq.grid.incoterms'),
+      minWidth: 100,
+    },
+    {
+      field: 'deliveryPort',
+      title: $t('trade.b2b.rfq.grid.deliveryPort'),
+      minWidth: 120,
+    },
+    {
+      field: 'expectedDeliveryDate',
+      title: $t('trade.b2b.rfq.grid.expectedDeliveryDate'),
+      formatter: 'formatDate',
+      minWidth: 140,
+    },
+    {
       field: 'submittedAt',
       title: $t('trade.b2b.rfq.grid.submittedAt'),
       formatter: 'formatDateTime',
       minWidth: 160,
     },
     {
-      field: 'createdAt',
-      title: $t('trade.b2b.rfq.grid.createdAt'),
-      formatter: 'formatDateTime',
-      minWidth: 160,
-    },
-    {
-      title: $t('common.action'),
+      field: 'actions',
+      title: $t('common.actions'),
       width: 180,
       fixed: 'right',
       slots: { default: 'actions' },
@@ -124,11 +138,11 @@ export function useDetailFormSchema(): VbenFormSchema[] {
       },
     },
     {
-      fieldName: 'status',
+      fieldName: 'statusName',
       label: $t('trade.b2b.rfq.detail.status'),
-      component: 'DictTag',
+      component: 'Input',
       componentProps: {
-        type: DICT_TYPE.TRADE_B2B_RFQ_STATUS,
+        disabled: true,
       },
     },
     {
@@ -197,144 +211,14 @@ export function useAssignSupplierFormSchema(): VbenFormSchema[] {
     {
       fieldName: 'supplierId',
       label: $t('trade.b2b.rfq.assignSupplierForm.supplierId'),
-      component: 'Input',
+      component: 'ApiSelect',
       componentProps: {
-        placeholder: $t('trade.b2b.rfq.assignSupplierForm.supplierIdPlaceholder'),
-      },
-      rules: 'required',
-    },
-    {
-      fieldName: 'supplierName',
-      label: $t('trade.b2b.rfq.assignSupplierForm.supplierName'),
-      component: 'Input',
-      componentProps: {
-        placeholder: $t('trade.b2b.rfq.assignSupplierForm.supplierNamePlaceholder'),
+        api: getSimpleSupplierList,
+        labelField: 'name',
+        valueField: 'id',
+        placeholder: $t('trade.b2b.quotation.form.supplierPlaceholder'),
       },
       rules: 'required',
     },
   ];
-}
-
-export function useQuickQuoteItemsColumns(): VxeGridPropTypes.Columns {
-  return [
-    {
-      field: 'spuName',
-      title: $t('trade.b2b.quotation.detail.spuName'),
-      minWidth: 150,
-    },
-    {
-      field: 'skuName',
-      title: $t('trade.b2b.quotation.detail.skuName'),
-      minWidth: 150,
-    },
-    {
-      field: 'count',
-      title: $t('trade.b2b.rfq.detail.count'),
-      width: 100,
-    },
-    {
-      field: 'unitPrice',
-      title: $t('trade.b2b.quotation.createForm.unitPrice'),
-      width: 150,
-      slots: { default: 'unitPrice' },
-    },
-    {
-      field: 'subtotal',
-      title: $t('trade.b2b.quotation.detail.subtotal'),
-      width: 150,
-      slots: { default: 'subtotal' },
-    },
-  ];
-}
-
-export function useQuickQuoteFormSchema(items: B2BRfqApi.RfqItem[]): VbenFormSchema[] {
-  const schema: VbenFormSchema[] = [
-    {
-      component: 'Input',
-      fieldName: 'rfqId',
-      dependencies: {
-        triggerFields: [''],
-        show: () => false,
-      },
-    },
-    {
-      fieldName: 'currency',
-      label: $t('trade.b2b.quotation.createForm.currency'),
-      component: 'Select',
-      componentProps: {
-        options: [
-          { label: 'CNY', value: 'CNY' },
-          { label: 'USD', value: 'USD' },
-          { label: 'EUR', value: 'EUR' },
-        ],
-        placeholder: $t('trade.b2b.quotation.createForm.currencyPlaceholder'),
-      },
-      rules: 'required',
-    },
-    {
-      fieldName: 'incoterms',
-      label: $t('trade.b2b.quotation.createForm.incoterms'),
-      component: 'Select',
-      componentProps: {
-        options: [
-          { label: 'EXW', value: 'EXW' },
-          { label: 'FOB', value: 'FOB' },
-          { label: 'CIF', value: 'CIF' },
-          { label: 'DDP', value: 'DDP' },
-        ],
-        placeholder: $t('trade.b2b.quotation.createForm.incotermsPlaceholder'),
-      },
-    },
-    {
-      fieldName: 'deliveryType',
-      label: $t('trade.b2b.quotation.createForm.deliveryType'),
-      component: 'Select',
-      componentProps: {
-        options: [
-          { label: $t('trade.b2b.quotation.delivery.express'), value: 1 },
-          { label: $t('trade.b2b.quotation.delivery.self'), value: 2 },
-        ],
-        placeholder: $t(
-          'trade.b2b.quotation.createForm.deliveryTypePlaceholder',
-        ),
-      },
-    },
-    {
-      fieldName: 'validDays',
-      label: $t('trade.b2b.quotation.createForm.validDays'),
-      component: 'InputNumber',
-      componentProps: {
-        placeholder: $t('trade.b2b.quotation.createForm.validDaysPlaceholder'),
-        min: 1,
-        max: 365,
-      },
-    },
-    {
-      fieldName: 'remark',
-      label: $t('trade.b2b.quotation.createForm.remark'),
-      component: 'Input',
-      componentProps: {
-        type: 'textarea',
-        rows: 3,
-        placeholder: $t('trade.b2b.quotation.createForm.remarkPlaceholder'),
-      },
-    },
-  ];
-
-  items.forEach((item, index) => {
-    schema.push({
-      fieldName: `items[${index}].unitPrice`,
-      label: `${item.productName} - ${$t('trade.b2b.quotation.createForm.unitPrice')}`,
-      component: 'InputNumber',
-      componentProps: {
-        placeholder: $t('trade.b2b.quotation.createForm.unitPricePlaceholder'),
-        min: 0,
-        step: 0.01,
-        precision: 2,
-      },
-      rules: 'required',
-    });
-  });
-
-  return schema;
 }

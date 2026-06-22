@@ -194,6 +194,73 @@ setupVbenVxeTable({
       },
     });
 
+    // 报价单价格渲染器 cellRender: { name: 'CellQuotationPrice', props: { quotationId: number, onSelect?: (row: any) => void } }
+    vxeUI.renderer.add('CellQuotationPrice', {
+      renderTableDefault(
+        {
+          props,
+        }: { props: { onSelect?: (row: any) => void; quotationId: number } },
+        { row }: { row: Record<string, any> },
+      ) {
+        const quotationId = props?.quotationId;
+        const onSelect = props?.onSelect;
+        const priceData = row.quotationPrices?.[quotationId];
+        if (!priceData) {
+          return '-';
+        }
+        const isSelected = row.selectedQuotationId === quotationId;
+
+        // 点击处理函数 - 修改 row 并触发回调
+        const handleClick = () => {
+          row.selectedQuotationId =
+            row.selectedQuotationId === quotationId ? undefined : quotationId;
+          // 触发回调，让组件同步更新数据源
+          onSelect?.(row);
+        };
+
+        return h(
+          'div',
+          {
+            class: `p-3 rounded-lg cursor-pointer transition-all duration-200 ${
+              isSelected
+                ? 'border-2 border-green-500 bg-green-50 shadow-md ring-2 ring-green-200'
+                : 'border-2 border-transparent hover:border-gray-200 hover:bg-gray-50'
+            }`,
+            onClick: handleClick,
+          },
+          [
+            h(
+              'div',
+              {
+                class: `text-xl font-bold ${isSelected ? 'text-green-600' : 'text-primary'}`,
+              },
+              `¥${fenToYuan(priceData.supplierPrice || 0)}`,
+            ),
+            h(
+              'div',
+              { class: 'text-xs text-gray-500 mt-1' },
+              `${$t('trade.b2b.quotation.detail.subtotal')}: ¥${fenToYuan(priceData.totalPrice || 0)}`,
+            ),
+            priceData.remark &&
+              h(
+                'div',
+                { class: 'mt-1 text-xs text-gray-400' },
+                priceData.remark,
+              ),
+            isSelected &&
+              h(
+                'div',
+                {
+                  class:
+                    'mt-2 flex items-center justify-center text-xs text-green-600',
+                },
+                [h('span', { class: 'mr-1' }, '✓'), h('span', '已选中')],
+              ),
+          ],
+        );
+      },
+    });
+
     // 注册表格的操作按钮渲染器 cellRender: { name: 'CellOperation', options: ['edit', 'delete'] }
     // add by 芋艿：from https://github.com/vbenjs/vue-vben-admin/blob/main/playground/src/adapter/vxe-table.ts#L125-L255
     vxeUI.renderer.add('CellOperation', {

@@ -44,6 +44,7 @@ export namespace MallSpuApi {
     id?: number; // 商品 SKU 编号
     name?: string; // 商品 SKU 名称
     spuId?: number; // SPU 编号
+    skuCode?: string; // SKU编号/编码
     properties?: Property[]; // 属性数组
     price?: number | string; // 商品价格
     marketPrice?: number | string; // 市场价
@@ -59,6 +60,10 @@ export namespace MallSpuApi {
     height?: number; // 高，单位：cm 厘米
     unit?: string; // 单位
     model?: string; // 型号
+    packagingWay?: string; // 包装方式
+    pcsPerCtn?: number; // 每箱数量(PC/CTN)
+    nwPerCtn?: number; // 净重/箱(Net Weight/CTN)
+    gwPerCtn?: number; // 毛重/箱(Gross Weight/CTN)
     hsCode?: string; // 海关编码（HS Code）
     remark?: string; // 备注
     firstBrokeragePrice?: number | string; // 一级分销的佣金

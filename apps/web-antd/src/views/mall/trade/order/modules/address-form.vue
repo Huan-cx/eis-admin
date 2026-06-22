@@ -1,72 +1,62 @@
 <script lang="ts" setup>
 import type { MallOrderApi } from '#/api/mall/trade/order';
 
-import { useVbenModal } from '@vben/common-ui';
+import { useVbenForm, useVbenModal } from '@vben/common-ui';
 
 import { message } from 'ant-design-vue';
 
-import { useVbenForm } from '#/adapter/form';
 import { updateOrderAddress } from '#/api/mall/trade/order';
 import { $t } from '#/locales';
 
 import { useAddressFormSchema } from '../data';
 
-const emit = defineEmits(['success']);
+defineOptions({
+  name: 'TradeOrderAddressForm',
+});
+
+const emit = defineEmits<{
+  success: [];
+}>();
 
 const [Form, formApi] = useVbenForm({
+  schema: useAddressFormSchema(),
   commonConfig: {
     componentProps: {
       class: 'w-full',
+      cols: 2,
+      xGap: 16,
     },
-    formItemClass: 'col-span-2',
     labelWidth: 120,
   },
-  layout: 'horizontal',
-  schema: useAddressFormSchema(),
-  showDefaultActions: false,
 });
 
 const [Modal, modalApi] = useVbenModal({
+  class: 'w-[700px]',
+  title: $t('ui.actionTitle.edit', [$t('trade.order.detail.shippingAddress')]),
   async onConfirm() {
-    const { valid } = await formApi.validate();
-    if (!valid) {
-      return;
-    }
-    modalApi.lock();
-    // 提交表单
-    const data = await formApi.getValues();
-    try {
-      await updateOrderAddress(data as MallOrderApi.OrderUpdateAddressReqVO);
-      // 关闭并提示
-      await modalApi.close();
-      emit('success');
-      message.success($t('ui.actionMessage.operationSuccess'));
-    } finally {
-      modalApi.unlock();
-    }
+    const values = await formApi.submitForm();
+    await updateOrderAddress(values as MallOrderApi.OrderUpdateAddressReqVO);
+    message.success($t('ui.actionMessage.operationSuccess'));
+    modalApi.close();
+    emit('success');
+  },
+  onClosed() {
+    formApi.resetForm();
   },
   async onOpenChange(isOpen: boolean) {
     if (!isOpen) {
       return;
     }
-    // 加载数据
     const data = modalApi.getData<MallOrderApi.Order>();
-    if (!data || !data.id) {
-      return;
-    }
-    modalApi.lock();
-    try {
-      // 设置到 values
-      await formApi.setValues(data);
-    } finally {
-      modalApi.unlock();
+    if (data) {
+      formApi.setValues(data);
     }
   },
 });
 </script>
 
 <template>
-  <Modal :title="$t('ui.actionTitle.edit', ['收货地址'])" class="w-1/3">
-    <Form class="mx-4" />
+  <Modal>
+    <Form />
   </Modal>
 </template>

@@ -1,193 +1,1090 @@
 {
-  "order": {
+  "b2b": {
+    "compare": {
+      "actions": {
+        "clear": "Clear",
+        "selectSupplier": "Select Supplier"
+      },
+      "feeItems": {
+        "title": "Fee Items"
+      },
+      "terms": {
+        "title": "Trade Terms"
+      },
+      "grid": {
+        "currency": "Currency",
+        "incoterms": "Incoterms",
+        "lowestPrice": "Lowest Price",
+        "selected": "Selected",
+        "supplier": "Supplier",
+        "supplierPrice": "Supply Price",
+        "sellingPrice": "Selling Price",
+        "salesUnitPrice": "Sales Unit Price",
+        "selectSupplierFirst": "Please select supplier first",
+        "totalPrice": "Total Price",
+        "validUntil": "Valid Until"
+      },
+      "index": {
+        "clearSelection": "Clear Selection",
+        "confirm": "Confirm Selection",
+        "confirmTip": "After confirmation, the selection will be submitted to customer",
+        "items": "items",
+        "noQuotation": "No comparable data available",
+        "noQuotationTip": "Please create multiple supplier quotations first",
+        "save": "Save Selection",
+        "selectAllCheapest": "Select All Lowest Price",
+        "selected": "Selected",
+        "subtitle": "Select optimal supplier quotation for each item",
+        "title": "Horizontal Comparison",
+        "total": "Total"
+      },
+      "selection": {
+        "allSelected": "All items selected",
+        "confirmSuccess": "Comparison selection confirmed",
+        "pleaseSelect": "Please select supplier for each item",
+        "saveSuccess": "Comparison selection saved",
+        "selectLowestPrice": "Auto-selected lowest price supplier for {0} items",
+        "selectedCount": "Selected {0}/{1} items",
+        "title": "Select Supplier"
+      },
+      "title": "Comparison Workbench"
+    },
+    "order": {
+      "approvalForm": {
+        "approveTitle": "Confirm Approval",
+        "rejectTitle": "Rejection Reason",
+        "remark": "Please fill in approval remark",
+        "remarkPlaceholder": "Please enter approval remark (optional)"
+      },
+      "deliveryForm": {
+        "logisticsCompany": "Logistics Company",
+        "logisticsCompanyPlaceholder": "Please select logistics company",
+        "logisticsNo": "Logistics No.",
+        "logisticsNoPlaceholder": "Please enter logistics no.",
+        "title": "Delivery"
+      },
+      "detail": {
+        "basicInfo": "Basic Information",
+        "contractNo": "Contract No.",
+        "createdAt": "Created At",
+        "shippingAddress": "Shipping Address",
+        "orderPrice": "Order Price",
+        "currency": "Currency",
+        "deliveryType": "Delivery Type",
+        "deliveryTime": "Delivery Time",
+        "expressTrack": "Express Track",
+        "incoterms": "Incoterms",
+        "items": "Items",
+        "logisticsNo": "Logistics No.",
+        "no": "Order No.",
+        "noQuote": "Quotation No.",
+        "operationLog": "Operation Log",
+        "payPrice": "Paid Amount",
+        "payStatus": "Payment Status",
+        "payTime": "Payment Time",
+        "payment": "Payment Records",
+        "paymentDetail": "Payment Details",
+        "paymentMethod": "Payment Method",
+        "paymentChannel": "Payment Channel",
+        "paidAmount": "Paid Amount",
+        "quantity": "Quantity",
+        "status": "Status",
+        "approvalStatus": "Approval Status",
+        "payProgress": "Payment Progress",
+        "subtotal": "Subtotal",
+        "title": "B2B Order Detail",
+        "totalPrice": "Total Price",
+        "unitPrice": "Unit Price",
+        "productInfo": "Product Information",
+        "productDetail": "Product Details",
+        "deliveryInfo": "Delivery Information",
+        "noPaymentRecord": "No payment records yet",
+        "operator": "Operator"
+      },
+      "form": {
+        "approvalStatus": "Approval Status",
+        "approvalStatusPlaceholder": "Please select approval status",
+        "no": "Order No.",
+        "noPlaceholder": "Please enter order no.",
+        "payProgressStatus": "Payment Progress",
+        "payProgressStatusPlaceholder": "Please select payment progress",
+        "payAmount": "Payment Amount",
+        "payAmountPlaceholder": "Please enter payment amount",
+        "payMethod": "Payment Method",
+        "payMethodPlaceholder": "Please select payment method",
+        "transactionNo": "Transaction No.",
+        "remark": "Remark",
+        "rejectReason": "Reject Reason",
+        "rejectReasonPlaceholder": "Please enter reject reason",
+        "status": "Status",
+        "statusPlaceholder": "Please select status",
+        "userId": "User ID",
+        "userIdPlaceholder": "Please enter user ID"
+      },
+      "grid": {
+        "createdAt": "Created At",
+        "currency": "Currency",
+        "incoterms": "Incoterms",
+        "no": "Order No.",
+        "payPrice": "Paid Amount",
+        "status": "Status",
+        "totalPrice": "Total Price"
+      },
+      "index": {
+        "actionMessage": {
+          "approveSuccess": "Approval successful",
+          "rejectSuccess": "Rejected successfully",
+          "paySuccess": "Payment successful"
+        },
+        "approve": "Approve",
+        "delivery": "Delivery",
+        "manualPay": "Manual Payment",
+        "quantity": "Quantity",
+        "reject": "Reject",
+        "subtotal": "Subtotal",
+        "title": "B2B Order List",
+        "unitPrice": "Unit Price"
+      }
+    },
+    "quotation": {
+      "actionMessage": {
+        "approveSuccess": "Approved",
+        "initDataFailed": "Failed to initialize data",
+        "loadFailed": "Failed to load data",
+        "rejectSuccess": "Rejected",
+        "saveFailed": "Failed to save",
+        "saveSuccess": "Saved successfully",
+        "submitReviewFailed": "Failed to submit for review",
+        "submitReviewSuccess": "Submitted for review"
+      },
+      "actions": {
+        "approve": "Approve",
+        "audit": "Audit",
+        "create": "Create Quotation",
+        "reject": "Reject",
+        "submitReview": "Submit for Review",
+        "view": "View"
+      },
+      "confirm": {
+        "approve": "Are you sure to approve?",
+        "reject": "Please enter reject reason"
+      },
+      "loading": {
+        "approving": "Approving...",
+        "rejecting": "Rejecting..."
+      },
+      "createForm": {
+        "currency": "Currency Type",
+        "currencyPlaceholder": "Please select currency type",
+        "deliveryType": "Delivery Type",
+        "deliveryTypePlaceholder": "Please select delivery type",
+        "express": "Express Company",
+        "expressPlaceholder": "Please select express company",
+        "incoterms": "Incoterms",
+        "incotermsPlaceholder": "Please select incoterms",
+        "items": "Quotation Items",
+        "remark": "Remark",
+        "remarkPlaceholder": "Please enter remark",
+        "rfqId": "RFQ ID",
+        "rfqIdPlaceholder": "Please enter RFQ ID",
+        "supplier": "Supplier",
+        "supplierPlaceholder": "Please select supplier",
+        "supplierId": "Supplier ID",
+        "supplierIdPlaceholder": "Please enter supplier ID",
+        "supplierName": "Supplier Name",
+        "supplierNamePlaceholder": "Please enter supplier name",
+        "supplierPrice": "Supply Price",
+        "supplierPricePlaceholder": "Please enter supply price",
+        "title": "Create Quotation",
+        "validDays": "Valid Days",
+        "validDaysPlaceholder": "Please enter valid days"
+      },
+      "delivery": {
+        "express": "Express Delivery",
+        "self": "Self Pickup"
+      },
+      "detail": {
+        "acceptedAt": "Accepted At",
+        "amount": "Amount",
+        "count": "Count",
+        "createdAt": "Created At",
+        "currency": "Currency",
+        "deliveryPort": "Delivery Port",
+        "deliveryType": "Delivery Type",
+        "description": "Description",
+        "feeItems": "Fee Items",
+        "feeName": "Fee Name",
+        "feeType": "Fee Type",
+        "incoterms": "Incoterms",
+        "items": "Items",
+        "no": "Quotation No.",
+        "productQuotation": "Product Quotation",
+        "quantity": "Quantity",
+        "remark": "Remark",
+        "rfqNo": "RFQ No.",
+        "skuName": "SKU Name",
+        "spuName": "SPU Name",
+        "status": "Status",
+        "subtotal": "Subtotal",
+        "supplierName": "Supplier",
+        "title": "Quotation Detail",
+        "totalPrice": "Total Price",
+        "supplierPrice": "Supply Price",
+        "validUntil": "Valid Until"
+      },
+      "feeType": {
+        "customs": "Customs",
+        "freight": "Freight",
+        "insurance": "Insurance",
+        "other": "Other"
+      },
+      "form": {
+        "deliveryPortPlaceholder": "Please enter delivery port",
+        "no": "Quotation No.",
+        "noPlaceholder": "Please enter quotation no.",
+        "rfqNo": "RFQ No.",
+        "rfqNoPlaceholder": "Please enter RFQ no.",
+        "status": "Status",
+        "statusPlaceholder": "Please select status",
+        "supplier": "Supplier",
+        "supplierId": "Supplier ID",
+        "supplierIdPlaceholder": "Please enter supplier ID",
+        "supplierPlaceholder": "Please select supplier",
+        "supplierPrice": "Supply Price"
+      },
+      "formPage": {
+        "addFee": "Add Fee",
+        "basicInfo": "Basic Information",
+        "feeItems": "Fee Items",
+        "picUrl": "Image",
+        "priceSummary": "Price Summary",
+        "productQuotation": "Product Quotation",
+        "rejectReasonPlaceholder": "Please enter reject reason",
+        "rejectReasonRequired": "Please enter reject reason",
+        "selectSupplier": "Select Supplier",
+        "supplier": "Supplier",
+        "supplierName": "Supplier Name",
+        "totalProductAmount": "Total Product Amount"
+      },
+      "grid": {
+        "createdAt": "Created At",
+        "currency": "Currency",
+        "incoterms": "Incoterms",
+        "no": "Quotation No.",
+        "rfqNo": "RFQ No.",
+        "status": "Status",
+        "supplierName": "Supplier",
+        "totalPrice": "Total Price"
+      },
+      "incoterms": {
+        "cif": "CIF - Cost Insurance Freight",
+        "ddp": "DDP - Delivered Duty Paid",
+        "exw": "EXW - Ex Works",
+        "fob": "FOB - Free On Board"
+      },
+      "index": {
+        "quantity": "Quantity",
+        "supplierPrice": "Supply Price",
+        "subtotal": "Subtotal",
+        "title": "Quotation List"
+      },
+      "status": {
+        "accepted": "Accepted",
+        "approved": "Approved",
+        "draft": "Draft",
+        "expired": "Expired",
+        "pending": "Pending",
+        "pendingReview": "Pending Review",
+        "quoted": "Quoted",
+        "rejected": "Rejected"
+      },
+      "title": "Quotation Management"
+    },
+    "rfq": {
+      "actions": {
+        "assign": "Assign Supplier",
+        "quote": "Quick Quote",
+        "view": "View"
+      },
+      "assignSupplierForm": {
+        "supplierId": "Supplier ID",
+        "supplierIdPlaceholder": "Please enter supplier ID",
+        "supplierName": "Supplier Name",
+        "supplierNamePlaceholder": "Please enter supplier name",
+        "title": "Assign Supplier"
+      },
+      "detail": {
+        "brand": "Brand",
+        "contactName": "Contact Name",
+        "count": "Quantity",
+        "createdAt": "Created At",
+        "email": "Email",
+        "expectedPrice": "Expected Price",
+        "items": "Item Details",
+        "no": "RFQ No.",
+        "productName": "Product Name",
+        "quantity": "Quantity",
+        "requirement": "Requirements",
+        "skuName": "SKU Name",
+        "specifications": "Specifications",
+        "status": "Status",
+        "submittedAt": "Submitted At",
+        "supplierName": "Supplier",
+        "targetCurrency": "Target Currency",
+        "title": "RFQ Detail",
+        "unit": "Unit",
+        "userName": "Customer Name",
+        "validUntil": "Valid Until"
+      },
+      "form": {
+        "contactName": "Contact Name",
+        "contactNamePlaceholder": "Please enter contact name",
+        "email": "Email",
+        "emailPlaceholder": "Please enter email",
+        "no": "RFQ No.",
+        "noPlaceholder": "Please enter RFQ no.",
+        "status": "Status",
+        "statusPlaceholder": "Please select status",
+        "supplier": "Supplier",
+        "supplierPlaceholder": "Please select supplier",
+        "supplierId": "Supplier ID",
+        "supplierIdPlaceholder": "Please enter supplier ID",
+        "userId": "User ID",
+        "userIdPlaceholder": "Please enter user ID"
+      },
+      "expectedDeliveryTypeOptions": {
+        "ASAP": "As soon as possible",
+        "CUSTOM_DATE": "Custom date",
+        "WITHIN_30_DAYS": "Within 30 days",
+        "WITHIN_60_DAYS": "Within 60 days"
+      },
+      "incotermsOptions": {
+        "CIF": "CIF - Cost Insurance Freight",
+        "DAP": "DAP - Delivered At Place",
+        "DDP": "DDP - Delivered Duty Paid",
+        "DDP_EXCLUDING_VAT": "DDP Excluding VAT - Delivered Duty Paid (Excluding VAT)",
+        "EXW": "EXW - Ex Works",
+        "FOB": "FOB - Free On Board",
+        "UNKNOWN": "Unknown / Supplier recommended"
+      },
+      "grid": {
+        "createdAt": "Created At",
+        "deliveryPort": "Delivery Port",
+        "expectedDeliveryDate": "Expected Delivery Date",
+        "incoterms": "Incoterms",
+        "itemCount": "Item Count",
+        "no": "RFQ No.",
+        "status": "Status",
+        "submittedAt": "Submitted At",
+        "supplierName": "Supplier",
+        "userName": "Customer Name"
+      },
+      "index": {
+        "assignSupplier": "Assign Supplier",
+        "expectedPrice": "Expected Price",
+        "quantity": "Quantity",
+        "title": "RFQ List"
+      },
+      "status": {
+        "cancelled": "Cancelled",
+        "completed": "Completed",
+        "draft": "Draft",
+        "pending": "Pending",
+        "pendingComparison": "Pending Comparison",
+        "processing": "Processing",
+        "quoted": "Quoted",
+        "quotationReceived": "Quotation Received",
+        "submitted": "Submitted",
+        "accepted": "Accepted",
+        "ordered": "Ordered",
+        "rejected": "Rejected",
+        "expired": "Expired"
+      },
+      "title": "RFQ Management"
+    },
+    "rfqDetail": {
+      "compareResult": "Compare Result",
+      "compareResultTip": "Compare result feature is under development...",
+      "createQuotation": "Create Quotation",
+      "noFinalQuotation": "No final quotation yet, please compare and confirm selection first",
+      "noQuotationTip": "No quotation yet, click 'Create Quotation' button to start",
+      "quotationList": "Quotation List",
+      "rfqProducts": "RFQ Products"
+    },
+    "rfqStatus": {
+      "cancelled": "Cancelled",
+      "completed": "Completed",
+      "pending": "Pending",
+      "processing": "Processing",
+      "submitted": "Submitted"
+    }
+  },
+  "shipment": {
+    "index": {
+      "title": "Shipment List"
+    },
+    "grid": {
+      "index": "No.",
+      "id": "Shipment ID",
+      "orderNo": "Order No.",
+      "shipmentNo": "Shipment No.",
+      "status": "Shipment Status",
+      "shipmentType": "Shipment Type",
+      "loadingPort": "Loading Port",
+      "dischargePort": "Discharge Port",
+      "carrier": "Carrier/Forwarder",
+      "vesselFlight": "Vessel/Flight",
+      "containerNo": "Container No.",
+      "blNo": "B/L No.",
+      "etd": "ETD",
+      "eta": "ETA",
+      "atd": "ATD",
+      "ata": "ATA",
+      "totalCtns": "Total Cartons",
+      "totalNw": "Total N/W(kg)",
+      "totalGw": "Total G/W(kg)",
+      "totalCbm": "Total CBM",
+      "createTime": "Created At",
+      "remark": "Remark",
+      "actions": "Actions"
+    },
     "form": {
-      "status": "Order Status",
-      "statusPlaceholder": "Please select order status",
-      "payChannelCode": "Payment Method",
-      "payChannelCodePlaceholder": "Please select payment method",
+      "orderNo": "Order No.",
+      "shipmentNo": "Shipment No.",
+      "status": "Shipment Status",
+      "shipmentType": "Shipment Type",
+      "loadingPort": "Loading Port",
+      "dischargePort": "Discharge Port",
+      "carrier": "Carrier/Forwarder",
+      "vesselFlight": "Vessel/Flight",
+      "containerNo": "Container No.",
+      "blNo": "B/L No.",
+      "etd": "ETD",
+      "eta": "ETA",
+      "atd": "ATD",
+      "ata": "ATA",
+      "createTime": "Created At",
+      "remark": "Remark",
+      "orderNoPlaceholder": "Please enter order number",
+      "shipmentNoPlaceholder": "Please enter shipment number",
+      "targetStatus": "Target Status",
+      "eventType": "Event Type",
+      "eventTime": "Event Time",
+      "title": "Event Title",
+      "description": "Description",
+      "attachments": "Attachments"
+    },
+    "placeholder": {
+      "orderNo": "Please enter order number",
+      "orderNoPlaceholder": "Please enter order number",
+      "shipmentNo": "Please enter shipment number",
+      "shipmentNoPlaceholder": "Please enter shipment number",
+      "status": "Please select shipment status",
+      "statusPlaceholder": "Please select shipment status",
+      "shipmentType": "Please select shipment type",
+      "shipmentTypePlaceholder": "Please select shipment type",
+      "loadingPort": "Please enter loading port",
+      "dischargePort": "Please enter discharge port",
+      "carrier": "Please enter carrier/forwarder",
+      "vesselFlight": "Please enter vessel/flight",
+      "containerNo": "Please enter container number",
+      "blNo": "Please enter B/L number",
+      "etd": "Please select ETD",
+      "eta": "Please select ETA",
+      "atd": "Please select ATD",
+      "ata": "Please select ATA",
+      "remark": "Please enter remark",
+      "targetStatus": "Please select target status",
+      "statusRemark": "Please enter status change remark"
+    },
+    "shipmentType": {
+      "1": "FCL",
+      "2": "LCL",
+      "3": "Air Freight",
+      "4": "Express",
+      "5": "Land Transport"
+    },
+    "status": {
+      "10": "Pending Shipment",
+      "20": "In Production",
+      "30": "Goods Ready",
+      "40": "Inspection Passed",
+      "41": "Inspection Failed",
+      "50": "Shipped",
+      "60": "In Transit",
+      "70": "Customs Cleared",
+      "80": "Received",
+      "0": "Cancelled"
+    },
+    "event": {
+      "title": "Shipment Events",
+      "eventType": "Event Type",
+      "eventTime": "Event Time",
+      "titlePlaceholder": "Please enter event title",
+      "description": "Description",
+      "attachments": "Attachments",
+      "add": "Add Event",
+      "operator": "Operator",
+      "operatorTime": "Operation Time"
+    },
+    "eventType": {
+      "1001": "Ready for Shipment",
+      "2001": "Production Started",
+      "2002": "Production Progress Update",
+      "3001": "Goods Ready",
+      "4001": "Inspection Started",
+      "4002": "Inspection Passed",
+      "4003": "Inspection Failed",
+      "5001": "Booking Confirmed",
+      "5002": "Trucking Arranged",
+      "6001": "Goods Loaded",
+      "6002": "B/L Confirmed",
+      "7001": "Vessel Departed",
+      "7002": "Transit Stop",
+      "7003": "Vessel Arrived",
+      "8001": "Customs Clearance Started",
+      "8002": "Customs Cleared",
+      "9001": "Delivery Started",
+      "9002": "Customer Signed",
+      "1": "Shipment Cancelled",
+      "9999": "Custom Event"
+    },
+    "detail": {
+      "title": "Shipment Detail",
+      "basicInfo": "Basic Information",
+      "eventLog": "Event Log",
+      "packingList": "Packing List",
+      "skuCode": "SKU Code",
+      "productName": "Product Name",
+      "packagingWay": "Packaging Way",
+      "pcsPerCtn": "Pcs/Ctn",
+      "quantity": "Ship Qty",
+      "ctns": "Cartons",
+      "nwPerCtn": "N.W/Ctn(kg)",
+      "gwPerCtn": "G.W/Ctn(kg)",
+      "cbmPerCtn": "CBM/Ctn",
+      "totalCtns": "Total Cartons",
+      "totalNw": "Total N.W(kg)",
+      "totalGw": "Total G.W(kg)",
+      "totalCbm": "Total CBM",
+      "noEvents": "No shipment events",
+      "noPackingData": "No packing data",
+      "system": "System"
+    },
+    "modal": {
+      "editTitle": "Edit Shipment",
+      "updateStatusTitle": "Update Shipment Status",
+      "currentStatus": "Current Status",
+      "targetStatus": "Target Status",
+      "statusRemark": "Status Change Remark"
+    },
+    "action": {
+      "edit": "Edit",
+      "updateStatus": "Update Status",
+      "addEvent": "Add Event",
+      "detail": "Detail",
+      "orderDetail": "Order Detail",
+      "refresh": "Refresh",
+      "back": "Back"
+    },
+    "message": {
+      "updateSuccess": "Updated successfully",
+      "statusUpdateSuccess": "Status updated successfully",
+      "eventAddSuccess": "Event added successfully",
+      "noStatusChange": "Current status does not allow changes",
+      "invalidId": "Invalid shipment ID",
+      "fetchDetailFailed": "Failed to fetch shipment detail",
+      "fetchEventFailed": "Failed to fetch event list"
+    }
+  },
+  "config": {
+    "afterSale": "After Sale",
+    "brokerage": "Brokerage",
+    "delivery": "Delivery",
+    "doc1": "[Trade] Trade Orders",
+    "doc2": "[Trade] Shopping Cart",
+    "form": {
+      "afterSaleRefundReasons": "Refund Reasons",
+      "afterSaleRefundReasonsPlaceholder": "Please enter refund reason",
+      "afterSaleReturnReasons": "Return Reasons",
+      "afterSaleReturnReasonsPlaceholder": "Please enter return reason",
+      "brokerageBindMode": "Distribution Relationship Binding",
+      "brokerageBindModeHelp": "First Bind: As long as the user has no promoter, can bind promotion relationship at any time \n Register Bind: Only new users can bind promotion relationship when registering or first entering the system",
+      "brokerageEnabled": "Enable Brokerage",
+      "brokerageEnabledCondition": "Brokerage Mode",
+      "brokerageEnabledConditionHelp": "Everyone Distribution: Every user can be a promoter \n Designated Distribution: Only set promoters manually in the background",
+      "brokerageEnabledHelp": "Whether to enable distribution mode",
+      "brokerageFirstPercent": "First Level Commission Rate (%)",
+      "brokerageFirstPercentHelp": "Percentage of commission to the promoter after order success",
+      "brokerageFirstPercentPlaceholder": "Please enter first level commission rate",
+      "brokerageFrozenDays": "Commission Frozen Days",
+      "brokerageFrozenDaysHelp": "Prevent user refunds after commission withdrawal, need to set frozen days, unit: days",
+      "brokerageFrozenDaysPlaceholder": "Please enter commission frozen days",
+      "brokeragePosterUrls": "Distribution Poster",
+      "brokeragePosterUrlsHelp": "Personal center distribution poster image, recommended size 600x1000",
+      "brokerageSecondPercent": "Second Level Commission Rate (%)",
+      "brokerageSecondPercentHelp": "Percentage of commission to the promoter's referrer after order success",
+      "brokerageSecondPercentPlaceholder": "Please enter second level commission rate",
+      "brokerageWithdrawFeePercent": "Withdrawal Fee (%)",
+      "brokerageWithdrawFeePercentHelp": "Withdrawal fee percentage, range 0-100, 0 means no fee. Example: set 10, charge 10% fee, withdraw 10 yuan, receive 9 yuan, 1 yuan fee",
+      "brokerageWithdrawFeePercentPlaceholder": "Please enter withdrawal fee percentage",
+      "brokerageWithdrawMinPrice": "Minimum Withdrawal Amount (yuan)",
+      "brokerageWithdrawMinPriceHelp": "Minimum withdrawal limit for users, unit: yuan",
+      "brokerageWithdrawMinPricePlaceholder": "Please enter minimum withdrawal amount",
+      "brokerageWithdrawTypes": "Withdrawal Methods",
+      "brokerageWithdrawTypesHelp": "Payment methods enabled for withdrawal in the store",
+      "deliveryExpressFreeEnabled": "Enable Free Shipping",
+      "deliveryExpressFreeEnabledHelp": "Whether to enable free shipping for the entire store",
+      "deliveryExpressFreePrice": "Free Shipping Threshold",
+      "deliveryExpressFreePriceHelp": "Minimum amount for free shipping, unit: yuan",
+      "deliveryExpressFreePricePlaceholder": "Please enter free shipping amount",
+      "deliveryPickUpEnabled": "Enable Store Pickup"
+    }
+  },
+  "delivery": {
+    "express": {
+      "exportFileName": "Express Companies.xls",
+      "form": {
+        "code": "Company Code",
+        "codePlaceholder": "Please enter express code",
+        "logo": "Company Logo",
+        "logoHelp": "Recommended 180x180 image resolution",
+        "name": "Company Name",
+        "namePlaceholder": "Please enter express name",
+        "sort": "Sort Order",
+        "sortPlaceholder": "Please enter sort order",
+        "status": "Status",
+        "statusPlaceholder": "Please select status"
+      },
+      "grid": {
+        "code": "Company Code",
+        "logo": "Company Logo",
+        "name": "Company Name",
+        "sort": "Sort Order",
+        "status": "Status"
+      },
+      "title": "Express Company List"
+    },
+    "expressTemplate": {
+      "chargeItem": {
+        "add": "Add Charge Region",
+        "deleteConfirm": "Confirm delete this region?",
+        "validate": {
+          "countries": "Shipping Settings Row {0}: Region cannot be empty",
+          "extraPrice": "Shipping Settings Row {0}: Additional fee must be greater than 0",
+          "startPrice": "Shipping Settings Row {0}: Shipping fee must be greater than 0"
+        }
+      },
+      "chargeMode": {
+        "piece": {
+          "extra": "Additional Piece",
+          "start": "First Piece"
+        },
+        "volume": {
+          "extra": "Additional Volume(m³)",
+          "start": "First Volume(m³)"
+        },
+        "weight": {
+          "extra": "Additional Weight(kg)",
+          "start": "First Weight(kg)"
+        }
+      },
+      "form": {
+        "chargeMode": "Charge Mode",
+        "chargeModePlaceholder": "Please select charge mode",
+        "charges": "Shipping Settings",
+        "countryPlaceholder": "Please select region",
+        "frees": "Free Shipping Settings",
+        "name": "Template Name",
+        "namePlaceholder": "Please enter template name",
+        "sort": "Sort Order",
+        "sortPlaceholder": "Please enter sort order"
+      },
+      "freeItem": {
+        "add": "Add Free Shipping Region",
+        "deleteConfirm": "Confirm delete this region?",
+        "validate": {
+          "countries": "Free Shipping Settings Row {0}: Region cannot be empty",
+          "freePrice": "Free Shipping Settings Row {0}: Free shipping amount must be greater than 0"
+        }
+      },
+      "freeMode": {
+        "piece": "Free Shipping Pieces",
+        "volume": "Free Shipping Volume(m³)",
+        "weight": "Free Shipping Weight(kg)"
+      },
+      "grid": {
+        "chargeMode": "Charge Mode",
+        "countries": "Region",
+        "extraPrice": "Additional Fee(yuan)",
+        "freePrice": "Free Shipping Amount(yuan)",
+        "name": "Template Name",
+        "sort": "Sort Order",
+        "startPrice": "Shipping Fee(yuan)"
+      },
+      "title": "Express Template List"
+    },
+    "pickUpOrder": {
+      "action": {
+        "connect": "Connect Scanner",
+        "disconnect": "Disconnect Scanner",
+        "pickup": "Verify"
+      },
+      "browserNotSupported": "Browser does not support barcode scanner connection, please try another browser",
+      "connectFirst": "Please connect or open the scanner first",
+      "connectSuccess": "Successfully connected to scanner",
+      "disconnectSuccess": "Successfully disconnected from scanner",
+      "form": {
+        "createTime": "Create Time",
+        "no": "Order No.",
+        "noPlaceholder": "Please enter order number",
+        "pickUpStoreIds": "Pickup Store",
+        "pickUpStoreIdsPlaceholder": "Please select pickup store",
+        "userId": "User UID",
+        "userIdPlaceholder": "Please enter user UID",
+        "userMobile": "User Phone",
+        "userMobilePlaceholder": "Please enter user phone",
+        "userNickname": "User Nickname",
+        "userNicknamePlaceholder": "Please enter user nickname"
+      },
+      "grid": {
+        "brokerageUser": "Referrer Info",
+        "createTime": "Order Time",
+        "no": "Order No.",
+        "payPrice": "Paid Amount (yuan)",
+        "payStatus": "Payment Status",
+        "pickUpStoreId": "Verification Store",
+        "spuName": "Product Info",
+        "status": "Order Status",
+        "storeStaffName": "Verifier",
+        "user": "User Info"
+      },
+      "inputVerifyCode": "Please enter verification code",
+      "processing": "Processing order verification ...",
+      "summary": {
+        "orderAmount": "Order Amount",
+        "orderCount": "Order Count",
+        "refundAmount": "Refund Amount",
+        "refundCount": "Refund Count"
+      },
+      "title": "Pickup Orders"
+    },
+    "pickUpStore": {
+      "action": {
+        "bind": "Bind Staff"
+      },
+      "form": {
+        "areaId": "Store Region",
+        "areaIdPlaceholder": "Please select province/city/district",
+        "bindTitle": "Bind Staff",
+        "detailAddress": "Store Address",
+        "detailAddressPlaceholder": "Please enter store address",
+        "getLatLng": "Get LatLng",
+        "introduction": "Store Introduction",
+        "introductionPlaceholder": "Please enter store introduction",
+        "latitude": "Latitude",
+        "latitudePlaceholder": "Please enter latitude",
+        "logo": "Store Logo",
+        "logoHelp": "Recommended 180x180 image resolution",
+        "logoPlaceholder": "Please upload store logo",
+        "longitude": "Longitude",
+        "longitudePlaceholder": "Please enter longitude",
+        "mapKeyWarning": "Please configure Tencent Location Service key first",
+        "name": "Store Name",
+        "namePlaceholder": "Please enter store name",
+        "phone": "Store Phone",
+        "phonePlaceholder": "Please enter store phone",
+        "rangeTime": "Business Hours",
+        "status": "Store Status",
+        "statusPlaceholder": "Please select store status",
+        "verifyUserIds": "Store Staff",
+        "verifyUserIdsPlaceholder": "Please select store staff"
+      },
+      "grid": {
+        "actions": "Actions",
+        "areaId": "Store Region",
+        "detailAddress": "Address",
+        "introduction": "Store Introduction",
+        "logo": "Store Logo",
+        "name": "Store Name",
+        "rangeTime": "Business Hours",
+        "openingTime": "Opening Hours",
+        "phone": "Store Phone",
+        "status": "Status"
+      },
+      "title": "Store List"
+    },
+    "shippingAddress": {
+      "form": {
+        "areaId": "Region",
+        "areaIdPlaceholder": "Please select province/city/district",
+        "detailAddress": "Address",
+        "detailAddressPlaceholder": "Please enter address",
+        "isDefault": "Default Address",
+        "mobile": "Mobile",
+        "mobilePlaceholder": "Please enter mobile",
+        "name": "Receiver",
+        "namePlaceholder": "Please enter receiver name",
+        "tel": "Phone",
+        "telPlaceholder": "Please enter phone"
+      },
+      "grid": {
+        "areaId": "Region",
+        "detailAddress": "Address",
+        "isDefault": "Default Address",
+        "mobile": "Mobile",
+        "name": "Receiver",
+        "tel": "Phone"
+      },
+      "title": "User Address List"
+    }
+  },
+  "order": {
+    "addressForm": {
+      "quickSettings": "Quick Settings",
+      "receiverAddress": "Receiver Address",
+      "billingAddress": "Billing Address",
+      "importerAddress": "Importer Address",
+      "billingCity": "City",
+      "billingCompanyName": "Company Name",
+      "billingCountry": "Country",
+      "billingEmail": "Email",
+      "billingEori": "EORI Number",
+      "billingFirstName": "First Name",
+      "billingLastName": "Last Name",
+      "billingPhone": "Phone",
+      "billingPostcode": "Postcode",
+      "billingState": "State/Province",
+      "billingStreet": "Street Address",
+      "billingVat": "VAT Number",
+      "importerCity": "City",
+      "importerCompanyName": "Company Name",
+      "importerCountry": "Country",
+      "importerEmail": "Email",
+      "importerEori": "EORI Number",
+      "importerFirstName": "First Name",
+      "importerLastName": "Last Name",
+      "importerPhone": "Phone",
+      "importerPostcode": "Postcode",
+      "importerState": "State/Province",
+      "importerStreet": "Street Address",
+      "importerUseBilling": "Same as receiver",
+      "importerVat": "VAT Number",
+      "city": "City",
+      "companyName": "Company Name",
+      "country": "Country",
+      "email": "Email",
+      "eori": "EORI Number",
+      "phone": "Phone",
+      "postcode": "Postcode",
+      "receiveUseBilling": "Same as billing",
+      "receiverFirstName": "First Name",
+      "receiverLastName": "Last Name",
+      "state": "State/Province",
+      "street": "Street Address",
+      "vat": "VAT Number"
+    },
+    "approvalForm": {
+      "approveTitle": "Confirm approval of this order?",
+      "rejectTitle": "Reject Order"
+    },
+    "deliveryForm": {
+      "express": "Express",
+      "expressType": "Delivery Method",
+      "logistics": "Logistics",
+      "logisticsCompany": "Logistics Company",
+      "logisticsCompanyPlaceholder": "Please select logistics company",
+      "logisticsId": "Logistics Company",
+      "logisticsIdPlaceholder": "Please select logistics company",
+      "logisticsNo": "Tracking Number",
+      "logisticsNoPlaceholder": "Please enter tracking number",
+      "none": "No Delivery Needed"
+    },
+    "detail": {
+      "back": "Back",
+      "confirmPickUp": "Confirm order pick-up?",
+      "delivery": "Deliver",
+      "deliveryInfo": "Delivery Information",
+      "deliveryInfoSchema": {
+        "billingAddress": "Billing Address",
+        "importerAddress": "Importer Address",
+        "company": "Company",
+        "country": "Country",
+        "deliveryTime": "Delivery Time",
+        "deliveryType": "Delivery Type",
+        "email": "Email",
+        "eori": "EORI Number",
+        "name": "Name",
+        "phone": "Phone",
+        "receiver": "Receiver",
+        "receiverAddress": "Shipping Address",
+        "state": "State/Province",
+        "street": "Street",
+        "vat": "VAT Number"
+      },
+      "expressInfo": "Express Tracking",
+      "expressTrackColumns": {
+        "content": "Express Status",
+        "time": "Time"
+      },
+      "operateLog": "Operation Log",
+      "operateLogColumns": {
+        "content": "Operation Content",
+        "createTime": "Operation Time",
+        "userType": "Operator"
+      },
+      "orderInfo": "Order Information",
+      "orderInfoSchema": {
+        "brokerageUser": "Affiliate User",
+        "buyer": "Buyer",
+        "no": "Order No.",
+        "payChannelCode": "Payment Method",
+        "payOrderId": "Payment No.",
+        "remark": "Merchant Remark",
+        "terminal": "Order Source",
+        "type": "Order Type",
+        "userRemark": "Buyer Remark"
+      },
+      "orderNotFound": "Trade order does not exist",
+      "orderStatus": "Order Status",
+      "approvalStatus": "Approval Status",
+      "payProgress": "Payment Progress",
+      "paidAmount": "Paid Amount",
+      "payTime": "Payment Time",
+      "paymentMethod": "Payment Method",
+      "paymentChannel": "Payment Channel",
+      "operator": "Operator",
+      "currency": "Currency",
+      "noQuote": "No Quote",
+      "contractNo": "Contract No.",
+      "deliveryTime": "Delivery Time",
+      "createdAt": "Created At",
+      "deliveryType": "Delivery Type",
+      "logisticsNo": "Logistics No.",
+      "subtotal": "Subtotal",
+      "orderStatusSchema": {
+        "reminder": "Reminder",
+        "reminder1": "After the buyer pays successfully, the payment will go directly to your merchant account (WeChat, Alipay)",
+        "reminder2": "Please track the status of your shipped packages to ensure they can be delivered to the buyer",
+        "reminder3": "If the buyer claims not to have received the goods or there is a problem, please contact the buyer promptly and negotiate amicably",
+        "status": "Order Status"
+      },
+      "pickUp": "Pick-up",
+      "pickUpSuccess": "Pick-up successful",
+      "priceInfo": "Price Information",
+      "priceSchema": {
+        "adjustPrice": "Price Adjustment",
+        "deliveryPrice": "Shipping Fee",
+        "payPrice": "Payable Amount",
+        "totalPrice": "Total Amount"
+      },
+      "processing": "Processing...",
+      "productColumns": {
+        "afterSaleStatus": "After-sales Status",
+        "count": "Quantity",
+        "payPrice": "Total",
+        "price": "Original Price",
+        "spuName": "Product",
+        "skuName": "SKU Name",
+        "skuCode": "SKU Code",
+        "barCode": "Bar Code",
+        "minQty": "Min Order Qty",
+        "unit": "Unit",
+        "weight": "Weight",
+        "hsCode": "HS Code",
+        "packagingWay": "Packaging Way",
+        "pcsPerCtn": "PC/CTN",
+        "nwPerCtn": "Net Weight/CTN",
+        "gwPerCtn": "Gross Weight/CTN"
+      },
+      "productInfo": "Product Information",
+      "productDetail": "Product Details",
+      "expressTrack": "Express Tracking",
+      "payment": "Payment",
+      "paymentDetail": "Payment Details",
+      "noPaymentRecord": "No payment record",
+      "operationLog": "Operation Log",
+      "shippingAddress": "Shipping Address",
+      "orderPrice": "Order Price",
+      "remark": "Remark",
+      "system": "System",
+      "updateAddress": "Update Address",
+      "updatePrice": "Adjust Price"
+    },
+    "form": {
+      "approvalStatus": "Approval Status",
+      "approvalStatusPlaceholder": "Please select approval status",
+      "payProgressStatus": "Payment Progress",
+      "payProgressStatusPlaceholder": "Please select payment progress",
+      "payAmount": "Payment Amount",
+      "payAmountPlaceholder": "Please enter payment amount",
+      "payMethod": "Payment Method",
+      "payMethodPlaceholder": "Please select payment method",
+      "transactionNo": "Transaction No.",
+      "transactionNoPlaceholder": "Please enter transaction no.",
+      "rejectReason": "Reject Reason",
+      "rejectReasonPlaceholder": "Please enter reject reason",
       "createTime": "Create Time",
-      "terminal": "Order Source",
-      "terminalPlaceholder": "Please select order source",
       "deliveryType": "Delivery Type",
       "deliveryTypePlaceholder": "Please select delivery type",
       "logisticsId": "Express Company",
       "logisticsIdPlaceholder": "Please select express company",
+      "no": "Order No.",
+      "noPlaceholder": "Please enter order no.",
+      "payChannelCode": "Payment Method",
+      "payChannelCodePlaceholder": "Please select payment method",
       "pickUpStoreId": "Pick-up Store",
       "pickUpStoreIdPlaceholder": "Please select pick-up store",
       "pickUpVerifyCode": "Verification Code",
       "pickUpVerifyCodePlaceholder": "Please enter verification code",
-      "no": "Order No.",
-      "noPlaceholder": "Please enter order no.",
+      "remark": "Remark",
+      "status": "Order Status",
+      "statusPlaceholder": "Please select order status",
+      "terminal": "Order Source",
+      "terminalPlaceholder": "Please select order source",
       "userId": "User UID",
       "userIdPlaceholder": "Please enter user UID",
-      "userNickname": "User Nickname",
-      "userNicknamePlaceholder": "Please enter user nickname",
       "userMobile": "User Phone",
       "userMobilePlaceholder": "Please enter user phone",
-      "remark": "Remark"
+      "userNickname": "User Nickname",
+      "userNicknamePlaceholder": "Please enter user nickname"
     },
     "grid": {
-      "no": "Order No.",
-      "createTime": "Order Time",
-      "terminal": "Order Source",
-      "payChannelCode": "Payment Method",
-      "payTime": "Payment Time",
-      "type": "Order Type",
-      "payPrice": "Actual Payment",
-      "user": "Buyer/Receiver",
-      "buyer": "Buyer",
-      "receiver": "Receiver",
-      "businessAddress": "Business Address",
       "billingAddress": "Billing Address",
+      "importerAddress": "Importer Address",
+      "buyer": "Buyer",
+      "createTime": "Order Time",
+      "deliveryType": "Delivery Type",
+      "no": "Order No.",
+      "payChannelCode": "Payment Method",
+      "payPrice": "Actual Payment",
+      "payTime": "Payment Time",
+      "pickUpStore": "Pick-up Store",
+      "receiver": "Receiver",
+      "status": "Order Status",
       "storeName": "Store Name",
       "storePhone": "Store Phone",
-      "pickUpStore": "Pick-up Store",
-      "deliveryType": "Delivery Type",
-      "status": "Order Status"
-    },
-    "priceForm": {
-      "payPrice": "Payable Amount (Total)",
-      "payPricePlaceholder": "Please enter payable amount",
-      "adjustPrice": "Order Price Adjustment",
-      "adjustPricePlaceholder": "Please enter price adjustment",
-      "adjustPriceHelp": "Order price adjustment. Positive: increase; Negative: decrease",
-      "newPayPrice": "After Adjustment"
-    },
-    "addressForm": {
-      "receiveUseBilling": "Shipping address same as billing",
-      "businessUseBilling": "Business address same as billing",
-      "receiverFirstName": "First Name",
-      "receiverLastName": "Last Name",
-      "companyName": "Company Name",
-      "street": "Street Address",
-      "city": "City",
-      "state": "State/Province",
-      "country": "Country",
-      "postcode": "Postcode",
-      "phone": "Phone",
-      "email": "Email",
-      "vat": "VAT Number",
-      "eori": "EORI Number",
-      "billingCompanyName": "Billing Company Name",
-      "billingFirstName": "Billing First Name",
-      "billingLastName": "Billing Last Name",
-      "billingStreet": "Billing Street Address",
-      "billingCity": "Billing City",
-      "billingState": "Billing State/Province",
-      "billingCountry": "Billing Country",
-      "billingPostcode": "Billing Postcode",
-      "billingPhone": "Billing Phone",
-      "billingEmail": "Billing Email",
-      "billingVat": "Billing VAT Number",
-      "billingEori": "Billing EORI Number",
-      "businessCompanyName": "Business Company Name",
-      "businessFirstName": "Business First Name",
-      "businessLastName": "Business Last Name",
-      "businessStreet": "Business Street Address",
-      "businessCity": "Business City",
-      "businessState": "Business State/Province",
-      "businessCountry": "Business Country",
-      "businessPostcode": "Business Postcode",
-      "businessPhone": "Business Phone",
-      "businessEmail": "Business Email",
-      "businessVat": "Business VAT Number",
-      "businessEori": "Business EORI Number"
-    },
-    "deliveryForm": {
-      "expressType": "Delivery Method",
-      "express": "Express",
-      "none": "No Delivery Needed",
-      "logisticsId": "Logistics Company",
-      "logisticsIdPlaceholder": "Please select logistics company",
-      "logisticsNo": "Tracking Number",
-      "logisticsNoPlaceholder": "Please enter tracking number"
+      "terminal": "Order Source",
+      "type": "Order Type",
+      "user": "Buyer/Receiver"
     },
     "index": {
+      "delivery": "Deliver",
       "doc1": "[Trade] Trade Orders",
       "doc2": "[Trade] Shopping Cart",
-      "title": "Order List",
       "originalPrice": "Original Price",
-      "quantity": "Quantity",
       "piece": "pieces",
-      "delivery": "Deliver",
+      "quantity": "Quantity",
       "remark": "Remark",
-      "updateAddress": "Update Address"
-    },
-    "detail": {
-      "orderInfo": "Order Information",
-      "orderStatus": "Order Status",
-      "priceInfo": "Price Information",
-      "deliveryInfo": "Delivery Information",
-      "productInfo": "Product Information",
-      "expressInfo": "Express Tracking",
-      "operateLog": "Operation Log",
-      "orderNotFound": "Trade order does not exist",
-      "confirmPickUp": "Confirm order pick-up?",
-      "processing": "Processing...",
-      "pickUpSuccess": "Pick-up successful",
-      "back": "Back",
-      "updatePrice": "Adjust Price",
-      "remark": "Remark",
-      "delivery": "Deliver",
+      "title": "Order List",
       "updateAddress": "Update Address",
-      "pickUp": "Pick-up",
-      "system": "System",
-      "orderInfoSchema": {
-        "no": "Order No.",
-        "buyer": "Buyer",
-        "type": "Order Type",
-        "terminal": "Order Source",
-        "userRemark": "Buyer Remark",
-        "remark": "Merchant Remark",
-        "payOrderId": "Payment No.",
-        "payChannelCode": "Payment Method",
-        "brokerageUser": "Affiliate User"
-      },
-      "orderStatusSchema": {
-        "status": "Order Status",
-        "reminder": "Reminder",
-        "reminder1": "After the buyer pays successfully, the payment will go directly to your merchant account (WeChat, Alipay)",
-        "reminder2": "Please track the status of your shipped packages to ensure they can be delivered to the buyer",
-        "reminder3": "If the buyer claims not to have received the goods or there is a problem, please contact the buyer promptly and negotiate amicably"
-      },
-      "priceSchema": {
-        "totalPrice": "Total Amount",
-        "deliveryPrice": "Shipping Fee",
-        "adjustPrice": "Price Adjustment",
-        "payPrice": "Payable Amount"
-      },
-      "deliveryInfoSchema": {
-        "deliveryType": "Delivery Type",
-        "receiverAddress": "Shipping Address",
-        "billingAddress": "Billing Address",
-        "businessAddress": "Business Address",
-        "deliveryTime": "Delivery Time",
-        "receiver": "Receiver",
-        "company": "Company",
-        "street": "Street",
-        "state": "State/Province",
-        "country": "Country",
-        "phone": "Phone",
-        "email": "Email",
-        "vat": "VAT Number",
-        "eori": "EORI Number",
-        "name": "Name"
-      },
-      "productColumns": {
-        "spuName": "Product",
-        "price": "Original Price",
-        "count": "Quantity",
-        "payPrice": "Total",
-        "afterSaleStatus": "After-sales Status"
-      },
-      "expressTrackColumns": {
-        "time": "Time",
-        "content": "Express Status"
-      },
-      "operateLogColumns": {
-        "createTime": "Operation Time",
-        "userType": "Operator",
-        "content": "Operation Content"
+      "approve": "Approve",
+      "reject": "Reject",
+      "manualPay": "Manual Payment",
+      "actionMessage": {
+        "approveSuccess": "Approved successfully",
+        "rejectSuccess": "Rejected successfully",
+        "paySuccess": "Payment successful"
       }
     },
     "modules": {
@@ -197,437 +1094,488 @@
       "remarkForm": {
         "title": "Order Remark"
       }
+    },
+    "priceForm": {
+      "adjustPrice": "Order Price Adjustment",
+      "adjustPriceHelp": "Order price adjustment. Positive: increase; Negative: decrease",
+      "adjustPricePlaceholder": "Please enter price adjustment",
+      "newPayPrice": "After Adjustment",
+      "payPrice": "Payable Amount (Total)",
+      "payPricePlaceholder": "Please enter payable amount"
     }
   },
-  "b2b": {
-    "rfq": {
-      "index": {
-        "title": "RFQ List",
-        "quantity": "Quantity",
-        "expectedPrice": "Expected Price",
-        "assignSupplier": "Assign Supplier"
-      },
+  "finance": {
+    "priceLog": {
       "form": {
-        "status": "Status",
-        "statusPlaceholder": "Please select status",
-        "no": "RFQ No.",
-        "noPlaceholder": "Please enter RFQ no.",
-        "userId": "User ID",
-        "userIdPlaceholder": "Please enter user ID",
-        "contactName": "Contact Name",
-        "contactNamePlaceholder": "Please enter contact name",
-        "email": "Email",
-        "emailPlaceholder": "Please enter email"
-      },
-      "grid": {
-        "no": "RFQ No.",
-        "status": "Status",
-        "supplierName": "Supplier",
-        "itemCount": "Item Count",
-        "submittedAt": "Submitted At",
-        "createdAt": "Created At",
-        "userName": "Customer Name"
-      },
-      "assignSupplierForm": {
-        "title": "Assign Supplier",
-        "supplierId": "Supplier ID",
-        "supplierIdPlaceholder": "Please enter supplier ID",
-        "supplierName": "Supplier Name",
-        "supplierNamePlaceholder": "Please enter supplier name"
-      },
-      "detail": {
-        "title": "RFQ Detail",
-        "items": "Item Details",
-        "quantity": "Quantity",
-        "expectedPrice": "Expected Price",
-        "specifications": "Specifications",
-        "unit": "Unit",
-        "brand": "Brand",
-        "no": "RFQ No.",
-        "status": "Status",
-        "requirement": "Requirements",
-        "supplierName": "Supplier",
-        "validUntil": "Valid Until",
-        "submittedAt": "Submitted At",
-        "createdAt": "Created At",
-        "productName": "Product Name",
-        "skuName": "SKU Name",
-        "count": "Quantity",
-        "userName": "Customer Name"
-      },
-      "status": {
-        "pending": "Pending",
-        "submitted": "Submitted",
-        "processing": "Processing",
-        "completed": "Completed",
-        "cancelled": "Cancelled"
-      },
-      "actions": {
-        "view": "View",
-        "assign": "Assign Supplier",
-        "quote": "Quick Quote"
-      }
-    },
-    "order": {
-      "index": {
-        "title": "B2B Order List",
-        "quantity": "Quantity",
-        "unitPrice": "Unit Price",
-        "subtotal": "Subtotal",
-        "approve": "Approve",
-        "reject": "Reject",
-        "delivery": "Deliver"
-      },
-      "form": {
-        "status": "Status",
-        "statusPlaceholder": "Please select status",
-        "no": "Order No.",
-        "noPlaceholder": "Please enter order no.",
+        "bizKey": "Business Key",
+        "bizKeyPlaceholder": "Please enter business key",
+        "bizType": "Business Type",
+        "bizTypePlaceholder": "Please select business type",
         "userId": "User ID",
         "userIdPlaceholder": "Please enter user ID"
       },
       "grid": {
-        "no": "Order No.",
-        "status": "Status",
-        "totalPrice": "Total Price",
-        "payPrice": "Paid Amount",
-        "currency": "Currency",
-        "incoterms": "Incoterms",
-        "createdAt": "Created At"
+        "amount": "Amount",
+        "bizKey": "Business Key",
+        "bizType": "Business Type",
+        "createdAt": "Created At",
+        "title": "Balance Change Records",
+        "userId": "User ID",
+        "walletId": "Wallet ID"
       },
-      "detail": {
-        "title": "B2B Order Detail",
-        "items": "Item Details",
-        "quantity": "Quantity",
-        "unitPrice": "Unit Price",
-        "subtotal": "Subtotal",
-        "no": "Order No.",
-        "status": "Status",
-        "payStatus": "Payment Status",
-        "totalPrice": "Total Price",
-        "payPrice": "Paid Amount",
-        "currency": "Currency",
-        "incoterms": "Incoterms",
-        "deliveryType": "Delivery Type",
-        "paymentMethod": "Payment Method",
-        "contractNo": "Contract No.",
-        "createdAt": "Created At"
-      },
-      "approvalForm": {
-        "approveTitle": "Approve",
-        "rejectTitle": "Reject Order",
-        "remark": "Reject Reason",
-        "remarkPlaceholder": "Please enter reject reason"
-      },
-      "deliveryForm": {
-        "title": "Deliver",
-        "logisticsCompany": "Logistics Company",
-        "logisticsCompanyPlaceholder": "Please select logistics company",
-        "logisticsNo": "Tracking Number",
-        "logisticsNoPlaceholder": "Please enter tracking number"
-      }
+      "title": "Balance Change Records"
+    }
+  },
+  "pickupOrder": {
+    "grid": {
+      "actions": "Actions",
+      "createTime": "Created At",
+      "no": "Order No.",
+      "pickupStatus": "Pickup Status",
+      "pickupStoreId": "Pickup Store",
+      "userId": "User UID"
     },
-    "quotation": {
-      "title": "Quotation Management",
-      "index": {
-        "title": "Quotation List",
-        "quantity": "Quantity",
-        "unitPrice": "Unit Price",
-        "subtotal": "Subtotal"
-      },
-      "form": {
-        "status": "Status",
-        "statusPlaceholder": "Please select status",
-        "no": "Quotation No.",
-        "noPlaceholder": "Please enter quotation no.",
-        "rfqNo": "RFQ No.",
-        "rfqNoPlaceholder": "Please enter RFQ no.",
-        "supplierId": "Supplier ID",
-        "supplierIdPlaceholder": "Please enter supplier ID"
+    "title": "Pickup Orders"
+  },
+  "tradeAfterSale": {
+    "apply": {
+      "title": "Apply for After Sale"
+    },
+    "detail": {
+      "actions": {
+        "approve": "Approve",
+        "audit": "Audit",
+        "reApply": "Re-apply",
+        "reject": "Reject",
+        "returnConfirm": "Confirm Receipt",
+        "reviewLog": "Audit Log",
+        "userLog": "Application Log",
+        "view": "View Detail"
       },
       "grid": {
-        "no": "Quotation No.",
-        "rfqNo": "RFQ No.",
-        "supplierName": "Supplier",
-        "status": "Status",
-        "totalPrice": "Total Price",
-        "currency": "Currency",
-        "incoterms": "Incoterms",
-        "createdAt": "Created At"
-      },
-      "detail": {
-        "title": "Quotation Detail",
-        "items": "Quotation Details",
-        "quantity": "Quantity",
-        "unitPrice": "Unit Price",
-        "subtotal": "Subtotal",
-        "no": "Quotation No.",
-        "rfqNo": "RFQ No.",
-        "supplierName": "Supplier",
-        "status": "Status",
-        "totalPrice": "Total Price",
-        "currency": "Currency",
-        "incoterms": "Incoterms",
-        "deliveryType": "Delivery Type",
-        "validUntil": "Valid Until",
-        "remark": "Remark",
-        "acceptedAt": "Accepted At",
-        "createdAt": "Created At",
+        "actions": "Actions",
+        "afterSaleNo": "After Sale No.",
+        "afterSaleStatus": "After Sale Status",
+        "afterSaleType": "After Sale Type",
+        "createTime": "Created At",
+        "logisticsCompany": "Logistics Company",
+        "logisticsNo": "Logistics No.",
+        "orderNo": "Order No.",
+        "orderPayPrice": "Paid Amount",
+        "orderPrice": "Order Total",
+        "payRefundPrice": "Actual Refund",
+        "pickupVerifyCode": "Verification Code",
+        "productName": "Product Name",
+        "quantity": "Return Quantity",
+        "refundPrice": "Refund Amount",
+        "refundReason": "Refund Reason",
+        "refundStatus": "Refund Status",
         "spuName": "Product Name",
-        "skuName": "SKU Name",
-        "count": "Quantity"
+        "status": "Status",
+        "type": "Return Type",
+        "userId": "User ID",
+        "userNickname": "User Nickname"
       },
-      "createForm": {
-        "title": "Create Quotation",
-        "rfqId": "RFQ ID",
-        "rfqIdPlaceholder": "Please enter RFQ ID",
-        "supplierId": "Supplier ID",
-        "supplierIdPlaceholder": "Please enter supplier ID",
-        "supplierName": "Supplier Name",
-        "supplierNamePlaceholder": "Please enter supplier name",
-        "currency": "Currency Type",
-        "currencyPlaceholder": "Please select currency type",
-        "incoterms": "Incoterms",
-        "incotermsPlaceholder": "Please select incoterms",
+      "title": "After Sale Detail"
+    },
+    "form": {
+      "afterSaleType": "After Sale Type",
+      "afterSaleTypePlaceholder": "Please select after sale type",
+      "expressNo": "Express No.",
+      "expressNoPlaceholder": "Please enter express no.",
+      "logisticsCompany": "Logistics Company",
+      "logisticsCompanyPlaceholder": "Please select logistics company",
+      "reason": "Reason",
+      "reasonPlaceholder": "Please enter reason",
+      "remark": "Remark",
+      "remarkPlaceholder": "Please enter remark",
+      "title": "After Sale Application",
+      "form": {
+        "afterSaleStatus": "Approval Status",
+        "afterSaleStatusPlaceholder": "Please select approval status",
+        "no": "After Sale No.",
+        "noPlaceholder": "Please enter after sale no.",
+        "orderNo": "Order No.",
+        "orderNoPlaceholder": "Please enter order no.",
+        "type": "Return Type",
+        "typePlaceholder": "Please select return type",
+        "userId": "User ID",
+        "userIdPlaceholder": "Please enter user ID"
+      }
+    },
+    "grid": {
+      "actions": "Actions",
+      "afterSaleNo": "After Sale No.",
+      "afterSaleStatus": "Status",
+      "afterSaleType": "Type",
+      "createTime": "Created At",
+      "orderNo": "Order No.",
+      "productName": "Product",
+      "refundPrice": "Refund Amount",
+      "userNickname": "User"
+    },
+    "title": "After Sale Management"
+  },
+  "tradeAddress": {
+    "form": {
+      "areaId": "Region",
+      "areaIdPlaceholder": "Please select province/city/district",
+      "detailAddress": "Address",
+      "detailAddressPlaceholder": "Please enter address",
+      "isDefault": "Default",
+      "mobile": "Mobile",
+      "mobilePlaceholder": "Please enter mobile",
+      "name": "Name",
+      "namePlaceholder": "Please enter name",
+      "tel": "Phone",
+      "telPlaceholder": "Please enter phone",
+      "userId": "User ID",
+      "userIdPlaceholder": "Please enter user ID"
+    },
+    "grid": {
+      "actions": "Actions",
+      "areaId": "Region",
+      "detailAddress": "Address",
+      "isDefault": "Default",
+      "mobile": "Mobile",
+      "name": "Name",
+      "tel": "Phone",
+      "userId": "User ID"
+    },
+    "title": "Address Management"
+  },
+  "tradeAfterSaleLog": {
+    "grid": {
+      "content": "Operation Content",
+      "createTime": "Operation Time",
+      "id": "ID",
+      "operatorId": "Operator ID",
+      "operatorType": "Operator Type",
+      "title": "Operation Records"
+    },
+    "title": "After Sale Log"
+  },
+  "tradeBillList": {
+    "form": {
+      "channelCode": "Channel Code",
+      "channelCodePlaceholder": "Please select channel",
+      "status": "Status",
+      "statusPlaceholder": "Please select status",
+      "type": "Bill Type",
+      "typePlaceholder": "Please select bill type"
+    },
+    "grid": {
+      "billPrice": "Bill Amount",
+      "channelCode": "Channel Code",
+      "closeDate": "Close Date",
+      "createTime": "Created At",
+      "id": "ID",
+      "orderId": "Order ID",
+      "payBillId": "Payment Bill ID",
+      "payPrice": "Paid Amount",
+      "status": "Status",
+      "totalPrice": "Order Amount",
+      "type": "Bill Type",
+      "userId": "User ID"
+    },
+    "title": "Bill List"
+  },
+  "tradeConfig": {
+    "title": "Trade Configuration"
+  },
+  "tradeDeliveryExpress": {
+    "title": "Express Management"
+  },
+  "tradeDeliveryExpressTemplate": {
+    "title": "Express Template"
+  },
+  "tradeDeliveryExpressTemplateCharge": {
+    "title": "Charge Template"
+  },
+  "tradeDeliveryExpressTemplateFree": {
+    "title": "Free Shipping Template"
+  },
+  "tradeDeliveryPickUpStore": {
+    "title": "Pickup Store"
+  },
+  "tradeDeliveryPickUpVerifyCode": {
+    "title": "Verification Code"
+  },
+  "tradeDeliveryPickUpVerifyUser": {
+    "grid": {
+      "nickname": "Staff Nickname",
+      "storeId": "Store ID",
+      "userId": "Staff User ID"
+    },
+    "title": "Verify User"
+  },
+  "tradeDeliveryExpressTrack": {
+    "title": "Express Tracking"
+  },
+  "tradeOrder": {
+    "detail": {
+      "actions": {
+        "delivery": "Deliver",
+        "noteDelivery": "Edit Remark",
+        "price": "Adjust Price",
+        "receiver": "Update Receiver",
+        "remark": "Merchant Remark"
+      },
+      "baseInfo": {
+        "commentStatus": "Comment Status",
+        "createTime": "Order Time",
         "deliveryType": "Delivery Type",
-        "deliveryTypePlaceholder": "Please select delivery type",
-        "validDays": "Valid Days",
-        "validDaysPlaceholder": "Please enter valid days",
-        "remark": "Remark",
-        "remarkPlaceholder": "Please enter remark",
-        "items": "Quotation Items",
-        "unitPrice": "Unit Price",
-        "unitPricePlaceholder": "Please enter unit price"
-      },
-      "status": {
-        "pending": "Pending",
-        "quoted": "Quoted",
-        "accepted": "Accepted",
-        "rejected": "Rejected",
-        "expired": "Expired"
+        "payTime": "Payment Time",
+        "remark": "User Remark",
+        "status": "Order Status",
+        "title": "Basic Information",
+        "type": "Order Type",
+        "userIp": "User IP",
+        "userInfo": "User Information"
       },
       "delivery": {
-        "express": "Express Delivery",
-        "self": "Self Pickup"
+        "deliveryTime": "Delivery Time",
+        "expressDelivery": "Express Delivery",
+        "logisticsCompany": "Express Company",
+        "logisticsNo": "Tracking Number",
+        "pickUpVerifyCode": "Verification Code",
+        "pickUpVerifyStatus": "Verification Status",
+        "receiverCityId": "Receiver Region",
+        "receiverDetailAddress": "Receiver Address",
+        "receiverMobile": "Receiver Mobile",
+        "receiverName": "Receiver Name",
+        "selfPickUp": "Self Pickup",
+        "title": "Delivery Information"
       },
-      "actions": {
-        "view": "View",
-        "create": "Create Quotation"
-      }
-    }
-  },
-  "config": {
-    "doc1": "[Trade] Trade Orders",
-    "doc2": "[Trade] Shopping Cart",
-    "afterSale": "After Sale",
-    "delivery": "Delivery",
-    "brokerage": "Brokerage",
+      "flow": {
+        "cancelUser": "Buyer: Cancel Order",
+        "cancelUserTime": "Cancel Time",
+        "close": "Platform: Close Order",
+        "closeTime": "Close Time",
+        "complete": "Transaction Completed",
+        "completeTime": "Completed Time",
+        "comment": "Buyer: Comment",
+        "commentTime": "Comment Time",
+        "create": "Buyer: Create Order",
+        "createTime": "Created At",
+        "delivery": "Seller: Deliver",
+        "deliveryTime": "Delivery Time",
+        "pay": "Buyer: Pay",
+        "payTime": "Payment Time",
+        "receive": "Buyer: Confirm Receipt",
+        "receiveTime": "Confirm Receipt Time",
+        "title": "Order Flow"
+      },
+      "itemTitle": "Product Information",
+      "priceDetail": {
+        "afterCouponReducePrice": "Coupon Discount",
+        "afterVipDiscountPrice": "VIP Discount",
+        "brokeragePrice": "Commission",
+        "deliveryPrice": "Shipping Fee",
+        "giveScore": "Points Given",
+        "payPrice": "Paid Amount",
+        "platformCouponPrice": "Platform Coupon",
+        "productAmount": "Original Price",
+        "receiverCouponPrice": "Coupon Discount",
+        "title": "Price Details",
+        "totalPrice": "Total Price"
+      },
+      "title": "Order Detail"
+    },
     "form": {
-      "afterSaleRefundReasons": "Refund Reasons",
-      "afterSaleRefundReasonsPlaceholder": "Please enter refund reason",
-      "afterSaleReturnReasons": "Return Reasons",
-      "afterSaleReturnReasonsPlaceholder": "Please enter return reason",
-      "deliveryExpressFreeEnabled": "Enable Free Shipping",
-      "deliveryExpressFreeEnabledHelp": "Whether to enable free shipping for the entire store",
-      "deliveryExpressFreePrice": "Free Shipping Threshold",
-      "deliveryExpressFreePricePlaceholder": "Please enter free shipping amount",
-      "deliveryExpressFreePriceHelp": "Minimum amount for free shipping, unit: yuan",
-      "deliveryPickUpEnabled": "Enable Store Pickup",
-      "brokerageEnabled": "Enable Brokerage",
-      "brokerageEnabledHelp": "Whether to enable distribution mode",
-      "brokerageEnabledCondition": "Brokerage Mode",
-      "brokerageEnabledConditionHelp": "Everyone Distribution: Every user can be a promoter \n Designated Distribution: Only set promoters manually in the background",
-      "brokerageBindMode": "Distribution Relationship Binding",
-      "brokerageBindModeHelp": "First Bind: As long as the user has no promoter, can bind promotion relationship at any time \n Register Bind: Only new users can bind promotion relationship when registering or first entering the system",
-      "brokeragePosterUrls": "Distribution Poster",
-      "brokeragePosterUrlsHelp": "Personal center distribution poster image, recommended size 600x1000",
-      "brokerageFirstPercent": "First Level Commission Rate (%)",
-      "brokerageFirstPercentPlaceholder": "Please enter first level commission rate",
-      "brokerageFirstPercentHelp": "Percentage of commission to the promoter after order success",
-      "brokerageSecondPercent": "Second Level Commission Rate (%)",
-      "brokerageSecondPercentPlaceholder": "Please enter second level commission rate",
-      "brokerageSecondPercentHelp": "Percentage of commission to the promoter's referrer after order success",
-      "brokerageFrozenDays": "Commission Frozen Days",
-      "brokerageFrozenDaysPlaceholder": "Please enter commission frozen days",
-      "brokerageFrozenDaysHelp": "Prevent user refunds after commission withdrawal, need to set frozen days, unit: days",
-      "brokerageWithdrawMinPrice": "Minimum Withdrawal Amount (yuan)",
-      "brokerageWithdrawMinPricePlaceholder": "Please enter minimum withdrawal amount",
-      "brokerageWithdrawMinPriceHelp": "Minimum withdrawal limit for users, unit: yuan",
-      "brokerageWithdrawFeePercent": "Withdrawal Fee (%)",
-      "brokerageWithdrawFeePercentPlaceholder": "Please enter withdrawal fee percentage",
-      "brokerageWithdrawFeePercentHelp": "Withdrawal fee percentage, range 0-100, 0 means no fee. Example: set 10, charge 10% fee, withdraw 10 yuan, receive 9 yuan, 1 yuan fee",
-      "brokerageWithdrawTypes": "Withdrawal Methods",
-      "brokerageWithdrawTypesHelp": "Payment methods enabled for withdrawal in the store"
+      "createTime": "Order Time",
+      "no": "Order No.",
+      "noPlaceholder": "Please enter order no.",
+      "payChannelCode": "Payment Channel",
+      "payChannelCodePlaceholder": "Please select payment channel",
+      "pickupVerifyCode": "Verification Code",
+      "pickupVerifyCodePlaceholder": "Please enter verification code",
+      "remark": "Remark",
+      "remarkPlaceholder": "Please enter remark",
+      "spuName": "Product Name",
+      "spuNamePlaceholder": "Please enter product name",
+      "status": "Order Status",
+      "statusPlaceholder": "Please select order status",
+      "terminal": "Order Terminal",
+      "terminalPlaceholder": "Please select order terminal",
+      "type": "Order Type",
+      "typePlaceholder": "Please select order type",
+      "userId": "User ID",
+      "userIdPlaceholder": "Please enter user ID"
+    },
+    "grid": {
+      "actions": "Actions",
+      "afterSaleStatus": "After Sale Status",
+      "counts": "Quantity",
+      "createTime": "Created At",
+      "no": "Order No.",
+      "payChannelCode": "Payment Channel",
+      "payStatus": "Payment Status",
+      "payTime": "Payment Time",
+      "priceInfo": "Price Info",
+      "spuName": "Product Name",
+      "status": "Order Status",
+      "terminal": "Terminal",
+      "type": "Type",
+      "userId": "User ID",
+      "userName": "User Nickname"
+    },
+    "priceInfo": {
+      "couponPrice": "Discount: ",
+      "deliveryPrice": "Shipping: ",
+      "payPrice": "Paid: ",
+      "productPrice": "Product: ",
+      "refundPrice": "Refund: ",
+      "totalPrice": "Total: "
+    },
+    "title": "Trade Order"
+  },
+  "tradeOrderItem": {
+    "form": {
+      "afterSaleStatus": "After Sale Status",
+      "afterSaleStatusPlaceholder": "Please select after sale status",
+      "commentStatus": "Comment Status",
+      "commentStatusPlaceholder": "Please select comment status",
+      "orderNo": "Order No.",
+      "orderNoPlaceholder": "Please enter order no.",
+      "spuId": "SPU ID",
+      "spuIdPlaceholder": "Please enter SPU ID",
+      "spuName": "SPU Name",
+      "spuNamePlaceholder": "Please enter SPU name"
+    },
+    "grid": {
+      "actions": "Actions",
+      "afterSaleStatus": "After Sale Status",
+      "commentStatus": "Comment Status",
+      "couponPrice": "Coupon Price",
+      "createTime": "Created At",
+      "deliverTime": "Delivery Time",
+      "deliveryType": "Delivery Type",
+      "id": "Order Item ID",
+      "isComment": "Commented",
+      "level": "Product Level",
+      "orderNo": "Order No.",
+      "payStatus": "Payment Status",
+      "price": "Original Price",
+      "propertyName": "Property Value",
+      "quantity": "Quantity",
+      "receiverAreaId": "Receiver Region",
+      "score": "Points",
+      "spuId": "SPU ID",
+      "spuImage": "Product Image",
+      "spuName": "Product Name",
+      "status": "Status",
+      "userId": "User ID"
+    },
+    "title": "Order Items"
+  },
+  "walletRecharge": {
+    "form": {
+      "packageId": "Package ID",
+      "packageIdPlaceholder": "Please enter package ID",
+      "payChannelCode": "Payment Channel",
+      "payChannelCodePlaceholder": "Please select payment channel",
+      "status": "Recharge Status",
+      "statusPlaceholder": "Please select recharge status",
+      "userId": "User ID",
+      "userIdPlaceholder": "Please enter user ID"
+    },
+    "grid": {
+      "actions": "Actions",
+      "createTime": "Created At",
+      "endTime": "End Time",
+      "givePrice": "Bonus Amount",
+      "id": "ID",
+      "no": "Recharge No.",
+      "packageId": "Recharge Package",
+      "payChannelCode": "Payment Channel",
+      "payPrice": "Paid Amount",
+      "payStatus": "Payment Status",
+      "payTime": "Payment Time",
+      "refundPrice": "Refund Amount",
+      "refundStatus": "Refund Status",
+      "status": "Recharge Status",
+      "totalPrice": "Recharge Amount",
+      "userId": "User ID",
+      "walletId": "Wallet ID"
+    },
+    "title": "Wallet Recharge"
+  },
+  "walletRechargePackage": {
+    "form": {
+      "name": "Package Name",
+      "namePlaceholder": "Please enter package name",
+      "payStatus": "Payment Status",
+      "payStatusPlaceholder": "Please select payment status",
+      "status": "Status",
+      "statusPlaceholder": "Please select status"
+    },
+    "grid": {
+      "bonusPrice": "Bonus Amount",
+      "description": "Description",
+      "name": "Name",
+      "payStatus": "Payment Status",
+      "price": "Recharge Amount",
+      "status": "Status"
+    },
+    "title": "Recharge Package"
+  },
+  "tradeOrderLogistics": {
+    "title": "Order Logistics",
+    "form": {
+      "logisticsNo": "Logistics No.",
+      "logisticsNoPlaceholder": "Please enter logistics no.",
+      "expressId": "Express Company",
+      "expressIdPlaceholder": "Please select express company",
+      "receiverAreaId": "Receiver Region",
+      "receiverAreaIdPlaceholder": "Please select receiver region"
+    },
+    "grid": {
+      "orderId": "Order ID",
+      "logisticsNo": "Logistics No.",
+      "expressId": "Express Company",
+      "receiverName": "Receiver Name",
+      "receiverMobile": "Receiver Mobile",
+      "receiverAreaId": "Receiver Region",
+      "payStatus": "Payment Status",
+      "shipmentTime": "Shipment Time",
+      "logisticsTime": "Logistics Time",
+      "actions": "Actions"
     }
   },
-  "delivery": {
-    "pickUpOrder": {
-      "title": "Pickup Orders",
-      "inputVerifyCode": "Please enter verification code",
-      "processing": "Processing order verification ...",
-      "browserNotSupported": "Browser does not support barcode scanner connection, please try another browser",
-      "connectSuccess": "Successfully connected to scanner",
-      "connectFirst": "Please connect or open the scanner first",
-      "disconnectSuccess": "Successfully disconnected from scanner",
-      "summary": {
-        "orderCount": "Order Count",
-        "orderAmount": "Order Amount",
-        "refundCount": "Refund Count",
-        "refundAmount": "Refund Amount"
-      },
-      "action": {
-        "pickup": "Verify",
-        "connect": "Connect Scanner",
-        "disconnect": "Disconnect Scanner"
-      },
-      "form": {
-        "createTime": "Create Time",
-        "pickUpStoreIds": "Pickup Store",
-        "pickUpStoreIdsPlaceholder": "Please select pickup store",
-        "no": "Order No.",
-        "noPlaceholder": "Please enter order number",
-        "userId": "User UID",
-        "userIdPlaceholder": "Please enter user UID",
-        "userNickname": "User Nickname",
-        "userNicknamePlaceholder": "Please enter user nickname",
-        "userMobile": "User Phone",
-        "userMobilePlaceholder": "Please enter user phone"
-      },
-      "grid": {
-        "no": "Order No.",
-        "user": "User Info",
-        "brokerageUser": "Referrer Info",
-        "spuName": "Product Info",
-        "payPrice": "Paid Amount (yuan)",
-        "storeStaffName": "Verifier",
-        "pickUpStoreId": "Verification Store",
-        "payStatus": "Payment Status",
-        "status": "Order Status",
-        "createTime": "Order Time"
-      }
+  "tradeOrderLogisticsTrack": {
+    "title": "Logistics Tracking",
+    "grid": {
+      "id": "ID",
+      "logisticsId": "Shipment ID",
+      "operatorName": "Operator Name",
+      "address": "Address",
+      "status": "Status",
+      "createTime": "Created At"
+    }
+  },
+  "tradeOrderLogisticsCompany": {
+    "title": "Logistics Company",
+    "form": {
+      "name": "Company Name",
+      "namePlaceholder": "Please enter company name",
+      "code": "Company Code",
+      "codePlaceholder": "Please enter company code",
+      "logo": "Company Logo",
+      "logoPlaceholder": "Please upload company logo",
+      "sort": "Sort Order",
+      "sortPlaceholder": "Please enter sort order",
+      "status": "Status",
+      "statusPlaceholder": "Please select status"
     },
-    "expressTemplate": {
-      "title": "Express Template List",
-      "chargeMode": {
-        "piece": {
-          "start": "First Piece",
-          "extra": "Additional Piece"
-        },
-        "weight": {
-          "start": "First Weight(kg)",
-          "extra": "Additional Weight(kg)"
-        },
-        "volume": {
-          "start": "First Volume(m³)",
-          "extra": "Additional Volume(m³)"
-        }
-      },
-      "freeMode": {
-        "piece": "Free Shipping Pieces",
-        "weight": "Free Shipping Weight(kg)",
-        "volume": "Free Shipping Volume(m³)"
-      },
-      "grid": {
-        "countries": "Region",
-        "startPrice": "Shipping Fee(yuan)",
-        "extraPrice": "Additional Fee(yuan)",
-        "freePrice": "Free Shipping Amount(yuan)",
-        "name": "Template Name",
-        "chargeMode": "Charge Mode",
-        "sort": "Sort Order"
-      },
-      "form": {
-        "name": "Template Name",
-        "namePlaceholder": "Please enter template name",
-        "chargeMode": "Charge Mode",
-        "chargeModePlaceholder": "Please select charge mode",
-        "sort": "Sort Order",
-        "sortPlaceholder": "Please enter sort order",
-        "charges": "Shipping Settings",
-        "frees": "Free Shipping Settings",
-        "countryPlaceholder": "Please select region"
-      },
-      "chargeItem": {
-        "validate": {
-          "countries": "Shipping Settings Row {0}: Region cannot be empty",
-          "startPrice": "Shipping Settings Row {0}: Shipping fee must be greater than 0",
-          "extraPrice": "Shipping Settings Row {0}: Additional fee must be greater than 0"
-        },
-        "deleteConfirm": "Confirm delete this region?",
-        "add": "Add Charge Region"
-      },
-      "freeItem": {
-        "validate": {
-          "countries": "Free Shipping Settings Row {0}: Region cannot be empty",
-          "freePrice": "Free Shipping Settings Row {0}: Free shipping amount must be greater than 0"
-        },
-        "deleteConfirm": "Confirm delete this region?",
-        "add": "Add Free Shipping Region"
-      }
-    },
-    "pickUpStore": {
-      "title": "Store List",
-      "action": {
-        "bind": "Bind Staff"
-      },
-      "form": {
-        "name": "Store Name",
-        "namePlaceholder": "Please enter store name",
-        "phone": "Store Phone",
-        "phonePlaceholder": "Please enter store phone",
-        "logo": "Store Logo",
-        "logoPlaceholder": "Please upload store logo",
-        "logoHelp": "Recommended 180x180 image resolution",
-        "introduction": "Store Introduction",
-        "introductionPlaceholder": "Please enter store introduction",
-        "areaId": "Store Region",
-        "areaIdPlaceholder": "Please select province/city/district",
-        "detailAddress": "Store Address",
-        "detailAddressPlaceholder": "Please enter store address",
-        "rangeTime": "Business Hours",
-        "status": "Store Status",
-        "statusPlaceholder": "Please select store status",
-        "longitude": "Longitude",
-        "longitudePlaceholder": "Please enter longitude",
-        "latitude": "Latitude",
-        "latitudePlaceholder": "Please enter latitude",
-        "verifyUserIds": "Store Staff",
-        "verifyUserIdsPlaceholder": "Please select store staff",
-        "mapKeyWarning": "Please configure Tencent Location Service key first",
-        "getLatLng": "Get LatLng",
-        "bindTitle": "Bind Staff"
-      },
-      "grid": {
-        "logo": "Store Logo",
-        "name": "Store Name",
-        "phone": "Store Phone",
-        "detailAddress": "Address",
-        "openingTime": "Business Hours",
-        "status": "Status"
-      }
-    },
-    "express": {
-      "title": "Express Company List",
-      "exportFileName": "Express Companies.xls",
-      "form": {
-        "code": "Company Code",
-        "codePlaceholder": "Please enter express code",
-        "name": "Company Name",
-        "namePlaceholder": "Please enter express name",
-        "logo": "Company Logo",
-        "logoHelp": "Recommended 180x180 image resolution",
-        "sort": "Sort Order",
-        "sortPlaceholder": "Please enter sort order",
-        "status": "Status",
-        "statusPlaceholder": "Please select status"
-      },
-      "grid": {
-        "code": "Company Code",
-        "name": "Company Name",
-        "logo": "Company Logo",
-        "sort": "Sort Order",
-        "status": "Status"
-      }
+    "grid": {
+      "id": "ID",
+      "name": "Company Name",
+      "code": "Company Code",
+      "logo": "Company Logo",
+      "sort": "Sort Order",
+      "status": "Status",
+      "actions": "Actions"
     }
   }
 }

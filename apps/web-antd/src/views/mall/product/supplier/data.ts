@@ -6,6 +6,7 @@ import { CommonStatusEnum, DICT_TYPE } from '@vben/constants';
 import { getDictOptions } from '@vben/hooks';
 
 import { z } from '#/adapter/form';
+import { getAreaTree } from '#/api/system/area';
 import { $t } from '#/locales';
 import { getRangePickerDefaultProps } from '#/utils';
 
@@ -104,9 +105,12 @@ export function useFormSchema(): VbenFormSchema[] {
     {
       fieldName: 'country',
       label: '国家',
-      component: 'Input',
+      component: 'ApiTreeSelect',
       componentProps: {
-        placeholder: '请输入国家',
+        api: getAreaTree,
+        fieldNames: { label: 'name', value: 'id', children: 'children' },
+        placeholder: '请选择国家/地区',
+        allowClear: true,
       },
     },
     {

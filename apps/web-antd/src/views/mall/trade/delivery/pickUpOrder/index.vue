@@ -30,7 +30,7 @@ function handleRefresh() {
 /** 获取订单统计数据 */
 async function getOrderSum() {
   const query = await gridApi.formApi.getValues();
-  query.deliveryType = DeliveryTypeEnum.PICK_UP.type;
+  query.deliveryType = DeliveryTypeEnum.EXPRESS.type;
   summary.value = await getOrderSummary(query);
 }
 
@@ -168,7 +168,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
           return await getOrderPage({
             pageNo: page.currentPage,
             pageSize: page.pageSize,
-            deliveryType: DeliveryTypeEnum.PICK_UP.type,
+            deliveryType: DeliveryTypeEnum.EXPRESS.type,
             ...formValues,
           });
         },

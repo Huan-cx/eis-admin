@@ -2,13 +2,16 @@ import type { VbenFormSchema } from '#/adapter/form';
 
 import { $t } from '#/locales';
 
-export const quotationStatusMap: Record<number, string> = {
-  0: '待报价',
-  10: '已报价',
-  20: '已接受',
-  30: '已拒绝',
-  40: '已过期',
-};
+export function getQuotationStatusMap(): Record<number, string> {
+  return {
+    0: $t('trade.b2b.quotation.status.draft'),
+    5: $t('trade.b2b.quotation.status.pendingReview'),
+    10: $t('trade.b2b.quotation.status.approved'),
+    20: $t('trade.b2b.quotation.status.rejected'),
+    30: $t('trade.b2b.quotation.status.accepted'),
+    40: $t('trade.b2b.quotation.status.expired'),
+  };
+}
 
 export function useDetailFormSchema(): VbenFormSchema[] {
   return [

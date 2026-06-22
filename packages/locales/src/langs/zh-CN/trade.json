@@ -1,0 +1,119 @@
+{
+  "b2b": {
+    "quotation": {
+      "actions": {
+        "submitReview": "提交审核"
+      },
+      "actionMessage": {
+        "saveFailed": "保存失败",
+        "submitReviewSuccess": "提交审核成功",
+        "submitReviewFailed": "提交审核失败",
+        "initDataFailed": "初始化数据失败"
+      },
+      "formPage": {
+        "basicInfo": "基本信息",
+        "productQuotation": "商品报价",
+        "priceSummary": "价格汇总",
+        "selectSupplier": "请选择供应商",
+        "addFee": "添加费用",
+        "totalProductAmount": "商品总价",
+        "feeItems": "费用总计"
+      },
+      "feeType": {
+        "freight": "运费",
+        "insurance": "保险费",
+        "customs": "报关费",
+        "other": "其他费用"
+      }
+    }
+  },
+  "shipment": {
+    "title": "发货管理",
+    "listTitle": "发货单列表",
+    "detailTitle": "发货单详情",
+    "form": {
+      "orderNo": "订单号",
+      "shipmentNo": "发货单号",
+      "status": "发货状态",
+      "statusPlaceholder": "请选择发货状态",
+      "shipmentType": "发货方式",
+      "shipmentTypePlaceholder": "请选择发货方式",
+      "loadingPort": "装货港",
+      "dischargePort": "卸货港",
+      "carrier": "承运人/货代",
+      "vesselFlight": "船名/航班号",
+      "containerNo": "集装箱号",
+      "blNo": "提单号",
+      "etd": "预计离港日",
+      "eta": "预计到港日",
+      "atd": "实际离港日",
+      "ata": "实际到港日",
+      "totalCtns": "总箱数",
+      "totalNw": "总净重",
+      "totalGw": "总毛重",
+      "totalCbm": "总体积",
+      "remark": "备注",
+      "createTime": "创建时间"
+    },
+    "status": {
+      "pending": "待发货",
+      "inProduction": "生产中",
+      "cargoReady": "已货好",
+      "qcPassed": "验货通过",
+      "qcFailed": "验货失败",
+      "shipped": "已出货",
+      "inTransit": "运输中",
+      "customsCleared": "清关完成",
+      "delivered": "已收货",
+      "canceled": "已取消"
+    },
+    "type": {
+      "fcl": "海运整柜",
+      "lcl": "海运拼箱",
+      "air": "空运",
+      "express": "快递",
+      "land": "陆运"
+    },
+    "event": {
+      "title": "发货事件",
+      "eventType": "事件类型",
+      "eventTime": "事件时间",
+      "eventTitle": "事件标题",
+      "description": "详细说明",
+      "attachments": "附件",
+      "operator": "操作人",
+      "addTitle": "添加发货事件",
+      "editTitle": "编辑发货事件"
+    },
+    "packingList": {
+      "title": "装箱清单",
+      "skuCode": "SKU编码",
+      "productName": "商品名称",
+      "packagingWay": "包装方式",
+      "pcsPerCtn": "每箱数量",
+      "quantity": "发货数量",
+      "ctns": "箱数",
+      "nwPerCtn": "每箱净重",
+      "gwPerCtn": "每箱毛重",
+      "cbmPerCtn": "每箱体积",
+      "totalNw": "总净重",
+      "totalGw": "总毛重",
+      "totalCbm": "总体积",
+      "summary": "装箱汇总"
+    },
+    "actions": {
+      "detail": "详情",
+      "edit": "编辑",
+      "updateStatus": "更新状态",
+      "addEvent": "添加事件",
+      "orderDetail": "订单详情",
+      "refresh": "刷新"
+    },
+    "actionMessage": {
+      "updateSuccess": "更新成功",
+      "updateFailed": "更新失败",
+      "statusUpdateSuccess": "状态更新成功",
+      "eventAddSuccess": "事件添加成功"
+    }
+  }
+}

@@ -2,15 +2,17 @@ import type { VbenFormSchema } from '#/adapter/form';
 
 import { $t } from '#/locales';
 
-export const rfqStatusMap: Record<number, string> = {
-  0: '草稿',
-  10: '待报价',
-  15: '处理中',
-  20: '已报价',
-  30: '已接受',
-  40: '已拒绝',
-  50: '已取消',
-};
+export function getRfqStatusMap(): Record<number, string> {
+  return {
+    0: $t('trade.b2b.rfqStatus.pending'),
+    10: $t('trade.b2b.rfqStatus.submitted'),
+    15: $t('trade.b2b.rfqStatus.processing'),
+    20: $t('trade.b2b.rfqStatus.processing'),
+    30: $t('trade.b2b.rfqStatus.completed'),
+    40: $t('trade.b2b.rfqStatus.cancelled'),
+    50: $t('trade.b2b.rfqStatus.cancelled'),
+  };
+}
 
 export function useDetailFormSchema(): VbenFormSchema[] {
   return [

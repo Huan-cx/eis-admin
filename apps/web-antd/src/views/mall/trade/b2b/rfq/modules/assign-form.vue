@@ -14,6 +14,14 @@ const emit = defineEmits<{
 }>();
 
 const [Form, formApi] = useVbenForm({
+  commonConfig: {
+    componentProps: {
+      class: 'w-full',
+    },
+    formItemClass: 'col-span-2',
+    labelWidth: 120,
+  },
+  layout: 'horizontal',
   schema: useAssignSupplierFormSchema(),
   showDefaultActions: false,
 });

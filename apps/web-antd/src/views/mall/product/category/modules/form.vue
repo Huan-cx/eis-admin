@@ -60,6 +60,7 @@ const [Form, formApi] = useVbenForm({
     labelWidth: 100,
   },
   schema: useFormSchema(),
+  showDefaultActions: false,
 });
 
 const [Modal, modalApi] = useVbenModal({

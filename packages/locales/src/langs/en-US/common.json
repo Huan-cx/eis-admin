@@ -42,5 +42,11 @@
   "id": "ID",
   "status": "Status",
   "sort": "Sort",
-  "actions": "Actions"
+  "actions": "Actions",
+  "empty": "No Data",
+  "yuan": "CNY",
+  "success": "Success",
+  "fail": "Failed",
+  "index": "Index",
+  "quotation": "Quotation"
 }

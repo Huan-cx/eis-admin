@@ -83,7 +83,10 @@ const [Modal, modalApi] = useVbenModal({
 </script>
 
 <template>
-  <Modal class="w-1/3" :title="$t('ui.actionTitle.edit', ['订单价格'])">
+  <Modal
+    class="w-1/3"
+    :title="$t('ui.actionTitle.edit', [$t('trade.order.detail.orderPrice')])"
+  >
     <Form class="mx-4" />
   </Modal>
 </template>

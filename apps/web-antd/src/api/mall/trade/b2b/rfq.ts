@@ -6,6 +6,7 @@ export namespace B2BRfqApi {
   export interface RfqItem {
     id: number;
     skuId: number;
+    spuName: string;
     productId: number;
     productName: string;
     skuName: string;
@@ -30,11 +31,13 @@ export namespace B2BRfqApi {
     validUntil?: string;
     supplierId?: number;
     supplierName?: string;
+    deliveryPort?: string;
     addressId?: number;
     submittedAt?: string;
     createdAt: string;
     updatedAt?: string;
     items: RfqItem[];
+    hasFinalQuotation?: boolean;
   }
 
   export interface RfqPageItem {
@@ -48,8 +51,14 @@ export namespace B2BRfqApi {
     supplierId?: number;
     supplierName?: string;
     itemCount: number;
+    incoterms?: string;
+    deliveryPort?: string;
+    expectedDeliveryDate?: string;
+    contactName?: string;
+    email?: string;
     submittedAt?: string;
     createdAt: string;
+    hasFinalQuotation?: boolean;
   }
 
   export interface AssignSupplierReqVO {

@@ -343,7 +343,7 @@ export class FormApi {
    * @param filterFields 过滤不在schema中定义的字段 默认为true
    * @param shouldValidate
    */
-  async      setValues(
+  async setValues(
     fields: Record<string, any>,
     filterFields: boolean = true,
     shouldValidate: boolean = false,
