@@ -24,6 +24,8 @@ const getTitle = computed(() => {
   return formData.value?.id
     ? $t('ui.actionTitle.edit', ['Banner'])
     : $t('ui.actionTitle.create', ['Banner']);
+});
+
 const [Form, formApi] = useVbenForm({
   commonConfig: {
     componentProps: {
