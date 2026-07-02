@@ -176,6 +176,9 @@ onMounted(() => {
         <Descriptions.Item :label="$t('trade.shipment.grid.orderNo')">
           {{ shipmentDetail?.orderNo || '-' }}
         </Descriptions.Item>
+        <Descriptions.Item :label="$t('trade.shipment.grid.customerName')">
+          {{ shipmentDetail?.customerName || '-' }}
+        </Descriptions.Item>
         <Descriptions.Item :label="$t('trade.shipment.grid.shipmentType')">
           {{
             getShipmentTypeOptions().find(
@@ -183,14 +186,17 @@ onMounted(() => {
             )?.label || '-'
           }}
         </Descriptions.Item>
-        <Descriptions.Item :label="$t('trade.shipment.grid.createTime')">
-          {{ shipmentDetail?.createTime || '-' }}
-        </Descriptions.Item>
         <Descriptions.Item :label="$t('trade.shipment.grid.loadingPort')">
           {{ shipmentDetail?.loadingPort || '-' }}
         </Descriptions.Item>
         <Descriptions.Item :label="$t('trade.shipment.grid.dischargePort')">
           {{ shipmentDetail?.dischargePort || '-' }}
+        </Descriptions.Item>
+        <Descriptions.Item :label="$t('trade.shipment.grid.logisticsName')">
+          {{ shipmentDetail?.logisticsName || '-' }}
+        </Descriptions.Item>
+        <Descriptions.Item :label="$t('trade.shipment.grid.trackingNo')">
+          {{ shipmentDetail?.trackingNo || '-' }}
         </Descriptions.Item>
         <Descriptions.Item :label="$t('trade.shipment.grid.carrier')">
           {{ shipmentDetail?.carrier || '-' }}
@@ -207,17 +213,26 @@ onMounted(() => {
         <Descriptions.Item :label="$t('trade.shipment.grid.etd')">
           {{ shipmentDetail?.etd || '-' }}
         </Descriptions.Item>
-        <Descriptions.Item :label="$t('trade.shipment.grid.eta')">
-          {{ shipmentDetail?.eta || '-' }}
-        </Descriptions.Item>
         <Descriptions.Item :label="$t('trade.shipment.grid.atd')">
           {{ shipmentDetail?.atd || '-' }}
+        </Descriptions.Item>
+        <Descriptions.Item :label="$t('trade.shipment.grid.eta')">
+          {{ shipmentDetail?.eta || '-' }}
         </Descriptions.Item>
         <Descriptions.Item :label="$t('trade.shipment.grid.ata')">
           {{ shipmentDetail?.ata || '-' }}
         </Descriptions.Item>
+        <Descriptions.Item :label="$t('trade.shipment.grid.estimatedDeliveryDate')">
+          {{ shipmentDetail?.estimatedDeliveryDate || '-' }}
+        </Descriptions.Item>
+        <Descriptions.Item :label="$t('trade.shipment.grid.finalDeliveryDate')">
+          {{ shipmentDetail?.finalDeliveryDate || '-' }}
+        </Descriptions.Item>
         <Descriptions.Item :label="$t('trade.shipment.grid.totalCtns')">
           {{ shipmentDetail?.totalCtns || '-' }}
+        </Descriptions.Item>
+        <Descriptions.Item :label="$t('trade.shipment.grid.createTime')">
+          {{ shipmentDetail?.createTime || '-' }}
         </Descriptions.Item>
         <Descriptions.Item :label="$t('trade.shipment.grid.totalNw')">
           {{ shipmentDetail?.totalNw || '-' }}

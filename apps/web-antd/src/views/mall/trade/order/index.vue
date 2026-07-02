@@ -17,7 +17,7 @@ import { List, message, Tag } from 'ant-design-vue';
 import { ACTION_ICON, TableAction, useVbenVxeGrid } from '#/adapter/vxe-table';
 import { approveOrder, getOrderPage } from '#/api/mall/trade/b2b/order';
 import {
-  createShipmentByOrderId,
+  createShipmentFromOrder,
   getShipmentByOrderId,
 } from '#/api/mall/trade/orderShipment';
 import { $t } from '#/locales';
@@ -79,7 +79,7 @@ async function handleDelivery(row: B2BOrderApi.OrderPageItem) {
         await confirm(
           '该订单尚未创建发货单，是否立即手动创建发货单进入发货管理流程？',
         );
-        const newShipmentId = await createShipmentByOrderId(row.id);
+        const newShipmentId = await createShipmentFromOrder(row.id);
         message.success('发货单创建成功');
         push({
           name: 'TradeOrderShipmentDetail',

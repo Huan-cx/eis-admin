@@ -1,44 +1,48 @@
 <script lang="ts" setup>
 import type { OrderShipmentApi } from '#/api/mall/trade/orderShipment/types';
 
-import { useVbenForm, useVbenModal } from '@vben/common-ui';
+import { useVbenModal } from '@vben/common-ui';
 
 import { message } from 'ant-design-vue';
 
+import { useVbenForm } from '#/adapter/form';
 import { updateShipmentStatus } from '#/api/mall/trade/orderShipment';
 import { $t } from '#/locales';
 
 import { useStatusFormSchema } from '../data';
 
-defineOptions({
-  name: 'TradeOrderShipmentStatusForm',
-});
-
-const emit = defineEmits<{
-  success: [];
-}>();
+const emit = defineEmits(['success']);
 
 const [Form, formApi] = useVbenForm({
-  schema: useStatusFormSchema(),
   commonConfig: {
     componentProps: {
       class: 'w-full',
     },
+    formItemClass: 'col-span-2',
+    labelWidth: 120,
   },
+  layout: 'horizontal',
+  schema: useStatusFormSchema(),
+  showDefaultActions: false,
 });
 
 const [Modal, modalApi] = useVbenModal({
-  class: 'w-[500px]',
   title: $t('trade.shipment.modal.updateStatusTitle'),
   async onConfirm() {
-    const values = await formApi.submitForm();
-    await updateShipmentStatus(values as OrderShipmentApi.UpdateStatusRequest);
-    message.success($t('trade.shipment.message.statusUpdateSuccess'));
-    modalApi.close();
-    emit('success');
-  },
-  onClosed() {
-    formApi.resetForm();
+    const { valid } = await formApi.validate();
+    if (!valid) {
+      return;
+    }
+    modalApi.lock();
+    const values = await formApi.getValues();
+    try {
+      await updateShipmentStatus(values as OrderShipmentApi.UpdateStatusRequest);
+      await modalApi.close();
+      emit('success');
+      message.success($t('ui.actionMessage.operationSuccess'));
+    } finally {
+      modalApi.unlock();
+    }
   },
   async onOpenChange(isOpen: boolean) {
     if (!isOpen) {
@@ -46,7 +50,7 @@ const [Modal, modalApi] = useVbenModal({
     }
     const data = modalApi.getData<OrderShipmentApi.PageItem>();
     if (data) {
-      formApi.setValues({
+      await formApi.setValues({
         id: data.id,
       });
     }
@@ -55,7 +59,7 @@ const [Modal, modalApi] = useVbenModal({
 </script>
 
 <template>
-  <Modal>
-    <Form />
+  <Modal class="w-2/5">
+    <Form class="mx-4" />
   </Modal>
 </template>

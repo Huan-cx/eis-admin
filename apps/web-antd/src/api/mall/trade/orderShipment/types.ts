@@ -103,6 +103,7 @@ export namespace OrderShipmentApi {
     orderId: number;
     orderNo: string;
     shipmentNo: string;
+    customerName?: string;
     status: number;
     statusName?: string;
     shipmentType?: number;
@@ -110,6 +111,9 @@ export namespace OrderShipmentApi {
     loadingPort?: string;
     dischargePort?: string;
     carrier?: string;
+    logisticsId?: number;
+    logisticsName?: string;
+    trackingNo?: string;
     vesselFlight?: string;
     containerNo?: string;
     blNo?: string;
@@ -117,6 +121,8 @@ export namespace OrderShipmentApi {
     eta?: string;
     atd?: string;
     ata?: string;
+    estimatedDeliveryDate?: string;
+    finalDeliveryDate?: string;
     totalCtns?: number;
     totalNw?: number;
     totalGw?: number;
@@ -163,6 +169,21 @@ export namespace OrderShipmentApi {
     events?: OrderShipmentEventApi.Detail[];
   }
 
+  /** 创建发货单请求 */
+  export interface CreateRequest {
+    orderId: number;
+    shipmentType?: number;
+    loadingPort?: string;
+    dischargePort?: string;
+    carrier?: string;
+    logisticsId?: number;
+    trackingNo?: string;
+    vesselFlight?: string;
+    containerNo?: string;
+    blNo?: string;
+    remark?: string;
+  }
+
   /** 更新发货单请求 */
   export interface UpdateRequest {
     id: number;
@@ -170,13 +191,11 @@ export namespace OrderShipmentApi {
     loadingPort?: string;
     dischargePort?: string;
     carrier?: string;
+    logisticsId?: number;
+    trackingNo?: string;
     vesselFlight?: string;
     containerNo?: string;
     blNo?: string;
-    etd?: string;
-    eta?: string;
-    atd?: string;
-    ata?: string;
     remark?: string;
   }
 
@@ -206,6 +225,7 @@ export namespace OrderShipmentEventApi {
     shipmentId: number;
     eventType: number;
     eventTime: string;
+    eventDate?: string;
     title: string;
     description?: string;
     attachments?: string;
@@ -216,6 +236,7 @@ export namespace OrderShipmentEventApi {
     id: number;
     eventType?: number;
     eventTime?: string;
+    eventDate?: string;
     title?: string;
     description?: string;
     attachments?: string;
@@ -228,6 +249,7 @@ export namespace OrderShipmentEventApi {
     eventType: number;
     eventTypeName?: string;
     eventTime: string;
+    eventDate?: string;
     title: string;
     description?: string;
     attachments?: string;

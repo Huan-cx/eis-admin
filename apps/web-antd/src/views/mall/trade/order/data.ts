@@ -8,6 +8,7 @@ import { convertToInteger, formatToFraction } from '@vben/utils';
 import { getSimpleDeliveryExpressList } from '#/api/mall/trade/delivery/express';
 import { $t } from '#/locales';
 import { getRangePickerDefaultProps } from '#/utils';
+import { getSimpleDeliveryPickUpStoreList } from "#/api/mall/trade/delivery/pickUpStore";
 
 /** 列表的搜索表单 */
 export function useGridFormSchema(): VbenFormSchema[] {
@@ -114,7 +115,7 @@ export function useGridFormSchema(): VbenFormSchema[] {
         placeholder: $t('trade.order.form.pickUpStoreIdPlaceholder'),
         allowClear: true,
       },
-
+    },
     {
       fieldName: 'no',
       label: $t('trade.order.form.no'),

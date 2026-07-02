@@ -15,7 +15,6 @@ export interface RfqDetail {
   id: number;
   no: string;
   userId: number;
-  enterpriseId?: number;
   status: number;
   statusName: string;
   requirement?: string;

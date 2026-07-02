@@ -4,10 +4,17 @@ import type { OrderShipmentApi } from '#/api/mall/trade/orderShipment/types';
 
 import { useRouter } from 'vue-router';
 
-import { Page, useVbenModal } from '@vben/common-ui';
+import { Page, prompt, useVbenModal } from '@vben/common-ui';
+
+import { message } from 'ant-design-vue';
 
 import { ACTION_ICON, TableAction, useVbenVxeGrid } from '#/adapter/vxe-table';
-import { getShipmentPage } from '#/api/mall/trade/orderShipment';
+import {
+  createShipment,
+  createShipmentFromOrder,
+  deleteShipment,
+  getShipmentPage,
+} from '#/api/mall/trade/orderShipment';
 import { $t } from '#/locales';
 
 import { useGridColumns, useGridFormSchema } from './data';
@@ -16,6 +23,12 @@ import ShipmentForm from './modules/shipment-form.vue';
 import StatusForm from './modules/status-form.vue';
 
 const { push } = useRouter();
+
+/** 创建发货单弹窗 */
+const [ShipmentCreateModal, shipmentCreateModalApi] = useVbenModal({
+  connectedComponent: ShipmentForm,
+  destroyOnClose: true,
+});
 
 /** 编辑弹窗 */
 const [ShipmentFormModal, shipmentFormModalApi] = useVbenModal({
@@ -65,6 +78,44 @@ function handleOrderDetail(row: OrderShipmentApi.PageItem) {
   push({ name: 'TradeOrderDetail', params: { id: row.orderId } });
 }
 
+/** 删除发货单 */
+async function handleDelete(row: OrderShipmentApi.PageItem) {
+  const hideLoading = message.loading({
+    content: $t('ui.actionMessage.deleting', [row.shipmentNo]),
+    duration: 0,
+  });
+  try {
+    await deleteShipment(row.id);
+    message.success($t('ui.actionMessage.deleteSuccess', [row.shipmentNo]));
+    handleRefresh();
+  } finally {
+    hideLoading();
+  }
+}
+
+/** 创建发货单（根据订单） */
+async function handleCreateFromOrder() {
+  const orderId = await prompt({
+    title: $t('trade.shipment.modal.createFromOrderTitle'),
+    content: $t('trade.shipment.modal.createFromOrderPlaceholder'),
+    modelPropName: 'value',
+  });
+  if (orderId) {
+    const id = Number(orderId);
+    if (Number.isNaN(id) || id <= 0) {
+      message.error($t('trade.shipment.message.invalidOrderId'));
+      return;
+    }
+    const shipmentId = await createShipmentFromOrder(id);
+    push({ name: 'TradeOrderShipmentDetail', params: { id: shipmentId } });
+  }
+}
+
+/** 手动创建发货单 */
+function handleCreate() {
+  shipmentCreateModalApi.setData({ isCreate: true }).open();
+}
+
 /** 判断是否可以更新状态 */
 function canUpdateStatus(row: OrderShipmentApi.PageItem) {
   return row.status !== 0 && row.status !== 80;
@@ -103,11 +154,32 @@ const [Grid, gridApi] = useVbenVxeGrid({
 
 <template>
   <Page auto-content-height>
+    <ShipmentCreateModal @success="handleRefresh" />
     <ShipmentFormModal @success="handleRefresh" />
     <EventFormModal @success="handleRefresh" />
     <StatusFormModal @success="handleRefresh" />
 
     <Grid :table-title="$t('trade.shipment.index.title')">
+      <template #toolbar-tools>
+        <TableAction
+          :actions="[
+            {
+              label: $t('trade.shipment.action.createFromOrder'),
+              type: 'primary',
+              icon: ACTION_ICON.ADD,
+              auth: ['trade:order-shipment:create'],
+              onClick: handleCreateFromOrder,
+            },
+            {
+              label: $t('trade.shipment.action.create'),
+              type: 'primary',
+              icon: ACTION_ICON.ADD,
+              auth: ['trade:order-shipment:create'],
+              onClick: handleCreate,
+            },
+          ]"
+        />
+      </template>
       <template #actions="{ row }">
         <TableAction
           :actions="[
@@ -118,18 +190,19 @@ const [Grid, gridApi] = useVbenVxeGrid({
               auth: ['trade:order-shipment:query'],
               onClick: handleDetail.bind(null, row),
             },
+            {
+              label: $t('trade.shipment.action.edit'),
+              type: 'link',
+              icon: ACTION_ICON.EDIT,
+              auth: ['trade:order-shipment:update'],
+              onClick: handleEdit.bind(null, row),
+            },
           ]"
           :drop-down-actions="[
             {
               label: $t('trade.shipment.action.orderDetail'),
               type: 'link',
               onClick: handleOrderDetail.bind(null, row),
-            },
-            {
-              label: $t('trade.shipment.action.edit'),
-              type: 'link',
-              auth: ['trade:order-shipment:update'],
-              onClick: handleEdit.bind(null, row),
             },
             {
               label: $t('trade.shipment.action.updateStatus'),
@@ -141,8 +214,19 @@ const [Grid, gridApi] = useVbenVxeGrid({
             {
               label: $t('trade.shipment.action.addEvent'),
               type: 'link',
-              auth: ['trade:order-shipmentEvent:create'],
+              auth: ['trade:order-shipment-event:create'],
               onClick: handleAddEvent.bind(null, row),
+            },
+            {
+              label: $t('trade.shipment.action.delete'),
+              type: 'link',
+              danger: true,
+              icon: ACTION_ICON.DELETE,
+              auth: ['trade:order-shipment:delete'],
+              popConfirm: {
+                title: $t('ui.actionMessage.deleteConfirm', [row.shipmentNo]),
+                confirm: handleDelete.bind(null, row),
+              },
             },
           ]"
         />

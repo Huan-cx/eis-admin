@@ -24,7 +24,6 @@ export namespace B2BRfqApi {
     no: string;
     userId: number;
     userName?: string;
-    enterpriseId?: number;
     status: number;
     statusName: string;
     requirement?: string;

@@ -298,7 +298,7 @@ const getStatusColor = (status: number) => {
               </Button>
               <Button
                 type="primary"
-                :disabled="quotations.length < 1"
+                :disabled="quotations.length === 0"
                 @click="goToCompare"
               >
                 {{ $t('trade.b2b.compare.index.title') }}
@@ -418,8 +418,15 @@ const getStatusColor = (status: number) => {
                           {{ item.count }}
                         </span>
                         <span>
-                          {{ $t('trade.b2b.quotation.detail.supplierPrice') }}: ¥{{
-                            fenToYuan(item.supplierPrice ?? 0)
+                          {{ $t('trade.b2b.quotation.detail.supplierPrice') }}:
+                          ¥{{ fenToYuan(item.supplierPrice ?? 0) }}
+                        </span>
+                        <span>
+                          {{ $t('trade.b2b.quotation.detail.sellingPrice') }}:
+                          ¥{{
+                            fenToYuan(
+                              item.sellingPrice ?? item.supplierPrice ?? 0,
+                            )
                           }}
                         </span>
                         <span v-if="item.supplierName">

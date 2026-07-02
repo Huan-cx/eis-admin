@@ -42,13 +42,32 @@ export async function getShipmentByOrderId(orderId: number) {
 }
 
 /**
- * 根据订单ID创建发货单（手动创建）
+ * 根据订单ID创建发货单
  * @param orderId 订单ID
  * @returns 发货单ID
  */
-export async function createShipmentByOrderId(orderId: number) {
-  return requestClient.get<number>('/trade/order-shipment/create', {
+export async function createShipmentFromOrder(orderId: number) {
+  return requestClient.get<number>('/trade/order-shipment/create-from-order', {
     params: { orderId },
+  });
+}
+
+/**
+ * 手动创建发货单
+ * @param data 创建数据
+ * @returns 发货单ID
+ */
+export async function createShipment(data: OrderShipmentApi.CreateRequest) {
+  return requestClient.post<number>('/trade/order-shipment/create', data);
+}
+
+/**
+ * 删除发货单
+ * @param id 发货单ID
+ */
+export async function deleteShipment(id: number) {
+  return requestClient.delete('/trade/order-shipment/delete', {
+    params: { id },
   });
 }
 

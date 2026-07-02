@@ -55,6 +55,15 @@ export function useGridFormSchema(): VbenFormSchema[] {
       },
     },
     {
+      fieldName: 'customerName',
+      label: $t('trade.shipment.form.customerName'),
+      component: 'Input',
+      componentProps: {
+        placeholder: $t('trade.shipment.form.customerNamePlaceholder'),
+        allowClear: true,
+      },
+    },
+    {
       fieldName: 'status',
       label: $t('trade.shipment.form.status'),
       component: 'Select',
@@ -91,17 +100,27 @@ export function useGridFormSchema(): VbenFormSchema[] {
  */
 export function useGridColumns(): VxeGridPropTypes.Columns {
   return [
-    { type: 'seq', title: $t('trade.shipment.grid.index'), width: 60, fixed: 'left' },
     {
-      field: 'orderNo',
-      title: $t('trade.shipment.grid.orderNo'),
+      type: 'seq',
+      title: $t('trade.shipment.grid.index'),
+      width: 60,
       fixed: 'left',
-      minWidth: 160,
     },
     {
       field: 'shipmentNo',
       title: $t('trade.shipment.grid.shipmentNo'),
+      fixed: 'left',
       minWidth: 160,
+    },
+    {
+      field: 'orderNo',
+      title: $t('trade.shipment.grid.orderNo'),
+      minWidth: 160,
+    },
+    {
+      field: 'customerName',
+      title: $t('trade.shipment.grid.customerName'),
+      minWidth: 150,
     },
     {
       field: 'status',
@@ -134,8 +153,18 @@ export function useGridColumns(): VxeGridPropTypes.Columns {
       minWidth: 120,
     },
     {
-      field: 'carrier',
-      title: $t('trade.shipment.grid.carrier'),
+      field: 'logisticsName',
+      title: $t('trade.shipment.grid.logisticsName'),
+      minWidth: 120,
+    },
+    {
+      field: 'trackingNo',
+      title: $t('trade.shipment.grid.trackingNo'),
+      minWidth: 140,
+    },
+    {
+      field: 'blNo',
+      title: $t('trade.shipment.grid.blNo'),
       minWidth: 120,
     },
     {
@@ -144,34 +173,55 @@ export function useGridColumns(): VxeGridPropTypes.Columns {
       minWidth: 120,
     },
     {
-      field: 'containerNo',
-      title: $t('trade.shipment.grid.containerNo'),
+      field: 'etd',
+      title: $t('trade.shipment.grid.etd'),
+      formatter: 'formatDate',
+      minWidth: 100,
+    },
+    {
+      field: 'atd',
+      title: $t('trade.shipment.grid.atd'),
+      formatter: 'formatDate',
+      minWidth: 100,
+    },
+    {
+      field: 'eta',
+      title: $t('trade.shipment.grid.eta'),
+      formatter: 'formatDate',
+      minWidth: 100,
+    },
+    {
+      field: 'ata',
+      title: $t('trade.shipment.grid.ata'),
+      formatter: 'formatDate',
+      minWidth: 100,
+    },
+    {
+      field: 'estimatedDeliveryDate',
+      title: $t('trade.shipment.grid.estimatedDeliveryDate'),
+      formatter: 'formatDate',
       minWidth: 120,
     },
     {
-      field: 'blNo',
-      title: $t('trade.shipment.grid.blNo'),
+      field: 'finalDeliveryDate',
+      title: $t('trade.shipment.grid.finalDeliveryDate'),
+      formatter: 'formatDate',
       minWidth: 120,
     },
     {
       field: 'totalCtns',
       title: $t('trade.shipment.grid.totalCtns'),
-      width: 100,
+      width: 80,
     },
     {
       field: 'totalNw',
       title: $t('trade.shipment.grid.totalNw'),
-      width: 100,
+      width: 80,
     },
     {
       field: 'totalGw',
       title: $t('trade.shipment.grid.totalGw'),
-      width: 100,
-    },
-    {
-      field: 'totalCbm',
-      title: $t('trade.shipment.grid.totalCbm'),
-      width: 100,
+      width: 80,
     },
     {
       field: 'createTime',
@@ -184,6 +234,123 @@ export function useGridColumns(): VxeGridPropTypes.Columns {
       width: 240,
       fixed: 'right',
       slots: { default: 'actions' },
+    },
+  ];
+}
+
+/**
+ * 创建发货单表单配置
+ */
+export function useCreateShipmentFormSchema(): VbenFormSchema[] {
+  return [
+    {
+      fieldName: 'orderId',
+      label: $t('trade.shipment.form.orderId'),
+      component: 'InputNumber',
+      componentProps: {
+        placeholder: $t('trade.shipment.form.orderIdPlaceholder'),
+        min: 1,
+      },
+      rules: 'required',
+    },
+    {
+      fieldName: 'shipmentType',
+      label: $t('trade.shipment.form.shipmentType'),
+      component: 'Select',
+      componentProps: {
+        options: getShipmentTypeOptions(),
+        placeholder: $t('trade.shipment.form.shipmentTypePlaceholder'),
+        allowClear: true,
+      },
+    },
+    {
+      fieldName: 'loadingPort',
+      label: $t('trade.shipment.form.loadingPort'),
+      component: 'Input',
+      componentProps: {
+        placeholder: $t('trade.shipment.form.loadingPortPlaceholder'),
+        allowClear: true,
+      },
+    },
+    {
+      fieldName: 'dischargePort',
+      label: $t('trade.shipment.form.dischargePort'),
+      component: 'Input',
+      componentProps: {
+        placeholder: $t('trade.shipment.form.dischargePortPlaceholder'),
+        allowClear: true,
+      },
+    },
+    {
+      fieldName: 'logisticsId',
+      label: $t('trade.shipment.form.logisticsId'),
+      component: 'ApiSelect',
+      componentProps: {
+        api: async () => {
+          const { getSimpleDeliveryExpressList } =
+            await import('#/api/mall/trade/delivery/express');
+          return await getSimpleDeliveryExpressList();
+        },
+        labelField: 'name',
+        valueField: 'id',
+        placeholder: $t('trade.shipment.form.logisticsIdPlaceholder'),
+        allowClear: true,
+      },
+    },
+    {
+      fieldName: 'trackingNo',
+      label: $t('trade.shipment.form.trackingNo'),
+      component: 'Input',
+      componentProps: {
+        placeholder: $t('trade.shipment.form.trackingNoPlaceholder'),
+        allowClear: true,
+      },
+    },
+    {
+      fieldName: 'carrier',
+      label: $t('trade.shipment.form.carrier'),
+      component: 'Input',
+      componentProps: {
+        placeholder: $t('trade.shipment.form.carrierPlaceholder'),
+        allowClear: true,
+      },
+    },
+    {
+      fieldName: 'vesselFlight',
+      label: $t('trade.shipment.form.vesselFlight'),
+      component: 'Input',
+      componentProps: {
+        placeholder: $t('trade.shipment.form.vesselFlightPlaceholder'),
+        allowClear: true,
+      },
+    },
+    {
+      fieldName: 'containerNo',
+      label: $t('trade.shipment.form.containerNo'),
+      component: 'Input',
+      componentProps: {
+        placeholder: $t('trade.shipment.form.containerNoPlaceholder'),
+        allowClear: true,
+      },
+    },
+    {
+      fieldName: 'blNo',
+      label: $t('trade.shipment.form.blNo'),
+      component: 'Input',
+      componentProps: {
+        placeholder: $t('trade.shipment.form.blNoPlaceholder'),
+        allowClear: true,
+      },
+    },
+    {
+      fieldName: 'remark',
+      label: $t('trade.shipment.form.remark'),
+      component: 'Textarea',
+      componentProps: {
+        rows: 3,
+        placeholder: $t('trade.shipment.form.remarkPlaceholder'),
+        allowClear: true,
+      },
     },
   ];
 }
@@ -227,6 +394,29 @@ export function useShipmentFormSchema(): VbenFormSchema[] {
       },
     },
     {
+      fieldName: 'logisticsId',
+      label: $t('trade.shipment.form.logisticsId'),
+      component: 'ApiSelect',
+      componentProps: {
+        api: async () => {
+          const { getSimpleDeliveryExpressList } =
+            await import('#/api/mall/trade/delivery/express');
+          return await getSimpleDeliveryExpressList();
+        },
+        labelField: 'name',
+        valueField: 'id',
+        allowClear: true,
+      },
+    },
+    {
+      fieldName: 'trackingNo',
+      label: $t('trade.shipment.form.trackingNo'),
+      component: 'Input',
+      componentProps: {
+        allowClear: true,
+      },
+    },
+    {
       fieldName: 'carrier',
       label: $t('trade.shipment.form.carrier'),
       component: 'Input',
@@ -255,46 +445,6 @@ export function useShipmentFormSchema(): VbenFormSchema[] {
       label: $t('trade.shipment.form.blNo'),
       component: 'Input',
       componentProps: {
-        allowClear: true,
-      },
-    },
-    {
-      fieldName: 'etd',
-      label: $t('trade.shipment.form.etd'),
-      component: 'DatePicker',
-      componentProps: {
-        showTime: true,
-        format: 'YYYY-MM-DD HH:mm:ss',
-        allowClear: true,
-      },
-    },
-    {
-      fieldName: 'eta',
-      label: $t('trade.shipment.form.eta'),
-      component: 'DatePicker',
-      componentProps: {
-        showTime: true,
-        format: 'YYYY-MM-DD HH:mm:ss',
-        allowClear: true,
-      },
-    },
-    {
-      fieldName: 'atd',
-      label: $t('trade.shipment.form.atd'),
-      component: 'DatePicker',
-      componentProps: {
-        showTime: true,
-        format: 'YYYY-MM-DD HH:mm:ss',
-        allowClear: true,
-      },
-    },
-    {
-      fieldName: 'ata',
-      label: $t('trade.shipment.form.ata'),
-      component: 'DatePicker',
-      componentProps: {
-        showTime: true,
-        format: 'YYYY-MM-DD HH:mm:ss',
         allowClear: true,
       },
     },
@@ -375,11 +525,14 @@ export function useEventFormSchema(): VbenFormSchema[] {
           { label: $t('trade.shipment.eventType.5002'), value: 5002 },
           { label: $t('trade.shipment.eventType.6001'), value: 6001 },
           { label: $t('trade.shipment.eventType.6002'), value: 6002 },
+          { label: $t('trade.shipment.eventType.7000'), value: 7000 },
           { label: $t('trade.shipment.eventType.7001'), value: 7001 },
           { label: $t('trade.shipment.eventType.7002'), value: 7002 },
           { label: $t('trade.shipment.eventType.7003'), value: 7003 },
+          { label: $t('trade.shipment.eventType.7004'), value: 7004 },
           { label: $t('trade.shipment.eventType.8001'), value: 8001 },
           { label: $t('trade.shipment.eventType.8002'), value: 8002 },
+          { label: $t('trade.shipment.eventType.9000'), value: 9000 },
           { label: $t('trade.shipment.eventType.9001'), value: 9001 },
           { label: $t('trade.shipment.eventType.9002'), value: 9002 },
           { label: $t('trade.shipment.eventType.1'), value: 1 },
@@ -399,6 +552,16 @@ export function useEventFormSchema(): VbenFormSchema[] {
         allowClear: true,
       },
       rules: 'required',
+    },
+    {
+      fieldName: 'eventDate',
+      label: $t('trade.shipment.form.eventDate'),
+      component: 'DatePicker',
+      componentProps: {
+        showTime: true,
+        format: 'YYYY-MM-DD HH:mm:ss',
+        allowClear: true,
+      },
     },
     {
       fieldName: 'title',

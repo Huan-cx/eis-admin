@@ -1,45 +1,49 @@
 <script lang="ts" setup>
 import type { OrderShipmentEventApi } from '#/api/mall/trade/orderShipment/types';
 
-import { useVbenForm, useVbenModal } from '@vben/common-ui';
+import { useVbenModal } from '@vben/common-ui';
 
 import { message } from 'ant-design-vue';
 import dayjs from 'dayjs';
 
+import { useVbenForm } from '#/adapter/form';
 import { createShipmentEvent } from '#/api/mall/trade/orderShipment';
 import { $t } from '#/locales';
 
 import { useEventFormSchema } from '../data';
 
-defineOptions({
-  name: 'TradeOrderShipmentEventForm',
-});
-
-const emit = defineEmits<{
-  success: [];
-}>();
+const emit = defineEmits(['success']);
 
 const [Form, formApi] = useVbenForm({
-  schema: useEventFormSchema(),
   commonConfig: {
     componentProps: {
       class: 'w-full',
     },
+    formItemClass: 'col-span-2',
+    labelWidth: 120,
   },
+  layout: 'horizontal',
+  schema: useEventFormSchema(),
+  showDefaultActions: false,
 });
 
 const [Modal, modalApi] = useVbenModal({
-  class: 'w-[600px]',
   title: $t('trade.shipment.action.addEvent'),
   async onConfirm() {
-    const values = await formApi.submitForm();
-    await createShipmentEvent(values as OrderShipmentEventApi.CreateRequest);
-    message.success($t('trade.shipment.message.eventAddSuccess'));
-    modalApi.close();
-    emit('success');
-  },
-  onClosed() {
-    formApi.resetForm();
+    const { valid } = await formApi.validate();
+    if (!valid) {
+      return;
+    }
+    modalApi.lock();
+    const values = await formApi.getValues();
+    try {
+      await createShipmentEvent(values as OrderShipmentEventApi.CreateRequest);
+      await modalApi.close();
+      emit('success');
+      message.success($t('ui.actionMessage.operationSuccess'));
+    } finally {
+      modalApi.unlock();
+    }
   },
   async onOpenChange(isOpen: boolean) {
     if (!isOpen) {
@@ -47,10 +51,10 @@ const [Modal, modalApi] = useVbenModal({
     }
     const data = modalApi.getData<{ shipmentId: number }>();
     if (data) {
-      formApi.setValues({
+      await formApi.setValues({
         shipmentId: data.shipmentId,
         eventTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
-        eventType: 9999, // CUSTOM_EVENT
+        eventType: 9999,
       });
     }
   },
@@ -58,7 +62,7 @@ const [Modal, modalApi] = useVbenModal({
 </script>
 
 <template>
-  <Modal>
-    <Form />
+  <Modal class="w-2/5">
+    <Form class="mx-4" />
   </Modal>
 </template>

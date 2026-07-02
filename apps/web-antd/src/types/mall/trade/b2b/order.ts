@@ -15,7 +15,6 @@ export interface OrderDetail {
   rfqId: number;
   quotationId: number;
   userId: number;
-  enterpriseId?: number;
   status: number;
   statusName: string;
   payStatus?: number;

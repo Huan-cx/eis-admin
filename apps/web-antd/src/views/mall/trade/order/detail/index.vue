@@ -25,7 +25,7 @@ import {
   rejectOrder,
 } from '#/api/mall/trade/b2b/order';
 import {
-  createShipmentByOrderId,
+  createShipmentFromOrder,
   getShipmentByOrderId,
 } from '#/api/mall/trade/orderShipment';
 import { useDescription } from '#/components/description';
@@ -274,7 +274,7 @@ const handleCreateShipment = async () => {
       content: '创建中...',
       duration: 0,
     });
-    const newShipmentId = await createShipmentByOrderId(order.value.id);
+    const newShipmentId = await createShipmentFromOrder(order.value.id);
     hideLoading();
     message.success('发货单创建成功');
     // 更新状态
