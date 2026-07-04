@@ -33,11 +33,15 @@ const [Modal, modalApi] = useVbenModal({
   closable: false,
   closeOnClickModal: false,
   async onOpenChange(isOpen: boolean) {
-    if (!isOpen) {
-      resetState();
-      return;
+    if (
+      isOpen && // 如果是首次打开或任务已完成，加载选项
+      (!taskStatus.value ||
+        ['failed', 'not_found', 'partial', 'success'].includes(
+          taskStatus.value,
+        ))
+    ) {
+      await loadOptions();
     }
-    await loadOptions();
   },
 });
 const loading = ref(false);
@@ -57,6 +61,7 @@ function resetState() {
   selectedProvider.value = '';
   selectedTranslateType.value = props.translateType || 'ALL';
   overwrite.value = false;
+  pollingTaskId.value = null;
   taskStatus.value = null;
   taskProgress.value = { success: 0, skipped: 0, failed: 0, total: 0 };
   taskErrorMessage.value = '';
@@ -106,13 +111,21 @@ async function handleConfirm() {
     message.error($t('translate.validation.selectProvider'));
     return;
   }
+  // 保存用户选择的参数
+  const provider = selectedProvider.value;
+  const translateType = selectedTranslateType.value;
+  const isOverwrite = overwrite.value;
+  // 重置任务状态（但保留用户选择）
+  taskStatus.value = null;
+  taskProgress.value = { success: 0, skipped: 0, failed: 0, total: 0 };
+  taskErrorMessage.value = '';
   loading.value = true;
   try {
     const reqData = {
-      translateType: selectedTranslateType.value as any,
+      translateType: translateType as any,
       targetLanguages: [props.targetLanguage],
-      provider: selectedProvider.value as any,
-      overwrite: overwrite.value,
+      provider: provider as any,
+      overwrite: isOverwrite,
       batchSize: 20,
       async: true,
     };
@@ -134,6 +147,8 @@ async function handleClose() {
   if (taskStatus.value === 'success' || taskStatus.value === 'partial') {
     emit('success');
   }
+  // 关闭后重置状态，下次打开显示新表单
+  resetState();
   emit('close');
 }
 async function startPolling() {
@@ -184,7 +199,7 @@ function stopPolling() {
     clearInterval(pollingInterval.value);
     pollingInterval.value = null;
   }
-  pollingTaskId.value = null;
+  // 不清除 pollingTaskId，保留任务ID用于界面显示完成状态
 }
 onUnmounted(() => {
   stopPolling();

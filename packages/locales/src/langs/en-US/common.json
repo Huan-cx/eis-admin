@@ -48,5 +48,6 @@
   "success": "Success",
   "fail": "Failed",
   "index": "Index",
-  "quotation": "Quotation"
+  "quotation": "Quotation",
+  "close": "Close"
 }

@@ -48,5 +48,6 @@
   "success": "成功",
   "fail": "失败",
   "index": "序号",
-  "quotation": "报价"
+  "quotation": "报价",
+  "close": "关闭"
 }
