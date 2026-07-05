@@ -12,6 +12,47 @@
     "analytics": "分析页",
     "workspace": "工作台"
   },
+  "mall": {
+    "product": {
+      "center": "商品中心",
+      "add": "商品添加",
+      "edit": "商品编辑",
+      "detail": "商品详情"
+    },
+    "trade": {
+      "center": "交易中心",
+      "order": {
+        "detail": "订单详情"
+      },
+      "shipment": {
+        "detail": "物流详情"
+      },
+      "afterSale": {
+        "detail": "退款详情"
+      },
+      "b2b": {
+        "rfq": {
+          "detail": "询价单详情"
+        },
+        "quotation": {
+          "detail": "报价单详情",
+          "edit": "报价单编辑"
+        },
+        "compare": "比价工作台"
+      }
+    },
+    "promotion": {
+      "center": "营销中心",
+      "diy": {
+        "decorate": "模板装修"
+      }
+    }
+  },
+  "system": {
+    "notify": {
+      "message": "我的站内信"
+    }
+  },
   "action": {
     "action": "操作",
     "add": "新增",
@@ -30,6 +71,13 @@
   "tenant": {
     "placeholder": "请选择租户",
     "success": "切换租户成功"
+  },
+  "infra": {
+    "cache": {
+      "clear": "清除缓存",
+      "success": "已通知所有客户端清除缓存",
+      "error": "清除缓存失败"
+    }
   },
   "mp": {
     "upload": {

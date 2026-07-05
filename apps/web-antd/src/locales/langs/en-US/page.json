@@ -12,6 +12,47 @@
     "analytics": "Analytics",
     "workspace": "Workspace"
   },
+  "mall": {
+    "product": {
+      "center": "Product Center",
+      "add": "Add Product",
+      "edit": "Edit Product",
+      "detail": "Product Detail"
+    },
+    "trade": {
+      "center": "Trade Center",
+      "order": {
+        "detail": "Order Detail"
+      },
+      "shipment": {
+        "detail": "Shipment Detail"
+      },
+      "afterSale": {
+        "detail": "Refund Detail"
+      },
+      "b2b": {
+        "rfq": {
+          "detail": "RFQ Detail"
+        },
+        "quotation": {
+          "detail": "Quotation Detail",
+          "edit": "Edit Quotation"
+        },
+        "compare": "Price Comparison"
+      }
+    },
+    "promotion": {
+      "center": "Promotion Center",
+      "diy": {
+        "decorate": "Template Decoration"
+      }
+    }
+  },
+  "system": {
+    "notify": {
+      "message": "My Notifications"
+    }
+  },
   "action": {
     "action": "Action",
     "add": "Add",
@@ -30,6 +71,13 @@
   "tenant": {
     "placeholder": "Please select tenant",
     "success": "Switch tenant success"
+  },
+  "infra": {
+    "cache": {
+      "clear": "Clear Cache",
+      "success": "All clients notified to clear cache",
+      "error": "Failed to clear cache"
+    }
   },
   "mp": {
     "upload": {

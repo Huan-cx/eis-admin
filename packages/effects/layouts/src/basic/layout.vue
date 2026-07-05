@@ -195,9 +195,14 @@ function refreshAll() {
   refresh();
 }
 
-// 语言更新后，刷新页面
+function handleLocaleChange() {
+  tabbarStore.cachedTabs.clear();
+  window.location.reload();
+}
+
+// 语言更新后，刷新整个页面（包括菜单）
 // i18n.global.locale会在preference.app.locale变更之后才会更新，因此watchpreference.app.locale是不合适的，刷新页面时可能语言配置尚未完全加载完成
-watch(i18n.global.locale, refreshAll, { flush: 'post' });
+watch(i18n.global.locale, handleLocaleChange, { flush: 'post' });
 
 // 时区更新后，刷新页面
 watch(() => timezoneStore.timezone, refreshAll, { flush: 'post' });

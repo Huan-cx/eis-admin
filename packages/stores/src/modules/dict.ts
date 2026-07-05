@@ -42,6 +42,11 @@ export const useDictStore = defineStore('core-dict', {
       valueField: string = 'value',
     ) {
       api(params).then((dicts) => {
+        // 添加安全检查：确保 dicts 是数组
+        if (!Array.isArray(dicts)) {
+          console.warn('setDictCacheByApi: dicts is not an array', dicts);
+          return;
+        }
         const dictCacheData: Dict = {};
         dicts.forEach((dict) => {
           dictCacheData[dict.dictType] = dicts

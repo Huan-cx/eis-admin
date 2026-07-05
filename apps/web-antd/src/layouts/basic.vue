@@ -13,6 +13,7 @@ import {
   AntdProfileOutlined,
   BookOpenText,
   CircleHelp,
+  RefreshCw,
   SvgGithubIcon,
 } from '@vben/icons';
 import {
@@ -29,6 +30,7 @@ import { formatDateTime, openWindow } from '@vben/utils';
 
 import { message } from 'ant-design-vue';
 
+import { invalidateAllClientCache } from '#/api/infra/cache';
 import {
   getUnreadNotifyMessageCount,
   getUnreadNotifyMessageList,
@@ -161,6 +163,28 @@ const tenantEnable = computed(
   () => hasAccessByCodes(['system:tenant:visit']) && isTenantEnable(),
 );
 
+const cacheClearEnable = computed(() =>
+  hasAccessByCodes(['infra:cache:invalidate']),
+);
+
+const isClearingCache = ref(false);
+
+/** 处理清除客户端缓存 */
+async function handleClearClientCache() {
+  if (isClearingCache.value) {
+    return;
+  }
+  isClearingCache.value = true;
+  try {
+    await invalidateAllClientCache();
+    message.success($t('page.infra.cache.success'));
+  } catch {
+    message.error($t('page.infra.cache.error'));
+  } finally {
+    isClearingCache.value = false;
+  }
+}
+
 /** 获取租户列表 */
 async function handleGetTenantList() {
   if (tenantEnable.value) {
@@ -247,13 +271,27 @@ watch(
       />
     </template>
     <template #header-right-1>
-      <div v-if="tenantEnable">
+      <div v-if="tenantEnable || cacheClearEnable" class="flex items-center">
         <TenantDropdown
+          v-if="tenantEnable"
           class="mr-2"
           :tenant-list="tenants"
           :visit-tenant-id="accessStore.visitTenantId"
           @success="handleTenantChange"
         />
+        <a-button
+          v-if="cacheClearEnable"
+          :loading="isClearingCache"
+          class="mr-2"
+          size="small"
+          type="primary"
+          @click="handleClearClientCache"
+        >
+          <template #icon>
+            <RefreshCw class="size-4" />
+          </template>
+          {{ $t('page.infra.cache.clear') }}
+        </a-button>
       </div>
     </template>
     <template #extra>
