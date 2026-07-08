@@ -120,39 +120,33 @@ export function useInfoFormSchema(): VbenFormSchema[] {
 export function useDeliveryFormSchema(): VbenFormSchema[] {
   return [
     {
+      fieldName: 'id',
+      component: 'Input',
+      dependencies: {
+        triggerFields: [''],
+        show: () => false,
+      },
+    },
+    {
       fieldName: 'deliveryTypes',
       label: $t('mall-product.spu.form.deliveryType'),
       component: 'CheckboxGroup',
-      rules: 'required',
       componentProps: {
-        options: [
-          {
-            label: $t('mall-product.spu.form.deliveryType.express'),
-            value: 1,
-          },
-          {
-            label: $t('mall-product.spu.form.deliveryType.self'),
-            value: 2,
-          },
-        ],
+        options: getDictOptions(DICT_TYPE.TRADE_DELIVERY_TYPE, 'number'),
       },
+      rules: 'required',
     },
     {
       fieldName: 'deliveryTemplateId',
       label: $t('mall-product.spu.form.deliveryTemplate'),
-      dependencies: {
-        triggerFields: ['deliveryTypes'],
-        component: 'Select',
-        show: (values) =>
-          values.deliveryTypes && values.deliveryTypes.includes(1),
-      },
-      rules: 'required',
+      component: 'ApiSelect',
       componentProps: {
         api: getSimpleTemplateList,
         labelField: 'name',
         valueField: 'id',
         placeholder: $t('mall-product.spu.placeholder.deliveryTemplate'),
       },
+      rules: 'required',
     },
   ];
 }
@@ -163,7 +157,7 @@ export function useDescriptionFormSchema(): VbenFormSchema[] {
     {
       fieldName: 'description',
       label: $t('mall-product.spu.form.description'),
-      component: 'RichTextEditor',
+      component: 'RichTextarea',
       rules: 'required',
     },
   ];

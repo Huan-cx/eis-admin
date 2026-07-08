@@ -240,7 +240,8 @@
       "packagingWay": "Please enter packaging way",
       "pcsPerCtn": "Please enter pieces per carton",
       "nwPerCtn": "Please enter net weight per carton",
-      "gwPerCtn": "Please enter gross weight per carton"
+      "gwPerCtn": "Please enter gross weight per carton",
+      "deliveryTemplate": "Please select delivery template"
     },
     "actions": {
       "create": "Create Product",
@@ -275,6 +276,11 @@
       "batchSetting": "Batch Setting",
       "specList": "Spec List",
       "deliveryTypes": "Delivery Types",
+      "deliveryType": "Delivery Type",
+      "deliveryTypeOptions": {
+        "express": "Express Delivery",
+        "self": "Self Pickup"
+      },
       "deliveryTemplate": "Delivery Template",
       "packagingWay": "Packaging Way",
       "pcsPerCtn": "PC/CTN",

@@ -240,7 +240,8 @@
       "packagingWay": "请输入包装方式",
       "pcsPerCtn": "请输入每箱数量",
       "nwPerCtn": "请输入净重/箱",
-      "gwPerCtn": "请输入毛重/箱"
+      "gwPerCtn": "请输入毛重/箱",
+      "deliveryTemplate": "请选择运费模板"
     },
     "actions": {
       "create": "新增商品",
@@ -275,6 +276,11 @@
       "batchSetting": "批量设置",
       "specList": "规格列表",
       "deliveryTypes": "配送方式",
+      "deliveryType": "配送方式",
+      "deliveryTypeOptions": {
+        "express": "快递发货",
+        "self": "用户自提"
+      },
       "deliveryTemplate": "运费模板",
       "packagingWay": "包装方式",
       "pcsPerCtn": "每箱数量(PC/CTN)",
