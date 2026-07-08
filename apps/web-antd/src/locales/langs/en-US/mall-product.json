@@ -233,7 +233,7 @@
       "supplier": "Please select supplier",
       "keyword": "Please enter product keyword",
       "introduction": "Please enter product introduction",
-      "description": "Please enter product description",
+      "description": "Please enter product description. Recommended image width 1472px (16:9 ratio), square images recommended 800×800px",
       "metaTitle": "Please enter SEO title",
       "metaDescription": "Please enter SEO description",
       "slug": "Please enter slug",
@@ -302,6 +302,10 @@
       "costPrice": "Cost price must be greater than or equal to 0.00!",
       "nameEmpty": "Product name cannot be empty",
       "skuIncomplete": "【Price & Stock】Incomplete, please fill in relevant information"
+    },
+    "tip": {
+      "imageSize": "Recommended image width 1472px, 16:9 ratio (e.g. 1472×828px), use the same image for all devices.",
+      "imageSizeTitle": "Image Size Recommendation"
     }
   },
   "i18n": {

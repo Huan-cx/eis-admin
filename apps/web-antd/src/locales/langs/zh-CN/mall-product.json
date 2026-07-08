@@ -233,7 +233,7 @@
       "supplier": "请选择供应商",
       "keyword": "请输入商品关键词",
       "introduction": "请输入商品介绍",
-      "description": "请输入商品详情",
+      "description": "请输入商品详情，推荐图片宽度 1472px（16:9比例），正方形图建议 800×800px",
       "metaTitle": "请输入SEO标题",
       "metaDescription": "请输入SEO描述",
       "slug": "请输入路径别名",
@@ -302,6 +302,10 @@
       "costPrice": "商品成本价格必须大于等于 0.00 元！",
       "nameEmpty": "商品名称不能为空",
       "skuIncomplete": "【库存价格】不完善，请填写相关信息"
+    },
+    "tip": {
+      "imageSize": "推荐图片宽度 1472px，比例 16:9（如 1472×828px），所有端使用同一张图片。",
+      "imageSizeTitle": "图片尺寸建议"
     }
   },
   "i18n": {

@@ -206,8 +206,12 @@ async function handleSubmit() {
       skuItem.price = convertToInteger(skuItem.price);
       skuItem.marketPrice = convertToInteger(skuItem.marketPrice);
       skuItem.costPrice = convertToInteger(skuItem.costPrice);
-      skuItem.firstBrokeragePrice = convertToInteger(skuItem.firstBrokeragePrice);
-      skuItem.secondBrokeragePrice = convertToInteger(skuItem.secondBrokeragePrice);
+      skuItem.firstBrokeragePrice = convertToInteger(
+        skuItem.firstBrokeragePrice,
+      );
+      skuItem.secondBrokeragePrice = convertToInteger(
+        skuItem.secondBrokeragePrice,
+      );
       return skuItem;
     });
   }
@@ -430,10 +434,17 @@ onMounted(async () => {
           </template>
         </SkuForm>
         <DeliveryForm class="w-3/5" v-show="activeTabName === 'delivery'" />
-        <DescriptionForm
-          class="w-3/5"
-          v-show="activeTabName === 'description'"
-        />
+        <div v-show="activeTabName === 'description'" class="w-full">
+          <div
+            class="mb-4 rounded-lg border border-blue-200 bg-blue-50 px-4 py-2 text-sm text-blue-700"
+          >
+            <span class="font-medium">
+              {{ $t('mall-product.spu.tip.imageSizeTitle') }}：
+            </span>
+            {{ $t('mall-product.spu.tip.imageSize') }}
+          </div>
+          <DescriptionForm class="w-full" />
+        </div>
         <OtherForm class="w-3/5" v-show="activeTabName === 'other'" />
       </Card>
     </Page>

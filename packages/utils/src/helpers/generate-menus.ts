@@ -102,14 +102,12 @@ function generateMenus(
  * @returns 路由数据
  */
 function convertServerMenuToRouteRecordStringComponent(
-  menuList: AppRouteRecordRaw[] = [],
+  menuList: AppRouteRecordRaw[],
   parent = '',
   nameSet: Set<string> = new Set(),
 ): RouteRecordStringComponent[] {
   const menus: RouteRecordStringComponent[] = [];
-  if (!menuList || menuList.length === 0) {
-    return menus;
-  }
+
   menuList.forEach((menu) => {
     // 处理外链菜单（顶级或子级）
     if (isHttpUrl(menu.path)) {

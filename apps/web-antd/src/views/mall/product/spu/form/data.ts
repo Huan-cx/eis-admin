@@ -158,6 +158,9 @@ export function useDescriptionFormSchema(): VbenFormSchema[] {
       fieldName: 'description',
       label: $t('mall-product.spu.form.description'),
       component: 'RichTextarea',
+      componentProps: {
+        placeholder: $t('mall-product.spu.placeholder.description'),
+      },
       rules: 'required',
     },
   ];
