@@ -38,9 +38,15 @@ const { closeCurrentTab } = useTabs();
 const activeTabName = ref('info');
 const formLoading = ref(false);
 const isDetail = ref(name === 'ProductSpuDetail');
-const skuListRef = ref();
+const singleSkuListRef = ref();
+const multiSkuListRef = ref();
 const i18nData = ref<MallI18nApi.TranslationItem[]>([]);
 const i18nEditorRef = ref<InstanceType<typeof I18nEditor>>();
+
+/** 当前激活的 SkuList 实例：单规格/多规格切换时对应不同组件 */
+function getActiveSkuListRef() {
+  return formData.value.specType ? multiSkuListRef.value : singleSkuListRef.value;
+}
 
 const formData = ref<MallSpuApi.Spu>({
   name: '',
@@ -177,6 +183,13 @@ function handleTabChange(key: string) {
   activeTabName.value = key;
 }
 
+/** 添加属性名成功后的回调：赋值新的 propertyList 并触发 SKU 生成 */
+function handleAddPropertySuccess(list: any[]) {
+  if (Array.isArray(list)) {
+    propertyList.value = [...list];
+  }
+}
+
 async function handleSubmit() {
   const formValues: MallSpuApi.Spu = await infoFormApi
     .merge(skuFormApi)
@@ -191,7 +204,10 @@ async function handleSubmit() {
   }
   if (formValues.skus) {
     try {
-      skuListRef.value.validateSku();
+      const activeSkuList = getActiveSkuListRef();
+      if (activeSkuList && typeof activeSkuList.validateSku === 'function') {
+        activeSkuList.validateSku();
+      }
     } catch {
       message.error($t('mall-product.spu.validation.skuIncomplete'));
       return;
@@ -252,6 +268,13 @@ async function getDetail() {
       item.costPrice = formatToFraction(item.costPrice);
       item.firstBrokeragePrice = formatToFraction(item.firstBrokeragePrice);
       item.secondBrokeragePrice = formatToFraction(item.secondBrokeragePrice);
+      item.weight = Number(item.weight || 0).toFixed(2);
+      item.volume = Number(item.volume || 0).toFixed(2);
+      item.length = Number(item.length || 0).toFixed(2);
+      item.width = Number(item.width || 0).toFixed(2);
+      item.height = Number(item.height || 0).toFixed(2);
+      item.nwPerCtn = Number(item.nwPerCtn || 0).toFixed(3);
+      item.gwPerCtn = Number(item.gwPerCtn || 0).toFixed(3);
     });
     formData.value = res;
     infoFormApi.setValues(res).then();
@@ -288,8 +311,18 @@ function openI18nEditor() {
   });
 }
 
-function generateSkus(propertyList: PropertyAndValues[]) {
-  skuListRef.value.generateTableData(propertyList);
+/**
+ * 属性增删后触发的回调（来自 ProductAttributes @success）。
+ * 必须先将新列表回写 propertyList.value，否则父组件维护的数组引用仍是旧版本，
+ * 会导致：重新打开"添加属性名"弹窗时读到旧属性而报错"该属性已存在"。
+ */
+function generateSkus(newPropertyList: PropertyAndValues[]) {
+  // 1. 先同步父组件 propertyList 的最新状态（关键！）
+  propertyList.value = Array.isArray(newPropertyList) ? newPropertyList : [];
+  // 2. 同步后再驱动 SkuList 重新生成/清理 SKU
+  if (multiSkuListRef.value && typeof multiSkuListRef.value.generateTableData === 'function') {
+    multiSkuListRef.value.generateTableData(propertyList.value);
+  }
 }
 
 function handleChangeSubCommissionType() {
@@ -342,7 +375,10 @@ onMounted(async () => {
 
 <template>
   <div>
-    <ProductPropertyAddFormModal :property-list="propertyList" />
+    <ProductPropertyAddFormModal
+      :property-list="propertyList"
+      @success="handleAddPropertySuccess"
+    />
 
     <Page auto-content-height>
       <Card
@@ -395,7 +431,7 @@ onMounted(async () => {
         <SkuForm class="w-full" v-show="activeTabName === 'sku'">
           <template #singleSkuList>
             <SkuList
-              ref="skuListRef"
+              ref="singleSkuListRef"
               class="w-full"
               :is-detail="isDetail"
               :prop-form-data="formData"
@@ -425,7 +461,7 @@ onMounted(async () => {
           </template>
           <template #multiSkuList>
             <SkuList
-              ref="skuListRef"
+              ref="multiSkuListRef"
               :is-detail="isDetail"
               :prop-form-data="formData"
               :property-list="propertyList"

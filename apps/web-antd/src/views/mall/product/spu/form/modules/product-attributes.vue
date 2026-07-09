@@ -30,41 +30,31 @@ interface Props {
 }
 
 const inputValue = ref<string[]>([]); // 输入框值（tags 模式使用数组）
-const attributeIndex = ref<null | number>(null); // 获取焦点时记录当前属性项的 index
-const inputVisible = computed(() => (index: number) => {
-  if (attributeIndex.value === null) {
-    return false;
-  }
-  if (attributeIndex.value === index) {
-    return true;
-  }
-}); // 输入框显隐控制
+/** 当前激活输入框的属性ID（不再使用 index 避免删除错位） */
+const activeAttributeId = ref<number | null>(null);
 
-interface InputRefItem {
-  inputRef?: {
-    attributes: {
-      id: string;
-    };
-  };
-  focus: () => void;
+/** 通过 attribute.id 判断是否显示输入框，避免 index 做 key 导致的错位 */
+const inputVisible = computed(() => (attr: PropertyAndValues) => {
+  return activeAttributeId.value === attr.id;
+});
+
+interface InputRefMap {
+  [attributeId: number]: any;
 }
 
-const inputRef = ref<InputRefItem[]>([]); // 标签输入框 Ref
+/** 使用 Map 存储输入框引用，使用 attributeId 作为 key，删除/重排不影响 */
+const inputRefMap = ref<InputRefMap>({});
+
+/** 记录 attributeId 对应 DOM，避免 v-for 用 index 做 key 导致 ref 获取错位 */
+function setInputRefByAttribute(el: any, attributeId: number) {
+  if (el === null || el === undefined) {
+    return;
+  }
+  inputRefMap.value[attributeId] = el;
+}
+
 const attributeList = ref<PropertyAndValues[]>([]); // 商品属性列表
 const attributeOptions = ref<MallPropertyApi.PropertyValue[]>([]); // 商品属性值下拉框
-
-/** 解决 ref 在 v-for 中的获取问题*/
-function setInputRef(el: any) {
-  if (el === null || el === undefined) return;
-  // 如果不存在 id 相同的元素才添加
-  if (
-    !inputRef.value.some(
-      (item) => item.inputRef?.attributes.id === el.inputRef?.attributes.id,
-    )
-  ) {
-    inputRef.value.push(el);
-  }
-}
 
 watch(
   () => props.propertyList,
@@ -80,13 +70,19 @@ watch(
   },
 );
 
-/** 删除属性值 */
-function handleCloseValue(index: number, value: PropertyAndValues) {
-  if (attributeList.value[index]?.values) {
-    attributeList.value[index].values = attributeList.value[
-      index
-    ].values?.filter((item) => item.id !== value.id);
+/** 通过 attribute.id 在列表中查找当前索引（防御式写法，顺序变动仍能找到）*/
+function findAttributeIndex(attributeId: number): number {
+  return attributeList.value.findIndex((attr) => attr.id === attributeId);
+}
+
+/** 删除属性值：传入 attribute 对象而非 index，避免重排后索引错误 */
+function handleCloseValue(attribute: PropertyAndValues, value: PropertyAndValues) {
+  const attr = attributeList.value.find((a) => a.id === attribute.id);
+  if (!attr || !attr.values) {
+    return;
   }
+  attr.values = attr.values.filter((item) => item.id !== value.id);
+  emit('success', [...attributeList.value]);
 }
 
 /** 删除属性 */
@@ -94,31 +90,52 @@ function handleCloseProperty(item: PropertyAndValues) {
   attributeList.value = attributeList.value.filter(
     (attribute) => attribute.id !== item.id,
   );
-  emit('success', attributeList.value);
+  // 如果删除的是当前激活输入框对应的属性，清理 active id
+  if (activeAttributeId.value === item.id) {
+    activeAttributeId.value = null;
+    inputValue.value = [];
+  }
+  emit('success', [...attributeList.value]);
 }
 
-/** 显示输入框并获取焦点 */
-async function showInput(index: number) {
-  attributeIndex.value = index;
-  inputRef.value?.[index]?.focus();
-  // 获取属性下拉选项
-  await getAttributeOptions(attributeList.value?.[index]?.id!);
+/** 显示输入框并获取焦点：传入 attribute 对象，内部以 id 定位 */
+async function showInput(attribute: PropertyAndValues) {
+  activeAttributeId.value = attribute.id;
+  await getAttributeOptions(attribute.id);
+  // 以 attribute.id 为 key 从 Map 中取 ref，再 focus
+  const input = inputRefMap.value[attribute.id];
+  if (input && typeof input.focus === 'function') {
+    // 下一帧执行，确保 v-show 已切换
+    setTimeout(() => input.focus(), 0);
+  }
 }
 
-/** 定义 success 事件，用于操作成功后的回调 */
-async function handleInputConfirm(index: number, propertyId: number) {
+/** 添加属性值确认 */
+async function handleInputConfirm(attribute: PropertyAndValues) {
   // 从数组中取最后一个输入的值（tags 模式下 inputValue 是数组）
   const currentValue = inputValue.value?.[inputValue.value.length - 1]?.trim();
+  const index = findAttributeIndex(attribute.id);
+  if (index === -1) {
+    activeAttributeId.value = null;
+    inputValue.value = [];
+    return;
+  }
+  const propertyId = attribute.id;
 
   if (currentValue) {
-    // 1. 重复添加校验
-    if (
-      attributeList.value?.[index]?.values?.find(
-        (item) => item.name === currentValue,
-      )
-    ) {
+    // 1. 重复添加校验：必须以 props.propertyList 作为基准（防止本地引用不同步）
+    const propAttr = (props.propertyList || []).find(
+      (a: PropertyAndValues) => a.id === attribute.id,
+    );
+    const dupFromProp = propAttr?.values?.some(
+      (item: any) => item.name === currentValue,
+    );
+    const dupFromLocal = attributeList.value?.[index]?.values?.find(
+      (item) => item.name === currentValue,
+    );
+    if (dupFromProp || dupFromLocal) {
       message.warning('已存在相同属性值，请重试');
-      attributeIndex.value = null;
+      activeAttributeId.value = null;
       inputValue.value = [];
       return;
     }
@@ -128,13 +145,13 @@ async function handleInputConfirm(index: number, propertyId: number) {
       (item) => item.name === currentValue,
     );
     if (existValue) {
-      attributeIndex.value = null;
+      activeAttributeId.value = null;
       inputValue.value = [];
       attributeList.value?.[index]?.values?.push({
         id: existValue.id!,
         name: existValue.name,
       });
-      emit('success', attributeList.value);
+      emit('success', [...attributeList.value]);
       return;
     }
 
@@ -149,12 +166,12 @@ async function handleInputConfirm(index: number, propertyId: number) {
         name: currentValue,
       });
       message.success($t('ui.actionMessage.operationSuccess'));
-      emit('success', attributeList.value);
+      emit('success', [...attributeList.value]);
     } catch {
       message.error($t('ui.actionMessage.operationFailed'));
     }
   }
-  attributeIndex.value = null;
+  activeAttributeId.value = null;
   inputValue.value = [];
 }
 
@@ -165,7 +182,7 @@ async function getAttributeOptions(propertyId: number) {
 </script>
 
 <template>
-  <Col v-for="(attribute, index) in attributeList" :key="index">
+  <Col v-for="attribute in attributeList" :key="attribute.id">
     <Divider class="my-3" />
     <div class="mt-2 flex flex-wrap items-center gap-2">
       <span class="mx-1">属性名：</span>
@@ -181,18 +198,18 @@ async function getAttributeOptions(propertyId: number) {
     <div class="mt-2 flex flex-wrap items-center gap-2">
       <span class="mx-1">属性值：</span>
       <Tag
-        v-for="(value, valueIndex) in attribute.values"
-        :key="valueIndex"
+        v-for="value in attribute.values"
+        :key="value.id"
         :closable="!isDetail"
         class="mx-1"
-        @close="handleCloseValue(index, value)"
+        @close="handleCloseValue(attribute, value)"
       >
         {{ value?.name }}
       </Tag>
       <Select
-        v-show="inputVisible(index)"
-        :id="`input${index}`"
-        :ref="setInputRef"
+        v-show="inputVisible(attribute)"
+        :id="`input-attr-${attribute.id}`"
+        :ref="(el) => setInputRefByAttribute(el, attribute.id)"
         v-model:value="inputValue"
         allow-clear
         mode="tags"
@@ -200,9 +217,9 @@ async function getAttributeOptions(propertyId: number) {
         :filter-option="true"
         size="small"
         style="width: 100px"
-        @blur="handleInputConfirm(index, attribute.id)"
-        @change="handleInputConfirm(index, attribute.id)"
-        @keyup.enter="handleInputConfirm(index, attribute.id)"
+        @blur="handleInputConfirm(attribute)"
+        @change="handleInputConfirm(attribute)"
+        @keyup.enter="handleInputConfirm(attribute)"
       >
         <Select.Option
           v-for="item2 in attributeOptions"
@@ -213,9 +230,9 @@ async function getAttributeOptions(propertyId: number) {
         </Select.Option>
       </Select>
       <Tag
-        v-show="!inputVisible(index)"
+        v-show="!inputVisible(attribute)"
         v-if="!isDetail"
-        @click="showInput(index)"
+        @click="showInput(attribute)"
         class="mx-1 border-dashed bg-gray-100"
       >
         <div class="flex items-center">
