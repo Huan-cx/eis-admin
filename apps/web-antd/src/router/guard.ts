@@ -95,9 +95,6 @@ function setupAccessGuard(router: Router) {
       return true;
     }
 
-    // 加载字典数据（不阻塞加载）
-    dictStore.setDictCacheByApi(getSimpleDictDataList);
-
     // 生成路由表
     // 当前登录用户拥有的角色标识列表
     let userInfo = userStore.userInfo;
@@ -115,6 +112,9 @@ function setupAccessGuard(router: Router) {
         loading();
       }
     }
+
+    // 加载字典数据（等待用户信息加载完成后再执行，避免token过期导致的401）
+    dictStore.setDictCacheByApi(getSimpleDictDataList);
     const userRoles = userStore.userRoles ?? [];
 
     // 生成菜单和路由

@@ -41,25 +41,28 @@ export const useDictStore = defineStore('core-dict', {
       labelField: string = 'label',
       valueField: string = 'value',
     ) {
-      api(params).then((dicts) => {
-        // 添加安全检查：确保 dicts 是数组
-        if (!Array.isArray(dicts)) {
-          console.warn('setDictCacheByApi: dicts is not an array', dicts);
-          return;
-        }
-        const dictCacheData: Dict = {};
-        dicts.forEach((dict) => {
-          dictCacheData[dict.dictType] = dicts
-            .filter((d) => d.dictType === dict.dictType)
-            .map((d) => ({
-              colorType: d.colorType,
-              cssClass: d.cssClass,
-              label: d[labelField],
-              value: d[valueField],
-            }));
+      api(params)
+        .then((dicts) => {
+          if (!Array.isArray(dicts)) {
+            console.warn('setDictCacheByApi: dicts is not an array', dicts);
+            return;
+          }
+          const dictCacheData: Dict = {};
+          dicts.forEach((dict) => {
+            dictCacheData[dict.dictType] = dicts
+              .filter((d) => d.dictType === dict.dictType)
+              .map((d) => ({
+                colorType: d.colorType,
+                cssClass: d.cssClass,
+                label: d[labelField],
+                value: d[valueField],
+              }));
+          });
+          this.setDictCache(dictCacheData);
+        })
+        .catch((error) => {
+          console.warn('setDictCacheByApi: failed to load dict data', error);
         });
-        this.setDictCache(dictCacheData);
-      });
     },
   },
   persist: {
