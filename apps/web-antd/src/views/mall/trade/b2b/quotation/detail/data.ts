@@ -64,22 +64,6 @@ export function useDetailFormSchema(): VbenFormSchema[] {
       },
     },
     {
-      fieldName: 'incoterms',
-      label: $t('trade.b2b.quotation.detail.incoterms'),
-      component: 'Input',
-      componentProps: {
-        disabled: true,
-      },
-    },
-    {
-      fieldName: 'deliveryType',
-      label: $t('trade.b2b.quotation.detail.deliveryType'),
-      component: 'Input',
-      componentProps: {
-        disabled: true,
-      },
-    },
-    {
       fieldName: 'validUntil',
       label: $t('trade.b2b.quotation.detail.validUntil'),
       component: 'Input',

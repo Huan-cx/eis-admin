@@ -21,6 +21,7 @@
   "delete": "删除",
   "deleteBatch": "批量删除",
   "create": "新增",
+  "add": "添加",
   "detail": "详情",
   "yes": "是",
   "no": "否",

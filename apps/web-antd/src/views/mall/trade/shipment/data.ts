@@ -113,14 +113,18 @@ export function useGridColumns(): VxeGridPropTypes.Columns {
       minWidth: 160,
     },
     {
-      field: 'orderNo',
+      field: 'orderNos',
       title: $t('trade.shipment.grid.orderNo'),
       minWidth: 160,
+      formatter: ({ cellValue }) =>
+        Array.isArray(cellValue) ? cellValue.join(', ') : cellValue || '-',
     },
     {
-      field: 'customerName',
+      field: 'customerNames',
       title: $t('trade.shipment.grid.customerName'),
       minWidth: 150,
+      formatter: ({ cellValue }) =>
+        Array.isArray(cellValue) ? cellValue.join(', ') : cellValue || '-',
     },
     {
       field: 'status',

@@ -21,6 +21,7 @@
   "delete": "Delete",
   "deleteBatch": "Delete Batch",
   "create": "Create",
+  "add": "Add",
   "detail": "Detail",
   "yes": "Yes",
   "no": "No",

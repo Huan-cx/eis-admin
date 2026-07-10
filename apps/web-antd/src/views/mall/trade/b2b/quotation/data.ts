@@ -78,11 +78,6 @@ export function useGridColumns(): VxeGridPropTypes.Columns {
       minWidth: 80,
     },
     {
-      field: 'incoterms',
-      title: $t('trade.b2b.quotation.grid.incoterms'),
-      minWidth: 120,
-    },
-    {
       field: 'createdAt',
       title: $t('trade.b2b.quotation.grid.createdAt'),
       formatter: 'formatDateTime',

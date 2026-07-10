@@ -252,6 +252,9 @@ const loadCompareData = async () => {
         deliveryType: data.savedTerms.deliveryType,
         deliveryPort: data.savedTerms.deliveryPort,
         validDays: data.savedTerms.validDays,
+        productionRatio: data.savedTerms.productionRatio,
+        preDelvRatio: data.savedTerms.preDelvRatio,
+        postDelvRatio: data.savedTerms.postDelvRatio,
       });
       feeItemsData.value = data.savedTerms.feeItems || [];
     }
@@ -360,6 +363,9 @@ const handleSave = async () => {
       deliveryPort: formData.deliveryPort,
       validDays: formData.validDays,
       feeItems,
+      productionRatio: formData.productionRatio,
+      preDelvRatio: formData.preDelvRatio,
+      postDelvRatio: formData.postDelvRatio,
     });
     message.success($t('trade.b2b.compare.selection.saveSuccess'));
   } catch (error) {

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { OrderShipmentApi } from '#/api/mall/trade/orderShipment/types';
+import type { OrderShipmentApi } from '#/api/mall/trade/shipment/types';
 
 import { computed, ref } from 'vue';
 
@@ -8,10 +8,10 @@ import { useVbenModal } from '@vben/common-ui';
 import { message } from 'ant-design-vue';
 
 import { useVbenForm } from '#/adapter/form';
-import { createShipment, updateShipment } from '#/api/mall/trade/orderShipment';
+import { createShipment, updateShipment } from '#/api/mall/trade/shipment';
 import { $t } from '#/locales';
 
-import { useShipmentFormSchema, useCreateShipmentFormSchema } from '../data';
+import { useCreateShipmentFormSchema, useShipmentFormSchema } from '../data';
 
 const emit = defineEmits(['success']);
 const formData = ref<OrderShipmentApi.PageItem & { isCreate?: boolean }>();
@@ -45,11 +45,9 @@ const [Modal, modalApi] = useVbenModal({
     const values = await formApi.getValues();
     const data = modalApi.getData<{ isCreate?: boolean }>();
     try {
-      if (data?.isCreate) {
-        await createShipment(values as OrderShipmentApi.CreateRequest);
-      } else {
-        await updateShipment(values as OrderShipmentApi.UpdateRequest);
-      }
+      await (data?.isCreate
+        ? createShipment(values as OrderShipmentApi.CreateRequest)
+        : updateShipment(values as OrderShipmentApi.UpdateRequest));
       await modalApi.close();
       emit('success');
       message.success($t('ui.actionMessage.operationSuccess'));
@@ -62,13 +60,15 @@ const [Modal, modalApi] = useVbenModal({
       formData.value = undefined;
       return;
     }
-    const data = modalApi.getData<OrderShipmentApi.PageItem & { isCreate?: boolean }>();
+    const data = modalApi.getData<
+      OrderShipmentApi.PageItem & { isCreate?: boolean }
+    >();
     formData.value = data;
     if (data?.isCreate) {
-      formApi.setSchema(useCreateShipmentFormSchema());
-      formApi.resetForm();
+      formApi.setState({ schema: useCreateShipmentFormSchema() });
+      await formApi.resetForm();
     } else {
-      formApi.setSchema(useShipmentFormSchema());
+      formApi.setState({ schema: useShipmentFormSchema() });
       if (data) {
         await formApi.setValues(data);
       }

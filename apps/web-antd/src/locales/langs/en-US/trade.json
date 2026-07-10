@@ -183,6 +183,12 @@
         "incoterms": "Incoterms",
         "incotermsPlaceholder": "Please select incoterms",
         "items": "Quotation Items",
+        "postDelvRatio": "Post-delivery Payment Ratio",
+        "postDelvRatioPlaceholder": "Enter post-delivery payment ratio (e.g. 40)",
+        "preDelvRatio": "Pre-delivery Payment Ratio",
+        "preDelvRatioPlaceholder": "Enter pre-delivery payment ratio (e.g. 30)",
+        "productionRatio": "Production Payment Ratio",
+        "productionRatioPlaceholder": "Enter production payment ratio (e.g. 30)",
         "remark": "Remark",
         "remarkPlaceholder": "Please enter remark",
         "rfqId": "RFQ ID",
@@ -450,6 +456,19 @@
       "totalNw": "Total N/W(kg)",
       "totalGw": "Total G/W(kg)",
       "totalCbm": "Total CBM",
+      "totalAmount": "Order Amount",
+      "orderStatus": "Order Status",
+      "productName": "Product Name",
+      "description": "Description",
+      "hsCode": "HS Code",
+      "quantity": "Quantity",
+      "packagingWay": "Packaging Way",
+      "pcsPerCtn": "Pcs/Ctn",
+      "ctns": "Cartons",
+      "length": "Length",
+      "width": "Width",
+      "height": "Height",
+      "unit": "Unit",
       "createTime": "Created At",
       "remark": "Remark",
       "actions": "Actions"
@@ -488,6 +507,9 @@
       "shipmentNoPlaceholder": "Please enter shipment number",
       "orderId": "Order ID",
       "orderIdPlaceholder": "Please enter order ID",
+      "orderIds": "Orders",
+      "orderIdsPlaceholder": "Please select orders",
+      "orderNos": "Order Nos.",
       "targetStatus": "Target Status",
       "eventType": "Event Type",
       "eventTime": "Event Time",
@@ -593,6 +615,7 @@
       "totalNw": "Total N.W(kg)",
       "totalGw": "Total G.W(kg)",
       "totalCbm": "Total CBM",
+      "orderNos": "Order Nos.",
       "noEvents": "No shipment events",
       "noPackingData": "No packing data",
       "system": "System"
@@ -607,7 +630,10 @@
       "updateStatusTitle": "Update Shipment Status",
       "currentStatus": "Current Status",
       "targetStatus": "Target Status",
-      "statusRemark": "Status Change Remark"
+      "statusRemark": "Status Change Remark",
+      "selectOrderTitle": "Select Orders",
+      "searchOrderPlaceholder": "Search by order no. or customer name",
+      "selectedOrders": "Selected Orders"
     },
     "action": {
       "edit": "Edit",
@@ -619,7 +645,8 @@
       "back": "Back",
       "create": "Create Shipment",
       "createFromOrder": "Create from Order",
-      "delete": "Delete"
+      "delete": "Delete",
+      "addOrder": "Add Orders"
     },
     "message": {
       "updateSuccess": "Updated successfully",
@@ -630,7 +657,12 @@
       "invalidId": "Invalid shipment ID",
       "invalidOrderId": "Invalid order ID",
       "fetchDetailFailed": "Failed to fetch shipment detail",
-      "fetchEventFailed": "Failed to fetch event list"
+      "fetchEventFailed": "Failed to fetch event list",
+      "pleaseSelectOrder": "Please select orders",
+      "pleaseInputKeyword": "Please enter search keyword",
+      "loadingPackingList": "Loading packing list...",
+      "loadPackingListSuccess": "Packing list loaded successfully",
+      "loadPackingListFailed": "Failed to load packing list"
     }
   },
   "config": {

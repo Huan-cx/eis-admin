@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import type { OrderShipmentApi } from '#/api/mall/trade/orderShipment/types';
+import type { OrderShipmentApi } from '#/api/mall/trade/shipment/types';
 
 import { useVbenModal } from '@vben/common-ui';
 
 import { message } from 'ant-design-vue';
 
 import { useVbenForm } from '#/adapter/form';
-import { updateShipmentStatus } from '#/api/mall/trade/orderShipment';
+import { updateShipmentStatus } from '#/api/mall/trade/shipment';
 import { $t } from '#/locales';
 
 import { useStatusFormSchema } from '../data';
@@ -36,7 +36,9 @@ const [Modal, modalApi] = useVbenModal({
     modalApi.lock();
     const values = await formApi.getValues();
     try {
-      await updateShipmentStatus(values as OrderShipmentApi.UpdateStatusRequest);
+      await updateShipmentStatus(
+        values as OrderShipmentApi.UpdateStatusRequest,
+      );
       await modalApi.close();
       emit('success');
       message.success($t('ui.actionMessage.operationSuccess'));

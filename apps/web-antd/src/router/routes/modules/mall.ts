@@ -62,14 +62,31 @@ const routes: RouteRecordRaw[] = [
         component: () => import('#/views/mall/trade/order/detail/index.vue'),
       },
       {
-        path: String.raw`order-shipment/detail/:id(\d+)`,
-        name: 'TradeOrderShipmentDetail',
+        path: String.raw`shipment/detail/:id(\d+)`,
+        name: 'TradeShipmentDetail',
         meta: {
           title: $t('page.mall.trade.shipment.detail'),
           activePath: '/mall/trade/order-shipment',
         },
-        component: () =>
-          import('#/views/mall/trade/orderShipment/detail/index.vue'),
+        component: () => import('#/views/mall/trade/shipment/detail/index.vue'),
+      },
+      {
+        path: 'shipment/edit',
+        name: 'TradeShipmentEdit',
+        meta: {
+          title: $t('page.mall.trade.shipment.edit'),
+          activePath: '/mall/trade/order-shipment',
+        },
+        component: () => import('#/views/mall/trade/shipment/edit/index.vue'),
+      },
+      {
+        path: String.raw`shipment/edit/:id(\d+)`,
+        name: 'TradeShipmentEdit',
+        meta: {
+          title: $t('page.mall.trade.shipment.edit'),
+          activePath: '/mall/trade/order-shipment',
+        },
+        component: () => import('#/views/mall/trade/shipment/edit/index.vue'),
       },
       {
         path: String.raw`after-sale/detail/:id(\d+)`,

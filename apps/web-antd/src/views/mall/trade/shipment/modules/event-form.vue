@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { OrderShipmentEventApi } from '#/api/mall/trade/orderShipment/types';
+import type { OrderShipmentEventApi } from '#/api/mall/trade/shipment/types';
 
 import { useVbenModal } from '@vben/common-ui';
 
@@ -7,7 +7,7 @@ import { message } from 'ant-design-vue';
 import dayjs from 'dayjs';
 
 import { useVbenForm } from '#/adapter/form';
-import { createShipmentEvent } from '#/api/mall/trade/orderShipment';
+import { createShipmentEvent } from '#/api/mall/trade/shipment';
 import { $t } from '#/locales';
 
 import { useEventFormSchema } from '../data';

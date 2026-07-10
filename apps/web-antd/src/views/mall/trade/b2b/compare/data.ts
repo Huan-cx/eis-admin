@@ -91,6 +91,43 @@ export function useCompareTermsFormSchema() {
         max: 365,
       },
     },
+    // ========== 付款比例条款 ==========
+    {
+      component: 'InputNumber',
+      fieldName: 'productionRatio',
+      label: $t('trade.b2b.quotation.createForm.productionRatio'),
+      componentProps: {
+        placeholder: $t(
+          'trade.b2b.quotation.createForm.productionRatioPlaceholder',
+        ),
+        min: 0,
+        max: 100,
+      },
+    },
+    {
+      component: 'InputNumber',
+      fieldName: 'preDelvRatio',
+      label: $t('trade.b2b.quotation.createForm.preDelvRatio'),
+      componentProps: {
+        placeholder: $t(
+          'trade.b2b.quotation.createForm.preDelvRatioPlaceholder',
+        ),
+        min: 0,
+        max: 100,
+      },
+    },
+    {
+      component: 'InputNumber',
+      fieldName: 'postDelvRatio',
+      label: $t('trade.b2b.quotation.createForm.postDelvRatio'),
+      componentProps: {
+        placeholder: $t(
+          'trade.b2b.quotation.createForm.postDelvRatioPlaceholder',
+        ),
+        min: 0,
+        max: 100,
+      },
+    },
   ];
 }
 

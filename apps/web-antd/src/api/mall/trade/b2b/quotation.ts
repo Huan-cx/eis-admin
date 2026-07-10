@@ -145,6 +145,9 @@ export namespace B2BQuotationApi {
     deliveryPort?: string;
     validDays?: number;
     feeItems?: FeeItem[];
+    productionRatio?: number;
+    preDelvRatio?: number;
+    postDelvRatio?: number;
   }
 
   export interface ItemSelect {
@@ -163,6 +166,9 @@ export namespace B2BQuotationApi {
     deliveryPort?: string;
     validDays?: number;
     feeItems?: FeeItem[];
+    productionRatio?: number;
+    preDelvRatio?: number;
+    postDelvRatio?: number;
   }
 
   export interface QuotationSelectionDO {
@@ -302,6 +308,9 @@ export interface FinalQuotationResult {
   deliveryPort?: string;
   validUntil?: string;
   confirmedAt?: string;
+  productionRatio?: number;
+  preDelvRatio?: number;
+  postDelvRatio?: number;
   items: FinalQuotationItem[];
 }
 

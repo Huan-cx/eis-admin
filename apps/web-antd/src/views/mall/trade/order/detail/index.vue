@@ -27,7 +27,7 @@ import {
 import {
   createShipmentFromOrder,
   getShipmentByOrderId,
-} from '#/api/mall/trade/orderShipment';
+} from '#/api/mall/trade/shipment';
 import { useDescription } from '#/components/description';
 import { TableAction } from '#/components/table-action';
 import { $t } from '#/locales';
@@ -481,7 +481,6 @@ onMounted(async () => {
               order.deliveryType === DeliveryTypeEnum.EXPRESS.type,
             onClick: handleUpdateAddress,
           },
-
         ]"
       />
     </template>

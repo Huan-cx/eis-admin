@@ -19,7 +19,7 @@ import { approveOrder, getOrderPage } from '#/api/mall/trade/b2b/order';
 import {
   createShipmentFromOrder,
   getShipmentByOrderId,
-} from '#/api/mall/trade/orderShipment';
+} from '#/api/mall/trade/shipment';
 import { $t } from '#/locales';
 
 import { useGridColumns, useGridFormSchema } from './data';

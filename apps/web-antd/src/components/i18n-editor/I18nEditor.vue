@@ -48,11 +48,14 @@ export interface TranslationItem {
 
 export interface I18nEditorProps {
   title?: string;
-  entityId: number;
+  entityId: number | string;
   fields: FieldConfig[];
   defaultData?: Record<string, string>;
   initialData?: TranslationItem[];
-  saveApi: (entityId: number, data: TranslationItem[]) => Promise<void>;
+  saveApi: (
+    entityId: number | string,
+    data: TranslationItem[],
+  ) => Promise<void>;
 }
 
 const [Modal, modalApi] = useVbenModal({
