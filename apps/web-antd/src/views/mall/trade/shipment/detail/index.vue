@@ -4,10 +4,11 @@ import type {
   OrderShipmentEventApi,
 } from '#/api/mall/trade/shipment/types';
 
-import { onMounted, ref, watch } from 'vue';
+import { computed, nextTick, onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import { Page, useVbenModal } from '@vben/common-ui';
+import { formatDateTime } from '@vben/utils';
 
 import {
   Button,
@@ -17,6 +18,7 @@ import {
   Tag,
   Timeline,
 } from 'ant-design-vue';
+import dayjs from 'dayjs';
 
 import { useVbenVxeGrid } from '#/adapter/vxe-table';
 import { getShipment } from '#/api/mall/trade/shipment';
@@ -87,14 +89,36 @@ function canUpdateStatus() {
   );
 }
 
+const sortedEventList = computed<OrderShipmentEventApi.Detail[]>(() => {
+  if (!eventList.value || eventList.value.length === 0) {
+    return [];
+  }
+  return [...eventList.value].toSorted((a, b) => {
+    const ta = a.eventTime ? dayjs(a.eventTime).valueOf() : 0;
+    const tb = b.eventTime ? dayjs(b.eventTime).valueOf() : 0;
+    if (tb !== ta) {
+      return tb - ta;
+    }
+    return (b.id || 0) - (a.id || 0);
+  });
+});
+
 const [Grid, gridApi] = useVbenVxeGrid({
   gridOptions: {
     columns: usePackingListColumns(),
+    data: [],
+    minHeight: 200,
     height: 'auto',
     keepSource: true,
-    rowConfig: { keyField: 'id', isHover: true },
-    toolbarConfig: { refresh: false, search: false },
-  },
+    border: true,
+    rowConfig: { keyField: 'orderItemId', isHover: true },
+    pagerConfig: {
+      enabled: false,
+    },
+    toolbarConfig: {
+      enabled: false,
+    },
+  } as any,
 });
 
 onMounted(() => {
@@ -103,11 +127,16 @@ onMounted(() => {
 
 watch(
   () => shipmentDetail.value?.items,
-  (items) => {
-    if (items) {
-      gridApi.setGridOptions({ data: items });
+  async (items) => {
+    if (!items || items.length === 0) {
+      await nextTick();
+      await gridApi.grid?.reloadData([]);
+      return;
     }
+    await nextTick();
+    await gridApi.grid?.reloadData(items);
   },
+  { deep: true, immediate: true },
 );
 </script>
 
@@ -126,7 +155,7 @@ watch(
           </div>
         </div>
         <Space>
-          <Button @click="handleEdit">{{ $t('ui.action.edit') }}</Button>
+          <Button @click="handleEdit">{{ $t('common.edit') }}</Button>
           <Button
             type="primary"
             v-if="canUpdateStatus()"
@@ -137,7 +166,7 @@ watch(
           <Button @click="handleAddEvent">
             {{ $t('trade.shipment.action.addEvent') }}
           </Button>
-          <Button @click="back">{{ $t('ui.action.back') }}</Button>
+          <Button @click="back">{{ $t('common.back') }}</Button>
         </Space>
       </div>
 
@@ -179,7 +208,7 @@ watch(
             {{ shipmentDetail.totalCtns || 0 }}
           </Descriptions.Item>
           <Descriptions.Item :label="$t('trade.shipment.grid.createTime')">
-            {{ shipmentDetail.createTime || '-' }}
+            {{ formatDateTime(shipmentDetail.createTime) || '-' }}
           </Descriptions.Item>
           <Descriptions.Item :label="$t('trade.shipment.detail.totalNw')">
             {{ shipmentDetail.totalNw || 0 }} kg
@@ -197,16 +226,18 @@ watch(
       </a-card>
 
       <a-card :title="$t('trade.shipment.event.title')">
-        <template v-if="eventList.length > 0">
+        <template v-if="sortedEventList.length > 0">
           <Timeline mode="left">
             <Timeline.Item
-              v-for="event in eventList"
+              v-for="event in sortedEventList"
               :key="event.id"
               :color="event.eventType === 9999 ? 'gray' : 'blue'"
             >
               <template #label>
                 <div class="text-right">
-                  <div class="text-sm font-medium">{{ event.eventTime }}</div>
+                  <div class="text-sm font-medium">
+                    {{ formatDateTime(event.eventTime) }}
+                  </div>
                   <div class="text-xs text-gray-500">
                     {{
                       event.operatorName || $t('trade.shipment.detail.system')

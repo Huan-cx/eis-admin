@@ -513,8 +513,7 @@
       "targetStatus": "Target Status",
       "eventType": "Event Type",
       "eventTime": "Event Time",
-      "eventDate": "Event Date",
-      "eventDatePlaceholder": "Please select event date",
+      "eventTimePlaceholder": "Please select event time",
       "title": "Event Title",
       "description": "Description",
       "attachments": "Attachments"

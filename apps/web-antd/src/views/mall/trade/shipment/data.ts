@@ -553,19 +553,11 @@ export function useEventFormSchema(): VbenFormSchema[] {
       componentProps: {
         showTime: true,
         format: 'YYYY-MM-DD HH:mm:ss',
+        valueFormat: 'x',
+        placeholder: $t('trade.shipment.form.eventTimePlaceholder'),
         allowClear: true,
       },
       rules: 'required',
-    },
-    {
-      fieldName: 'eventDate',
-      label: $t('trade.shipment.form.eventDate'),
-      component: 'DatePicker',
-      componentProps: {
-        showTime: true,
-        format: 'YYYY-MM-DD HH:mm:ss',
-        allowClear: true,
-      },
     },
     {
       fieldName: 'title',

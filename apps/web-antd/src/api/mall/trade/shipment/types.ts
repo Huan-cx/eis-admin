@@ -5,8 +5,7 @@ export namespace OrderShipmentEventApi {
   export interface CreateRequest {
     shipmentId: number;
     eventType: number;
-    eventTime: string;
-    eventDate?: string;
+    eventTime: number;
     title: string;
     description?: string;
     attachments?: string;
@@ -15,8 +14,7 @@ export namespace OrderShipmentEventApi {
   export interface UpdateRequest {
     id: number;
     eventType?: number;
-    eventTime?: string;
-    eventDate?: string;
+    eventTime?: number;
     title?: string;
     description?: string;
     attachments?: string;
@@ -27,15 +25,14 @@ export namespace OrderShipmentEventApi {
     shipmentId: number;
     eventType: number;
     eventTypeName?: string;
-    eventTime: string;
-    eventDate?: string;
+    eventTime: string | number;
     title: string;
     description?: string;
     attachments?: string;
     attachmentList?: string[];
     operatorId?: number;
     operatorName?: string;
-    createTime: string;
+    createTime: string | number;
   }
 }
 

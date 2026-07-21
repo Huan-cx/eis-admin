@@ -49,11 +49,12 @@ const [Modal, modalApi] = useVbenModal({
     if (!isOpen) {
       return;
     }
+    await formApi.resetForm();
     const data = modalApi.getData<{ shipmentId: number }>();
     if (data) {
       await formApi.setValues({
         shipmentId: data.shipmentId,
-        eventTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+        eventTime: dayjs().valueOf(),
         eventType: 9999,
       });
     }
