@@ -2,6 +2,7 @@
 <script lang="ts" setup>
 import type { VbenFormSchema } from '#/adapter/form';
 import type { MallPropertyApi } from '#/api/mall/product/property';
+import type { PropertyAndValues } from '#/views/mall/product/spu/components';
 
 import { ref, watch } from 'vue';
 
@@ -18,18 +19,20 @@ import { $t } from '#/locales';
 
 defineOptions({ name: 'ProductPropertyAddForm' });
 
-const props = defineProps({
-  propertyList: {
-    type: Array,
-    default: () => [],
+const props = withDefaults(
+  defineProps<{
+    propertyList?: PropertyAndValues[];
+  }>(),
+  {
+    propertyList: () => [],
   },
-});
+);
 
 const emit = defineEmits<{
-  (e: 'success', list: any[]): void;
+  (e: 'success', list: PropertyAndValues[]): void;
 }>();
 
-const attributeList = ref<any[]>([]); // 商品属性列表
+const attributeList = ref<PropertyAndValues[]>([]); // 商品属性列表
 const attributeOptions = ref<MallPropertyApi.Property[]>([]); // 商品属性名称下拉框
 const attributeOptionsLoaded = ref(false); // 是否已加载 attributeOptions
 
@@ -39,7 +42,7 @@ watch(
     if (!data) {
       return;
     }
-    attributeList.value = data as any[];
+    attributeList.value = data;
   },
   {
     deep: true,
@@ -55,7 +58,7 @@ async function ensureAttributeOptions(): Promise<void> {
   try {
     attributeOptions.value = await getPropertySimpleList();
     attributeOptionsLoaded.value = true;
-  } catch (e) {
+  } catch {
     attributeOptionsLoaded.value = false;
   }
 }
@@ -116,7 +119,7 @@ const [Modal, modalApi] = useVbenModal({
     await ensureAttributeOptions();
     // 🔴 关键：重复添加校验必须直接读最新的 props.propertyList，
     //    不能依赖本地 attributeList.value 缓存，避免 watch 尚未同步造成的误判
-    const currentPropList = Array.isArray(props.propertyList) ? props.propertyList : [];
+    const currentPropList = props.propertyList || [];
     for (const name of names) {
       for (const attrItem of currentPropList) {
         if (attrItem.name === name) {
@@ -140,7 +143,7 @@ const [Modal, modalApi] = useVbenModal({
       if (existProperty) {
         // 情况一：如果属性已存在系统字典中，则直接使用
         const newItem = {
-          id: existProperty.id,
+          id: Number(existProperty.id),
           name,
           values: [],
         };
@@ -149,9 +152,16 @@ const [Modal, modalApi] = useVbenModal({
         existingNames.add(name);
       } else {
         // 情况二：如果是不存在的属性，则需要执行新增
-        const propertyId = await createProperty({ name });
+        const response = await createProperty({ name });
+        const idValue =
+          typeof response === 'number'
+            ? response
+            : (response?.data ?? response?.id);
+        if (!idValue) {
+          throw new Error(`创建属性 "${name}" 失败，未能获取到有效的ID`);
+        }
         const newItem = {
-          id: propertyId,
+          id: idValue as number,
           name,
           values: [],
         };
@@ -173,9 +183,7 @@ const [Modal, modalApi] = useVbenModal({
     }
     // 🛡️ 强制同步：Modal 打开时立刻用 props.propertyList 最新值覆盖本地 attributeList，
     //    防止 Vue deep watch 的异步时序导致本地缓存仍是"删除属性前"的旧数组
-    attributeList.value = Array.isArray(props.propertyList)
-      ? JSON.parse(JSON.stringify(props.propertyList)) // 深拷贝切断引用关联，避免"写回"误改父组件
-      : [];
+    attributeList.value = props.propertyList || [];
     // 打开时预加载属性列表，避免用户不点开下拉就输入导致的判空
     await ensureAttributeOptions();
     await formApi.resetForm();

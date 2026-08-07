@@ -126,10 +126,11 @@ const [SkuForm, skuFormApi] = useVbenForm({
   schema: useSkuFormSchema(propertyList.value, isDetail.value),
   showDefaultActions: false,
   handleValuesChange: (values, fieldsChanged) => {
+    /*
     if (fieldsChanged.includes('subCommissionType')) {
       formData.value.subCommissionType = values.subCommissionType;
       handleChangeSubCommissionType();
-    }
+    }*/
     if (fieldsChanged.includes('specType')) {
       formData.value.specType = values.specType;
       handleChangeSpec();
@@ -240,7 +241,6 @@ async function handleSubmit() {
       : newSliderPicUrls.push(item);
   });
   formValues.sliderPicUrls = newSliderPicUrls;
-
   await (spuId.value ? updateSpu(formValues) : createSpu(formValues))
     .then((response) => {
       // 如果是创建操作且成功，获取新创建的SPU ID
@@ -334,12 +334,12 @@ function generateSkus(newPropertyList: PropertyAndValues[]) {
   }
 }
 
-function handleChangeSubCommissionType() {
+/* function handleChangeSubCommissionType() {
   for (const item of formData.value.skus!) {
     item.firstBrokeragePrice = 0;
     item.secondBrokeragePrice = 0;
   }
-}
+}*/
 
 function handleChangeSpec() {
   if (isDetail.value || formData.value.id) {

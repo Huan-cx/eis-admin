@@ -218,25 +218,6 @@ export function useSkuFormSchema(
       },
     },
     {
-      fieldName: 'subCommissionType',
-      label: $t('mall-product.spu.form.subCommissionType'),
-      component: 'RadioGroup',
-      componentProps: {
-        allowClear: true,
-        options: [
-          {
-            label: $t('mall-product.spu.form.subCommissionDefault'),
-            value: false,
-          },
-          {
-            label: $t('mall-product.spu.form.subCommissionCustom'),
-            value: true,
-          },
-        ],
-      },
-      rules: 'required',
-    },
-    {
       fieldName: 'specType',
       label: $t('mall-product.spu.form.specType'),
       component: 'RadioGroup',
