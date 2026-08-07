@@ -100,14 +100,15 @@ const skuList = ref<MallSpuApi.Sku[]>([createEmptySku()]);
  * 无论 properties 元素顺序如何，相同组合返回相同字符串。
  * 空组合返回 ''。
  */
-function computeComboKey(properties: MallSpuApi.Property[] | null | undefined): string {
+function computeComboKey(
+  properties: MallSpuApi.Property[] | null | undefined,
+): string {
   if (!properties || properties.length === 0) {
     return '';
   }
   const parts: string[] = [];
-  for (let i = 0; i < properties.length; i++) {
-    const p = properties[i];
-    if (p.propertyId != null && p.valueId != null) {
+  for (const p of properties) {
+    if (p.propertyId !== null && p.valueId !== null) {
       parts.push(`${p.propertyId}:${p.valueId}`);
     }
   }
@@ -130,10 +131,15 @@ function shouldGenerateNow(signature: string): boolean {
 }
 
 /** 根据 propertyList 生成其"当前结构签名"，用于幂等判断 */
-function computePropertyListSignature(propertyList: PropertyAndValues[]): string {
+function computePropertyListSignature(
+  propertyList: PropertyAndValues[],
+): string {
   const keys: string[] = [];
   for (const p of propertyList) {
-    const vIds = (p.values || []).map((v) => String(v.id)).sort().join(',');
+    const vIds = (p.values || [])
+      .map((v) => String(v.id))
+      .toSorted()
+      .join(',');
     keys.push(`${p.id}[${vIds}]`);
   }
   return keys.join('|');
@@ -281,9 +287,11 @@ function cleanupInvalidSkus(propertyList: PropertyAndValues[]) {
       return false;
     }
     // 2. 每个 propertyId:valueId 必须在有效集合
-    for (let i = 0; i < props.length; i++) {
-      const p = props[i];
-      if (p.propertyId == null || !validPropertyIds.has(p.propertyId)) {
+    for (const p of props) {
+      if (
+        p.propertyId === null ||
+        !validPropertyIds.has(Number(p.propertyId))
+      ) {
         return false;
       }
       const key = `${p.propertyId}:${p.valueId}`;
@@ -324,8 +332,8 @@ function generateTableData(propertyList: PropertyAndValues[]) {
   // 先把现有所有 sku 的 comboKey 建成 Set，O(N×k) 只扫描一次
   const existingComboKeys = new Set<string>();
   const skus = formData.value!.skus!;
-  for (let i = 0; i < skus.length; i++) {
-    const key = computeComboKey(skus[i].properties);
+  for (const element of skus) {
+    const key = computeComboKey(element.properties);
     if (key) existingComboKeys.add(key); // 空 key（无 properties 行）跳过
   }
   // 组合阈值保护：超过 500 提示但继续生成（极端：10×10×10 = 1000）
@@ -334,8 +342,7 @@ function generateTableData(propertyList: PropertyAndValues[]) {
       `当前属性组合数 ${buildSkuList.length} 较多，可能导致界面卡顿，建议减少属性值数量`,
     );
   }
-  for (let i = 0; i < buildSkuList.length; i++) {
-    const properties = buildSkuList[i];
+  for (const properties of buildSkuList) {
     // comboKey 只算一次（properties 元素本身就是 build 新创建的，稳定）
     const key = computeComboKey(properties);
     if (existingComboKeys.has(key)) {
@@ -359,7 +366,8 @@ function validateData(propertyList: PropertyAndValues[]): boolean {
   if (!formData.value || !Array.isArray(formData.value.skus)) {
     return false;
   }
-  const { validKeys, validPropertyIds, hasEmptyValues } = computeValidityContext(propertyList);
+  const { validKeys, validPropertyIds, hasEmptyValues } =
+    computeValidityContext(propertyList);
   if (hasEmptyValues) {
     return false; // 属性还有空值，直接判定不一致（需要用户填完）
   }
@@ -368,17 +376,15 @@ function validateData(propertyList: PropertyAndValues[]): boolean {
   let hasAnyProperties = false;
 
   const skus = formData.value.skus;
-  for (let i = 0; i < skus.length; i++) {
-    const sku = skus[i];
+  for (const sku of skus) {
     const props = sku.properties || [];
     if (props.length === 0) continue;
     hasAnyProperties = true;
     // 长度不一致 → 不一致
     if (props.length !== propertyList.length) return false;
-    for (let j = 0; j < props.length; j++) {
-      const p = props[j];
-      if (p.propertyId != null) skuPropertyIds.add(p.propertyId);
-      if (p.propertyId != null && p.valueId != null) {
+    for (const p of props) {
+      if (p.propertyId !== null) skuPropertyIds.add(Number(p.propertyId));
+      if (p.propertyId !== null && p.valueId !== null) {
         const key = `${p.propertyId}:${p.valueId}`;
         if (!validKeys.has(key)) return false; // 🔴 有任何一个 property:value 不在当前有效集合 → 不一致
         skuComboKeys.add(key);
@@ -409,8 +415,8 @@ function build(
   }
   // 从一个空前缀开始迭代，每乘一个属性分组就扩展
   let result: MallSpuApi.Property[][] = [[]];
-  for (let g = 0; g < propertyValuesList.length; g++) {
-    const group = propertyValuesList[g] || [];
+  for (const element of propertyValuesList) {
+    const group = element || [];
     if (group.length === 0) {
       // 某个属性还没有值，直接返回空（调用方会判断 length===0 跳过）
       return [];
@@ -418,10 +424,9 @@ function build(
     const next: MallSpuApi.Property[][] = [];
     next.length = result.length * group.length; // 预分配，减少扩容
     let writeIdx = 0;
-    for (let r = 0; r < result.length; r++) {
-      const prefix = result[r];
-      for (let v = 0; v < group.length; v++) {
-        next[writeIdx++] = [...prefix, group[v]];
+    for (const prefix of result) {
+      for (const element of group) {
+        next[writeIdx++] = [...prefix, element];
       }
     }
     result = next;
@@ -503,7 +508,12 @@ defineExpose({
       }"
       size="small"
     >
-      <VxeColumn align="center" :title="$t('mall-product.spu.picUrl')" width="120" fixed="left">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.picUrl')"
+        width="120"
+        fixed="left"
+      >
         <template #default="{ row }">
           <ImageUpload
             v-model:value="row.picUrl"
@@ -530,22 +540,38 @@ defineExpose({
           </template>
         </VxeColumn>
       </template>
-      <VxeColumn align="center" :title="$t('mall-product.spu.name')" width="168">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.name')"
+        width="168"
+      >
         <template #default="{ row }">
           <Input v-model:value="row.name" class="w-full" />
         </template>
       </VxeColumn>
-      <VxeColumn align="center" :title="$t('mall-product.spu.skuCode')" width="168">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.skuCode')"
+        width="168"
+      >
         <template #default="{ row }">
           <Input v-model:value="row.skuCode" class="w-full" />
         </template>
       </VxeColumn>
-      <VxeColumn align="center" :title="$t('mall-product.spu.barCode')" width="168">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.barCode')"
+        width="168"
+      >
         <template #default="{ row }">
           <Input v-model:value="row.barCode" class="w-full" />
         </template>
       </VxeColumn>
-      <VxeColumn align="center" :title="$t('mall-product.spu.price')" width="168">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.price')"
+        width="168"
+      >
         <template #default="{ row }">
           <InputNumber
             v-model:value="row.price"
@@ -556,7 +582,11 @@ defineExpose({
           />
         </template>
       </VxeColumn>
-      <VxeColumn align="center" :title="$t('mall-product.spu.marketPrice')" width="168">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.marketPrice')"
+        width="168"
+      >
         <template #default="{ row }">
           <InputNumber
             v-model:value="row.marketPrice"
@@ -567,7 +597,11 @@ defineExpose({
           />
         </template>
       </VxeColumn>
-      <VxeColumn align="center" :title="$t('mall-product.spu.costPrice')" width="168">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.costPrice')"
+        width="168"
+      >
         <template #default="{ row }">
           <InputNumber
             v-model:value="row.costPrice"
@@ -578,12 +612,20 @@ defineExpose({
           />
         </template>
       </VxeColumn>
-      <VxeColumn align="center" :title="$t('mall-product.spu.stock')" width="168">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.stock')"
+        width="168"
+      >
         <template #default="{ row }">
           <InputNumber v-model:value="row.stock" :min="0" class="w-full" />
         </template>
       </VxeColumn>
-      <VxeColumn align="center" :title="$t('mall-product.spu.weight')" width="168">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.weight')"
+        width="168"
+      >
         <template #default="{ row }">
           <InputNumber
             v-model:value="row.weight"
@@ -594,101 +636,167 @@ defineExpose({
           />
         </template>
       </VxeColumn>
-      <VxeColumn align="center" :title="$t('mall-product.spu.volume')" width="168">
-          <template #default="{ row }">
-            <InputNumber
-              v-model:value="row.volume"
-              :min="0"
-              :precision="2"
-              :step="0.1"
-              class="w-full"
-            />
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.minQty')" width="120">
-          <template #default="{ row }">
-            <InputNumber
-              v-model:value="row.minQty"
-              :min="1"
-              class="w-full"
-            />
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.length')" width="120">
-          <template #default="{ row }">
-            <InputNumber
-              v-model:value="row.length"
-              :min="0"
-              :precision="2"
-              :step="0.1"
-              class="w-full"
-            />
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.width')" width="120">
-          <template #default="{ row }">
-            <InputNumber
-              v-model:value="row.width"
-              :min="0"
-              :precision="2"
-              :step="0.1"
-              class="w-full"
-            />
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.height')" width="120">
-          <template #default="{ row }">
-            <InputNumber
-              v-model:value="row.height"
-              :min="0"
-              :precision="2"
-              :step="0.1"
-              class="w-full"
-            />
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.unit')" width="120">
-          <template #default="{ row }">
-            <Input v-model:value="row.unit" class="w-full" />
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.model')" width="168">
-          <template #default="{ row }">
-            <Input v-model:value="row.model" class="w-full" :maxlength="64" />
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.packagingWay')" width="140">
-          <template #default="{ row }">
-            <Input v-model:value="row.packagingWay" class="w-full" :maxlength="64" />
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.pcsPerCtn')" width="100">
-          <template #default="{ row }">
-            <InputNumber v-model:value="row.pcsPerCtn" :min="0" class="w-full" />
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.nwPerCtn')" width="100">
-          <template #default="{ row }">
-            <InputNumber v-model:value="row.nwPerCtn" :min="0" :precision="3" class="w-full" />
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.gwPerCtn')" width="100">
-          <template #default="{ row }">
-            <InputNumber v-model:value="row.gwPerCtn" :min="0" :precision="3" class="w-full" />
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.hsCode')" width="168">
-          <template #default="{ row }">
-            <Input v-model:value="row.hsCode" class="w-full" :maxlength="32" />
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.remark')" width="200">
-          <template #default="{ row }">
-            <Input v-model:value="row.remark" class="w-full" :maxlength="512" />
-          </template>
-        </VxeColumn>
-        <template v-if="formData?.subCommissionType">
-        <VxeColumn align="center" :title="$t('mall-product.spu.firstBrokeragePrice')" width="168">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.volume')"
+        width="168"
+      >
+        <template #default="{ row }">
+          <InputNumber
+            v-model:value="row.volume"
+            :min="0"
+            :precision="2"
+            :step="0.1"
+            class="w-full"
+          />
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.minQty')"
+        width="120"
+      >
+        <template #default="{ row }">
+          <InputNumber v-model:value="row.minQty" :min="1" class="w-full" />
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.length')"
+        width="120"
+      >
+        <template #default="{ row }">
+          <InputNumber
+            v-model:value="row.length"
+            :min="0"
+            :precision="2"
+            :step="0.1"
+            class="w-full"
+          />
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.width')"
+        width="120"
+      >
+        <template #default="{ row }">
+          <InputNumber
+            v-model:value="row.width"
+            :min="0"
+            :precision="2"
+            :step="0.1"
+            class="w-full"
+          />
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.height')"
+        width="120"
+      >
+        <template #default="{ row }">
+          <InputNumber
+            v-model:value="row.height"
+            :min="0"
+            :precision="2"
+            :step="0.1"
+            class="w-full"
+          />
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.unit')"
+        width="120"
+      >
+        <template #default="{ row }">
+          <Input v-model:value="row.unit" class="w-full" />
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.model')"
+        width="168"
+      >
+        <template #default="{ row }">
+          <Input v-model:value="row.model" class="w-full" :maxlength="64" />
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.packagingWay')"
+        width="140"
+      >
+        <template #default="{ row }">
+          <Input
+            v-model:value="row.packagingWay"
+            class="w-full"
+            :maxlength="64"
+          />
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.pcsPerCtn')"
+        width="100"
+      >
+        <template #default="{ row }">
+          <InputNumber v-model:value="row.pcsPerCtn" :min="0" class="w-full" />
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.nwPerCtn')"
+        width="100"
+      >
+        <template #default="{ row }">
+          <InputNumber
+            v-model:value="row.nwPerCtn"
+            :min="0"
+            :precision="3"
+            class="w-full"
+          />
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.gwPerCtn')"
+        width="100"
+      >
+        <template #default="{ row }">
+          <InputNumber
+            v-model:value="row.gwPerCtn"
+            :min="0"
+            :precision="3"
+            class="w-full"
+          />
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.hsCode')"
+        width="168"
+      >
+        <template #default="{ row }">
+          <Input v-model:value="row.hsCode" class="w-full" :maxlength="32" />
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.remark')"
+        width="200"
+      >
+        <template #default="{ row }">
+          <Input v-model:value="row.remark" class="w-full" :maxlength="512" />
+        </template>
+      </VxeColumn>
+      <template v-if="formData?.subCommissionType">
+        <VxeColumn
+          align="center"
+          :title="$t('mall-product.spu.firstBrokeragePrice')"
+          width="168"
+        >
           <template #default="{ row }">
             <InputNumber
               v-model:value="row.firstBrokeragePrice"
@@ -699,7 +807,11 @@ defineExpose({
             />
           </template>
         </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.secondBrokeragePrice')" width="168">
+        <VxeColumn
+          align="center"
+          :title="$t('mall-product.spu.secondBrokeragePrice')"
+          width="168"
+        >
           <template #default="{ row }">
             <InputNumber
               v-model:value="row.secondBrokeragePrice"
@@ -754,7 +866,12 @@ defineExpose({
       @checkbox-all="handleSelectionChange"
     >
       <VxeColumn v-if="isComponent" type="checkbox" width="45" fixed="left" />
-      <VxeColumn align="center" :title="$t('mall-product.spu.picUrl')" max-width="140" fixed="left">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.picUrl')"
+        max-width="140"
+        fixed="left"
+      >
         <template #default="{ row }">
           <Image
             v-if="row.picUrl"
@@ -781,108 +898,188 @@ defineExpose({
           </template>
         </VxeColumn>
       </template>
-      <VxeColumn align="center" :title="$t('mall-product.spu.barCode')" width="100">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.barCode')"
+        width="100"
+      >
         <template #default="{ row }">
           {{ row.barCode }}
         </template>
       </VxeColumn>
-      <VxeColumn align="center" :title="$t('mall-product.spu.price')" width="80">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.price')"
+        width="80"
+      >
         <template #default="{ row }">
           {{ row.price }}
         </template>
       </VxeColumn>
-      <VxeColumn align="center" :title="$t('mall-product.spu.marketPrice')" width="80">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.marketPrice')"
+        width="80"
+      >
         <template #default="{ row }">
           {{ row.marketPrice }}
         </template>
       </VxeColumn>
-      <VxeColumn align="center" :title="$t('mall-product.spu.costPrice')" width="80">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.costPrice')"
+        width="80"
+      >
         <template #default="{ row }">
           {{ row.costPrice }}
         </template>
       </VxeColumn>
-      <VxeColumn align="center" :title="$t('mall-product.spu.stock')" width="80">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.stock')"
+        width="80"
+      >
         <template #default="{ row }">
           {{ row.stock }}
         </template>
       </VxeColumn>
-      <VxeColumn align="center" :title="$t('mall-product.spu.weight')" width="80">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.weight')"
+        width="80"
+      >
         <template #default="{ row }">
           {{ row.weight }}
         </template>
       </VxeColumn>
-      <VxeColumn align="center" :title="$t('mall-product.spu.volume')" width="80">
-          <template #default="{ row }">
-            {{ row.volume }}
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.minQty')" width="80">
-          <template #default="{ row }">
-            {{ row.minQty }}
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.length')" width="80">
-          <template #default="{ row }">
-            {{ row.length }}
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.width')" width="80">
-          <template #default="{ row }">
-            {{ row.width }}
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.height')" width="80">
-          <template #default="{ row }">
-            {{ row.height }}
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.unit')" width="80">
-          <template #default="{ row }">
-            {{ row.unit }}
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.model')" width="120">
-          <template #default="{ row }">
-            {{ row.model }}
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.packagingWay')" width="100">
-          <template #default="{ row }">
-            {{ row.packagingWay }}
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.pcsPerCtn')" width="80">
-          <template #default="{ row }">
-            {{ row.pcsPerCtn }}
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.nwPerCtn')" width="80">
-          <template #default="{ row }">
-            {{ row.nwPerCtn }}
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.gwPerCtn')" width="80">
-          <template #default="{ row }">
-            {{ row.gwPerCtn }}
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.hsCode')" width="120">
-          <template #default="{ row }">
-            {{ row.hsCode }}
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.remark')" width="150">
-          <template #default="{ row }">
-            {{ row.remark }}
-          </template>
-        </VxeColumn>
-        <template v-if="formData?.subCommissionType">
-        <VxeColumn align="center" :title="$t('mall-product.spu.firstBrokeragePrice')" width="80">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.volume')"
+        width="80"
+      >
+        <template #default="{ row }">
+          {{ row.volume }}
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.minQty')"
+        width="80"
+      >
+        <template #default="{ row }">
+          {{ row.minQty }}
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.length')"
+        width="80"
+      >
+        <template #default="{ row }">
+          {{ row.length }}
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.width')"
+        width="80"
+      >
+        <template #default="{ row }">
+          {{ row.width }}
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.height')"
+        width="80"
+      >
+        <template #default="{ row }">
+          {{ row.height }}
+        </template>
+      </VxeColumn>
+      <VxeColumn align="center" :title="$t('mall-product.spu.unit')" width="80">
+        <template #default="{ row }">
+          {{ row.unit }}
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.model')"
+        width="120"
+      >
+        <template #default="{ row }">
+          {{ row.model }}
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.packagingWay')"
+        width="100"
+      >
+        <template #default="{ row }">
+          {{ row.packagingWay }}
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.pcsPerCtn')"
+        width="80"
+      >
+        <template #default="{ row }">
+          {{ row.pcsPerCtn }}
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.nwPerCtn')"
+        width="80"
+      >
+        <template #default="{ row }">
+          {{ row.nwPerCtn }}
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.gwPerCtn')"
+        width="80"
+      >
+        <template #default="{ row }">
+          {{ row.gwPerCtn }}
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.hsCode')"
+        width="120"
+      >
+        <template #default="{ row }">
+          {{ row.hsCode }}
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.remark')"
+        width="150"
+      >
+        <template #default="{ row }">
+          {{ row.remark }}
+        </template>
+      </VxeColumn>
+      <template v-if="formData?.subCommissionType">
+        <VxeColumn
+          align="center"
+          :title="$t('mall-product.spu.firstBrokeragePrice')"
+          width="80"
+        >
           <template #default="{ row }">
             {{ row.firstBrokeragePrice }}
           </template>
         </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.secondBrokeragePrice')" width="80">
+        <VxeColumn
+          align="center"
+          :title="$t('mall-product.spu.secondBrokeragePrice')"
+          width="80"
+        >
           <template #default="{ row }">
             {{ row.secondBrokeragePrice }}
           </template>
@@ -905,7 +1102,12 @@ defineExpose({
       }"
     >
       <VxeColumn v-if="isComponent" type="checkbox" width="45" fixed="left" />
-      <VxeColumn align="center" :title="$t('mall-product.spu.picUrl')" max-width="140" fixed="left">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.picUrl')"
+        max-width="140"
+        fixed="left"
+      >
         <template #default="{ row }">
           <Image
             :src="row.picUrl"
@@ -931,43 +1133,67 @@ defineExpose({
           </template>
         </VxeColumn>
       </template>
-      <VxeColumn align="center" :title="$t('mall-product.spu.barCode')" width="100">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.barCode')"
+        width="100"
+      >
         <template #default="{ row }">
           {{ row.barCode }}
         </template>
       </VxeColumn>
-      <VxeColumn align="center" :title="$t('mall-product.spu.price')" width="80">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.price')"
+        width="80"
+      >
         <template #default="{ row }">
           {{ formatToFraction(row.price) }}
         </template>
       </VxeColumn>
-      <VxeColumn align="center" :title="$t('mall-product.spu.marketPrice')" width="80">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.marketPrice')"
+        width="80"
+      >
         <template #default="{ row }">
           {{ formatToFraction(row.marketPrice) }}
         </template>
       </VxeColumn>
-      <VxeColumn align="center" :title="$t('mall-product.spu.costPrice')" width="80">
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.costPrice')"
+        width="80"
+      >
         <template #default="{ row }">
           {{ formatToFraction(row.costPrice) }}
         </template>
       </VxeColumn>
-      <VxeColumn align="center" :title="$t('mall-product.spu.stock')" width="80">
-          <template #default="{ row }">
-            {{ row.stock }}
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.minQty')" width="80">
-          <template #default="{ row }">
-            {{ row.minQty }}
-          </template>
-        </VxeColumn>
-        <VxeColumn align="center" :title="$t('mall-product.spu.unit')" width="80">
-          <template #default="{ row }">
-            {{ row.unit }}
-          </template>
-        </VxeColumn>
-        <!-- 方便扩展每个活动配置的属性不一样  -->
-        <slot name="extension"></slot>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.stock')"
+        width="80"
+      >
+        <template #default="{ row }">
+          {{ row.stock }}
+        </template>
+      </VxeColumn>
+      <VxeColumn
+        align="center"
+        :title="$t('mall-product.spu.minQty')"
+        width="80"
+      >
+        <template #default="{ row }">
+          {{ row.minQty }}
+        </template>
+      </VxeColumn>
+      <VxeColumn align="center" :title="$t('mall-product.spu.unit')" width="80">
+        <template #default="{ row }">
+          {{ row.unit }}
+        </template>
+      </VxeColumn>
+      <!-- 方便扩展每个活动配置的属性不一样  -->
+      <slot name="extension"></slot>
     </VxeTable>
   </div>
 </template>
