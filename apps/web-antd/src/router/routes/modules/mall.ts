@@ -19,6 +19,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: $t('page.mall.product.add'),
           activePath: '/mall/product/spu',
+          keepAlive: true,
         },
         component: () => import('#/views/mall/product/spu/form/index.vue'),
       },

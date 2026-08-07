@@ -45,7 +45,9 @@ const i18nEditorRef = ref<InstanceType<typeof I18nEditor>>();
 
 /** 当前激活的 SkuList 实例：单规格/多规格切换时对应不同组件 */
 function getActiveSkuListRef() {
-  return formData.value.specType ? multiSkuListRef.value : singleSkuListRef.value;
+  return formData.value.specType
+    ? multiSkuListRef.value
+    : singleSkuListRef.value;
 }
 
 const formData = ref<MallSpuApi.Spu>({
@@ -240,7 +242,11 @@ async function handleSubmit() {
   formValues.sliderPicUrls = newSliderPicUrls;
 
   await (spuId.value ? updateSpu(formValues) : createSpu(formValues))
-    .then(() => {
+    .then((response) => {
+      // 如果是创建操作且成功，获取新创建的SPU ID
+      if (!spuId.value && response) {
+        spuId.value = response;
+      }
       getDetail();
       message.success($t('ui.actionMessage.operationSuccess'));
     })
@@ -268,13 +274,13 @@ async function getDetail() {
       item.costPrice = formatToFraction(item.costPrice);
       item.firstBrokeragePrice = formatToFraction(item.firstBrokeragePrice);
       item.secondBrokeragePrice = formatToFraction(item.secondBrokeragePrice);
-      item.weight = Number(item.weight || 0).toFixed(2);
-      item.volume = Number(item.volume || 0).toFixed(2);
-      item.length = Number(item.length || 0).toFixed(2);
-      item.width = Number(item.width || 0).toFixed(2);
-      item.height = Number(item.height || 0).toFixed(2);
-      item.nwPerCtn = Number(item.nwPerCtn || 0).toFixed(3);
-      item.gwPerCtn = Number(item.gwPerCtn || 0).toFixed(3);
+      item.weight = Number.parseFloat(Number(item.weight || 0).toFixed(2));
+      item.volume = Number.parseFloat(Number(item.volume || 0).toFixed(2));
+      item.length = Number.parseFloat(Number(item.length || 0).toFixed(2));
+      item.width = Number.parseFloat(Number(item.width || 0).toFixed(2));
+      item.height = Number.parseFloat(Number(item.height || 0).toFixed(2));
+      item.nwPerCtn = Number.parseFloat(Number(item.nwPerCtn || 0).toFixed(3));
+      item.gwPerCtn = Number.parseFloat(Number(item.gwPerCtn || 0).toFixed(3));
     });
     formData.value = res;
     infoFormApi.setValues(res).then();
@@ -320,7 +326,10 @@ function generateSkus(newPropertyList: PropertyAndValues[]) {
   // 1. 先同步父组件 propertyList 的最新状态（关键！）
   propertyList.value = Array.isArray(newPropertyList) ? newPropertyList : [];
   // 2. 同步后再驱动 SkuList 重新生成/清理 SKU
-  if (multiSkuListRef.value && typeof multiSkuListRef.value.generateTableData === 'function') {
+  if (
+    multiSkuListRef.value &&
+    typeof multiSkuListRef.value.generateTableData === 'function'
+  ) {
     multiSkuListRef.value.generateTableData(propertyList.value);
   }
 }
@@ -527,7 +536,7 @@ onMounted(async () => {
         metaDescription: formData.metaDescription ?? '',
       }"
       :initial-data="i18nData"
-      :save-api="saveSpuI18n"
+      :save-api="(entityId, data) => saveSpuI18n(Number(entityId), data)"
     />
   </div>
 </template>
