@@ -104,7 +104,9 @@ export function useGridColumns(
       field: 'price',
       title: $t('mall-product.spu.price'),
       minWidth: 100,
-      formatter: 'formatAmount2',
+      formatter: ({ row }) => {
+        return `${fenToYuan(row.price)} 元`;
+      },
     },
     {
       field: 'marketPrice',
