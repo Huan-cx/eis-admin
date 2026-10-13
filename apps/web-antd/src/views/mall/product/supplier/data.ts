@@ -41,6 +41,7 @@ export function useFormSchema(): VbenFormSchema[] {
           { label: '家具', value: 'FURNITURE' },
           { label: '沙发', value: 'SOFA' },
           { label: '家居', value: 'HOUSEHOLD' },
+          { label: '自行车', value: 'BIKE' },
         ],
         placeholder: '请选择供应商类别',
         allowClear: true,
