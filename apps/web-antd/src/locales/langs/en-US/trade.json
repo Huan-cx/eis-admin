@@ -321,13 +321,17 @@
         "title": "Assign Supplier"
       },
       "detail": {
+        "adClickId": "Ad Click ID",
+        "adPlatform": "Ad Platform",
         "brand": "Brand",
+        "capturedAt": "Attribution Captured At",
         "contactName": "Contact Name",
         "count": "Quantity",
         "createdAt": "Created At",
         "email": "Email",
         "expectedPrice": "Expected Price",
         "items": "Item Details",
+        "landingPage": "Landing Page",
         "no": "RFQ No.",
         "productName": "Product Name",
         "quantity": "Quantity",
@@ -341,6 +345,9 @@
         "title": "RFQ Detail",
         "unit": "Unit",
         "userName": "Customer Name",
+        "utmCampaign": "UTM Campaign",
+        "utmMedium": "UTM Medium",
+        "utmSource": "UTM Source",
         "validUntil": "Valid Until"
       },
       "form": {
@@ -375,6 +382,7 @@
         "UNKNOWN": "Unknown / Supplier recommended"
       },
       "grid": {
+        "adSource": "Ad Source",
         "createdAt": "Created At",
         "deliveryPort": "Delivery Port",
         "expectedDeliveryDate": "Expected Delivery Date",

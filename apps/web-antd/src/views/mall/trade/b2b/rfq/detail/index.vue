@@ -237,6 +237,27 @@ const getStatusColor = (status: number) => {
         <Descriptions.Item :label="$t('trade.b2b.rfq.detail.createdAt')">
           {{ formatDateTime(rfqDetail.createTime) || '-' }}
         </Descriptions.Item>
+        <Descriptions.Item :label="$t('trade.b2b.rfq.detail.adPlatform')">
+          {{ rfqDetail.adPlatform || '-' }}
+        </Descriptions.Item>
+        <Descriptions.Item :label="$t('trade.b2b.rfq.detail.adClickId')">
+          {{ rfqDetail.adClickId || '-' }}
+        </Descriptions.Item>
+        <Descriptions.Item :label="$t('trade.b2b.rfq.detail.utmSource')">
+          {{ rfqDetail.utmSource || '-' }}
+        </Descriptions.Item>
+        <Descriptions.Item :label="$t('trade.b2b.rfq.detail.utmMedium')">
+          {{ rfqDetail.utmMedium || '-' }}
+        </Descriptions.Item>
+        <Descriptions.Item :label="$t('trade.b2b.rfq.detail.utmCampaign')">
+          {{ rfqDetail.utmCampaign || '-' }}
+        </Descriptions.Item>
+        <Descriptions.Item :label="$t('trade.b2b.rfq.detail.landingPage')">
+          {{ rfqDetail.landingPage || '-' }}
+        </Descriptions.Item>
+        <Descriptions.Item :label="$t('trade.b2b.rfq.detail.capturedAt')">
+          {{ formatDateTime(rfqDetail.capturedAt) || '-' }}
+        </Descriptions.Item>
       </Descriptions>
 
       <Tabs v-model:active-key="activeTab">

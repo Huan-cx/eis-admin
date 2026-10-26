@@ -321,13 +321,17 @@
         "title": "分配供应商"
       },
       "detail": {
+        "adClickId": "广告点击ID",
+        "adPlatform": "广告平台",
         "brand": "品牌",
+        "capturedAt": "归因捕获时间",
         "contactName": "联系人姓名",
         "count": "数量",
         "createdAt": "创建时间",
         "email": "邮箱",
         "expectedPrice": "期望价格",
         "items": "商品明细",
+        "landingPage": "落地页",
         "no": "询价单号",
         "productName": "商品名称",
         "quantity": "数量",
@@ -341,6 +345,9 @@
         "title": "询价单详情",
         "unit": "单位",
         "userName": "客户名称",
+        "utmCampaign": "UTM活动",
+        "utmMedium": "UTM媒介",
+        "utmSource": "UTM来源",
         "validUntil": "有效期至"
       },
       "form": {
@@ -375,6 +382,7 @@
         "UNKNOWN": "不知道/由供应商推荐"
       },
       "grid": {
+        "adSource": "广告来源",
         "createdAt": "创建时间",
         "deliveryPort": "交货港口",
         "expectedDeliveryDate": "期望交货日期",

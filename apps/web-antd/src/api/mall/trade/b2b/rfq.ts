@@ -37,6 +37,14 @@ export namespace B2BRfqApi {
     updatedAt?: string;
     items: RfqItem[];
     hasFinalQuotation?: boolean;
+    // ===== 广告归因 =====
+    adPlatform?: string;
+    adClickId?: string;
+    utmSource?: string;
+    utmMedium?: string;
+    utmCampaign?: string;
+    landingPage?: string;
+    capturedAt?: string;
   }
 
   export interface RfqPageItem {
@@ -58,6 +66,14 @@ export namespace B2BRfqApi {
     submittedAt?: string;
     createdAt: string;
     hasFinalQuotation?: boolean;
+    // ===== 广告归因 =====
+    adPlatform?: string;
+    adClickId?: string;
+    utmSource?: string;
+    utmMedium?: string;
+    utmCampaign?: string;
+    landingPage?: string;
+    capturedAt?: string;
   }
 
   export interface AssignSupplierReqVO {

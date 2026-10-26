@@ -91,6 +91,19 @@ export function useGridColumns(): VxeGridPropTypes.Columns {
       minWidth: 120,
     },
     {
+      field: 'adPlatform',
+      title: $t('trade.b2b.rfq.grid.adSource'),
+      minWidth: 140,
+      formatter: ({ row, cellValue }) => {
+        const platform = cellValue ? String(cellValue) : '';
+        const campaign = row.utmCampaign ? String(row.utmCampaign) : '';
+        if (!platform && !campaign) {
+          return '-';
+        }
+        return [platform, campaign].filter(Boolean).join(' / ');
+      },
+    },
+    {
       field: 'itemCount',
       title: $t('trade.b2b.rfq.grid.itemCount'),
       minWidth: 80,
