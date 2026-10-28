@@ -432,6 +432,61 @@
       "pending": "Pending",
       "processing": "Processing",
       "submitted": "Submitted"
+    },
+    "inquiry": {
+      "actions": {
+        "process": "Process Inquiry"
+      },
+      "detail": {
+        "adClickId": "Ad Click ID",
+        "adPlatform": "Ad Platform",
+        "budgetAmount": "Estimated Budget",
+        "capturedAt": "Attribution Captured At",
+        "company": "Company",
+        "country": "Country / Region",
+        "createTime": "Create Time",
+        "description": "Purchase Description",
+        "email": "Email",
+        "handleRemark": "Handle Remark",
+        "landingPage": "Landing Page",
+        "no": "Inquiry No.",
+        "status": "Status",
+        "title": "Inquiry Detail",
+        "userName": "Customer Name",
+        "utmCampaign": "UTM Campaign",
+        "utmMedium": "UTM Medium",
+        "utmSource": "UTM Source"
+      },
+      "form": {
+        "company": "Company",
+        "companyPlaceholder": "Enter company name",
+        "country": "Country / Region",
+        "countryPlaceholder": "Enter country or region",
+        "email": "Email",
+        "emailPlaceholder": "Enter email",
+        "handleRemark": "Handle Remark",
+        "handleRemarkPlaceholder": "Enter handle remark",
+        "status": "Status",
+        "statusPlaceholder": "Select status"
+      },
+      "grid": {
+        "budgetAmount": "Budget Amount",
+        "company": "Company",
+        "country": "Country / Region",
+        "createTime": "Create Time",
+        "email": "Email",
+        "no": "Inquiry No.",
+        "status": "Status"
+      },
+      "index": {
+        "title": "Inquiry List"
+      },
+      "status": {
+        "contacted": "Contacted",
+        "deal": "Deal",
+        "pending": "Pending"
+      },
+      "title": "Inquiry Management"
     }
   },
   "shipment": {

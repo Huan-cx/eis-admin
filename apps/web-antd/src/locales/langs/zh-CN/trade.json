@@ -432,6 +432,61 @@
       "pending": "待提交",
       "processing": "处理中",
       "submitted": "已提交"
+    },
+    "inquiry": {
+      "actions": {
+        "process": "处理询价"
+      },
+      "detail": {
+        "adClickId": "广告点击ID",
+        "adPlatform": "广告平台",
+        "budgetAmount": "预计采购预算",
+        "capturedAt": "归因捕获时间",
+        "company": "公司名称",
+        "country": "国家或地区",
+        "createTime": "创建时间",
+        "description": "采购需求描述",
+        "email": "邮箱",
+        "handleRemark": "处理备注",
+        "landingPage": "落地页",
+        "no": "询价编号",
+        "status": "状态",
+        "title": "采购询价详情",
+        "userName": "客户名称",
+        "utmCampaign": "UTM活动",
+        "utmMedium": "UTM媒介",
+        "utmSource": "UTM来源"
+      },
+      "form": {
+        "company": "公司名称",
+        "companyPlaceholder": "请输入公司名称",
+        "country": "国家或地区",
+        "countryPlaceholder": "请输入国家或地区",
+        "email": "邮箱",
+        "emailPlaceholder": "请输入邮箱",
+        "handleRemark": "处理备注",
+        "handleRemarkPlaceholder": "请输入处理备注",
+        "status": "状态",
+        "statusPlaceholder": "请选择状态"
+      },
+      "grid": {
+        "budgetAmount": "预算金额",
+        "company": "公司名称",
+        "country": "国家或地区",
+        "createTime": "创建时间",
+        "email": "邮箱",
+        "no": "询价编号",
+        "status": "状态"
+      },
+      "index": {
+        "title": "采购询价列表"
+      },
+      "status": {
+        "contacted": "已联系",
+        "deal": "已成交",
+        "pending": "待处理"
+      },
+      "title": "采购询价管理"
     }
   },
   "shipment": {

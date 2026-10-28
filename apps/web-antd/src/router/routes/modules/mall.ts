@@ -109,6 +109,16 @@ const routes: RouteRecordRaw[] = [
         component: () => import('#/views/mall/trade/b2b/rfq/detail/index.vue'),
       },
       {
+        path: 'b2b/inquiry/detail/:id',
+        name: 'TradeB2BInquiryDetailPage',
+        meta: {
+          title: $t('page.mall.trade.b2b.inquiry.detail'),
+          activePath: '/mall/trade/b2b/inquiry',
+        },
+        component: () =>
+          import('#/views/mall/trade/b2b/inquiry/detail/index.vue'),
+      },
+      {
         path: 'b2b/quotation/detail/:id',
         name: 'TradeB2BQuotationDetailPage',
         meta: {

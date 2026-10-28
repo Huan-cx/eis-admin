@@ -34,6 +34,9 @@
         "rfq": {
           "detail": "询价单详情"
         },
+        "inquiry": {
+          "detail": "采购询价详情"
+        },
         "quotation": {
           "detail": "报价单详情",
           "edit": "报价单编辑"
