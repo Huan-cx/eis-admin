@@ -50,5 +50,68 @@
   "fail": "失败",
   "index": "序号",
   "quotation": "报价",
-  "close": "关闭"
+  "close": "关闭",
+  "noImage": "无图",
+  "saveFailed": "保存失败",
+  "totalItems": "共 {total} 条",
+  "promotion": {
+    "themeCustomization": {
+      "sectionName": "主题区块",
+      "templateConfig": {
+        "title": "模板配置（可视化）",
+        "pleaseSelectTypeFirst": "请先选择区块类型，再进行配置"
+      },
+      "product": {
+        "layout": "布局 layout",
+        "layoutFeatured3": "featured3（三图特色）",
+        "layoutGrid4": "grid4（四图网格）",
+        "layoutGrid8": "grid8（八图网格）",
+        "sortField": "排序字段 sortField",
+        "sortSalesCount": "销量 salesCount",
+        "sortCreateTime": "创建时间 createTime",
+        "sortPrice": "价格 price",
+        "sortAsc": "升序 sortAsc（默认降序）",
+        "selectedItems": "已选商品（{count} / {limit}）",
+        "selectItems": "选择商品",
+        "noItemsSelected": "尚未选择商品，点击「选择商品」弹窗选择",
+        "modalTitle": "选择商品",
+        "searchByName": "按商品名称搜索",
+        "filterByCategory": "按分类筛选",
+        "colCover": "封面",
+        "colName": "商品名称",
+        "colSalesCount": "销量",
+        "modalSelectedCount": "已选 <strong>{selected}</strong> 个商品 / 当前布局最多 {limit} 个",
+        "modalClearAll": "全部清空",
+        "modalNoSelection": "尚未选择商品，在上方列表里勾选（支持跨页选择）",
+        "truncated": "布局 {layout} 最多 {limit} 个商品，已截断",
+        "minOneRequired": "至少选择 1 个商品",
+        "selectedN": "已选择 {count} 个商品",
+        "requiredN": "需要 {limit} 个商品 ID（当前 {count} 个），请重新选择"
+      },
+      "category": {
+        "label": "分类（可多选）",
+        "noItemsSelected": "尚未选择分类，在上方下拉中勾选（支持多选）",
+        "minOneRequired": "至少需要选择 1 个分类"
+      },
+      "staticContent": {
+        "notAvailable": "static_content 二期实现，本期暂不支持配置"
+      },
+      "translation": {
+        "title": "多语言翻译",
+        "defaultSuffix": " — 默认",
+        "allAdded": "所有启用语言都已添加",
+        "addAvailable": "+ 添加翻译（{count} 种可用）",
+        "colTitle": "标题 title",
+        "colSubtitle": "副标题 subtitle",
+        "selectLang": "请选择语言",
+        "titlePlaceholder": "区块标题",
+        "subtitlePlaceholder": "区块副标题（可选）",
+        "localeHint": "locale 建议使用 en-US / zh-CN / fr-FR。后端按 精确 locale → en-US → 第一条 回落。",
+        "localeDuplicate": "第 {row} 行的语言 '{locale}' 与已添加的重复，请修改后再保存"
+      },
+      "config": {
+        "validationFailed": "配置校验失败"
+      }
+    }
+  }
 }

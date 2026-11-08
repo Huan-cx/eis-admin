@@ -50,5 +50,68 @@
   "fail": "Failed",
   "index": "Index",
   "quotation": "Quotation",
-  "close": "Close"
+  "close": "Close",
+  "noImage": "No Image",
+  "saveFailed": "Save failed",
+  "totalItems": "{total} items",
+  "promotion": {
+    "themeCustomization": {
+      "sectionName": "Theme Section",
+      "templateConfig": {
+        "title": "Template Configuration (Visual)",
+        "pleaseSelectTypeFirst": "Select a section type first, then configure"
+      },
+      "product": {
+        "layout": "Layout",
+        "layoutFeatured3": "featured3 (Featured 3)",
+        "layoutGrid4": "grid4 (Grid 4)",
+        "layoutGrid8": "grid8 (Grid 8)",
+        "sortField": "Sort Field",
+        "sortSalesCount": "Sales Count",
+        "sortCreateTime": "Create Time",
+        "sortPrice": "Price",
+        "sortAsc": "Ascending (default: descending)",
+        "selectedItems": "Selected ({count} / {limit})",
+        "selectItems": "Select Products",
+        "noItemsSelected": "No products selected. Click \"Select Products\" to open the picker",
+        "modalTitle": "Select Products",
+        "searchByName": "Search by product name",
+        "filterByCategory": "Filter by category",
+        "colCover": "Cover",
+        "colName": "Name",
+        "colSalesCount": "Sales",
+        "modalSelectedCount": "<strong>{selected}</strong> selected / max {limit} for current layout",
+        "modalClearAll": "Clear All",
+        "modalNoSelection": "No products selected. Check items above (cross-page selection supported)",
+        "truncated": "Layout {layout} allows max {limit} products, truncated",
+        "minOneRequired": "At least 1 product is required",
+        "selectedN": "{count} product(s) selected",
+        "requiredN": "Need {limit} product IDs (got {count}), please re-select"
+      },
+      "category": {
+        "label": "Categories (multi-select)",
+        "noItemsSelected": "No categories selected. Pick from dropdown above (multi-select supported)",
+        "minOneRequired": "At least 1 category is required"
+      },
+      "staticContent": {
+        "notAvailable": "static_content — not available in this release"
+      },
+      "translation": {
+        "title": "Multi-language Translations",
+        "defaultSuffix": " — Default",
+        "allAdded": "All enabled languages have been added",
+        "addAvailable": "+ Add Translation ({count} available)",
+        "colTitle": "Title",
+        "colSubtitle": "Subtitle",
+        "selectLang": "Select language",
+        "titlePlaceholder": "Section title",
+        "subtitlePlaceholder": "Subtitle (optional)",
+        "localeHint": "Recommended locale codes: en-US / zh-CN / fr-FR. Backend falls back: exact locale → en-US → first entry.",
+        "localeDuplicate": "Row {row} has duplicate locale \"{locale}\", please fix before saving"
+      },
+      "config": {
+        "validationFailed": "Config validation failed"
+      }
+    }
+  }
 }
